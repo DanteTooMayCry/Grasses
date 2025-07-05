@@ -1,0 +1,15 @@
+{
+  "name": "Farmland Slab",
+  "icon": "grasses:farmland_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 6,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:farmland_slab",
+      "title": "Farmland Slab",
+      "text": "A slab identical to a vanilla Farmland Block. Domyślnie nie można sadzić roślin na jego dolnej połowie, ale można zmienić to w pliku config."
+    }
+  ]
+}

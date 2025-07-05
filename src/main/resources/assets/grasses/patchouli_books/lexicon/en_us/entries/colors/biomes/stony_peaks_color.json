@@ -1,0 +1,19 @@
+{
+  "name": "Color: Stony Peaks",
+  "icon": "minecraft:emerald_ore",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 19,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:stony_peaks_grass_block",
+      "title": "Color: Stony Peaks"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:emerald_ore",
+      "title": "Ingredient:"
+    }
+  ]
+}

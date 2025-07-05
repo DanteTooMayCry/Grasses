@@ -1,0 +1,19 @@
+{
+  "name": "Jungle Grass",
+  "icon": "grasses:jungle_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 8,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:jungle_grass_block",
+      "title": "Jungle Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:jungle_grass_slab",
+      "title": "Jungle Grass Slab"
+    }
+  ]
+}

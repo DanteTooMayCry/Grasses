@@ -1,0 +1,46 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:shears",
+      "nbt": "{Enchantments:[{lvl:1s, id:\"minecraft:silk_touch\"}]}"
+    },
+    "title": {
+      "translate": "grasses.advancements.channeling_shears.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.channeling_shears.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a1_silk_touch_on_shears",
+  "criteria": {
+    "channeling_shears": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:shears"
+            ],
+            "enchantments": [
+              {
+                "enchantment": "minecraft:channeling"
+              },
+              {
+                "enchantment": "minecraft:silk_touch"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "channeling_shears"
+    ]
+  ]
+}

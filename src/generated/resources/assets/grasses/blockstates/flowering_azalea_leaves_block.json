@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alter=false": {
+      "model": "grasses:block/flowering_azalea_leaves_block"
+    },
+    "alter=true": {
+      "model": "grasses:block/flowering_azalea_leaves_block_light"
+    }
+  }
+}

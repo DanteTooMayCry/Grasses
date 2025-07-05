@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Badlandy",
+  "icon": "minecraft:red_sand",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:badlands_grass_block",
+      "title": "Kolor: Badlandy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:red_sand",
+      "title": "Składnik:"
+    }
+  ]
+}

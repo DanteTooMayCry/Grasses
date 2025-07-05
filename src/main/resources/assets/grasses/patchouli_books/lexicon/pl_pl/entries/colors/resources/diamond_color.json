@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Diamentowy",
+  "icon": "minecraft:diamond",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 44,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:diamond_grass_block",
+      "title": "Kolor: Diamentowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:diamond",
+      "title": "Składnik:"
+    }
+  ]
+}

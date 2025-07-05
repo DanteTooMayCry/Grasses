@@ -1,0 +1,19 @@
+{
+  "name": "Color: Orange",
+  "icon": "minecraft:orange_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 26,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:orange_grass_block",
+      "title": "Color: Orange"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:orange_dye",
+      "title": "Ingredient:"
+    }
+  ]
+}

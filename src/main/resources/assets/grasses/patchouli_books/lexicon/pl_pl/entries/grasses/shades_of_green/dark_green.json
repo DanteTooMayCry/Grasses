@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Ciemna Zieleń",
+  "icon": "grasses:dark_green_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 51,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_green_grass_block",
+      "title": "Blok: Ciemna Zieleń"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_green_grass_slab",
+      "title": "Płyta: Ciemna Zieleń"
+    }
+  ]
+}

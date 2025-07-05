@@ -1,0 +1,16 @@
+{
+  "name": "Potted Plants",
+  "icon": "minecraft:flower_pot",
+  "category": "grasses:basics_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod improves the replacement of plants in pots.$(br2)The vanilla behavior by default puts a removed plant from its pot into the empty hand and this prevents removing from any subsequent pots.$(br2)After the change, the plant will go to the first empty slot on the hotbar$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)or to a slot in your inventory that already has this plant.$(br2)Additionally, by clicking on the pot with another plant, it will be replaced. This also applies to the different colors of the colored plants.$(br2)Sound notifications of actions - insertion, removal and replacement - have also been added.$(br)"
+    }
+  ]
+}

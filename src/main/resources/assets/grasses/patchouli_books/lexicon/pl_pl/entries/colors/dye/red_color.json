@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Czerwony",
+  "icon": "minecraft:red_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 25,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:red_grass_block",
+      "title": "Kolor: Czerwony"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:red_dye",
+      "title": "Składnik:"
+    }
+  ]
+}

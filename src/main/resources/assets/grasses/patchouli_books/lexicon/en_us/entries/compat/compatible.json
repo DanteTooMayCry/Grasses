@@ -1,0 +1,17 @@
+{
+  "name": "Compatible",
+  "icon": "minecraft:orange_banner",
+  "category": "grasses:compat_mods_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/dynamictrees)$(2)Dynamic Trees(DT)$()$() Trees from DT will be cut down according to its mechanics. The cutting and coloring features of 'Grasses' will not affect its trees in any way,$(br)$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/endremastered)$(2)End Remastered(ER)$()$() The crafted Portal Frame will be powered in a vanilla way,$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)i.e. with regular Ender Eye."
+    }
+  ]
+}
+

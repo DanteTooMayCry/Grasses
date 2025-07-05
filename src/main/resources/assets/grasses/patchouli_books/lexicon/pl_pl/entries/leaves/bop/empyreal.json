@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Liście Empirejskie",
+  "icon": "grasses:empyreal_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 22,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:empyreal_leaves_block",
+      "title": "Liście Empirejskie"
+    }
+  ]
+}

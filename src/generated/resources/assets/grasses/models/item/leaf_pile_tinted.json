@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "grasses:block/bop/leaf_pile"
+  }
+}

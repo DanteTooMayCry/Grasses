@@ -1,0 +1,15 @@
+{
+  "name": "Płyta Mchu",
+  "icon": "grasses:moss_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 17,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:moss_slab",
+      "title": "Płyta Mchu",
+      "text": "Płyta identyczna z waniliowym blokiem mchu."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Barwiąca Mączka Kostna",
+  "icon": "grasses:dyeing_bone_meal",
+  "category": "grasses:utility_category",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Dzięki tej mączce możliwe jest wyrośnięcie barwionych traw, morskich traw i paproci tak jak ma to miejsce w przypadku jej waniliowego odpowiednika. Dodatkowo używając jej na innych roślinach z moda wyrosną z nich ich"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)kolejne poziomy z nową barwą.$(br2)Aby nadać barwę mączce należy stworzyć $(l:utility/dyeing_station)Stację Barwienia$() i użyć składników zgodnie z $(l:colors_ingredients_list_category)Colors and Ingredients$()."
+    }
+  ]
+}

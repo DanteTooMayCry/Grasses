@@ -1,0 +1,12 @@
+{
+  "name": "Integrations",
+  "icon": "minecraft:orange_banner",
+  "category": "grasses:compat_mods_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/jei)$(2)Jei$()$() simply shows mod items$(),$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/jade)$(2)Jade$()$() shows $(l:basics/fertile_state)Fertile State$(), name of $(l:colors_ingredients_list_category)color$() and the $(l:basics/mining_features)number$() of logs/stems, leaves/warts and shroomlights IF in hand is an axe with '$(6)Silk Touch$()', $(l:utility/dyeing_tool)Dyeing Tool$() or any $(l:utility/diamond_auto_pruner)Auto Pruner$().$()$(br)"
+    }
+  ]
+}

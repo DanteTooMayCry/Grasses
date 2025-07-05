@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:light_lime_grass_block"
+    },
+    "title": {
+      "translate": "grasses.advancements.root.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.root.description"
+    },
+    "background": "grasses:textures/gui/grass_background.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "crafting_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crafting_table"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  }
+}

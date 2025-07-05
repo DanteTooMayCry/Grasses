@@ -1,0 +1,15 @@
+{
+  "name": "Płyta Utwardzonego Błota",
+  "icon": "grasses:packet_mud_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 19,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:packet_mud_slab",
+      "title": "Płyta Utwardzonego Błota",
+      "text": "Płyta identyczna z waniliowym blokiem Utwardzonego Błota."
+    }
+  ]
+}

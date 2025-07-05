@@ -1,0 +1,31 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "grasses:bamboo_paper_enabled"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "B": {
+            "item": "minecraft:bamboo"
+          }
+        },
+        "pattern": [
+          "   ",
+          "BBB",
+          "BBB"
+        ],
+        "result": {
+          "count": 3,
+          "item": "minecraft:paper"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

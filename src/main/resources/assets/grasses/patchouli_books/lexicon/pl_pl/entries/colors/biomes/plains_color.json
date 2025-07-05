@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Równiny",
+  "icon": "minecraft:grass",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 15,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:plains_grass_block",
+      "title": "Kolor: Równiny"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:grass",
+      "title": "Składnik:"
+    }
+  ]
+}

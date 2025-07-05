@@ -1,0 +1,54 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:acacia_leaves_block",
+      "nbt": "{BlockStateTag:{color_type:plains}}"
+    },
+    "title": {
+      "translate": "grasses.advancements.first_changed_leaves_block.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.first_changed_leaves_block.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:c4_craft_dyeing_bone_meal",
+  "criteria": {
+    "make_leaves_block": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:shears"
+              ],
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "make_leaves_block"
+    ]
+  ]
+}

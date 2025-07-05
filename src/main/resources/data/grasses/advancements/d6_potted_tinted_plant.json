@@ -1,0 +1,89 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:flower_pot"
+    },
+    "title": {
+      "translate": "grasses.advancements.potted_plant.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.potted_plant.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:d1_first_tinted_plant_block",
+  "criteria": {
+    "potted_plant": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                    "grasses:grass_potted_tinted",
+                    "grasses:fern_potted_tinted",
+                    "grasses:seagrass_potted_tinted",
+                    "grasses:bamboo_potted_tinted",
+                    "grasses:sugar_cane_potted_tinted",
+                    "grasses:vine_potted_tinted",
+                    "grasses:big_dripleaf_potted_tinted",
+                    "grasses:small_dripleaf_potted_tinted",
+                    "grasses:kelp_potted_tinted",
+                    "grasses:cactus_potted_tinted",
+                    "grasses:acacia_potted_tinted",
+                    "grasses:azalea_potted_tinted",
+                    "grasses:birch_potted_tinted",
+                    "grasses:cherry_potted_tinted",
+                    "grasses:dark_oak_potted_tinted",
+                    "grasses:flowering_azalea_potted_tinted",
+                    "grasses:jungle_potted_tinted",
+                    "grasses:mangrove_potted_tinted",
+                    "grasses:oak_potted_tinted",
+                    "grasses:spruce_potted_tinted"
+
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:grass_tinted",
+                "grasses:fern_tinted",
+                "grasses:seagrass_tinted",
+                "grasses:bamboo_tinted",
+                "grasses:sugar_cane_tinted",
+                "grasses:vine_tinted",
+                "grasses:big_drip_leaf_tinted",
+                "grasses:small_drip_leaf_tinted",
+                "grasses:kelp_tinted",
+                "grasses:cactus_tinted",
+                "grasses:acacia_leaves_block",
+                "grasses:azalea_leaves_block",
+                "grasses:birch_leaves_block",
+                "grasses:cherry_leaves_block",
+                "grasses:dark_oak_leaves_block",
+                "grasses:flowering_azalea_leaves_block",
+                "grasses:jungle_leaves_block",
+                "grasses:mangrove_leaves_block",
+                "grasses:oak_leaves_block",
+                "grasses:spruce_leaves_block"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "potted_plant"
+    ]
+  ]
+}

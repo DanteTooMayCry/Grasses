@@ -1,0 +1,59 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:end_portal_frame_block",
+      "nbt": "{Enchantments:[{lvl:1s, id:\"minecraft:silk_touch\"}]}"
+    },
+    "title": {
+      "translate": "grasses.advancements.extract_end_frame.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.extract_end_frame.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:e8_upg_to_netherite_auto_pruner",
+  "criteria": {
+    "extract_frame": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "grasses:end_portal_frame_block"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:netherite_auto_pruner"
+              ],
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch"
+                },
+                {
+                  "enchantment": "minecraft:channeling"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "extract_frame"
+    ]
+  ]
+}

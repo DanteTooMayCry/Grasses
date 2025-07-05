@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:netherite_grass_block"
+    },
+    "title": {
+      "translate": "grasses.advancements.netherite.grass_block.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.netherite_grass_block.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a3_first_grass_block",
+  "criteria": {
+    "craft_netherite_grass_block": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "grasses:netherite_grass_block"
+      }
+    },
+    "craft_netherite_grass_slab": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "grasses:netherite_grass_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "craft_netherite_grass_block",
+      "craft_netherite_grass_slab"
+    ]
+  ]
+}

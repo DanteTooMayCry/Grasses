@@ -1,0 +1,13 @@
+{
+  "type": "grasses:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/hero_of_the_village/fisherman_gift"
+    }
+  ],
+  "item": "grasses:dyeing_bone_meal",
+  "maxItems": 64,
+  "minItems": 10,
+  "probability": 1.0
+}

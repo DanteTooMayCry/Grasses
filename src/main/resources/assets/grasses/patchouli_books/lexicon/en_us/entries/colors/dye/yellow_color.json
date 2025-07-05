@@ -1,0 +1,19 @@
+{
+  "name": "Color: Yellow",
+  "icon": "minecraft:yellow_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 28,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:yellow_grass_block",
+      "title": "Color: Yellow"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:yellow_dye",
+      "title": "Ingredient:"
+    }
+  ]
+}

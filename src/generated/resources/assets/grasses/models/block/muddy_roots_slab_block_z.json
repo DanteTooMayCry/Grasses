@@ -1,0 +1,52 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "rotation": 180,
+          "texture": "#side"
+        },
+        "east": {
+          "cullface": "east",
+          "rotation": 90,
+          "texture": "#side"
+        },
+        "north": {
+          "cullface": "north",
+          "rotation": 180,
+          "texture": "#topBottom"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#topBottom"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "west": {
+          "cullface": "west",
+          "rotation": 270,
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "particle": "minecraft:block/muddy_mangrove_roots_top",
+    "side": "minecraft:block/muddy_mangrove_roots_side",
+    "topBottom": "minecraft:block/muddy_mangrove_roots_top"
+  }
+}

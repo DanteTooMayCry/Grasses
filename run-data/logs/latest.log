@@ -1,0 +1,44 @@
+[27cze2025 21:09:55.701] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\Night\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.22, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, grasses, --all, --output, D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\src\generated\resources, --existing, D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\src\main\resources, --mixin.config, mixins.grasses.json]
+[27cze2025 21:09:55.751] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.10 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
+[27cze2025 21:09:55.917] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[27cze2025 21:09:55.984] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Night/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[27cze2025 21:09:56.399] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Night\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.22\9a1d96e9108940786d846c8cc0dac07100e79f56\javafmllanguage-1.20.1-47.3.22.jar is missing mods.toml file
+[27cze2025 21:09:56.406] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Night\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.22\2529f2c27d8f8a63ee54efc81fdfc3cea2d43c8\lowcodelanguage-1.20.1-47.3.22.jar is missing mods.toml file
+[27cze2025 21:09:56.412] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Night\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.22\2de14adfd8715f1956007499d8d75c6a4e6fa872\mclanguage-1.20.1-47.3.22.jar is missing mods.toml file
+[27cze2025 21:09:56.419] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Night\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.22\cf26aeb747e0d323f8eed9b00ebfb783282d5837\fmlcore-1.20.1-47.3.22.jar is missing mods.toml file
+[27cze2025 21:09:56.649] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[27cze2025 21:09:59.456] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[27cze2025 21:09:59.486] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\Night\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, grasses, --all, --output, D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\src\generated\resources, --existing, D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\src\main\resources]
+[27cze2025 21:09:59.567] [main/WARN] [mixin/]: Reference map 'mixins.grasses.refmap.json' for mixins.grasses.json could not be read. If this is a development environment you can ignore this message
+[27cze2025 21:09:59.940] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.942] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.944] [main/INFO] [mixin/]: Remapping refMap glitchcore.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.945] [main/INFO] [mixin/]: Remapping refMap glitchcore.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.946] [main/INFO] [mixin/]: Remapping refMap biomesoplenty.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.948] [main/INFO] [mixin/]: Remapping refMap biomesoplenty.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.958] [main/INFO] [mixin/]: Remapping refMap endrem.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.959] [main/INFO] [mixin/]: Remapping refMap patchouli.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:09:59.961] [main/INFO] [mixin/]: Remapping refMap jade.refmap.json using D:\Dysk\Minecraft Modding\Forge\1.20.1\Grasses\build/createSrgToMcp/output.srg
+[27cze2025 21:10:00.659] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [grasses]
+[27cze2025 21:10:06.562] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.22, for MC 1.20.1 with MCP 20230612.114412
+[27cze2025 21:10:06.564] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.22 Initialized
+[27cze2025 21:10:07.104] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[27cze2025 21:10:07.110] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 4.804 ms
+[27cze2025 21:10:09.105] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Night/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.22_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.22_mapped_parchment_2023.09.03-1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[27cze2025 21:10:09.106] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Night/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.22_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.22_mapped_parchment_2023.09.03-1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[27cze2025 21:10:09.410] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[27cze2025 21:10:09.675] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 264 ms
+[27cze2025 21:10:09.676] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[27cze2025 21:10:09.879] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 202 ms
+[27cze2025 21:10:09.879] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: grasses
+[27cze2025 21:10:10.737] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: grasses finished after 858 ms
+[27cze2025 21:10:10.738] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: grasses
+[27cze2025 21:10:10.779] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: grasses finished after 41 ms
+[27cze2025 21:10:10.779] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id grasses
+[27cze2025 21:10:10.820] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id grasses finished after 40 ms
+[27cze2025 21:10:10.820] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id grasses
+[27cze2025 21:10:10.826] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id grasses finished after 4 ms
+[27cze2025 21:10:10.826] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : grasses
+[27cze2025 21:10:10.878] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : grasses finished after 52 ms
+[27cze2025 21:10:10.878] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1468 ms
+[27cze2025 21:10:10.916] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 1884, old count: 1884, new count: 1885, removed stale: 0, written: 0

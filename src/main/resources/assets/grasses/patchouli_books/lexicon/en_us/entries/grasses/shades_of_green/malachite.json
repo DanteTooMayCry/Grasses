@@ -1,0 +1,19 @@
+{
+  "name": "Malachite Grass",
+  "icon": "grasses:malachite_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 53,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:malachite_grass_block",
+      "title": "Malachite Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:malachite_grass_slab",
+      "title": "Malachite Grass Slab"
+    }
+  ]
+}

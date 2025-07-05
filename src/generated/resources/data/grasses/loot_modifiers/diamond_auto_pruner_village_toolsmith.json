@@ -1,0 +1,13 @@
+{
+  "type": "grasses:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_toolsmith"
+    }
+  ],
+  "item": "grasses:diamond_auto_pruner",
+  "maxItems": 1,
+  "minItems": 1,
+  "probability": 1.0
+}

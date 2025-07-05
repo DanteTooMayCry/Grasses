@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Magic Leaves",
+  "icon": "grasses:magic_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 20,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:magic_leaves_block",
+      "title": "Magic Leaves"
+    }
+  ]
+}

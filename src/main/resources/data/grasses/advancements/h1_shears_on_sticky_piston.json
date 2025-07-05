@@ -1,0 +1,55 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:sticky_piston"
+    },
+    "title": {
+      "translate": "grasses.advancements.sticky_piston.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.sticky_piston.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a1_silk_touch_on_shears",
+  "criteria": {
+    "shears_on_piston": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:piston"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:shears"
+              ],
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "shears_on_piston"
+    ]
+  ]
+}

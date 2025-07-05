@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,tilt=full": {
+      "model": "grasses:block/big_drip_leaf_tinted_full_tilt",
+      "y": 90
+    },
+    "facing=east,tilt=none": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 90
+    },
+    "facing=east,tilt=partial": {
+      "model": "grasses:block/big_drip_leaf_tinted_partial_tilt",
+      "y": 90
+    },
+    "facing=east,tilt=unstable": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 90
+    },
+    "facing=north,tilt=full": {
+      "model": "grasses:block/big_drip_leaf_tinted_full_tilt"
+    },
+    "facing=north,tilt=none": {
+      "model": "grasses:block/big_drip_leaf_tinted"
+    },
+    "facing=north,tilt=partial": {
+      "model": "grasses:block/big_drip_leaf_tinted_partial_tilt"
+    },
+    "facing=north,tilt=unstable": {
+      "model": "grasses:block/big_drip_leaf_tinted"
+    },
+    "facing=south,tilt=full": {
+      "model": "grasses:block/big_drip_leaf_tinted_full_tilt",
+      "y": 180
+    },
+    "facing=south,tilt=none": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 180
+    },
+    "facing=south,tilt=partial": {
+      "model": "grasses:block/big_drip_leaf_tinted_partial_tilt",
+      "y": 180
+    },
+    "facing=south,tilt=unstable": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 180
+    },
+    "facing=west,tilt=full": {
+      "model": "grasses:block/big_drip_leaf_tinted_full_tilt",
+      "y": 270
+    },
+    "facing=west,tilt=none": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 270
+    },
+    "facing=west,tilt=partial": {
+      "model": "grasses:block/big_drip_leaf_tinted_partial_tilt",
+      "y": 270
+    },
+    "facing=west,tilt=unstable": {
+      "model": "grasses:block/big_drip_leaf_tinted",
+      "y": 270
+    }
+  }
+}

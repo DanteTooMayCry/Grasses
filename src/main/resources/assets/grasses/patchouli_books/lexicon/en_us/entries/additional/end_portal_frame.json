@@ -1,0 +1,18 @@
+{
+  "name": "End Portal Frame",
+  "icon": "grasses:end_portal_frame_block",
+  "category": "grasses:additional_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:block/end_portal_frame_block",
+      "border": true,
+      "text": "The crafted frame can be broken by using $(l:utility/netherite_auto_pruner)Netherite Pruner$(), when has enchants '$(6)Silk Touch$()' and '$(6)Channeling$()'. This will not works with portal located in the$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Stronghold.$(br2)If the frame had an Ender Eye, it will also drop out.$(br2)Eye can also be extracted by using shears with the mentioned enchants (works on vanilla portal).$(br2) In any case, the portal will be disabled$(br)"
+    }
+  ]
+}

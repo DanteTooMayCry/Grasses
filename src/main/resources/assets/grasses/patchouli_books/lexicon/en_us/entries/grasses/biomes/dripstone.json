@@ -1,0 +1,19 @@
+{
+  "name": "Dripstone Cave Grass",
+  "icon": "grasses:dripstone_be_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 6,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dripstone_be_grass_block",
+      "title": "Dripstone Cave Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dripstone_be_grass_slab",
+      "title": "Dripstone Cave Grass Slab"
+    }
+  ]
+}

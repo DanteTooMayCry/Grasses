@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Tall Seagrass",
+  "icon": "grasses:seagrass_tall_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 6,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:seagrass_tall_tinted",
+      "title": "Tinted Tall Seagrass"
+    }
+  ]
+}

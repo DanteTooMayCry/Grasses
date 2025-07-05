@@ -1,0 +1,19 @@
+{
+  "name": "Color: Xmas Green",
+  "icon": "minecraft:bamboo",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 52,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:xmas_green_grass_block",
+      "title": "Color: Xmas Green"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:bamboo",
+      "title": "Ingredient:"
+    }
+  ]
+}

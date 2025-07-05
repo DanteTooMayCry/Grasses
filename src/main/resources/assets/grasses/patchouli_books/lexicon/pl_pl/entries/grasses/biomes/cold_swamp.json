@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Zimne Bagno",
+  "icon": "grasses:cold_swamp_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 21,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:cold_swamp_grass_block",
+      "title": "Blok: Zimne Bagno"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:cold_swamp_grass_slab",
+      "title": "Płyta: Zimne Bagno"
+    }
+  ]
+}

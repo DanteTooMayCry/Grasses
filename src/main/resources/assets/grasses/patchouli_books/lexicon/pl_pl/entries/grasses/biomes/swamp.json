@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Bagno",
+  "icon": "grasses:swamp_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 20,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:swamp_grass_block",
+      "title": "Blok: Bagno"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:swamp_grass_slab",
+      "title": "Płyta: Bagno"
+    }
+  ]
+}

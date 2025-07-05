@@ -1,0 +1,100 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        12
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          12
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        11,
+        16,
+        12
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        12
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          12
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        11,
+        16,
+        12
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "particle": "grasses:block/big_dripleaf_stem",
+    "stem": "grasses:block/big_dripleaf_stem"
+  }
+}

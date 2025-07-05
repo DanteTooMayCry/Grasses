@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "grasses:item/bop/watergrass",
+    "layer1": "grasses:item/bop/watergrass_overlay"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "grasses:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/woodland_mansion"
+    }
+  ],
+  "item": "grasses:grasses_dye",
+  "maxItems": 32,
+  "minItems": 5,
+  "probability": 0.10000000149011612
+}

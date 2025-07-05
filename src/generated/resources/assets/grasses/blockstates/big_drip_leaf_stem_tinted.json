@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "grasses:block/big_drip_leaf_stem_tinted",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "grasses:block/big_drip_leaf_stem_tinted"
+    },
+    "facing=south": {
+      "model": "grasses:block/big_drip_leaf_stem_tinted",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "grasses:block/big_drip_leaf_stem_tinted",
+      "y": 270
+    }
+  }
+}

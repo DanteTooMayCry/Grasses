@@ -1,0 +1,16 @@
+{
+  "name": "Complementary",
+  "icon": "minecraft:orange_banner",
+  "category": "grasses:compat_mods_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty)$(2)Biomes of Plenty$()$() Leaves and vine can be changed between BoP and Grasses - mod adds their colored version. Logs can be cut down at once.$(br)$(li)$(3)Other mods with trees like wanilla$() probably every trunk of this trees can be$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)cut down, but without connect same kind logs."
+    }
+  ]
+}

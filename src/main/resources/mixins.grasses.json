@@ -1,0 +1,35 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "net.night.grasses.mixins",
+  "refmap": "mixins.grasses.refmap.json",
+  "mixins": [
+    "BambooSaplingBlockMixin",
+    "BigDripleafBlockMixin",
+    "BlockStateBaseMixin",
+    "BubbleColumnMixin",
+    "BushBlockMixin",
+    "CactusBlockMixin",
+    "ChannelingEnchantmentMixin",
+    "EnderEyeItemMixin",
+    "FlowerPotBlockMixin",
+    "FluidInteractionRegistryMixin",
+    "FungusBlockMixin",
+    "GrowingPlantBlockMixin",
+    "HalfTransparentBlockMixin",
+    "HugeFungusFeatureMixin",
+    "NetherrackBlockMixin",
+    "SlabBlockMixin",
+    "SmallDripleafBlockMixin",
+    "StemBlockMixin",
+    "SugarCaneBlockMixin",
+    "UntouchingEnchantmentMixin"
+  ],
+  "client": [
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

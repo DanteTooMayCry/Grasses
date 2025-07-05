@@ -1,0 +1,15 @@
+{
+  "name": "Płyty Lodowe",
+  "icon": "grasses:ice_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 21,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:ice_slab,grasses:packet_ice_slab,grasses:blue_ice_slab",
+      "title": "Płyty Lodowe",
+      "text": "Płyty identyczne z waniliowymi blokami lodu."
+    }
+  ]
+}
