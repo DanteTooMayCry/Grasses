@@ -16,17 +16,17 @@
     "hidden": false
   },
   "criteria": {
-    "crafting_table": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:crafting_table"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+    "tick": {
+      "trigger": "minecraft:tick"
     }
+  },
+  "rewards": {
+    "loot": [
+      "grasses:grant_book_on_first_join"
+    ],
+    "recipes": [
+      "grasses:grasses_lexicon_recipe_shapeless"
+    ]
+  }
   }
 }

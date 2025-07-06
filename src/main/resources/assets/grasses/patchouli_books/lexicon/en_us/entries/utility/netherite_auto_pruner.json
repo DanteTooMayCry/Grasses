@@ -12,7 +12,7 @@
       "type": "patchouli:smithing",
       "recipe": "grasses:netherite_auto_pruner_smithing",
       "border": true,
-      "text": "$(br)(+Netherite Upgrade Template)$(br2)break frame.$(br2)This action will disable the portal.$(br)"
+      "text": "$(br)break frame.$(br2)This action will disable the portal.$(br)"
     }
   ]
 }

@@ -12,12 +12,12 @@
       "type": "patchouli:crafting",
       "recipe": "grasses:dyeing_tool",
       "border": true,
-      "text": "for crouching will only change the color of the vines.$(br2)To set color on the tool, you need to create $(l:utility/dyeing_station)Dyeing Station$() and use one of Dye$(br)"
+      "text": "for crouching will only change the color of the vines.$(br2)To set color on the tool, you need to create $(l:utility/dyeing_station)Dyeing Station$() and use one of Dyes$(br)"
     }
   ,
     {
       "type": "patchouli:text",
-      "text": "$(br)(include vanilla Dyes) with Water Bucket.$(br2)The tool loses dye with each use, and can be refilled in Dyeing Station using a dye.$(br2)It is also possible to apply the '$(6)Infinity Enchant$()', which will stop the dye from losing."
+      "text": "$(br)(include vanilla Dyes) with Water Bucket.$(br2)The tool loses dye with each use, and can be refilled in Dyeing Station using a dye.$(br2)It is also possible to apply the '$(6)Infinity Enchantment()', which will stop the dye from losing."
     }
   ]
 }
