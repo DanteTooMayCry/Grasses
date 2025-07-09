@@ -32,7 +32,6 @@ public class DataLib {
     public static final List<ColorType> colorTypeList = new ArrayList<>();
 
     public static final Map<String, Block> counterpartIDMap = new HashMap<>();
-    public static final Map<String, Block> testtest = new HashMap<>();
 
     public static final Map<Block, Block> matchingCounterpartsLeaves = new HashMap<>();
     public static final Map<Block, Block> matchingCounterpartsPlants = new HashMap<>();
