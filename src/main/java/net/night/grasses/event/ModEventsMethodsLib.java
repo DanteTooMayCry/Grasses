@@ -16,7 +16,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -664,7 +663,7 @@ public class ModEventsMethodsLib {
     private static Map<BlockPos, Integer> fungusCrownShape(Level level, BlockState targetBlockState) {
         Map<Integer, BlockPos> logHashMap = new HashMap<>(logHashMapGlobal);
         Map<BlockPos, Integer> posWithDistance = new HashMap<>();
-        Map<Integer, BlockPos> alreadyUsed = new HashMap<>();;
+        Map<Integer, BlockPos> alreadyUsed = new HashMap<>();
 
         Block block = targetBlockState.is(WARPED_STEMS) ? WARPED_WART_BLOCK : NETHER_WART_BLOCK;
         crownInfoForWAILA = MutablePair.of(block, 0);
@@ -705,7 +704,7 @@ public class ModEventsMethodsLib {
         Map<Integer, BlockPos> alreadyUsed = new HashMap<>();
         Map<Integer, BlockPos> vinesHashMap = new HashMap<>(vinesHashMapGlobal);
         int j = 0;
-        BlockPos blockPos = null;
+        BlockPos blockPos;
 
         if (!vinesHashMap.isEmpty()) {
             blockPos = vinesHashMap.get(0);
@@ -846,10 +845,7 @@ public class ModEventsMethodsLib {
         int x = blockPos.getX() - blockPosNextTo.getX();
         int z = blockPos.getZ() - blockPosNextTo.getZ();
 
-        if ((x == -1 || x == 0 || x == 1) && (z == -1 || z == 0 || z == 1)/* && !(x == 0 && z == 0)*/)
-            return true;
-        else
-            return false;
+        return (x == -1 || x == 0 || x == 1) && (z == -1 || z == 0 || z == 1);
     }
 
     private static BlockPos findLowestStem(Level level, BlockPos blockPosNextTo, BlockState blockStateNextTo) {
@@ -894,19 +890,13 @@ public class ModEventsMethodsLib {
     }
 
     private static boolean isHugeFungusBlock (BlockState blockStateStem, BlockState blockStateNextTo) {
-        if ((blockStateNextTo.is(BLOCKS_ON_CRIMSON_FUNGUS) && blockStateStem.is(CRIMSON_STEMS)) ||
-                (blockStateNextTo.is(BLOCKS_ON_WARPED_FUNGUS) && blockStateStem.is(WARPED_STEMS)) || blockStateNextTo.is(SHROOMLIGHT))
-            return true;
-        else
-            return false;
+        return (blockStateNextTo.is(BLOCKS_ON_CRIMSON_FUNGUS) && blockStateStem.is(CRIMSON_STEMS)) ||
+                (blockStateNextTo.is(BLOCKS_ON_WARPED_FUNGUS) && blockStateStem.is(WARPED_STEMS)) || blockStateNextTo.is(SHROOMLIGHT);
     }
 
     private static boolean isWartBlock (BlockState blockState, BlockState blockStateNextTo) {
-        if ((blockStateNextTo.is(NETHER_WART_BLOCK) && blockState.is(CRIMSON_STEMS)) ||
-                (blockStateNextTo.is(WARPED_WART_BLOCK) && blockState.is(WARPED_STEMS)))
-            return true;
-        else
-            return false;
+        return (blockStateNextTo.is(NETHER_WART_BLOCK) && blockState.is(CRIMSON_STEMS)) ||
+                (blockStateNextTo.is(WARPED_WART_BLOCK) && blockState.is(WARPED_STEMS));
     }
 
     private static boolean sameXZPosition(BlockPos blockPos, BlockPos blockPosNextTo) {
@@ -1263,7 +1253,7 @@ public class ModEventsMethodsLib {
         Map<Integer, BlockPos> vinesHashMap = new HashMap<>(vinesHashMapGlobal);
 
         int j = 0;
-        BlockPos blockPos = null;
+        BlockPos blockPos;
 
         if (!vinesHashMap.isEmpty()) {
             blockPos = vinesHashMap.get(0);
@@ -1344,8 +1334,8 @@ public class ModEventsMethodsLib {
             List<TagKey<Block>> tagList = blockStateCurrent.getTags().toList();
             TagKey<Block> tagKey = null;
 
-            for (int i = 0; i < tagList.size(); i++) {
-                tagKey = getLogTagByName(tagList.get(i));
+            for (TagKey<Block> blockTagKey : tagList) {
+                tagKey = getLogTagByName(blockTagKey);
                 if (tagKey != null)
                     break;
             }
@@ -1563,10 +1553,7 @@ public class ModEventsMethodsLib {
 
         if (matchingBarsBlock instanceof VineInBars && isSame)
             return false;
-        else if (matchingBarsBlock instanceof TintedVineInBars && isSame && compareColors(blockPos, itemStack))
-            return false;
-        else
-            return true;
+        else return !(matchingBarsBlock instanceof TintedVineInBars) || !isSame || !compareColors(blockPos, itemStack);
     }
 
 }
