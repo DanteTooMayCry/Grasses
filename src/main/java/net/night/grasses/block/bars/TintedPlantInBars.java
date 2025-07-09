@@ -16,8 +16,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,6 +23,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -41,32 +40,31 @@ public class TintedPlantInBars extends PlantInBars implements EntityBlock {
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return new TintedBlockEntity(blockPos, blockState);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack itemStack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, tooltip, tooltipFlag);
         additionalHoverText(itemStack, tooltip);
     }
 
     @Override
-    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockStateOld, boolean pMovedByPiston) {
-        System.out.println("WŁACZA SIĘ");
+    public void onPlace(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockStateOld, boolean pMovedByPiston) {
         onPlaceCounterPart(level, blockPos, blockState);
         super.onPlace(blockState, level, blockPos, blockStateOld, pMovedByPiston);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         getStateForPlacementCounterPart(context, matchingCounterpartsPlants);
         return super.getStateForPlacement(context);
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
+    public List<ItemStack> getDrops(BlockState blockState, LootParams.@NotNull Builder builder) {
         if (blockState.is(TINTED_GRASS_IN_BARS.get()))
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, GRASS_TINTED.get().asItem());
         if (blockState.is(TINTED_FERN_IN_BARS.get()))
@@ -76,7 +74,7 @@ public class TintedPlantInBars extends PlantInBars implements EntityBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState pState, @NotNull Direction pFacing, @NotNull BlockState pFacingState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos, @NotNull BlockPos pFacingPos) {
 
         Block block = counterpartIDMap.get(getCounterpart((Level) pLevel, pCurrentPos));
         if (block != null)
