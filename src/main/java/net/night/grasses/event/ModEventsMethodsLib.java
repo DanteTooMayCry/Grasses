@@ -1551,11 +1551,8 @@ public class ModEventsMethodsLib {
             if (!player.isCreative())
                 itemStack.shrink(1);
         }
-        else {
+        else
             level.playSound(null, blockPos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
-            updateColorOnEntityBlock(level, blockStateToSet, blockPos, getColorType(level, blockPos));
-        }
-
     }
 
     public static boolean isSameVineBarsBlockAndSameColor (BlockState blockState, BlockPos blockPos, ItemStack itemStack) {
@@ -1570,8 +1567,6 @@ public class ModEventsMethodsLib {
             return false;
         else
             return true;
-
-        //return getKey(matchingBarsWithPlant, ((BlockItem) itemStack.getItem()).getBlock()) instanceof TintedVineInBars && getColorType(blockPos) == getColorTypeFromNBT(itemStack);
     }
 
 }
