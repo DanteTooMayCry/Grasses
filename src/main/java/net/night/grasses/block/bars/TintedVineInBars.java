@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
+import static net.night.grasses.data.DataLib.counterpartIDMap;
 import static net.night.grasses.data.MethodsLib.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
@@ -52,12 +53,14 @@ public class TintedVineInBars extends TintedPlantInBars implements EntityBlock {
             return super.getDrops(blockState, builder);
     }
 
+    @Override
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        if (pState.getValue(WATERLOGGED)) {
-            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
-        }
 
-        return pFacing.getAxis().isHorizontal() ? pState.setValue(PROPERTY_BY_DIRECTION.get(pFacing), this.attachsTo(pFacingState, pFacingState.isFaceSturdy(pLevel, pFacingPos, pFacing.getOpposite()))) : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+        Block block = counterpartIDMap.get(getCounterpart((Level) pLevel, pCurrentPos));
+        if (block != null)
+            keepData(pCurrentPos, block, getColorType(pCurrentPos));
+
+        return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
     @Override

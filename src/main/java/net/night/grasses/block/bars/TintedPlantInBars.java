@@ -1,6 +1,7 @@
 package net.night.grasses.block.bars;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -11,9 +12,12 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,6 +29,7 @@ import net.night.grasses.data.MethodsLib;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static net.night.grasses.data.DataLib.counterpartIDMap;
 import static net.night.grasses.data.DataLib.matchingCounterpartsPlants;
 import static net.night.grasses.data.MethodsLib.*;
 import static net.night.grasses.init.BlocksRegister.*;
@@ -49,6 +54,7 @@ public class TintedPlantInBars extends PlantInBars implements EntityBlock {
 
     @Override
     public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockStateOld, boolean pMovedByPiston) {
+        System.out.println("WŁACZA SIĘ");
         onPlaceCounterPart(level, blockPos, blockState);
         super.onPlace(blockState, level, blockPos, blockStateOld, pMovedByPiston);
     }
@@ -67,6 +73,16 @@ public class TintedPlantInBars extends PlantInBars implements EntityBlock {
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, FERN_TINTED.get().asItem());
         else
             return super.getDrops(blockState, builder);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+
+        Block block = counterpartIDMap.get(getCounterpart((Level) pLevel, pCurrentPos));
+        if (block != null)
+            keepData(pCurrentPos, block, getColorType(pCurrentPos));
+
+        return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
     @Override
