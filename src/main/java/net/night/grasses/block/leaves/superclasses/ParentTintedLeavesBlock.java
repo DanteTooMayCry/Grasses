@@ -179,6 +179,9 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
         }
         else if (itemStack.getItem() instanceof ShearsItem && !hasSilkTouch){
             if (player instanceof ServerPlayer) {
+                Block block = counterpartIDMap.get(getCounterpart(level, blockPos));
+                if (block != null)
+                    keepData(blockPos, block, getColorType(blockPos));
                 level.setBlockAndUpdate(blockPos, blockState.setValue(ALTER, !blockState.getValue(ALTER)));
             }
             level.playSound(null, blockPos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
