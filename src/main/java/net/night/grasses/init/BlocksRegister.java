@@ -484,16 +484,16 @@ public class BlocksRegister {
         return toReturn;
     }
 
-    private static RegistryObject<Item> registerBlockItem(String name, RegistryObject<Block> block) {
-        return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static void registerBlockItem(String name, RegistryObject<Block> block) {
+        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     };
 
-    static RegistryObject<Item> registerModBlockItem(String name, RegistryObject<Block> block) {
-        return ITEMS.register(name, () -> new ModBlockItem(block.get(), new Item.Properties()));
+    static void registerModBlockItem(String name, RegistryObject<Block> block) {
+        ITEMS.register(name, () -> new ModBlockItem(block.get(), new Item.Properties()));
     };
 
-    static RegistryObject<Item> registerBlockItemLily(String name, RegistryObject<Block> block) {
-        return ITEMS.register(name, () -> new ModPlaceOnWaterBlockItem(block.get(), new Item.Properties()));
+    static void registerBlockItemLily(String name, RegistryObject<Block> block) {
+        ITEMS.register(name, () -> new ModPlaceOnWaterBlockItem(block.get(), new Item.Properties()));
     };
 
     public static void register(IEventBus eventBus) {
