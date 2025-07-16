@@ -306,18 +306,4 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");
     }
-
-    private static class ReturnRecipe implements Consumer<FinishedRecipe> {
-        FinishedRecipe toReturn;
-
-        @Override
-        public void accept(FinishedRecipe finishedRecipe) {
-            toReturn = finishedRecipe;
-        }
-
-        public FinishedRecipe getLast() {
-            return toReturn;
-        }
-    }
-
 }
