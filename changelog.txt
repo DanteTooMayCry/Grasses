@@ -3,7 +3,8 @@ Changelog:
 ====================================================================================================================
 0.2.2-1.20.1:
 
-- Items displayed over a DyeingStationBlock now rotate.
+- Items displayed over a Dyeing Station Block now rotate.
+- Added save max progress on Dyeing Station Block
 - Some code cleanup
 
 ====================================================================================================================
