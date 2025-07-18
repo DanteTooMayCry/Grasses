@@ -248,6 +248,7 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         pTag.put("ItemStackHandlerSlot2", itemStackHandlerInputSlot2.serializeNBT());
         pTag.put("ItemStackHandlerSlot3", itemStackHandlerInputSlot3.serializeNBT());
         pTag.putInt("dyeing_station_progress", progress);
+        pTag.putInt("dyeing_station_max_progress", maxProgress);
         super.saveAdditional(pTag);
     }
 
@@ -273,6 +274,7 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
 
 
         progress = pTag.getInt("dyeing_station_progress");
+        maxProgress = pTag.getInt("dyeing_station_max_progress");
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
