@@ -121,6 +121,8 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         return lazyItemHandlerSlot0;
     }
 
+    private float rotation;
+
     public DyeingStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(DYEING_STATION_BE.get(), pPos, pBlockState);
         this.containerData = new ContainerData() {
@@ -170,7 +172,14 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         inventory.setItem(3, itemStackHandlerInputSlot3.getStackInSlot(SLOT));
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
 
+    public float getRenderingRotation() {
+        rotation += 0.1f;
+        if (rotation >= 360)
+            rotation = 0;
+
+        return rotation;
     }
 
     @Override

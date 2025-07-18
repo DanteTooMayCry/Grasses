@@ -86,7 +86,7 @@ public class DyeingStationBlockEntityRenderer implements BlockEntityRenderer<Dye
             poseStack.pushPose();
             poseStack.translate (poseStackPosition.get(i).get(0), poseStackPosition.get(i).get(1), poseStackPosition.get(i).get(2));
             poseStack.scale(0.25f, 0.25f, 0.25f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(poseStackPosition.get(i).get(3)));
+            poseStack.mulPose(Axis.YP.rotationDegrees(dyeingStationBlockEntity.getRenderingRotation()));
 
             itemRenderer.renderStatic(itemStackInSlot, ItemDisplayContext.FIXED, getLightLevel(Objects.requireNonNull(dyeingStationBlockEntity.getLevel()), dyeingStationBlockEntity.getBlockPos()),
                     OverlayTexture.NO_OVERLAY, poseStack, multiBufferSource, dyeingStationBlockEntity.getLevel(), 1);
