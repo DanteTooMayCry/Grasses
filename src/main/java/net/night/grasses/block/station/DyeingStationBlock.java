@@ -61,6 +61,7 @@ public class DyeingStationBlock extends HorizontalDirectionalBlock implements En
             BlockEntity be = level.getBlockEntity(blockPos);
             if (be instanceof DyeingStationBlockEntity blockEntity) {
                 blockEntity.drops();
+                level.updateNeighbourForOutputSignal(blockPos, this);
             }
         }
 
