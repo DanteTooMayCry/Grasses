@@ -1,3 +1,20 @@
-0.2-1.20.1 Changelog
-====
+Changelog:
+
+====================================================================================================================
+0.2.2-1.20.1:
+
+- Items displayed over a DyeingStationBlock now rotate.
+- Some code cleanup
+
+====================================================================================================================
+0.2.2-1.20.1:
+
+- Fixed resetting color case when change leaves into light color version
+====================================================================================================================
+0.2.1-1.20.1:
+
+- Fixed a bug related to color resetting on Bars Plant during UpdateShape
+- Fixed a bug when placing the same plant on the bars
+- Some code cleanup
+====================================================================================================================
 
