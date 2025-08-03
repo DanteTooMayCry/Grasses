@@ -28,6 +28,7 @@ import net.night.grasses.block.blockEntity.screen.DyeingStationMenu;
 import net.night.grasses.block.blockEntity.util.TickAbleBlockEntity;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.item.DyeingItem;
 import net.night.grasses.item.DyeingTool;
@@ -68,6 +69,18 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return itemStack.getItem().equals(Items.WATER_BUCKET) || itemStack.getItem().equals(BUCKET);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack itemStack, boolean simulate) {
+            if (!isItemValid(slot, itemStack))
+                return itemStack;
+            return super.insertItem(slot, itemStack, simulate);
+        }
     };
 
     private LazyOptional<ItemStackHandler> lazyItemHandlerSlot1 = LazyOptional.of(() -> itemStackHandlerInputSlot1);
@@ -83,6 +96,18 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
             if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return itemStack.getItem() instanceof BoneMealItem || itemStack.getItem() instanceof DyeingTool || itemStack.getItem().equals(Items.PHANTOM_MEMBRANE);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack itemStack, boolean simulate) {
+            if (!isItemValid(slot, itemStack))
+                return itemStack;
+            return super.insertItem(slot, itemStack, simulate);
         }
     };
 
@@ -100,6 +125,17 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return ingredientsList.contains(itemStack.getItem()) || itemStack.getItem().equals(Items.WATER_BUCKET) || itemStack.getItem().equals(BUCKET) || itemStack.getItem().equals(ItemsRegister.GRASSES_DYE.get());
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack itemStack, boolean simulate) {
+            if (!isItemValid(slot, itemStack))
+                return itemStack;
+            return super.insertItem(slot, itemStack, simulate);
+        }
     };
 
     private LazyOptional<ItemStackHandler> lazyItemHandlerSlot3 = LazyOptional.of(() -> itemStackHandlerInputSlot3);
@@ -115,6 +151,17 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
             if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
+        }
+        @Override
+        public boolean isItemValid(int slot, ItemStack itemStack) {
+            return false;
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack itemStack, boolean simulate) {
+            if (!isItemValid(slot, itemStack))
+                return itemStack;
+            return super.insertItem(slot, itemStack, simulate);
         }
     };
 
