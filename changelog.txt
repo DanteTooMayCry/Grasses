@@ -2,6 +2,7 @@ Changelog:
 
 
 0.2.3-1.20.1:
+
 - Improved the automatic dyeing (via hoppers) behavior at the Dyeing Station. Both items required for dyeing and items
 created by the station will now pass through the hoppers in stacks instead of one item at a time. This only applies
 to hoppers that are directly in contact with the Dyeing Station.
