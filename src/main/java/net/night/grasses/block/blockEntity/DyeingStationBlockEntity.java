@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.night.grasses.block.blockEntity.screen.DyeingStationMenu;
 import net.night.grasses.block.blockEntity.util.TickAbleBlockEntity;
@@ -36,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+import static net.minecraft.world.item.Items.AIR;
 import static net.minecraft.world.item.Items.BUCKET;
 import static net.night.grasses.data.DataLib.colorTypeList;
 import static net.night.grasses.data.DataLib.ingredientsList;
@@ -277,9 +279,9 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         maxProgress = pTag.getInt("dyeing_station_max_progress");
     }
 
-    public void tick(Level level, BlockPos blockPos, BlockState blockState) {
+    public void tick(Level level, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) {
 
-        if (this.level == null || this.level.isClientSide())
+        if (this.level == null || this.level.isClientSide() || !(blockEntity instanceof DyeingStationBlockEntity dyeingStationBlockEntity))
             return;
         if (hasRecipe()) {
 
@@ -298,6 +300,16 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         }
         else {
             resetProgress();
+
+            if (!itemStackHandlerOutputSlot0.getStackInSlot(SLOT).getItem().equals(AIR))
+                extractFullStackAtOnceFromSlot0(blockPos, dyeingStationBlockEntity, blockEntity);
+
+            if (!(itemStackHandlerInputSlot2.getStackInSlot(SLOT).getItem() instanceof DyeingTool))
+                insertFullStackAtOnce(blockPos, dyeingStationBlockEntity, blockEntity, this.getBlockState().getValue(FACING).getOpposite(), itemStackHandlerInputSlot2);
+
+            if (!itemStackHandlerInputSlot3.getStackInSlot(SLOT).getItem().equals(AIR))
+                insertFullStackAtOnce(blockPos, dyeingStationBlockEntity, blockEntity, this.getBlockState().getValue(FACING).getOpposite().getClockWise(), itemStackHandlerInputSlot3);
+
         }
     }
 
@@ -501,5 +513,87 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
     @Override
     public CompoundTag getUpdateTag() {
         return saveWithFullMetadata();
+    }
+
+    private void extractFullStackAtOnceFromSlot0(BlockPos blockPos, DyeingStationBlockEntity dyeingStationBlockEntity, BlockEntity blockEntity) {
+        Direction stationExportSide = Direction.DOWN;
+        BlockPos extractHopperBlockPos = blockPos.relative(stationExportSide);
+
+        BlockEntity extractHopperBE = level.getBlockEntity(extractHopperBlockPos);
+        if (extractHopperBE == null) return;
+
+        LazyOptional<IItemHandler> hopperHandlerOptional = extractHopperBE.getCapability(ForgeCapabilities.ITEM_HANDLER, stationExportSide.getOpposite());
+        if (!hopperHandlerOptional.isPresent()) return;
+
+        IItemHandler hopperHandler = hopperHandlerOptional.resolve().orElse(null);
+        if (hopperHandler == null) return;
+
+        ItemStack stackToExtract = dyeingStationBlockEntity.extractFullStack(SLOT, true, itemStackHandlerOutputSlot0);
+        if (stackToExtract.isEmpty()) return;
+
+        int slot = -1;
+        for (int hopperSlot = 0; hopperSlot < hopperHandler.getSlots(); hopperSlot++) {
+            ItemStack hopperStack = hopperHandler.getStackInSlot(hopperSlot);
+            ItemStack stationStack = dyeingStationBlockEntity.itemStackHandlerOutputSlot0.getStackInSlot(SLOT);
+
+            ColorType colorInHopper = getColorTypeFromNBT(hopperStack);
+            ColorType colorInStation = getColorTypeFromNBT(stationStack);
+
+            boolean same = colorInHopper.equals(colorInStation) && hopperStack.getItem().equals(stationStack.getItem());
+
+            if (hopperStack.isEmpty() || (same && (hopperStack.getCount() + stationStack.getCount()) <= hopperStack.getMaxStackSize())) {
+                slot = hopperSlot;
+                break;
+            }
+        }
+
+        if (slot != -1) {
+            ItemStack remainder = hopperHandler.insertItem(slot, stackToExtract, true);
+            if (remainder.getCount() < stackToExtract.getCount()) {
+                ItemStack extracted = dyeingStationBlockEntity.extractFullStack(SLOT, false, itemStackHandlerOutputSlot0);
+                hopperHandler.insertItem(slot, extracted, false);
+                blockEntity.setChanged();
+            }
+        }
+    }
+
+    private ItemStack extractFullStack(int slot, boolean simulate, ItemStackHandler itemStackHandler) {
+        ItemStack stack = itemStackHandler.getStackInSlot(slot);
+        if (stack.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        return itemStackHandler.extractItem(slot, stack.getCount(), simulate);
+    }
+
+    private void insertFullStackAtOnce(BlockPos blockPos, DyeingStationBlockEntity dyeingStationBlockEntity, BlockEntity blockEntity, Direction stationImportSide, ItemStackHandler itemStackHandler) {
+        BlockPos importHopperBlockPos = blockPos.relative(stationImportSide);
+
+        BlockEntity importHopperBE = level.getBlockEntity(importHopperBlockPos);
+        if (importHopperBE == null || blockEntity == null) return;
+
+        LazyOptional<IItemHandler> hopperHandlerOptional = importHopperBE.getCapability(ForgeCapabilities.ITEM_HANDLER, stationImportSide.getOpposite());
+        if (!hopperHandlerOptional.isPresent()) return;
+
+        IItemHandler hopperHandler = hopperHandlerOptional.resolve().orElse(null);
+        if (hopperHandler == null) return;
+
+        for (int hopperSlot = 0; hopperSlot < hopperHandler.getSlots(); hopperSlot++) {
+            ItemStack hopperStack = hopperHandler.getStackInSlot(hopperSlot);
+            if (hopperStack.isEmpty()) continue;
+
+            ItemStack importStack = hopperHandler.extractItem(hopperSlot, hopperStack.getCount(), true);
+            if (importStack.isEmpty()) continue;
+
+            ItemStack remainder = dyeingStationBlockEntity.insertStack(0, importStack, true, itemStackHandler);
+            int transferred = importStack.getCount() - remainder.getCount();
+            if (transferred > 0) {
+                ItemStack actuallyImported = hopperHandler.extractItem(hopperSlot, transferred, false);
+                dyeingStationBlockEntity.insertStack(0, actuallyImported, false, itemStackHandler);
+            }
+        }
+    }
+
+    private ItemStack insertStack(int slot, ItemStack stack, boolean simulate, ItemStackHandler itemStackHandler) {
+        return itemStackHandler.insertItem(slot, stack, simulate);
     }
 }

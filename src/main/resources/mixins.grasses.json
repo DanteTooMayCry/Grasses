@@ -18,6 +18,7 @@
     "FungusBlockMixin",
     "GrowingPlantBlockMixin",
     "HalfTransparentBlockMixin",
+    "HopperBlockEntityMixin",
     "HugeFungusFeatureMixin",
     "NetherrackBlockMixin",
     "SlabBlockMixin",
