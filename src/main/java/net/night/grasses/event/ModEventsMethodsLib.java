@@ -1101,6 +1101,9 @@ public class ModEventsMethodsLib {
                 });
         }
 
+        if (!isPerform)
+            level.playSound(null, blockPos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+
         if(player instanceof ServerPlayer && advItemUsedOnBlock)
             ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStackInMainHand);
 
