@@ -33,6 +33,7 @@ import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 import net.night.grasses.util.ModTags;
 
 import java.util.List;
@@ -122,8 +123,7 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
             BlockPos blockPosOptional = optional.get();
             BlockPos blockPosAbove = blockPosOptional.above();
             Direction direction = blockState.getValue(FACING);
-            assert Minecraft.getInstance().player != null;
-            ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+            ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
             keepData(blockPosOptional, BIG_DRIPLEAF_STEM, getColorType(serverLevel, blockPosOptional));
 

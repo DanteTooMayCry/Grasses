@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -36,8 +37,7 @@ public class AutomaticPrunerItem extends ShearsItem {
         else if (!hasSilk && !hasChanneling)
             enchantType = Component.literal("");
 
-        assert Minecraft.getInstance().player != null;
-        Minecraft.getInstance().player.displayClientMessage(enchantType, true);
+        ClientPlayerHelper.sendClientMessage(enchantType, true);
 
         return super.getName(itemStack);
     }

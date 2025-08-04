@@ -29,6 +29,7 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.List;
 
@@ -96,8 +97,7 @@ TintedSeaGrass extends SeagrassBlock implements EntityBlock {
             BlockState blockstate1 = blockstate.setValue(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER);
             BlockPos blockPosAbove = blockPos.above();
             if (serverLevel.getBlockState(blockPosAbove).is(Blocks.WATER)) {
-                assert Minecraft.getInstance().player != null;
-                ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+                ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
                 ColorType colorType;
                 if (itemStack.getItem() instanceof DyeingBoneMealItem)

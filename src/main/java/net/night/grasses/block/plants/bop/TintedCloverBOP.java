@@ -16,6 +16,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.night.grasses.block.plants.superclasses.ParentTintedPinkPetals;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import static biomesoplenty.api.block.BOPBlocks.CLOVER;
 import static biomesoplenty.api.block.BOPBlocks.HUGE_CLOVER_PETAL;
@@ -45,8 +46,7 @@ public class TintedCloverBOP extends ParentTintedPinkPetals {
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 
         int i = blockState.getValue(AMOUNT);
-        assert Minecraft.getInstance().player != null;
-        ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+        ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
         ColorType colorType = getColorType(serverLevel, blockPos);
         if (itemStack.getItem() instanceof DyeingBoneMealItem)
             colorType = getColorTypeFromNBT(itemStack);

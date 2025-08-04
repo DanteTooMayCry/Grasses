@@ -30,6 +30,7 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.List;
 
@@ -94,8 +95,7 @@ public class TintedGrassPlant extends TallGrassBlock implements EntityBlock {
         }
         else {
 
-            assert Minecraft.getInstance().player != null;
-            ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+            ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
             ColorType colorType = getColorType(serverLevel, blockPos);
 

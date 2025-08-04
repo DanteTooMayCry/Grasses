@@ -35,6 +35,7 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import javax.annotation.Nullable;
 
@@ -184,8 +185,7 @@ public class TintedBamboo extends BambooStalkBlock implements BonemealableBlock,
         }
         else {
 
-            assert Minecraft.getInstance().player != null;
-            ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+            ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
             ColorType colorType = getColorType(serverLevel, blockPos);
 
             int i = getHeightAboveUpToMaxPublic(serverLevel, blockPos);

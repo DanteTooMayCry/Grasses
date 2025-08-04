@@ -26,6 +26,7 @@ import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.List;
 
@@ -117,8 +118,7 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
             serverLevel.setBlock(blockPos, blockState.setValue(FERTILE, true), 3);
         else {
 ;
-            assert Minecraft.getInstance().player != null;
-            ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+            ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
             if (itemStack.getItem() instanceof DyeingBoneMealItem)
                 keepColorType.put(blockPos.above(), getColorTypeFromNBT(itemStack));

@@ -36,6 +36,7 @@ import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.init.BlocksRegister;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 import net.night.grasses.util.ModTags;
 
 import java.util.List;
@@ -121,8 +122,7 @@ public class TintedBigDripLeaf extends BigDripleafBlock implements EntityBlock {
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
         BlockPos blockPosAbove = blockPos.above();
         BlockState blockStateAbove = serverLevel.getBlockState(blockPosAbove);
-        assert Minecraft.getInstance().player != null;
-        ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+        ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
         if (canPlaceAt(serverLevel, blockPosAbove, blockStateAbove)) {
             Direction direction = blockState.getValue(FACING);

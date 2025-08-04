@@ -32,6 +32,7 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.List;
 
@@ -113,8 +114,7 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
         if (blockState.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER) {
             BlockPos blockPosAbove = blockPos.above();
 
-            assert Minecraft.getInstance().player != null;
-            ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
+            ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
             ColorType colorType = getColorType(serverLevel, blockPos);
 
             if (itemStack.getItem() instanceof DyeingBoneMealItem)

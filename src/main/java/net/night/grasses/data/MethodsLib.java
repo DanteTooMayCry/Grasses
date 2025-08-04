@@ -46,6 +46,7 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.DyeingTool;
+import net.night.grasses.util.ClientPlayerHelper;
 
 import java.util.*;
 
@@ -221,8 +222,7 @@ public class MethodsLib {
 
         if (hasBlockStateTag(itemStack)) {
             MutableComponent colorType = Component.translatable(nbtTagToName(itemStack));
-            assert Minecraft.getInstance().player != null;
-            Minecraft.getInstance().player.displayClientMessage(colorType, true);
+            ClientPlayerHelper.sendClientMessage(colorType, true);
         }
     }
     public static ItemStack setEnchantmentBoolean(ItemStack itemStack){
