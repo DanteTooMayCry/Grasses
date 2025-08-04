@@ -45,6 +45,7 @@ public class TintedCloverBOP extends ParentTintedPinkPetals {
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
 
         int i = blockState.getValue(AMOUNT);
+        c Minecraft.getInstance().player != null;
         ItemStack itemStack = Minecraft.getInstance().player.getMainHandItem();
         ColorType colorType = getColorType(serverLevel, blockPos);
         if (itemStack.getItem() instanceof DyeingBoneMealItem)
