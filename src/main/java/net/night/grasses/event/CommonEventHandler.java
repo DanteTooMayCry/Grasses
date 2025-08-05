@@ -199,7 +199,7 @@ public class CommonEventHandler {
                 }
 
                 if(player instanceof ServerPlayer)
-                    LOGS_DESTROYED_TRIGGER.trigger((ServerPlayer)player, blockPos, itemStack);
+                    ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStack);
             }
         }
     }
