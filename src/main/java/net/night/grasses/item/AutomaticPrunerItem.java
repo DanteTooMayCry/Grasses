@@ -1,6 +1,5 @@
 package net.night.grasses.item;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +14,7 @@ import net.night.grasses.util.ClientPlayerHelper;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static net.night.grasses.data.MethodsLib.setEnchantmentBoolean;
+import static net.night.grasses.data.ModMethods.setEnchantmentBoolean;
 
 public class AutomaticPrunerItem extends ShearsItem {
     public AutomaticPrunerItem(Properties pProperties) {

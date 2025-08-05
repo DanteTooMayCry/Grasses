@@ -27,9 +27,9 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.night.grasses.block.potted.TintedPottedPlantBlock.*;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
-import static net.night.grasses.data.MethodsLib.getKey;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
+import static net.night.grasses.data.ModMethods.getKey;
 import static net.night.grasses.init.BlocksRegister.*;
 
 

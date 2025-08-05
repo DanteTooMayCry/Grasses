@@ -13,9 +13,9 @@ import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.item.AutomaticPrunerItem;
 
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.setColorOnItemStack;
-import static net.night.grasses.data.MethodsLib.setEnchantmentBoolean;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.setColorOnItemStack;
+import static net.night.grasses.data.ModMethods.setEnchantmentBoolean;
 import static net.night.grasses.init.BlocksRegister.JUNGLE_GRASS_BLOCK;
 import static net.night.grasses.init.ItemsRegister.*;
 

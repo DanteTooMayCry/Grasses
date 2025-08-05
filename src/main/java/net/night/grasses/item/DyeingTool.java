@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static net.night.grasses.data.MethodsLib.additionalHoverText;
-import static net.night.grasses.data.MethodsLib.getColorTypeAndShowOnActionBar;
+import static net.night.grasses.data.ModMethods.additionalHoverText;
+import static net.night.grasses.data.ModMethods.getColorTypeAndShowOnActionBar;
 
 public class DyeingTool extends Item {
     public DyeingTool(Properties pProperties) {

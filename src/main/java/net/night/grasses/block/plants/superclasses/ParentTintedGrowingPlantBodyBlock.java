@@ -27,7 +27,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 
 
 import java.util.List;
@@ -37,7 +37,7 @@ import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS;
 import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS_PLANT;
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.HIGH_GRASS_PLANT_TINTED;
 import static net.night.grasses.init.BlocksRegisterBoP.HIGH_GRASS_TINTED;
@@ -66,7 +66,7 @@ public class ParentTintedGrowingPlantBodyBlock extends GrowingPlantBodyBlock imp
 
         BlockState blockStateHead = getHeadBlock().defaultBlockState();
 
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockStateHead);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockStateHead);
     }
 
     @Override
@@ -147,7 +147,7 @@ public class ParentTintedGrowingPlantBodyBlock extends GrowingPlantBodyBlock imp
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.WET_GRASS_BREAK);
 
         if (interactionResult == 0)

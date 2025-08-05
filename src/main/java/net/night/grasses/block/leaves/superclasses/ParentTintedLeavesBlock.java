@@ -35,16 +35,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.event.ClientEventHandler;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.particle.ModParticles;
 
 import java.util.List;
 
-import static net.night.grasses.data.DataLib.*;
+import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.colorManagers.ColorType.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
@@ -74,7 +74,7 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
 
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override

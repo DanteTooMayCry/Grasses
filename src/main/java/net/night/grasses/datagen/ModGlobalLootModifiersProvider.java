@@ -10,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.Grasses;
 import net.night.grasses.loot.AddItemModifier;
 
-import static net.night.grasses.data.DataLib.chestLootLocations;
+import static net.night.grasses.data.ModData.chestLootLocations;
 import static net.night.grasses.init.BlocksRegister.DYEING_STATION;
 import static net.night.grasses.init.ItemsRegister.*;
 

@@ -23,9 +23,9 @@ import net.minecraft.world.phys.HitResult;
 import java.util.Objects;
 
 import static net.minecraft.world.level.block.Blocks.*;
-import static net.night.grasses.data.DataLib.matchingBarsWithPlant;
-import static net.night.grasses.data.MethodsLib.getColorType;
-import static net.night.grasses.data.MethodsLib.setColorOnItemStack;
+import static net.night.grasses.data.ModData.matchingBarsWithPlant;
+import static net.night.grasses.data.ModMethods.getColorType;
+import static net.night.grasses.data.ModMethods.setColorOnItemStack;
 
 public class PlantInBars extends IronBarsBlock {
     public PlantInBars() {

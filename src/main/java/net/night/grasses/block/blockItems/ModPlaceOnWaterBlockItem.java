@@ -5,7 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.block.Block;
 
-import static net.night.grasses.data.MethodsLib.getColorTypeAndShowOnActionBar;
+import static net.night.grasses.data.ModMethods.getColorTypeAndShowOnActionBar;
 
 public class ModPlaceOnWaterBlockItem extends PlaceOnWaterBlockItem {
     public ModPlaceOnWaterBlockItem(Block pBlock, Properties pProperties) {

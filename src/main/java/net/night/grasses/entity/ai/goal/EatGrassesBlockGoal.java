@@ -13,7 +13,7 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 import static net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent;
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
 

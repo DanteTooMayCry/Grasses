@@ -36,8 +36,8 @@ import org.jetbrains.annotations.NotNull;
 import static net.minecraft.world.level.block.Blocks.FERN;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class PodzolSlabBlock extends ParentSlabBlock implements BonemealableBlock, CanGrowConditioner {

@@ -32,8 +32,8 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.level.block.SlabBlock.TYPE;
 import static net.minecraft.world.level.block.SlabBlock.WATERLOGGED;
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class GrassesBlock extends GrassBlock implements BonemealableBlock, CanGrowConditioner {

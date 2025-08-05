@@ -8,7 +8,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -20,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 import static net.night.grasses.init.BlocksRegister.*;
 
 

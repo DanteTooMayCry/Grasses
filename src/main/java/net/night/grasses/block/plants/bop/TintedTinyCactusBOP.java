@@ -22,7 +22,7 @@ import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
 import net.night.grasses.config.GrassesConfig;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.FERTILE;
 
 public class TintedTinyCactusBOP extends ParentTintedBushBlock implements BonemealableBlock {

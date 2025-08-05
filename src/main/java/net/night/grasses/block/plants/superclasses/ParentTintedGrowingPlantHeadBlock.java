@@ -1,6 +1,5 @@
 package net.night.grasses.block.plants.superclasses;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -32,7 +31,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.util.ClientPlayerHelper;
 
@@ -42,7 +41,7 @@ import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS;
 import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS_PLANT;
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
@@ -75,7 +74,7 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override
@@ -155,7 +154,7 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.GRASS_BREAK);
 
         if (interactionResult == 0)

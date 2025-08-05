@@ -26,7 +26,7 @@ import net.minecraft.world.phys.HitResult;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import net.night.grasses.item.DyeingTool;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,8 +35,8 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.Blocks.AIR;
 import static net.minecraft.world.level.block.Blocks.POTTED_FERN;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
 
 
 public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBlock {
@@ -62,7 +62,7 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
 
             blockState = ((FlowerPotBlock) emptyPotBlock).getContent().defaultBlockState();
         }
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
         if (inHandIsNotUsefulItem(itemStackInMainHand))
             plantReplacement(level, blockPos, blockState, player, itemStackInMainHand);
         else
-            interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+            interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.GRASS_BREAK);
 
 

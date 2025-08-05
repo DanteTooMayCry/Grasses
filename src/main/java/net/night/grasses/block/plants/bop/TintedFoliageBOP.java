@@ -18,7 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
 import net.night.grasses.config.GrassesConfig;
 
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.FERTILE;
 import static net.night.grasses.init.BlocksRegisterBoP.SPROUT_TINTED;
 

@@ -25,12 +25,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 
 import java.util.List;
 
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.FERTILE;
 
 public class ParentTintedPinkPetals extends PinkPetalsBlock implements EntityBlock {
@@ -60,7 +60,7 @@ public class ParentTintedPinkPetals extends PinkPetalsBlock implements EntityBlo
 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ParentTintedPinkPetals extends PinkPetalsBlock implements EntityBlo
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.GRASS_BREAK);
 
         if (interactionResult == 0)

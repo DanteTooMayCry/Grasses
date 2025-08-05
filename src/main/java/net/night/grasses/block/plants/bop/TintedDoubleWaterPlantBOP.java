@@ -28,8 +28,8 @@ import net.night.grasses.item.DyeingBoneMealItem;
 import javax.annotation.Nullable;
 
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.DataLib.matchingCounterpartsPlants;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
+import static net.night.grasses.data.ModMethods.*;
 
 public class TintedDoubleWaterPlantBOP extends ParentTintedDoublePlantBlock implements SimpleWaterloggedBlock, BonemealableBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

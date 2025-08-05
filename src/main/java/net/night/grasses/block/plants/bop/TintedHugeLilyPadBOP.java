@@ -32,8 +32,8 @@ import java.util.List;
 
 import static biomesoplenty.api.block.BOPBlocks.HUGE_LILY_PAD;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.MethodsLib.*;
-import static net.night.grasses.data.MethodsLib.prepareDropWithColor;
+import static net.night.grasses.data.ModMethods.*;
+import static net.night.grasses.data.ModMethods.prepareDropWithColor;
 import static net.night.grasses.init.BlocksRegisterBoP.VARIANT_LILY;
 import static net.night.grasses.init.BlocksRegisterBoP.WATERLILY_TINTED;
 

@@ -27,8 +27,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static net.minecraft.world.level.block.HopperBlock.FACING;
-import static net.night.grasses.data.MethodsLib.getColorTypeFromNBT;
-import static net.night.grasses.data.MethodsLib.hasBlockStateTag;
+import static net.night.grasses.data.ModMethods.getColorTypeFromNBT;
+import static net.night.grasses.data.ModMethods.hasBlockStateTag;
 
 @Mixin(HopperBlockEntity.class)
 public abstract class HopperBlockEntityMixin {

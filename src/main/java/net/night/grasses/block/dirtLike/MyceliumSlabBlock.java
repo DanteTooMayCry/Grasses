@@ -1,6 +1,5 @@
 package net.night.grasses.block.dirtLike;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,11 +36,10 @@ import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.interfaces.CanGrowConditioner;
 import net.night.grasses.interfaces.GrassesIsSnowyInterface;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class MyceliumSlabBlock extends ParentSlabBlock implements BonemealableBlock, CanGrowConditioner, GrassesIsSnowyInterface {

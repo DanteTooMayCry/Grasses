@@ -10,8 +10,8 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.night.grasses.data.MethodsLib.getColorTypeFromNBT;
-import static net.night.grasses.data.MethodsLib.hasBlockStateTag;
+import static net.night.grasses.data.ModMethods.getColorTypeFromNBT;
+import static net.night.grasses.data.ModMethods.hasBlockStateTag;
 import static net.night.grasses.init.ItemsRegister.*;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)

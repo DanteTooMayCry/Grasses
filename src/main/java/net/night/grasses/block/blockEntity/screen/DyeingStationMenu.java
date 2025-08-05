@@ -15,7 +15,7 @@ import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.DyeingTool;
 import org.jetbrains.annotations.NotNull;
 
-import static net.night.grasses.data.DataLib.ingredientsList;
+import static net.night.grasses.data.ModData.ingredientsList;
 import static net.night.grasses.init.BlocksRegister.DYEING_STATION;
 
 public class DyeingStationMenu extends AbstractContainerMenu {

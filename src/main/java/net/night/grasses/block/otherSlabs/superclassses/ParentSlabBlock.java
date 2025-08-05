@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import static net.night.grasses.config.GrassesConfig.CommonConfig.ALLOW_PUT_GRASSES_TOP_SLAB_FIRST;
-import static net.night.grasses.data.MethodsLib.setTopSlab;
+import static net.night.grasses.data.ModMethods.setTopSlab;
 
 public class ParentSlabBlock extends SlabBlock {
     public ParentSlabBlock(Properties pProperties) {

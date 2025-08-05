@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 import static net.minecraft.world.item.Items.PAPER;
 import static net.minecraft.world.item.Items.STRING;
 import static net.minecraft.world.level.block.Blocks.*;
-import static net.night.grasses.data.DataLib.ingredientsList;
+import static net.night.grasses.data.ModData.ingredientsList;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.ItemsRegister.*;
 

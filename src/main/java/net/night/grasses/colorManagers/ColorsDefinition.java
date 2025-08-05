@@ -7,7 +7,7 @@ import net.night.grasses.block.plants.TintedVine;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import static net.night.grasses.data.DataLib.*;
+import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class ColorsDefinition {

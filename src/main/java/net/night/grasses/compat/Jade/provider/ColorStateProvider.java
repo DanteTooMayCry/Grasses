@@ -21,7 +21,7 @@ import snownee.jade.api.ui.IElement;
 import snownee.jade.api.ui.IElementHelper;
 
 import static net.minecraft.world.item.Items.YELLOW_DYE;
-import static net.night.grasses.data.MethodsLib.getColorType;
+import static net.night.grasses.data.ModMethods.getColorType;
 import static net.night.grasses.init.BlocksRegister.ALTER;
 import static net.night.grasses.init.BlocksRegister.DOUBLE_ALTER;
 

@@ -28,14 +28,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 
 import java.util.List;
 
 import static biomesoplenty.api.block.BOPBlocks.WILLOW_VINE;
 import static net.minecraft.world.level.block.Blocks.VINE;
-import static net.night.grasses.data.DataLib.matchingCounterpartsPlants;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class TintedVine extends VineBlock implements BonemealableBlock, EntityBlock {
@@ -65,7 +65,7 @@ public class TintedVine extends VineBlock implements BonemealableBlock, EntityBl
 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override
@@ -263,7 +263,7 @@ public class TintedVine extends VineBlock implements BonemealableBlock, EntityBl
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_VINES_COLOR_SEVERALLY.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_SEVERALLY.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.VINE_BREAK);
 
         if (interactionResult == 0)

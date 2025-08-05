@@ -9,12 +9,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 
 public class RootedDirtSlabBlock extends ParentSlabBlock implements BonemealableBlock {
     public RootedDirtSlabBlock() {

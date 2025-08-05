@@ -27,8 +27,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static net.minecraft.world.level.block.Blocks.FLOWER_POT;
 import static net.night.grasses.block.potted.PottedPlantBlock.takePlantFromPot;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
 
 @Mixin(FlowerPotBlock.class)
 public abstract class FlowerPotBlockMixin {

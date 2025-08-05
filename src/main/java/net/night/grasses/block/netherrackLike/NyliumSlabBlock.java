@@ -23,7 +23,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -38,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.level.block.Blocks.NETHERRACK;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
-import static net.night.grasses.data.MethodsLib.isFertileState;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class NyliumSlabBlock extends ParentSlabBlock implements BonemealableBlock {

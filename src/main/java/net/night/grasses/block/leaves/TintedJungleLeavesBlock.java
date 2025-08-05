@@ -24,8 +24,8 @@ import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.DyeingTool;
 
 import static net.night.grasses.colorManagers.ColorType.PLAINS;
-import static net.night.grasses.data.DataLib.counterpartIDMap;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.counterpartIDMap;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.DOUBLE_ALTER;
 
 public class TintedJungleLeavesBlock extends ParentTintedLeavesBlock implements EntityBlock {

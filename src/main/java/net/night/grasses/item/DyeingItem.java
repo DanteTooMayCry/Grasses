@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.night.grasses.data.MethodsLib.additionalHoverText;
-import static net.night.grasses.data.MethodsLib.getColorTypeAndShowOnActionBar;
+import static net.night.grasses.data.ModMethods.additionalHoverText;
+import static net.night.grasses.data.ModMethods.getColorTypeAndShowOnActionBar;
 
 public class DyeingItem extends Item {
 

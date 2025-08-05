@@ -26,12 +26,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.PlantType;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 
 import java.util.List;
 
-import static net.night.grasses.data.DataLib.matchingCounterpartsPlants;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock, EntityBlock {
@@ -61,7 +61,7 @@ public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock
 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.LILY_PAD_PLACE);
 
         if (interactionResult == 0)

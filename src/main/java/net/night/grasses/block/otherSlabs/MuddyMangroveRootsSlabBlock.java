@@ -7,7 +7,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -18,8 +17,7 @@ import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.Nullable;
 
-import static net.minecraft.world.level.block.RotatedPillarBlock.AXIS;
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 import static net.night.grasses.init.BlocksRegister.ROTATE_MUDDY;
 
 public class MuddyMangroveRootsSlabBlock extends SlabBlock {

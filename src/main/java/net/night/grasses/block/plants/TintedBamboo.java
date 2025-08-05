@@ -1,6 +1,5 @@
 package net.night.grasses.block.plants;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -33,7 +32,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.util.ClientPlayerHelper;
 
@@ -45,7 +44,7 @@ import static net.minecraft.tags.BlockTags.BAMBOO_PLANTABLE_ON;
 import static net.minecraft.world.level.block.Blocks.BAMBOO;
 import static net.minecraft.world.level.block.Blocks.BAMBOO_SAPLING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class TintedBamboo extends BambooStalkBlock implements BonemealableBlock, EntityBlock {
@@ -75,7 +74,7 @@ public class TintedBamboo extends BambooStalkBlock implements BonemealableBlock,
 
     @Override
     public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, BAMBOO_TINTED.get().defaultBlockState());
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, BAMBOO_TINTED.get().defaultBlockState());
     }
 
     @Override
@@ -282,7 +281,7 @@ public class TintedBamboo extends BambooStalkBlock implements BonemealableBlock,
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.BAMBOO_BREAK);
 
         if (interactionResult == 0)

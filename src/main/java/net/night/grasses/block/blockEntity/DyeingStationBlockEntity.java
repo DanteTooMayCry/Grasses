@@ -40,10 +40,10 @@ import java.util.Optional;
 
 import static net.minecraft.world.item.Items.AIR;
 import static net.minecraft.world.item.Items.BUCKET;
-import static net.night.grasses.data.DataLib.colorTypeList;
-import static net.night.grasses.data.DataLib.ingredientsList;
+import static net.night.grasses.data.ModData.colorTypeList;
+import static net.night.grasses.data.ModData.ingredientsList;
 import static net.night.grasses.block.station.DyeingStationBlock.FACING;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlockEntitiesRegister.DYEING_STATION_BE;
 
 public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlockEntity, MenuProvider {

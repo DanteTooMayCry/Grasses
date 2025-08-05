@@ -7,7 +7,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -19,7 +18,7 @@ import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 
 import static net.minecraft.world.level.block.PointedDripstoneBlock.TIP_DIRECTION;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
-import static net.night.grasses.data.MethodsLib.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 import static net.night.grasses.init.BlocksRegister.CLAY_SLAB_BLOCK;
 
 public class MudSlabBlock extends ParentSlabBlock {

@@ -1,7 +1,6 @@
 package net.night.grasses.block.plants;
 
 import net.minecraft.BlockUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +30,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.util.ClientPlayerHelper;
 import net.night.grasses.util.ModTags;
@@ -41,8 +40,8 @@ import java.util.Optional;
 
 import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF;
 import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF_STEM;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class TintedBigDripleafStem extends BigDripleafStemBlock implements EntityBlock {
@@ -66,7 +65,7 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-        return MethodsLib.getCloneItemStackBE((Level) blockGetter, blockPos, BIG_DRIP_LEAF_TINTED.get().defaultBlockState());
+        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, BIG_DRIP_LEAF_TINTED.get().defaultBlockState());
     }
 
     @Override
@@ -144,7 +143,7 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
         boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
         boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
-        int interactionResult = MethodsLib.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
+        int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.BIG_DRIPLEAF_BREAK);
 
         if (interactionResult == 0)

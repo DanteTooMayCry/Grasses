@@ -22,9 +22,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-import static net.night.grasses.data.DataLib.colorTypeList;
-import static net.night.grasses.data.MethodsLib.setColorOnItemStack;
-import static net.night.grasses.data.MethodsLib.setEnchantmentBoolean;
+import static net.night.grasses.data.ModData.colorTypeList;
+import static net.night.grasses.data.ModMethods.setColorOnItemStack;
+import static net.night.grasses.data.ModMethods.setEnchantmentBoolean;
 import static net.night.grasses.init.BlocksRegister.DYEING_STATION;
 
 public class AddItemModifier extends LootModifier {

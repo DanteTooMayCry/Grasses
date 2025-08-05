@@ -1,6 +1,5 @@
 package net.night.grasses.block.plants.bop;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -24,7 +23,7 @@ import static net.minecraft.tags.BlockTags.DIRT;
 import static net.minecraft.tags.BlockTags.LEAVES;
 import static net.minecraft.world.level.block.Blocks.AIR;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.HUGE_CLOVER_TINTED;
 

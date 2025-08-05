@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
-import static net.night.grasses.data.MethodsLib.keepColorType;
+import static net.night.grasses.data.ModMethods.keepColorType;
 import static net.night.grasses.init.BlocksRegister.BIOMES_COLOR_SOURCE;
 
 

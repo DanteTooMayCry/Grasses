@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.night.grasses.data.MethodsLib;
+import net.night.grasses.data.ModMethods;
 import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
@@ -50,7 +50,7 @@ public class VineInBars extends PlantInBars {
         if (interactionHand != InteractionHand.MAIN_HAND)
             return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
 
-        int interactionResult = MethodsLib.useOnBarsPlant(blockState, level, blockPos, player, interactionHand, blockHitResult);
+        int interactionResult = ModMethods.useOnBarsPlant(blockState, level, blockPos, player, interactionHand, blockHitResult);
 
         if (interactionResult == 0)
             return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
