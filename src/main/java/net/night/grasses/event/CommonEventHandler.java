@@ -71,7 +71,6 @@ import static net.night.grasses.Grasses.*;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.event.CommonEventsMethods.*;
-import static net.night.grasses.init.AdvancementRegister.LOGS_DESTROYED_TRIGGER;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
