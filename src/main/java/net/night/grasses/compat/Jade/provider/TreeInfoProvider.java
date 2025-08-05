@@ -18,7 +18,7 @@ import snownee.jade.api.ui.IElement;
 import snownee.jade.api.ui.IElementHelper;
 
 import static net.minecraft.tags.BlockTags.*;
-import static net.night.grasses.event.ModEvents.*;
+import static net.night.grasses.event.CommonEventHandler.*;
 import static net.night.grasses.util.ModTags.Blocks.STEMS;
 
 public class TreeInfoProvider implements IBlockComponentProvider {

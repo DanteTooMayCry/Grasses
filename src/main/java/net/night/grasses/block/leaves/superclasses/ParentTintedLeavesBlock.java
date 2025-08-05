@@ -34,7 +34,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.event.ClientModEvents;
+import net.night.grasses.event.ClientEventHandler;
 import net.night.grasses.data.MethodsLib;
 import net.night.grasses.colorManagers.ColorType;
 import net.night.grasses.item.DyeingTool;
@@ -140,7 +140,7 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
                 BlockState blockstate = level.getBlockState(blockpos);
                 if (!isFaceFull(blockstate.getCollisionShape(level, blockpos), Direction.UP))
                 {
-                    ClientModEvents.getColor(blockState, blockPos);
+                    ClientEventHandler.getColor(blockState, blockPos);
                     ParticleUtils.spawnParticleBelow(level, blockpos, randomSource, simpleParticleType);
                 }
             }
