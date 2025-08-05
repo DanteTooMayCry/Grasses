@@ -17,7 +17,7 @@
   "parent": "grasses:root",
   "criteria": {
     "cut_down_tree": {
-      "trigger": "grasses:logs_destroyed",
+      "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "location": [
           {
