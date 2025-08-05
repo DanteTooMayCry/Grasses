@@ -72,7 +72,11 @@ import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
-public class ModMethods {
+public final class ModMethods {
+
+    private  ModMethods() {
+
+    }
 
     public static Map<BlockPos, ColorType> keepColorType = new HashMap<>();
     public static Map<BlockPos, BlockState> keepCounterPartType = new HashMap<>();
