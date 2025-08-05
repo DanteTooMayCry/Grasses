@@ -33,7 +33,7 @@ import static net.night.grasses.data.MethodsLib.getColorType;
 import static net.night.grasses.init.BlockEntitiesRegister.DYEING_STATION_BE;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ClientModEvents {
+public class ClientEventHandler {
     private static BlockState blockStateForColor;
     private static BlockPos blockPosForColor;
 

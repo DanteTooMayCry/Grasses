@@ -70,7 +70,7 @@ import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.L
 import static net.night.grasses.Grasses.*;
 import static net.night.grasses.data.DataLib.*;
 import static net.night.grasses.data.MethodsLib.*;
-import static net.night.grasses.event.ModEventsMethodsLib.*;
+import static net.night.grasses.event.CommonEventsMethodsLib.*;
 import static net.night.grasses.init.AdvancementRegister.LOGS_DESTROYED_TRIGGER;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
@@ -78,7 +78,7 @@ import static net.night.grasses.util.ModTags.Blocks.*;
 
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID)
-public class ModEvents {
+public class CommonEventHandler {
 
     public static Map<Integer, BlockPos> logHashMapGlobal = new HashMap<>();
     public static Map<Integer, BlockPos> vinesHashMapGlobal = new HashMap<>();

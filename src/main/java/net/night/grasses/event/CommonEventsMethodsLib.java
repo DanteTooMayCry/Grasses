@@ -70,12 +70,12 @@ import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
 import static net.night.grasses.data.DataLib.*;
 import static net.night.grasses.data.MethodsLib.*;
-import static net.night.grasses.event.ModEvents.*;
+import static net.night.grasses.event.CommonEventHandler.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
 
-public class ModEventsMethodsLib {
+public class CommonEventsMethodsLib {
 
     //Methods for (itemStackInMainHand.getItem() instanceof BoneMealItem && fertileCondition)
 

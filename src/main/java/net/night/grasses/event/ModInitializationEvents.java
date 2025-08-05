@@ -1,15 +1,11 @@
 package net.night.grasses.event;
 
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.night.grasses.Grasses;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.network.MessageRegistry;
-import net.night.grasses.recipe.recipeConditions.*;
 
 import static net.minecraft.world.item.Items.ROTTEN_FLESH;
 import static net.minecraft.world.level.block.Blocks.BAMBOO;
@@ -19,7 +15,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CommonModEvents {
+public class ModInitializationEvents {
 
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
