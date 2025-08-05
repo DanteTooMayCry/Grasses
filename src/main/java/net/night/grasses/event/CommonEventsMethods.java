@@ -68,14 +68,14 @@ import static net.minecraft.world.level.block.VineBlock.WEST;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
-import static net.night.grasses.data.DataLib.*;
-import static net.night.grasses.data.MethodsLib.*;
+import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.event.CommonEventHandler.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
 
-public class CommonEventsMethodsLib {
+public class CommonEventsMethods {
 
     //Methods for (itemStackInMainHand.getItem() instanceof BoneMealItem && fertileCondition)
 

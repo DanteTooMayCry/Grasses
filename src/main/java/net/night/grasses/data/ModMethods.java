@@ -61,7 +61,6 @@ import static net.minecraft.world.level.block.LeavesBlock.DISTANCE;
 import static net.minecraft.world.level.block.LeavesBlock.PERSISTENT;
 import static net.minecraft.world.level.block.SlabBlock.TYPE;
 import static net.minecraft.world.level.block.SlabBlock.WATERLOGGED;
-import static net.minecraft.world.level.block.SugarCaneBlock.AGE;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
@@ -69,11 +68,11 @@ import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
 import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.QUARTER;
 import static net.night.grasses.colorManagers.ColorType.*;
-import static net.night.grasses.data.DataLib.*;
+import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
-public class MethodsLib {
+public class ModMethods {
 
     public static Map<BlockPos, ColorType> keepColorType = new HashMap<>();
     public static Map<BlockPos, BlockState> keepCounterPartType = new HashMap<>();

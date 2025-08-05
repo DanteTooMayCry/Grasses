@@ -26,7 +26,11 @@ import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.init.ItemsRegister.*;
 
-public class DataLib {
+public final class ModData {
+
+    private ModData() {
+
+    }
 
     public static final List<Item> ingredientsList = new ArrayList<>();
     public static final List<ColorType> colorTypeList = new ArrayList<>();
