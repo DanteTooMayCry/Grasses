@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.night.grasses.block.blockEntity.screen.MenuTypesRegister;
-import net.night.grasses.datagen.loot.LootItemConditions;
 import net.night.grasses.event.ConditionRecipeRegisterEvent;
 import net.night.grasses.init.*;
 import net.night.grasses.loot.ModLootModifiers;
@@ -30,7 +29,6 @@ public class Grasses {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CLIENT_CONFIG_SPEC);
 
-        LootItemConditions.CONDITIONS.register(modEventBus);
         modEventBus.register(new ConditionRecipeRegisterEvent());
 
         BlocksRegister.register(modEventBus);
