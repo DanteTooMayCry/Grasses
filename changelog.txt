@@ -9,6 +9,7 @@ to hoppers that are directly in contact with the Dyeing Station.
 - Change introducing ClientPlayerHelper for greater security against errors.
 - Added sound when some action failed related to tree/leaves
 - Removed unnecessary trigger
+- Fixed a bug that caused the following information to appear in startup logs: "Couldn't parse element loot_tables:grasses:blocks/*Block name"
 
 ====================================================================================================================
 0.2.2-1.20.1:
