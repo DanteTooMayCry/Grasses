@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "grasses:block/grow_podzol"
+      },
+      {
+        "model": "grasses:block/grow_podzol",
+        "y": 90
+      },
+      {
+        "model": "grasses:block/grow_podzol",
+        "y": 180
+      },
+      {
+        "model": "grasses:block/grow_podzol",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "minecraft:block/grass_block_snow"
+    }
+  }
+}

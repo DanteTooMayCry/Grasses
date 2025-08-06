@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "alter=false": {
+      "model": "grasses:block/palm_leaves_block"
+    },
+    "alter=true": {
+      "model": "grasses:block/palm_leaves_block_alter"
+    }
+  }
+}

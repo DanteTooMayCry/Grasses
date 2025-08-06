@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "minecraft:magma_cream"
+    }
+  },
+  "pattern": [
+    "   ",
+    "CC ",
+    "   "
+  ],
+  "result": {
+    "item": "grasses:magma_slab"
+  },
+  "show_notification": true
+}

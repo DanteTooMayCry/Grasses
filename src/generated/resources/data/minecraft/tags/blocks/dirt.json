@@ -1,0 +1,15 @@
+{
+  "values": [
+    "#grasses:all_mod_grass",
+    "grasses:dirt_slab",
+    "grasses:coarse_dirt_slab",
+    "grasses:rooted_dirt_slab",
+    "grasses:grow_mycelium",
+    "grasses:mycelium_slab",
+    "grasses:grow_podzol",
+    "grasses:podzol_slab",
+    "grasses:moss_slab",
+    "grasses:mud_slab",
+    "grasses:muddy_roots_slab"
+  ]
+}
