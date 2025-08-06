@@ -7,7 +7,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.RegistryObject;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import static net.minecraft.tags.BlockTags.SPRUCE_LOGS;
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.minecraft.world.level.block.Blocks.TORCHFLOWER;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.colorManagers.ColorType.*;
+import static net.night.grasses.enums.ColorType.*;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.init.ItemsRegister.*;
