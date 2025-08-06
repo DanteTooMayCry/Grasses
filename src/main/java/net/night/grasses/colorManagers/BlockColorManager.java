@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
+import net.night.grasses.enums.ColorType;
 
 import static net.night.grasses.data.ModMethods.getColorTypeForColorManager;
 import static net.night.grasses.init.BlocksRegister.*;

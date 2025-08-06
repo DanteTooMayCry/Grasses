@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import org.jetbrains.annotations.Nullable;
 

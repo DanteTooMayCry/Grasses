@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.night.grasses.Grasses;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.item.AutomaticPrunerItem;
 
 import static net.night.grasses.Grasses.isBOPLoaded;

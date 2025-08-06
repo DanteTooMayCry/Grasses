@@ -22,7 +22,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.night.grasses.block.plants.superclasses.ParentTintedDoublePlantBlock;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.item.DyeingBoneMealItem;
 
 import javax.annotation.Nullable;

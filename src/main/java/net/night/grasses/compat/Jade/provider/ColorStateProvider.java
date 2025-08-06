@@ -11,7 +11,7 @@ import net.minecraft.world.phys.Vec2;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.leaves.TintedJungleLeavesBlock;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.IServerDataProvider;

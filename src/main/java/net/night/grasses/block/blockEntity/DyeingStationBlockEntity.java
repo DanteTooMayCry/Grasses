@@ -26,7 +26,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.night.grasses.block.blockEntity.screen.DyeingStationMenu;
 import net.night.grasses.block.blockEntity.util.TickAbleBlockEntity;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.DyeingBoneMealItem;

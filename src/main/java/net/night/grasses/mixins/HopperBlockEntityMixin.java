@@ -16,7 +16,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.night.grasses.block.blockEntity.DyeingStationBlockEntity;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.inventory.ContainerItemHandlerAdapter;
 import net.night.grasses.item.DyeingItem;
 import org.spongepowered.asm.mixin.Mixin;

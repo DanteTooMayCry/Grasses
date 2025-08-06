@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.night.grasses.block.plants.superclasses.ParentTintedPinkPetals;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.util.ClientPlayerHelper;
 

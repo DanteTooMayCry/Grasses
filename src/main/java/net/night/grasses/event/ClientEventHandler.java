@@ -18,7 +18,7 @@ import net.night.grasses.Grasses;
 import net.night.grasses.block.blockEntity.renderer.DyeingStationBlockEntityRenderer;
 import net.night.grasses.block.blockEntity.screen.DyeingStationScreen;
 import net.night.grasses.block.blockEntity.screen.MenuTypesRegister;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
 import net.night.grasses.init.BlocksRegister;
 import net.night.grasses.particle.ModParticles;

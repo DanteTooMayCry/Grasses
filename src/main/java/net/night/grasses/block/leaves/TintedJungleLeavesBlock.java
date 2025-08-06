@@ -19,11 +19,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.DyeingTool;
 
-import static net.night.grasses.colorManagers.ColorType.PLAINS;
+import static net.night.grasses.enums.ColorType.PLAINS;
 import static net.night.grasses.data.ModData.counterpartIDMap;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.DOUBLE_ALTER;

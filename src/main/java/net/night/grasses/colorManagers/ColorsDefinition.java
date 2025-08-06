@@ -4,6 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
 import net.night.grasses.block.plants.TintedVine;
+import net.night.grasses.enums.ColorType;
 
 import java.util.concurrent.atomic.AtomicReference;
 

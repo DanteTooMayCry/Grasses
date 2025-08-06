@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.night.grasses.network.MessageRegistry;
 import net.night.grasses.network.SyncColorPacket;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import org.jetbrains.annotations.Nullable;
 
 import static net.night.grasses.init.BlockEntitiesRegister.TINTED_BE;
