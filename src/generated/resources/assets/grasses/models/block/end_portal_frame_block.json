@@ -1,4 +1,0 @@
-{
-  "parent": "minecraft:block/end_portal_frame",
-  "render_type": "minecraft:cutout_mipped"
-}

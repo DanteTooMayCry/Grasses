@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/tinted_flower_pot_cross",
-  "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "dirt": "minecraft:block/dirt",
-    "plant": "minecraft:block/grass"
-  }
-}
