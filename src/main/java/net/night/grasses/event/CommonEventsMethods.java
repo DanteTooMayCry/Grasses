@@ -40,7 +40,7 @@ import net.night.grasses.block.bars.TintedVineInBars;
 import net.night.grasses.block.bars.VineInBars;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
 import net.night.grasses.block.plants.TintedVine;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
@@ -1440,7 +1440,7 @@ public class CommonEventsMethods {
 
         blockState = blockState.setValue(VARIANT_LILY, setLily);
 
-        blockPosList = checkHugeLily(blockPos, blockState);
+        blockPosList = checkTintedHugeLily(blockPos, blockState);
 
         for (BlockPos blockPosToSet : blockPosList) {
             BlockState blockStateCurrent = level.getBlockState(blockPosToSet);
