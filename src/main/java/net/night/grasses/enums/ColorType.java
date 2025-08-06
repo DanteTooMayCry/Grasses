@@ -1,4 +1,4 @@
-package net.night.grasses.colorManagers;
+package net.night.grasses.enums;
 
 import net.minecraft.util.StringRepresentable;
 
