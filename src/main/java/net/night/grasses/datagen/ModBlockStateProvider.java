@@ -1,6 +1,5 @@
 package net.night.grasses.datagen;
 
-import biomesoplenty.block.properties.QuarterProperty;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +13,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP;
+import net.night.grasses.enums.GrassesQuarterProperty;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +41,7 @@ import static net.minecraft.world.level.block.state.properties.Tilt.UNSTABLE;
 import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.*;
 import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.QUARTER;
+import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
@@ -1524,33 +1524,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
         getVariantBuilder(block)
-                .partialState().with(QUARTER, QuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_NW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_NE).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 0).modelForState().rotationY(90).modelFile(modelLily_SW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 1).modelForState().rotationY(90).modelFile(modelLilyFlower_SW_white).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 2).modelForState().rotationY(90).modelFile(modelLilyFlower_SW_origin).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_SE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_NW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_NE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 0).modelForState().rotationY(90).modelFile(modelLily_SW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 1).modelForState().rotationY(90).modelFile(modelLilyFlower_SW_white).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, EAST).with(VARIANT_LILY, 2).modelForState().rotationY(90).modelFile(modelLilyFlower_SW_origin).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, EAST).modelForState().rotationY(90).modelFile(modelLily_SE).addModel()
 
-                .partialState().with(QUARTER, QuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_NW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_NE).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 0).modelForState().rotationY(180).modelFile(modelLily_SW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 1).modelForState().rotationY(180).modelFile(modelLilyFlower_SW_white).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 2).modelForState().rotationY(180).modelFile(modelLilyFlower_SW_origin).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_SE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_NW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_NE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 0).modelForState().rotationY(180).modelFile(modelLily_SW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 1).modelForState().rotationY(180).modelFile(modelLilyFlower_SW_white).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, SOUTH).with(VARIANT_LILY, 2).modelForState().rotationY(180).modelFile(modelLilyFlower_SW_origin).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, SOUTH).modelForState().rotationY(180).modelFile(modelLily_SE).addModel()
 
-                .partialState().with(QUARTER, QuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_NW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_NE).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 0).modelForState().rotationY(270).modelFile(modelLily_SW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 1).modelForState().rotationY(270).modelFile(modelLilyFlower_SW_white).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 2).modelForState().rotationY(270).modelFile(modelLilyFlower_SW_origin).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_SE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_NW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_NE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 0).modelForState().rotationY(270).modelFile(modelLily_SW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 1).modelForState().rotationY(270).modelFile(modelLilyFlower_SW_white).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, WEST).with(VARIANT_LILY, 2).modelForState().rotationY(270).modelFile(modelLilyFlower_SW_origin).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, WEST).modelForState().rotationY(270).modelFile(modelLily_SE).addModel()
 
-                .partialState().with(QUARTER, QuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_NW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_NE).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 0).modelForState().modelFile(modelLily_SW).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 1).modelForState().modelFile(modelLilyFlower_SW_white).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 2).modelForState().modelFile(modelLilyFlower_SW_origin).addModel()
-                .partialState().with(QUARTER, QuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_SE).addModel();
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_NW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_EAST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_NE).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 0).modelForState().modelFile(modelLily_SW).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 1).modelForState().modelFile(modelLilyFlower_SW_white).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).with(TintedHugeLilyPadBOP.FACING, NORTH).with(VARIANT_LILY, 2).modelForState().modelFile(modelLilyFlower_SW_origin).addModel()
+                .partialState().with(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_EAST).with(TintedHugeLilyPadBOP.FACING, NORTH).modelForState().modelFile(modelLily_SE).addModel();
     }
 
     protected void getWatergrassVariant(Block block, String path) {

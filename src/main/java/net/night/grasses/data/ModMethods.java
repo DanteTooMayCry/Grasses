@@ -15,6 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -42,16 +43,18 @@ import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.block.plants.TintedVine;
 import net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP;
 import net.night.grasses.block.potted.TintedPottedPlantBlock;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
 import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.datagen.loot.ModSaplingData;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.util.ClientPlayerHelper;
+import net.night.grasses.enums.GrassesQuarterProperty;
 
 import java.util.*;
 
 import static biomesoplenty.api.block.BOPBlocks.*;
-import static biomesoplenty.block.properties.QuarterProperty.*;
+import static biomesoplenty.block.HugeLilyPadBlock.QUARTER;
 import static net.minecraft.tags.BlockTags.LEAVES;
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.minecraft.world.level.block.CrossCollisionBlock.*;
@@ -66,11 +69,13 @@ import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.U
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
-import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.QUARTER;
-import static net.night.grasses.colorManagers.ColorType.*;
+import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
+import static net.night.grasses.enums.ColorType.*;
 import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.datagen.loot.SaplingDropHelper.knownMods;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
+import static net.night.grasses.enums.GrassesQuarterProperty.*;
 
 public final class ModMethods {
 
@@ -459,6 +464,58 @@ public final class ModMethods {
         return drops;
     }
 
+    public static List<ItemStack> prepareDropWithColorAndAdditionalItems(List<ItemStack> drops, LootParams.Builder builder, Item thisLeavesItem) {
+        Optional<ItemStack> base = drops.stream().filter(itemStack -> itemStack.is(thisLeavesItem)).findFirst();
+
+        if (base.isPresent()) {
+            BlockEntity be = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+            if (be instanceof TintedBlockEntity blockEntity) {
+                ColorType colorType = blockEntity.getColorType();
+                if (colorType == null)
+                    colorType = PLAINS;
+                ItemStack itemStack = base.get();
+                setColorOnItemStack(itemStack, colorType);
+                drops.remove(base.get());
+                drops.add(itemStack);
+            }
+            return drops;
+        }
+
+        ItemStack itemStackInHand = builder.getOptionalParameter(LootContextParams.TOOL);
+
+        int fortuneLevel = itemStackInHand != null ? EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, itemStackInHand) : 0;
+
+        RandomSource random = builder.getLevel().random;
+
+        for (ModSaplingData modSaplingData : knownMods) {
+            if (!modSaplingData.isModLoaded()) continue;
+
+            float[] chancesToUse = modSaplingData.normalLeavesSaplingChances();
+            if (modSaplingData.unNormalLeavesSaplingChances() != null && modSaplingData.unNormalLeavesSaplingChances().containsKey(thisLeavesItem))
+                chancesToUse = modSaplingData.unNormalLeavesSaplingChances().get(thisLeavesItem);
+
+            int chanceIndex = Math.min(fortuneLevel, chancesToUse.length - 1);
+            float chance = chancesToUse[chanceIndex];
+
+            if (modSaplingData.leavesWithMoreThanOneSapling() != null && modSaplingData.leavesWithMoreThanOneSapling().containsKey(thisLeavesItem)) {
+                List<Item> additionalSaplings = modSaplingData.leavesWithMoreThanOneSapling().get(thisLeavesItem);
+
+                if (random.nextFloat() < chance) {
+                    int selectedIndex = random.nextInt(additionalSaplings.size());
+                    Item selectedSapling = additionalSaplings.get(selectedIndex);
+                    if (selectedSapling != null)
+                        drops.add(new ItemStack(selectedSapling));
+                }
+            } else {
+                Item sapling = modSaplingData.saplingForLeaves().get(thisLeavesItem);
+                if (sapling != null && random.nextFloat() < chance)
+                    drops.add(new ItemStack(sapling));
+            }
+        }
+
+        return drops;
+    }
+
     //Methods related to "InteractionResult use" method
 
     public static int useOnPlant(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult,
@@ -503,7 +560,7 @@ public final class ModMethods {
                     }
                     else if (blockState.getBlock() instanceof TintedHugeLilyPadBOP) {
 
-                        blockPosList =  checkHugeLily(blockPos, blockState);
+                        blockPosList =  checkTintedHugeLily(blockPos, blockState);
                         for (BlockPos blockPosToSet : blockPosList)
                             setColorAndColorTypeInBlockEntity(level, blockPosToSet, blockState, colorType);
                     }
@@ -680,13 +737,15 @@ public final class ModMethods {
     }
     private static List<BlockPos> hugeLilyPadHandle(Level level, BlockPos blockPos, BlockState blockState, Block plantsBlock, BlockHitResult blockHitResult, ColorType colorType) {
 
-        List<BlockPos> blockPosList = checkHugeLily(blockPos, blockState);
+        List<BlockPos> blockPosList = checkTintedHugeLily(blockPos, blockState);
 
         if (blockState.getValue(VARIANT_LILY).equals(0)) {
             for (BlockPos blockPosToSet : blockPosList) {
                 BlockState blockStateCurrent = level.getBlockState(blockPosToSet);
                 keepData(blockPosToSet, blockState.getBlock(), ColorType.PLAINS);
-                level.setBlock(blockPosToSet, plantsBlock.withPropertiesOf(blockStateCurrent), 19);
+                GrassesQuarterProperty oldValue = blockStateCurrent.getValue(GRASSES_QUARTER);
+                QuarterProperty newValue = mapFromGrassesToQuarterProperty(oldValue);
+                level.setBlock(blockPosToSet, plantsBlock.withPropertiesOf(blockStateCurrent).setValue(QUARTER, newValue), 19);
             }
         }  else {
             for (BlockPos blockPosToSet : blockPosList) {
@@ -719,7 +778,49 @@ public final class ModMethods {
     public static List<BlockPos> checkHugeLily(BlockPos blockPos, BlockState blockStateCurrent) {
 
         List<BlockPos> blockPosList = new ArrayList<>();
-        QuarterProperty quarterProperty = blockStateCurrent.getValue(QUARTER);
+        QuarterProperty quarterProperty = blockStateCurrent.getValue(HugeLilyPadBlock.QUARTER);
+        Direction direction = blockStateCurrent.getValue(FACING);
+
+        BlockPos blockPos2;
+        Vec3i ClockWise = direction.getClockWise().getNormal();
+        Vec3i CClockWise = direction.getCounterClockWise().getNormal();
+        Vec3i CCWClockWise = direction.getCounterClockWise().getClockWise().getNormal();
+        Vec3i ClockWiseCCW = direction.getClockWise().getCounterClockWise().getNormal();
+        Vec3i Opposite = direction.getOpposite().getNormal();
+
+        blockPosList.add(blockPos);
+
+        if(quarterProperty.equals(QuarterProperty.SOUTH_EAST)) {
+            blockPos2 = blockPos.offset(CCWClockWise);
+            blockPosList.add(blockPos2);
+            blockPosList.add(blockPos.offset(CClockWise));
+            blockPosList.add(blockPos2.offset(CClockWise));
+
+        } else if (quarterProperty.equals(QuarterProperty.SOUTH_WEST)) {
+            blockPos2 = blockPos.offset(ClockWiseCCW);
+            blockPosList.add(blockPos2);
+            blockPosList.add(blockPos.offset(ClockWise));
+            blockPosList.add(blockPos2.offset(ClockWise));
+
+        } else if (quarterProperty.equals(QuarterProperty.NORTH_EAST)) {
+            blockPos2 = blockPos.offset(Opposite);
+            blockPosList.add(blockPos2);
+            blockPosList.add(blockPos.offset(CClockWise));
+            blockPosList.add(blockPos2.offset(CClockWise));
+
+        } else if (quarterProperty.equals(QuarterProperty.NORTH_WEST)) {
+            blockPos2 = blockPos.offset(Opposite);
+            blockPosList.add(blockPos2);
+            blockPosList.add(blockPos.offset(ClockWise));
+            blockPosList.add(blockPos2.offset(ClockWise));
+        }
+        return blockPosList;
+    }
+
+    public static List<BlockPos> checkTintedHugeLily(BlockPos blockPos, BlockState blockStateCurrent) {
+
+        List<BlockPos> blockPosList = new ArrayList<>();
+        GrassesQuarterProperty quarterProperty = blockStateCurrent.getValue(GRASSES_QUARTER);
         Direction direction = blockStateCurrent.getValue(FACING);
 
         BlockPos blockPos2;
@@ -756,5 +857,23 @@ public final class ModMethods {
             blockPosList.add(blockPos2.offset(ClockWise));
         }
         return blockPosList;
+    }
+
+    public static GrassesQuarterProperty mapFromQuarterPropertyToGrasses(QuarterProperty oldValue) {
+        return switch (oldValue) {
+            case SOUTH_EAST -> GrassesQuarterProperty.SOUTH_EAST;
+            case SOUTH_WEST -> GrassesQuarterProperty.SOUTH_WEST;
+            case NORTH_WEST -> GrassesQuarterProperty.NORTH_WEST;
+            case NORTH_EAST -> GrassesQuarterProperty.NORTH_EAST;
+        };
+    }
+
+    public static QuarterProperty mapFromGrassesToQuarterProperty(GrassesQuarterProperty oldValue) {
+        return switch (oldValue) {
+            case SOUTH_EAST -> QuarterProperty.SOUTH_EAST;
+            case SOUTH_WEST -> QuarterProperty.SOUTH_WEST;
+            case NORTH_WEST -> QuarterProperty.NORTH_WEST;
+            case NORTH_EAST -> QuarterProperty.NORTH_EAST;
+        };
     }
 }

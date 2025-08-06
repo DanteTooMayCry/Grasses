@@ -2,6 +2,7 @@ package net.night.grasses.event;
 
 import biomesoplenty.block.HugeCloverPetalBlock;
 import biomesoplenty.block.HugeLilyPadBlock;
+import biomesoplenty.block.properties.QuarterProperty;
 import com.teamremastered.endrem.blocks.ERFrameProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -42,19 +43,21 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
-import net.night.grasses.colorManagers.ColorType;
+import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.entity.ai.goal.EatGrassesBlockGoal;
 import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.item.DyeingTool;
+import net.night.grasses.enums.GrassesQuarterProperty;
 import net.night.grasses.util.ModTags;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
 import static biomesoplenty.api.block.BOPBlocks.*;
+import static biomesoplenty.block.HugeLilyPadBlock.QUARTER;
 import static com.teamremastered.endrem.blocks.AncientPortalFrame.EYE;
 import static com.teamremastered.endrem.registers.ERBlocks.ANCIENT_PORTAL_FRAME;
 import static net.minecraft.advancements.CriteriaTriggers.ITEM_USED_ON_BLOCK;
@@ -68,6 +71,7 @@ import static net.minecraft.world.level.block.piston.PistonBaseBlock.EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 import static net.night.grasses.Grasses.*;
+import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.event.CommonEventsMethods.*;
@@ -433,9 +437,12 @@ public class CommonEventHandler {
 
                     for (BlockPos blockPosToSet : blockPosList) {
                         BlockState blockStateCurrent = level.getBlockState(blockPosToSet);
+                        QuarterProperty oldValue = blockStateCurrent.getValue(QUARTER);
+                        GrassesQuarterProperty newValue = mapFromQuarterPropertyToGrasses(oldValue);
+
                         if (!level.isClientSide) {
                             keepData(blockPosToSet, blockState.getBlock(), ColorType.PLAINS);
-                            level.setBlock(blockPosToSet, plantsBlock.withPropertiesOf(blockStateCurrent), 19);
+                            level.setBlock(blockPosToSet, plantsBlock.withPropertiesOf(blockStateCurrent).setValue(GRASSES_QUARTER, newValue), 19);
                         }
                         level.addDestroyBlockEffect(blockPosToSet, blockStateCurrent);
                     }

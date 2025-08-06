@@ -1,7 +1,5 @@
 package net.night.grasses.datagen.loot;
 
-import biomesoplenty.api.item.BOPItems;
-import biomesoplenty.block.properties.QuarterProperty;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.util.StringRepresentable;
@@ -24,6 +22,7 @@ import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 import net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP;
+import net.night.grasses.enums.GrassesQuarterProperty;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -38,14 +37,13 @@ import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
     public static final List<Item> saplingList = new ArrayList<>();
-    public static final List<Item> saplingListBoP = new ArrayList<>();
-    protected static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-    protected static final float[] MAPLE_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
+    public static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+    public static final float[] MAPLE_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
     private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
     private static final float[] JUNGLE_LEAVES_SAPLING_CHANCES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     private static final float[] NORMAL_APPLES_CHANCES = new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F};
-    private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
-    private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
+    public static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
+    public static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
 
     public ModBlockLootTables() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
@@ -109,13 +107,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
                 if (leavesBlock.get().equals(DARK_OAK_LEAVES_BLOCK.get())) {
                     this.add(DARK_OAK_LEAVES_BLOCK.get(),
-                            block -> createTintedLeavesWithAppleDrops(DARK_OAK_LEAVES_BLOCK.get(), Items.DARK_OAK_SAPLING, new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesWithAppleDrops(DARK_OAK_LEAVES_BLOCK.get(), Items.DARK_OAK_SAPLING, new Property<?>[]{ALTER}, true, NORMAL_LEAVES_SAPLING_CHANCES));
                 } else if (leavesBlock.get().equals(JUNGLE_LEAVES_BLOCK.get())) {
                     this.add(JUNGLE_LEAVES_BLOCK.get(),
                             block -> createTintedLeavesDrops(JUNGLE_LEAVES_BLOCK.get(), Items.JUNGLE_SAPLING, new Property<?>[]{DOUBLE_ALTER}, JUNGLE_LEAVES_SAPLING_CHANCES));
                 } else if (leavesBlock.get().equals(OAK_LEAVES_BLOCK.get())) {
                     this.add(OAK_LEAVES_BLOCK.get(),
-                            block -> createTintedLeavesWithAppleDrops(OAK_LEAVES_BLOCK.get(), Items.OAK_SAPLING, new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesWithAppleDrops(OAK_LEAVES_BLOCK.get(), Items.OAK_SAPLING, new Property<?>[]{ALTER}, true, NORMAL_LEAVES_SAPLING_CHANCES));
                 } else
                     this.add(leavesBlock.get(),
                             block -> createTintedLeavesDrops(leavesBlock.get(), saplingList.get(index), new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
@@ -217,17 +215,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
             for (RegistryObject<Block> leavesBlock : tintedBOPleavesRegistryBlocksList) {
 
-                int index = tintedBOPleavesRegistryBlocksList.indexOf(leavesBlock);
-
                 if (leavesBlock.get().equals(MAPLE_LEAVES_BLOCK.get())) {
                     this.add(leavesBlock.get(),
-                            block -> createTintedMapleLeavesDrops(leavesBlock.get(), BOPItems.RED_MAPLE_SAPLING, BOPItems.ORANGE_MAPLE_SAPLING, BOPItems.YELLOW_MAPLE_SAPLING, new Property<?>[]{ALTER}, "biomesoplenty", MAPLE_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesDropsWithOutSaplings(leavesBlock.get(), new Property<?>[]{ALTER}, MAPLE_LEAVES_SAPLING_CHANCES));
                 } else if (leavesBlock.get().equals(FLOWERING_OAK_LEAVES_BLOCK.get())) {
                     this.add(FLOWERING_OAK_LEAVES_BLOCK.get(),
-                            block -> createTintedLeavesWithAppleDropsWithModIDCheck(FLOWERING_OAK_LEAVES_BLOCK.get(), saplingListBoP.get(index), new Property<?>[]{ALTER}, "biomesoplenty", NORMAL_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesWithAppleDrops(FLOWERING_OAK_LEAVES_BLOCK.get(), AIR.asItem(), new Property<?>[]{ALTER}, false, NORMAL_LEAVES_SAPLING_CHANCES));
                 } else
                     this.add(leavesBlock.get(),
-                            block -> createTintedLeavesDropsWithModIDCheck(leavesBlock.get(), saplingListBoP.get(index), new Property<?>[]{ALTER}, "biomesoplenty", NORMAL_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesDropsWithOutSaplings(leavesBlock.get(), new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
             }
 
             this.add(WILLOW_VINE_TINTED.get(),
@@ -247,7 +243,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             this.dropSelf(TINY_CACTUS_TINTED.get());
             this.dropSelf(WATERLILY_TINTED.get());
             this.add(HUGE_LILY_PAD_TINTED.get(),
-                    block -> createSinglePropConditionTable(HUGE_LILY_PAD_TINTED.get(), TintedHugeLilyPadBOP.QUARTER, QuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), WATERLILY, QuarterProperty.SOUTH_EAST));
+                    block -> createSinglePropConditionTable(HUGE_LILY_PAD_TINTED.get(), TintedHugeLilyPadBOP.GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), WATERLILY, GrassesQuarterProperty.SOUTH_EAST));
             this.add(WATER_GRASS_TINTED.get(),
                     block -> createShearsOnlyDrop(WATER_GRASS_TINTED.get()));
             this.dropSelf(WATERLILY_TINTED.get());
@@ -364,7 +360,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     }
 
-    protected LootTable.Builder createTintedLeavesDropsWithModIDCheck(Block selfBlock, Item sapling, Property<?>[] properties, String modIDToCheck, float... chances) {
+    protected LootTable.Builder createTintedLeavesDropsWithOutSaplings(Block selfBlock, Property<?>[] properties, float... chances) {
         CopyBlockState.Builder blockStateCopyBuilder = CopyBlockState.copyState(selfBlock);
 
         for(Property<?> property : properties) {
@@ -376,11 +372,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         .add(LootItem.lootTableItem(selfBlock)
                                 .when(HAS_SHEARS_OR_SILK_TOUCH)
                                 .apply(blockStateCopyBuilder)))
-                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling))
-                            .when(IsModLoaded.builder(modIDToCheck)))
-                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH))
                 .withPool(LootPool.lootPool().name("sticks").setRolls(ConstantValue.exactly(1.0F))
                         .add(this.applyExplosionDecay(selfBlock, LootItem.lootTableItem(Items.STICK).
                                         apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
@@ -389,57 +380,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     }
 
-    protected LootTable.Builder createTintedMapleLeavesDrops(Block selfBlock, Item sapling1, Item sapling2, Item sapling3, Property<?>[] properties, String modIDToCheck, float... chances) {
-        CopyBlockState.Builder blockStateCopyBuilder = CopyBlockState.copyState(selfBlock);
+    protected LootTable.Builder createTintedLeavesWithAppleDrops(Block selfBlock, Item sapling, Property<?>[] properties, boolean withSaplings, float... chances) {
 
-        for(Property<?> property : properties) {
-            blockStateCopyBuilder.copy(property);
-        }
+        LootTable.Builder baseBuilder = createTintedLeavesDrops(selfBlock, sapling, properties, chances);
 
-        return LootTable.lootTable()
-                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(selfBlock)
-                                .when(HAS_SHEARS_OR_SILK_TOUCH)
-                                .apply(blockStateCopyBuilder)))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling1))
-                                .when(IsModLoaded.builder(modIDToCheck)))
-                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling2))
-                                .when(IsModLoaded.builder(modIDToCheck)))
-                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling3))
-                                .when(IsModLoaded.builder(modIDToCheck)))
-                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH))
-                .withPool(LootPool.lootPool().name("sticks").setRolls(ConstantValue.exactly(1.0F))
-                        .add(this.applyExplosionDecay(selfBlock, LootItem.lootTableItem(Items.STICK).
-                                        apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
-                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_LEAVES_STICK_CHANCES))
-                                .when(HAS_NO_SHEARS_OR_SILK_TOUCH)));
+        if (!withSaplings)
+            baseBuilder = createTintedLeavesDropsWithOutSaplings(selfBlock, properties, chances);
 
-    }
-
-    protected LootTable.Builder createTintedLeavesWithAppleDrops(Block selfBlock, Item sapling, Property<?>[] properties, float... chances) {
-        return createTintedLeavesDrops(selfBlock, sapling, properties, chances)
-
-                .withPool(LootPool.lootPool().name("apple").setRolls(ConstantValue.exactly(1.0F))
-                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
-                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(Items.APPLE))
-                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_APPLES_CHANCES)))
-                );
-    }
-
-    protected LootTable.Builder createTintedLeavesWithAppleDropsWithModIDCheck(Block selfBlock, Item sapling, Property<?>[] properties, String modIDToCheck, float... chances) {
-        return createTintedLeavesDropsWithModIDCheck(selfBlock, sapling, properties, modIDToCheck, chances)
-
+        return baseBuilder
                 .withPool(LootPool.lootPool().name("apple").setRolls(ConstantValue.exactly(1.0F))
                         .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(Items.APPLE))
@@ -523,25 +471,5 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         saplingList.add(Items.MANGROVE_PROPAGULE);
         saplingList.add(Items.OAK_SAPLING);
         saplingList.add(Items.SPRUCE_SAPLING);
-    }
-    static {
-        if (isBOPLoaded) {
-            saplingListBoP.add(BOPItems.FIR_SAPLING);
-            saplingListBoP.add(BOPItems.PINE_SAPLING);
-            saplingListBoP.add(BOPItems.RED_MAPLE_SAPLING);
-            saplingListBoP.add(BOPItems.REDWOOD_SAPLING);
-            saplingListBoP.add(BOPItems.MAHOGANY_SAPLING);
-            saplingListBoP.add(BOPItems.JACARANDA_SAPLING);
-            saplingListBoP.add(BOPItems.PALM_SAPLING);
-            saplingListBoP.add(BOPItems.WILLOW_SAPLING);
-            saplingListBoP.add(BOPItems.DEAD_SAPLING);
-            saplingListBoP.add(BOPItems.MAGIC_SAPLING);
-            saplingListBoP.add(BOPItems.UMBRAN_SAPLING);
-            saplingListBoP.add(BOPItems.EMPYREAL_SAPLING);
-            saplingListBoP.add(BOPItems.FLOWERING_OAK_SAPLING);
-            saplingListBoP.add(BOPItems.ORIGIN_SAPLING);
-            saplingListBoP.add(BOPItems.CYPRESS_SAPLING);
-            saplingListBoP.add(BOPItems.HELLBARK_SAPLING);
-        }
     }
 }

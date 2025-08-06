@@ -103,10 +103,7 @@ public class BlocksRegisterBoP {
             toReturn = BLOCKS.register(name, TintedHighGrassPlantBOP::new);
             addToPlantsList(toReturn);
         } else if (type == 405) {
-            if (isBOPLoaded)
-                toReturn = BLOCKS.register(name, TintedHugeLilyPadBOP::new);
-            else //Because of QUARTER property from BOP
-                toReturn = BLOCKS.register(name, () -> new ParentTintedBushBlock(BlockBehaviour.Properties.copy(LILY_PAD)));
+            toReturn = BLOCKS.register(name, TintedHugeLilyPadBOP::new);
             addToPlantsList(toReturn);
         } else if (type == 406) {
             toReturn = BLOCKS.register(name, TintedDoubleWaterPlantBOP::new);

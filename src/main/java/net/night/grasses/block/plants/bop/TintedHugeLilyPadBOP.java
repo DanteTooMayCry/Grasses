@@ -1,6 +1,5 @@
 package net.night.grasses.block.plants.bop;
 
-import biomesoplenty.block.properties.QuarterProperty;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -25,6 +24,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
+import net.night.grasses.enums.GrassesQuarterProperty;
 
 import javax.annotation.Nullable;
 
@@ -39,12 +39,12 @@ import static net.night.grasses.init.BlocksRegisterBoP.WATERLILY_TINTED;
 
 public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final EnumProperty<QuarterProperty> QUARTER = EnumProperty.create("quarter", QuarterProperty.class);
+    public static final EnumProperty<GrassesQuarterProperty> GRASSES_QUARTER = EnumProperty.create("grasses_quarter", GrassesQuarterProperty.class);
     protected static final VoxelShape AABB = Block.box(0.0, 0.0, 0.0, 16.0, 1.5, 16.0);
 
     public TintedHugeLilyPadBOP() {
         super(Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).instabreak().sound(SoundType.LILY_PAD).noOcclusion());
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(QUARTER, QuarterProperty.SOUTH_WEST).setValue(VARIANT_LILY, 0));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST).setValue(VARIANT_LILY, 0));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(FACING, QUARTER, VARIANT_LILY);
+        builder.add(FACING, GRASSES_QUARTER, VARIANT_LILY);
     }
 
     @Override
@@ -66,28 +66,28 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
         BlockPos nw = blockPos.relative(facing);
         BlockPos ne = nw.relative(facing.getClockWise());
         BlockPos se = blockPos.relative(facing.getClockWise());
-        if (blockState.getValue(QUARTER) == QuarterProperty.SOUTH_WEST) {
+        if (blockState.getValue(GRASSES_QUARTER) == GrassesQuarterProperty.SOUTH_WEST) {
             sw = blockPos;
             nw = blockPos.relative(facing);
             ne = nw.relative(facing.getClockWise());
             se = blockPos.relative(facing.getClockWise());
         }
 
-        if (blockState.getValue(QUARTER) == QuarterProperty.NORTH_WEST) {
+        if (blockState.getValue(GRASSES_QUARTER) == GrassesQuarterProperty.NORTH_WEST) {
             sw = blockPos.relative(facing.getOpposite());
             nw = blockPos;
             ne = blockPos.relative(facing.getClockWise());
             se = sw.relative(facing.getClockWise());
         }
 
-        if (blockState.getValue(QUARTER) == QuarterProperty.NORTH_EAST) {
+        if (blockState.getValue(GRASSES_QUARTER) == GrassesQuarterProperty.NORTH_EAST) {
             nw = blockPos.relative(facing.getCounterClockWise());
             ne = blockPos;
             se = blockPos.relative(facing.getOpposite());
             sw = se.relative(facing);
         }
 
-        if (blockState.getValue(QUARTER) == QuarterProperty.SOUTH_EAST) {
+        if (blockState.getValue(GRASSES_QUARTER) == GrassesQuarterProperty.SOUTH_EAST) {
             sw = blockPos.relative(facing.getCounterClockWise());
             ne = blockPos.relative(facing);
             se = blockPos;
@@ -98,19 +98,19 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
             lilypadSurvive = false;
         }
 
-        if (level.getBlockState(sw).is(this) && level.getBlockState(sw).getValue(FACING) != facing && level.getBlockState(sw).getValue(QUARTER) != QuarterProperty.SOUTH_WEST) {
+        if (level.getBlockState(sw).is(this) && level.getBlockState(sw).getValue(FACING) != facing && level.getBlockState(sw).getValue(GRASSES_QUARTER) != GrassesQuarterProperty.SOUTH_WEST) {
             lilypadSurvive = false;
         }
 
-        if (level.getBlockState(nw).is(this) && level.getBlockState(nw).getValue(FACING) != facing && level.getBlockState(nw).getValue(QUARTER) != QuarterProperty.NORTH_WEST) {
+        if (level.getBlockState(nw).is(this) && level.getBlockState(nw).getValue(FACING) != facing && level.getBlockState(nw).getValue(GRASSES_QUARTER) != GrassesQuarterProperty.NORTH_WEST) {
             lilypadSurvive = false;
         }
 
-        if (level.getBlockState(ne).is(this) && level.getBlockState(ne).getValue(FACING) != facing && level.getBlockState(ne).getValue(QUARTER) != QuarterProperty.NORTH_EAST) {
+        if (level.getBlockState(ne).is(this) && level.getBlockState(ne).getValue(FACING) != facing && level.getBlockState(ne).getValue(GRASSES_QUARTER) != GrassesQuarterProperty.NORTH_EAST) {
             lilypadSurvive = false;
         }
 
-        if (level.getBlockState(se).is(this) && level.getBlockState(se).getValue(FACING) != facing && level.getBlockState(se).getValue(QUARTER) != QuarterProperty.SOUTH_EAST) {
+        if (level.getBlockState(se).is(this) && level.getBlockState(se).getValue(FACING) != facing && level.getBlockState(se).getValue(GRASSES_QUARTER) != GrassesQuarterProperty.SOUTH_EAST) {
             lilypadSurvive = false;
         }
 
@@ -149,7 +149,7 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        if (blockState.getValue(QUARTER).equals(QuarterProperty.SOUTH_EAST))
+        if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST))
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
         else
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.asItem());
@@ -162,9 +162,9 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
             BlockPos blockpos = blockPos.relative(blockState.getValue(FACING));
             BlockPos blockpos1 = blockpos.relative((blockState.getValue(FACING)).getClockWise());
             BlockPos blockpos2 = blockPos.relative((blockState.getValue(FACING)).getClockWise());
-            level.setBlock(blockpos, blockState.setValue(QUARTER, QuarterProperty.NORTH_WEST), 26);
-            level.setBlock(blockpos1, blockState.setValue(QUARTER, QuarterProperty.NORTH_EAST), 26);
-            level.setBlock(blockpos2, blockState.setValue(QUARTER, QuarterProperty.SOUTH_EAST), 26);
+            level.setBlock(blockpos, blockState.setValue(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_WEST), 26);
+            level.setBlock(blockpos1, blockState.setValue(GRASSES_QUARTER, GrassesQuarterProperty.NORTH_EAST), 26);
+            level.setBlock(blockpos2, blockState.setValue(GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_EAST), 26);
             level.blockUpdated(blockPos, Blocks.AIR);
             level.blockUpdated(blockpos, Blocks.AIR);
             level.blockUpdated(blockpos1, Blocks.AIR);
