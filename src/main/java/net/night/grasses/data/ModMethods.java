@@ -469,7 +469,7 @@ public final class ModMethods {
             Optional<ItemStack> base = drops.stream().filter(item -> item.is(thisItem)).findFirst();
 
             if (base.isPresent())
-                drops = prepareDropWithColor(drops, builder, thisItem);
+                prepareDropWithColor(drops, builder, thisItem);
             else
                 drops.add(new ItemStack(WATERLILY));
 
