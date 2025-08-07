@@ -35,20 +35,6 @@
             }
           ],
           "name": "grasses:waterlily_tinted"
-        },
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "grasses:huge_lily_pad_tinted",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "grasses_quarter": "south_east",
-                "variant_lily": "2"
-              }
-            }
-          ],
-          "name": "biomesoplenty:waterlily"
         }
       ],
       "rolls": 1.0

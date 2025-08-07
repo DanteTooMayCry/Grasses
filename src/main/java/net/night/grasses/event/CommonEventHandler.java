@@ -71,7 +71,6 @@ import static net.minecraft.world.level.block.piston.PistonBaseBlock.EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 import static net.night.grasses.Grasses.*;
-import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.event.CommonEventsMethods.*;

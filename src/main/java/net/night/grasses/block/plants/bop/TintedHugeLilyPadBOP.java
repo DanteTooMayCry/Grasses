@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
@@ -34,12 +33,10 @@ import static biomesoplenty.api.block.BOPBlocks.HUGE_LILY_PAD;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.data.ModMethods.prepareDropWithColor;
-import static net.night.grasses.init.BlocksRegisterBoP.VARIANT_LILY;
-import static net.night.grasses.init.BlocksRegisterBoP.WATERLILY_TINTED;
+import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final EnumProperty<GrassesQuarterProperty> GRASSES_QUARTER = EnumProperty.create("grasses_quarter", GrassesQuarterProperty.class);
     protected static final VoxelShape AABB = Block.box(0.0, 0.0, 0.0, 16.0, 1.5, 16.0);
 
     public TintedHugeLilyPadBOP() {
@@ -149,8 +146,8 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST))
-            return prepareDropWithColor(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
+        if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST) && !blockState.getValue(VARIANT_LILY).equals(0))
+            return prepareWaterLilyDrop(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
         else
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.asItem());
     }

@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -19,6 +20,7 @@ import net.night.grasses.block.plants.TintedVine;
 import net.night.grasses.block.plants.bop.*;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
 import net.night.grasses.block.plants.superclasses.ParentTintedHorizontalDirectionalBlock;
+import net.night.grasses.enums.GrassesQuarterProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class BlocksRegisterBoP {
 
     public static final BooleanProperty MOSSY = BooleanProperty.create("mossy");
     public static final IntegerProperty VARIANT_LILY = IntegerProperty.create("variant_lily", 0, 2);
+    public static final EnumProperty<GrassesQuarterProperty> GRASSES_QUARTER = EnumProperty.create("grasses_quarter", GrassesQuarterProperty.class);
 
     public static final List<RegistryObject<Block>> tintedBOPleavesRegistryBlocksList   = new ArrayList<>();
     public static final List<Block>                 tintedBOPleavesBlocksList           = new ArrayList<>();

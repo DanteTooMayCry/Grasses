@@ -41,7 +41,6 @@ import static net.minecraft.world.level.block.state.properties.Tilt.UNSTABLE;
 import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.*;
 import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90;
 import static net.night.grasses.Grasses.isBOPLoaded;
-import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 

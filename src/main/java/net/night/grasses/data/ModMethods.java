@@ -1,5 +1,6 @@
 package net.night.grasses.data;
 
+import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.block.HugeCloverPetalBlock;
 import biomesoplenty.block.HugeLilyPadBlock;
 import biomesoplenty.block.properties.QuarterProperty;
@@ -69,7 +70,6 @@ import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.U
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
-import static net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP.GRASSES_QUARTER;
 import static net.night.grasses.enums.ColorType.*;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.datagen.loot.SaplingDropHelper.knownMods;
@@ -462,6 +462,18 @@ public final class ModMethods {
             }
         }
         return drops;
+    }
+
+    public static List<ItemStack> prepareWaterLilyDrop(List<ItemStack> drops, LootParams.Builder builder, Item thisItem) {
+
+            Optional<ItemStack> base = drops.stream().filter(item -> item.is(thisItem)).findFirst();
+
+            if (base.isPresent())
+                drops = prepareDropWithColor(drops, builder, thisItem);
+            else
+                drops.add(new ItemStack(WATERLILY));
+
+            return drops;
     }
 
     public static List<ItemStack> prepareDropWithColorAndAdditionalItems(List<ItemStack> drops, LootParams.Builder builder, Item thisLeavesItem) {

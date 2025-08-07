@@ -243,7 +243,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             this.dropSelf(TINY_CACTUS_TINTED.get());
             this.dropSelf(WATERLILY_TINTED.get());
             this.add(HUGE_LILY_PAD_TINTED.get(),
-                    block -> createSinglePropConditionTable(HUGE_LILY_PAD_TINTED.get(), TintedHugeLilyPadBOP.GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), WATERLILY, GrassesQuarterProperty.SOUTH_EAST));
+                    block -> createSinglePropConditionTable(HUGE_LILY_PAD_TINTED.get(), GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), WATERLILY, GrassesQuarterProperty.SOUTH_EAST));
             this.add(WATER_GRASS_TINTED.get(),
                     block -> createShearsOnlyDrop(WATER_GRASS_TINTED.get()));
             this.dropSelf(WATERLILY_TINTED.get());
@@ -422,11 +422,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         .add(LootItem.lootTableItem(grassesWaterlily)
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 1).hasProperty(pProperty, pValueLily))))
-                        .add(LootItem.lootTableItem(bopWaterLily)
-                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
-                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 2).hasProperty(pProperty, pValueLily)))
+                        // Moved to direct getDrops method in block class.
+                        //.add(LootItem.lootTableItem(bopWaterLily)
+                        //        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
+                        //                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 2).hasProperty(pProperty, pValueLily))))
 
-                        )));
+                ));
     }
 
     /*protected LootTable.Builder createDiffConditionTable(Block block) {
