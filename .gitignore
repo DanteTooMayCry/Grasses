@@ -24,9 +24,10 @@ run-data
 src/generated/resources/.cache
 
 # exception
+!run/
 !run/config/
-run/config/*
 !run/config/grasses/
+run/config/*
 !run/config/grasses/**
 
 # Files from Forge MDK
