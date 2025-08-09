@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -40,6 +41,7 @@ import net.night.grasses.block.bars.TintedVineInBars;
 import net.night.grasses.block.bars.VineInBars;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
 import net.night.grasses.block.plants.TintedVine;
+import net.night.grasses.config.AdditionalDropConfig;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.AutomaticPrunerItem;
@@ -967,6 +969,7 @@ public class CommonEventsMethods {
                 else if (!hasSilkTouch && !hasChanneling && !changeColor && GrassesConfig.CommonConfig.ALLOW_CUT_LEAVES_AT_ONCE.get()) {
                     if (!level.isClientSide) {
                         level.destroyBlock(leavesBlockPos.getValue(), true);
+                        spawnAdditionalDrops(level, player, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState);
                         amountChangedOrDestroyed++;
                         if (!vinesHashMapGlobal.isEmpty()) {
                             for (Map.Entry<Integer, BlockPos> vineBlockPos : vinesHashMapGlobal.entrySet()) {
@@ -981,6 +984,7 @@ public class CommonEventsMethods {
                 else if (!hasSilkTouch && hasChanneling && !changeColor && !isCrouching && GrassesConfig.CommonConfig.ALLOW_CUT_LEAVES_AT_ONCE.get()) {
                     if (!level.isClientSide) {
                         level.destroyBlock(leavesBlockPos.getValue(), true);
+                        spawnAdditionalDrops(level, player, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState);
                         amountChangedOrDestroyed++;
                     }
                     isPerform = true;
@@ -1558,5 +1562,59 @@ public class CommonEventsMethods {
             return false;
         else return !(matchingBarsBlock instanceof TintedVineInBars) || !isSame || !compareColors(blockPos, itemStack);
     }
+
+    //Additional Drop Methods
+
+    public static void setAdditionalDropConfig(AdditionalDropConfig config) {
+        additionalDropConfig = config;
+    }
+
+    public static void spawnAdditionalDrops(Level level, Player player, BlockPos pos, ItemStack tool, BlockState blockState) {
+
+        if (level.isClientSide) return;
+
+        Block block = blockState.getBlock();
+
+        Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(block);
+        if (dropGroupOpt.isEmpty())
+            return;
+
+        AdditionalDropConfig.DropGroup dropGroup = dropGroupOpt.get();
+
+        int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+        RandomSource randomSource = level.getRandom();
+
+        for (AdditionalDropConfig.DropEntry entry : dropGroup.all) {
+            float chance = safeGetChance(entry.fortuneChances(), fortune);
+            if (randomSource.nextFloat() < chance) {
+                ItemStack stack = new ItemStack(entry.item());
+                ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+                level.addFreshEntity(entity);
+            }
+        }
+
+        List<AdditionalDropConfig.DropEntry> candidates = new ArrayList<>();
+        for (AdditionalDropConfig.DropEntry entry : dropGroup.oneOf) {
+            float chance = safeGetChance(entry.fortuneChances(), fortune);
+            if (randomSource.nextFloat() < chance)
+                candidates.add(entry);
+        }
+        if (!candidates.isEmpty()) {
+            AdditionalDropConfig.DropEntry picked = candidates.get(randomSource.nextInt(candidates.size()));
+            ItemStack stack = new ItemStack(picked.item());
+            ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+            level.addFreshEntity(entity);
+        }
+    }
+
+    private static float safeGetChance(float[] chances, int fortune) {
+        if (fortune < 0)
+            fortune = 0;
+        else if (fortune >= chances.length)
+            fortune = chances.length - 1;
+
+        return chances[fortune];
+    }
+
 
 }
