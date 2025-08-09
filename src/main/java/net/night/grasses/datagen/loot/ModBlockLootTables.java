@@ -21,7 +21,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
-import net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP;
 import net.night.grasses.enums.GrassesQuarterProperty;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,21 +28,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static biomesoplenty.api.block.BOPBlocks.WATERLILY;
 import static net.minecraft.world.item.Items.*;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
-    public static final List<Item> saplingList = new ArrayList<>();
-    public static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-    public static final float[] MAPLE_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
+    private static final List<Item> saplingList = new ArrayList<>();
+    private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+    private static final float[] HALF_LEAVES_SAPLING_CHANCES = new float[]{0.05F/2, 0.0625F/2, 0.083333336F/2, 0.1F/2};
+    private static final float[] MAPLE_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
     private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
     private static final float[] JUNGLE_LEAVES_SAPLING_CHANCES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     private static final float[] NORMAL_APPLES_CHANCES = new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F};
-    public static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
-    public static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
+    private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
+    private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
 
     public ModBlockLootTables() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
@@ -114,6 +113,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 } else if (leavesBlock.get().equals(OAK_LEAVES_BLOCK.get())) {
                     this.add(OAK_LEAVES_BLOCK.get(),
                             block -> createTintedLeavesWithAppleDrops(OAK_LEAVES_BLOCK.get(), Items.OAK_SAPLING, new Property<?>[]{ALTER}, true, NORMAL_LEAVES_SAPLING_CHANCES));
+                } else if(leavesBlock.get().equals(CHERRY_LEAVES_BLOCK.get())) {
+                    this.add(CHERRY_LEAVES_BLOCK.get(),
+                            block -> createTintedLeavesDropsWithAltDropDependOnModLoaded(CHERRY_LEAVES_BLOCK.get(), CHERRY_SAPLING, new Property<?>[]{ALTER}, "biomesoplenty", NORMAL_LEAVES_SAPLING_CHANCES, HALF_LEAVES_SAPLING_CHANCES));
                 } else
                     this.add(leavesBlock.get(),
                             block -> createTintedLeavesDrops(leavesBlock.get(), saplingList.get(index), new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
@@ -243,7 +245,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             this.dropSelf(TINY_CACTUS_TINTED.get());
             this.dropSelf(WATERLILY_TINTED.get());
             this.add(HUGE_LILY_PAD_TINTED.get(),
-                    block -> createSinglePropConditionTable(HUGE_LILY_PAD_TINTED.get(), GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), WATERLILY, GrassesQuarterProperty.SOUTH_EAST));
+                    block -> createHugeLilyWithFlowerDrop(HUGE_LILY_PAD_TINTED.get(), GRASSES_QUARTER, GrassesQuarterProperty.SOUTH_WEST, WATERLILY_TINTED.get(), GrassesQuarterProperty.SOUTH_EAST));
             this.add(WATER_GRASS_TINTED.get(),
                     block -> createShearsOnlyDrop(WATER_GRASS_TINTED.get()));
             this.dropSelf(WATERLILY_TINTED.get());
@@ -360,6 +362,39 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     }
 
+    protected LootTable.Builder createTintedLeavesDropsWithAltDropDependOnModLoaded(Block selfBlock, Item sapling, Property<?>[] properties, String modIDToCheck, float[] defaultChances, float[] altChances) {
+        CopyBlockState.Builder blockStateCopyBuilder = CopyBlockState.copyState(selfBlock);
+
+        for(Property<?> property : properties) {
+            blockStateCopyBuilder.copy(property);
+        }
+
+        LootItemCondition.Builder modLoadedCondition = IsModLoaded.builder(modIDToCheck);
+        LootItemCondition.Builder modNotLoadedCondition = LootConditionHelpers.modNotLoadedBuilder(modIDToCheck);
+
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(selfBlock)
+                                .when(HAS_SHEARS_OR_SILK_TOUCH)
+                                .apply(blockStateCopyBuilder)))
+                .withPool(LootPool.lootPool().name(sapling.toString()).setRolls(ConstantValue.exactly(1.0F))
+                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling)))
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, altChances))
+                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                        .when(modLoadedCondition))
+                .withPool(LootPool.lootPool().name(sapling.toString().concat("_alt")).setRolls(ConstantValue.exactly(1.0F))
+                        .add(this.applyExplosionCondition(selfBlock, LootItem.lootTableItem(sapling)))
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, defaultChances))
+                        .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                        .when(modNotLoadedCondition))
+                .withPool(LootPool.lootPool().name("sticks").setRolls(ConstantValue.exactly(1.0F))
+                        .add(this.applyExplosionDecay(selfBlock, LootItem.lootTableItem(Items.STICK).
+                                        apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))))
+                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, NORMAL_LEAVES_STICK_CHANCES))
+                                .when(HAS_NO_SHEARS_OR_SILK_TOUCH)));
+
+    }
+
     protected LootTable.Builder createTintedLeavesDropsWithOutSaplings(Block selfBlock, Property<?>[] properties, float... chances) {
         CopyBlockState.Builder blockStateCopyBuilder = CopyBlockState.copyState(selfBlock);
 
@@ -411,7 +446,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                                 .apply(blockStateCopyBuilder))));
     }
 
-    protected <T extends Comparable<T> & StringRepresentable> LootTable.Builder createSinglePropConditionTable(Block selfBlock, Property<T> pProperty, T pValue, Block grassesWaterlily, Block bopWaterLily, T pValueLily) {
+    protected <T extends Comparable<T> & StringRepresentable> LootTable.Builder createHugeLilyWithFlowerDrop(Block selfBlock, Property<T> pProperty, T pValue, Block grassesWaterlily, T pValueLily) {
 
         return LootTable.lootTable()
                 .withPool(this.applyExplosionCondition(selfBlock, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -422,10 +457,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         .add(LootItem.lootTableItem(grassesWaterlily)
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 1).hasProperty(pProperty, pValueLily))))
-                        // Moved to direct getDrops method in block class.
-                        //.add(LootItem.lootTableItem(bopWaterLily)
-                        //        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
-                        //                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 2).hasProperty(pProperty, pValueLily))))
 
                 ));
     }
