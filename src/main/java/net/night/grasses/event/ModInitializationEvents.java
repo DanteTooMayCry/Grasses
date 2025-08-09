@@ -4,6 +4,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.night.grasses.Grasses;
+import net.night.grasses.config.AdditionalDropConfig;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.network.MessageRegistry;
 
@@ -23,6 +24,10 @@ public class ModInitializationEvents {
         event.enqueueWork(() -> {
             MessageRegistry.register("color_type");
         });
+
+        AdditionalDropConfig config = new AdditionalDropConfig();
+        config.loadConfigFromFile("config/grasses/additional_drops.json");
+        CommonEventsMethods.setAdditionalDropConfig(config);
 
         float f03 = 0.3F;
         float f05 = 0.5F;
