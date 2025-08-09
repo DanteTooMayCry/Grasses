@@ -19,15 +19,22 @@ build
 
 # other
 eclipse
-run/
+
 run-data
 src/generated/resources/.cache
 
-# exception
+# Ignoruj cały folder run i wszystko w nim
+run/
+
+# Odignoruj foldery nadrzędne po których chcesz "przepuścić" śledzenie podfolderu grasses
 !run/
 !run/config/
 !run/config/grasses/
+
+# Ignoruj pliki w run/config (opcjonalnie, jeśli chcesz ignorować wszystko poza grasses)
 run/config/*
+
+# Odignoruj wszystkie pliki i podfoldery w grasses (żeby śledzić wszystko w środku)
 !run/config/grasses/**
 
 # Files from Forge MDK
