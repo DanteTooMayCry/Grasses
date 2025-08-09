@@ -146,8 +146,9 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST) && !blockState.getValue(VARIANT_LILY).equals(0))
-            return prepareWaterLilyDrop(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
+
+        if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST))
+            return prepareDropWithColor(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
         else
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.asItem());
     }
