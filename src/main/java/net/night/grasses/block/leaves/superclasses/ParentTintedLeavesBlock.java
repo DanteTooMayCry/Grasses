@@ -93,7 +93,7 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        return prepareDropWithColorAndAdditionalItems(super.getDrops(blockState, builder), builder, this.asItem());
+        return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.asItem());
     }
 
     @Override
