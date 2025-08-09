@@ -1,6 +1,5 @@
 package net.night.grasses.data;
 
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.block.HugeCloverPetalBlock;
 import biomesoplenty.block.HugeLilyPadBlock;
 import biomesoplenty.block.properties.QuarterProperty;
@@ -16,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -47,7 +45,6 @@ import net.night.grasses.block.potted.TintedPottedPlantBlock;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
 import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.datagen.loot.ModSaplingData;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.util.ClientPlayerHelper;
 import net.night.grasses.enums.GrassesQuarterProperty;
@@ -72,7 +69,6 @@ import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
 import static net.night.grasses.enums.ColorType.*;
 import static net.night.grasses.data.ModData.*;
-import static net.night.grasses.datagen.loot.SaplingDropHelper.knownMods;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.enums.GrassesQuarterProperty.*;
@@ -461,70 +457,6 @@ public final class ModMethods {
                 drops.add(itemStack);
             }
         }
-        return drops;
-    }
-
-    public static List<ItemStack> prepareWaterLilyDrop(List<ItemStack> drops, LootParams.Builder builder, Item thisItem) {
-
-            Optional<ItemStack> base = drops.stream().filter(item -> item.is(thisItem)).findFirst();
-
-            if (base.isPresent())
-                prepareDropWithColor(drops, builder, thisItem);
-            else
-                drops.add(new ItemStack(WATERLILY));
-
-            return drops;
-    }
-
-    public static List<ItemStack> prepareDropWithColorAndAdditionalItems(List<ItemStack> drops, LootParams.Builder builder, Item thisLeavesItem) {
-        Optional<ItemStack> base = drops.stream().filter(itemStack -> itemStack.is(thisLeavesItem)).findFirst();
-
-        if (base.isPresent()) {
-            BlockEntity be = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
-            if (be instanceof TintedBlockEntity blockEntity) {
-                ColorType colorType = blockEntity.getColorType();
-                if (colorType == null)
-                    colorType = PLAINS;
-                ItemStack itemStack = base.get();
-                setColorOnItemStack(itemStack, colorType);
-                drops.remove(base.get());
-                drops.add(itemStack);
-            }
-            return drops;
-        }
-
-        ItemStack itemStackInHand = builder.getOptionalParameter(LootContextParams.TOOL);
-
-        int fortuneLevel = itemStackInHand != null ? EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, itemStackInHand) : 0;
-
-        RandomSource random = builder.getLevel().random;
-
-        for (ModSaplingData modSaplingData : knownMods) {
-            if (!modSaplingData.isModLoaded()) continue;
-
-            float[] chancesToUse = modSaplingData.normalLeavesSaplingChances();
-            if (modSaplingData.unNormalLeavesSaplingChances() != null && modSaplingData.unNormalLeavesSaplingChances().containsKey(thisLeavesItem))
-                chancesToUse = modSaplingData.unNormalLeavesSaplingChances().get(thisLeavesItem);
-
-            int chanceIndex = Math.min(fortuneLevel, chancesToUse.length - 1);
-            float chance = chancesToUse[chanceIndex];
-
-            if (modSaplingData.leavesWithMoreThanOneSapling() != null && modSaplingData.leavesWithMoreThanOneSapling().containsKey(thisLeavesItem)) {
-                List<Item> additionalSaplings = modSaplingData.leavesWithMoreThanOneSapling().get(thisLeavesItem);
-
-                if (random.nextFloat() < chance) {
-                    int selectedIndex = random.nextInt(additionalSaplings.size());
-                    Item selectedSapling = additionalSaplings.get(selectedIndex);
-                    if (selectedSapling != null)
-                        drops.add(new ItemStack(selectedSapling));
-                }
-            } else {
-                Item sapling = modSaplingData.saplingForLeaves().get(thisLeavesItem);
-                if (sapling != null && random.nextFloat() < chance)
-                    drops.add(new ItemStack(sapling));
-            }
-        }
-
         return drops;
     }
 
