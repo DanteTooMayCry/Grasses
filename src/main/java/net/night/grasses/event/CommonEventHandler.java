@@ -43,6 +43,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
+import net.night.grasses.config.AdditionalDropConfig;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.entity.ai.goal.EatGrassesBlockGoal;
@@ -81,6 +82,8 @@ import static net.night.grasses.util.ModTags.Blocks.*;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID)
 public class CommonEventHandler {
+
+    public static AdditionalDropConfig additionalDropConfig;
 
     public static Map<Integer, BlockPos> logHashMapGlobal = new HashMap<>();
     public static Map<Integer, BlockPos> vinesHashMapGlobal = new HashMap<>();
@@ -168,6 +171,7 @@ public class CommonEventHandler {
         }
     }
 
+
     @SubscribeEvent
     public static void cuttingDownTree (BlockEvent.BreakEvent event) {
 
@@ -179,11 +183,10 @@ public class CommonEventHandler {
         ItemStack itemStack = player.getMainHandItem();
         boolean hasSilkTouch = EnchantmentHelper.hasSilkTouch(itemStack);
         BlockPos blockPos = event.getPos();
+        Level level = player.level();
+        BlockState blockState = level.getBlockState(blockPos);
 
         if(itemStack.getItem() instanceof AxeItem && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHOP_TREE_AT_ONCE.get()) {
-
-            Level level = player.level();
-            BlockState blockState = level.getBlockState(blockPos);
 
             boolean isTreeOrStemLog = blockState.is(LOGS) && !blockState.is(BLACKLIST_LOGS);
 
@@ -203,7 +206,8 @@ public class CommonEventHandler {
                 if(player instanceof ServerPlayer)
                     ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStack);
             }
-        }
+        } else
+            spawnAdditionalDrops(level, player, blockPos, itemStack, blockState);
     }
 
     @SubscribeEvent
