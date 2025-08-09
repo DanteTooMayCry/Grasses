@@ -10,6 +10,8 @@ to hoppers that are directly in contact with the Dyeing Station.
 - Added sound when some action failed related to tree/leaves
 - Removed unnecessary trigger
 - Fixed a bug that caused the following information to appear in startup logs: "Couldn't parse element loot_tables:grasses:blocks/*Block name"
+- Added new Config File "additional_drops.json". Which allows you to change or add additional drops to destroyed blocks.
+By default, adds BOP mod seedlings if that Mod is present.
 
 ====================================================================================================================
 0.2.2-1.20.1:
