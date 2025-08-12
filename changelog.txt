@@ -1,7 +1,7 @@
 Changelog:
 
 
-0.2.3-1.20.1:
+0.3-1.20.1:
 
 - Improved the automatic dyeing (via hoppers) behavior at the Dyeing Station. Both items required for dyeing and items
 created by the station will now pass through the hoppers in stacks instead of one item at a time. This only applies
@@ -10,8 +10,9 @@ to hoppers that are directly in contact with the Dyeing Station.
 - Added sound when some action failed related to tree/leaves
 - Removed unnecessary trigger
 - Fixed a bug that caused the following information to appear in startup logs: "Couldn't parse element loot_tables:grasses:blocks/*Block name"
-- Added new Config File "additional_drops.json". Which allows you to change or add additional drops to destroyed blocks.
-By default, adds BOP mod seedlings if that Mod is present.
+- Added new 'Additional Drop System' and consequently the Config File "additional_drops.toml". Which allows you to change or
+add additional drops to destroyed blocks. By default, adds BOP mod saplings if that mod is present (to solve the problem of the above error).
+However, supports any blocks and items, so it is easy to set an additional drop. More information: https://github.com/DanteTooMayCry/Grasses/wiki/Additional-Drop-System
 
 ====================================================================================================================
 0.2.2-1.20.1:
