@@ -41,7 +41,7 @@ import net.night.grasses.block.bars.TintedVineInBars;
 import net.night.grasses.block.bars.VineInBars;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
 import net.night.grasses.block.plants.TintedVine;
-import net.night.grasses.config.AdditionalDropConfig;
+import net.night.grasses.config.additionalDropSystem.AdditionalDropConfig;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.item.AutomaticPrunerItem;
@@ -1565,19 +1565,11 @@ public class CommonEventsMethods {
 
     //Additional Drop Methods
 
-    public static void setAdditionalDropConfig(AdditionalDropConfig config) {
-        additionalDropConfig = config;
-    }
-
     public static void spawnAdditionalDrops(Level level, Player player, BlockPos pos, ItemStack tool, BlockState blockState) {
-
         if (level.isClientSide) return;
 
-        Block block = blockState.getBlock();
-
-        Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(block);
-        if (dropGroupOpt.isEmpty())
-            return;
+        Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(blockState);
+        if (dropGroupOpt.isEmpty()) return;
 
         AdditionalDropConfig.DropGroup dropGroup = dropGroupOpt.get();
 
@@ -1615,6 +1607,4 @@ public class CommonEventsMethods {
 
         return chances[fortune];
     }
-
-
 }
