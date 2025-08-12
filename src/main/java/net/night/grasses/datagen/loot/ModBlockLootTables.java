@@ -35,9 +35,10 @@ import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
     private static final List<Item> saplingList = new ArrayList<>();
-    private static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-    private static final float[] HALF_LEAVES_SAPLING_CHANCES = new float[]{0.05F/2, 0.0625F/2, 0.083333336F/2, 0.1F/2};
-    private static final float[] MAPLE_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
+    public static final float[] NORMAL_LEAVES_SAPLING_CHANCES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+    public static final float[] HALF_LEAVES_SAPLING_CHANCES = new float[]{0.05F/2, 0.0625F/2, 0.083333336F/2, 0.1F/2};
+    public static final float[] A_THIRD_LEAVES_SAPLING_CHANCES = new float[]{0.05F/3, 0.0625F/3, 0.083333336F/3, 0.1F/3};
+    public static final float[] FULL_CHANCES = new float[]{1,1, 1, 1};
     private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
     private static final float[] JUNGLE_LEAVES_SAPLING_CHANCES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     private static final float[] NORMAL_APPLES_CHANCES = new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F};
@@ -219,7 +220,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
                 if (leavesBlock.get().equals(MAPLE_LEAVES_BLOCK.get())) {
                     this.add(leavesBlock.get(),
-                            block -> createTintedLeavesDropsWithOutSaplings(leavesBlock.get(), new Property<?>[]{ALTER}, MAPLE_LEAVES_SAPLING_CHANCES));
+                            block -> createTintedLeavesDropsWithOutSaplings(leavesBlock.get(), new Property<?>[]{ALTER}, A_THIRD_LEAVES_SAPLING_CHANCES));
                 } else if (leavesBlock.get().equals(FLOWERING_OAK_LEAVES_BLOCK.get())) {
                     this.add(FLOWERING_OAK_LEAVES_BLOCK.get(),
                             block -> createTintedLeavesWithAppleDrops(FLOWERING_OAK_LEAVES_BLOCK.get(), AIR.asItem(), new Property<?>[]{ALTER}, false, NORMAL_LEAVES_SAPLING_CHANCES));
