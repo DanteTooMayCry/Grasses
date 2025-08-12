@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,7 +44,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
-import net.night.grasses.config.AdditionalDropConfig;
+import net.night.grasses.config.additionalDropSystem.ModConfigStatus;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.entity.ai.goal.EatGrassesBlockGoal;
@@ -82,8 +83,6 @@ import static net.night.grasses.util.ModTags.Blocks.*;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID)
 public class CommonEventHandler {
-
-    public static AdditionalDropConfig additionalDropConfig;
 
     public static Map<Integer, BlockPos> logHashMapGlobal = new HashMap<>();
     public static Map<Integer, BlockPos> vinesHashMapGlobal = new HashMap<>();
@@ -665,6 +664,18 @@ public class CommonEventHandler {
     public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof Sheep sheep) {
             sheep.goalSelector.addGoal(5, new EatGrassesBlockGoal(sheep));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (ModConfigStatus.isConfigUpdated()) {
+            event.getEntity().sendSystemMessage(
+                    Component.literal("[Grasses - Tinted Realms] The additional_drops configuration has been updated! " +
+                            "A new file appeared in the config folder as 'additional_drops_new_version.toml'" +
+                            "which contains the latest version. Please update the file or the changes" +
+                            "will not be reflected (remember to copy your data if you have added any to the file)."));
+            ModConfigStatus.setConfigUpdated(false);
         }
     }
 }
