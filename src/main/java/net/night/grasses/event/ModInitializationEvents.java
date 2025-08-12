@@ -3,10 +3,19 @@ package net.night.grasses.event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.night.grasses.Grasses;
-import net.night.grasses.config.AdditionalDropConfig;
-import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.config.*;
+import net.night.grasses.config.additionalDropSystem.AdditionalDropConfig;
+import net.night.grasses.config.additionalDropSystem.BlockCondition;
+import net.night.grasses.config.additionalDropSystem.ConfigFileHelper;
+import net.night.grasses.config.additionalDropSystem.TOMLParser;
 import net.night.grasses.network.MessageRegistry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.nio.file.Path;
+import java.util.Map;
 
 import static net.minecraft.world.item.Items.ROTTEN_FLESH;
 import static net.minecraft.world.level.block.Blocks.BAMBOO;
@@ -17,6 +26,7 @@ import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModInitializationEvents {
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
@@ -25,9 +35,22 @@ public class ModInitializationEvents {
             MessageRegistry.register("color_type");
         });
 
-        AdditionalDropConfig config = new AdditionalDropConfig();
-        config.loadConfigFromFile("config/grasses/additional_drops.json");
-        CommonEventsMethods.setAdditionalDropConfig(config);
+        //=====================
+        Path configRootDir = FMLPaths.CONFIGDIR.get();
+        ConfigFileHelper.updateConfigWithVersionCheck(configRootDir);
+        Path configPath = configRootDir.resolve("grasses/additional_drops.toml");
+
+        try {
+            Map<BlockCondition, AdditionalDropConfig.DropGroup> dropMap = TOMLParser.parseConfig(configPath);
+            AdditionalDropConfig.setFromMap(dropMap);
+
+            LOGGER.info("[Grasses Mod] Additional drop config loaded for {} block conditions.", dropMap.size());
+        } catch (Exception e) {
+            LOGGER.error("[Grasses Mod] Failed to load additional drop config from file: {}", configPath, e);
+            AdditionalDropConfig.clear();
+        }
+
+        //=====================
 
         float f03 = 0.3F;
         float f05 = 0.5F;
