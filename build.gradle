@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     id 'eclipse'
     id 'idea'
@@ -7,7 +5,6 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 version = mod_version
@@ -57,7 +54,13 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets {
+    main {
+        resources {
+            srcDirs += 'src/generated/resources'
+        }
+    }
+}
 
 repositories {
     maven {
@@ -76,7 +79,6 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation 'com.google.code.gson:gson:2.10.1'
 
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
@@ -143,8 +145,12 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(ShadowJar).configureEach {
-    archiveClassifier.set('')
-    configurations = [project.configurations.runtimeClasspath]
-    relocate('com.google.gson', 'net.night.grasses.libs.gson')
+tasks.register("copyRunDataConfig", Copy) {
+    from("run-data/config/grasses")
+    into("src/generated/resources/data/grasses/config")
+    include("additional_drops.toml")
+}
+
+tasks.named("processResources") {
+    dependsOn("copyRunDataConfig")
 }
