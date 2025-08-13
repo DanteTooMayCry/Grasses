@@ -441,7 +441,10 @@
   "grasses.advancements.change_fertile.description": "Use Shears on Tinted Grasses to change Fertile State.",
 
   "grasses.advancements.first_alter.title": "Let There Be light! And There Was Light!",
-  "grasses.advancements.first_alter.description": "Use Shears without Silk Touch on Tinted Leaves to change on alter version."
+  "grasses.advancements.first_alter.description": "Use Shears without Silk Touch on Tinted Leaves to change on alter version.",
+
+
+  "message.additional_drops.update": "%s IMPORTANT: The additional drops configuration has been updated! A new file appeared in the config folder (server side) as %s which contains the latest version. Please update the file or the changes will not be reflected (remember to copy your data if you have added any to the file)."
 
 
 }

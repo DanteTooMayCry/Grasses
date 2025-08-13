@@ -4,12 +4,14 @@ import biomesoplenty.block.HugeCloverPetalBlock;
 import biomesoplenty.block.HugeLilyPadBlock;
 import biomesoplenty.block.properties.QuarterProperty;
 import com.teamremastered.endrem.blocks.ERFrameProperties;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -669,14 +671,15 @@ public class CommonEventHandler {
 
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (ModConfigStatus.isConfigUpdated()) {
-            event.getEntity().sendSystemMessage(
-                    Component.literal("[Grasses - Tinted Realms] The additional_drops configuration has been updated! " +
-                            "A new file appeared in the config folder as 'additional_drops_new_version.toml'" +
-                            "which contains the latest version. Please update the file or the changes" +
-                            "will not be reflected (remember to copy your data if you have added any to the file)."));
-            ModConfigStatus.setConfigUpdated(false);
-        }
+        if (!ModConfigStatus.isConfigUpdated()) return;
+
+        MutableComponent modName = Component.literal("[Grasses - Tinted Realms]").withStyle(ChatFormatting.GREEN);
+        MutableComponent configFile = Component.literal("'additional_drops_new_version.toml'").withStyle(ChatFormatting.BLUE);
+
+        Component message = Component.translatable("message.additional_drops.update", modName, configFile);
+
+        event.getEntity().sendSystemMessage(message);
+        ModConfigStatus.setConfigUpdated(false);
     }
 }
 
