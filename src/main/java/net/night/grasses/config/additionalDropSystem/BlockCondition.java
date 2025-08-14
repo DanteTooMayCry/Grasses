@@ -7,10 +7,6 @@ import net.minecraft.world.level.block.state.properties.Property;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * @param stateConditions nazwa property -> wartość
- */
-
 public record BlockCondition(Block block, Map<String, Object> stateConditions) { // stateConditions => property/property value
 
     public BlockCondition(Block block, Map<String, Object> stateConditions) {
