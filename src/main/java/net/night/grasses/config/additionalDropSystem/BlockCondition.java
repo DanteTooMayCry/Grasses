@@ -32,10 +32,6 @@ public record BlockCondition(Block block, Map<String, Object> blockStateConditio
             if (!(condition instanceof String conditionString))
                 continue;
 
-            System.out.println("[SPRAWDZAM] conditions: " + conditions);
-            System.out.println("[SPRAWDZAM] conditionsList: " + conditionsList);
-            System.out.println("[SPRAWDZAM] conditionsRaw: " + condition);
-
             int equalsIndex = conditionString.indexOf('=');
             if (equalsIndex <= 0 || equalsIndex >= conditionString.length() - 1)
                 continue;
