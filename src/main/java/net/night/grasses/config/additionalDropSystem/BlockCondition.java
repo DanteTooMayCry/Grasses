@@ -4,66 +4,85 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
-public record BlockCondition(Block block, Map<String, Object> stateConditions) { // stateConditions => property/property value
+public record BlockCondition(Block block, Map<String, Object> blockStateConditions) { // blockStateConditions => property/property value
+    private static final Set<String> IGNORED_KEYS = Set.of("addAdditionalDropMode");
 
-    public BlockCondition(Block block, Map<String, Object> stateConditions) {
+    public BlockCondition(Block block, Map<String, Object> blockStateConditions) {
         this.block = block;
-        this.stateConditions = (stateConditions == null) ? Map.of() : stateConditions;
+        this.blockStateConditions = (blockStateConditions == null) ? Map.of() : blockStateConditions;
     }
 
-    public boolean matches(BlockState state) {
-        if (!Objects.equals(state.getBlock(), block))
+    public boolean matches(BlockState blockState) {
+        if (!Objects.equals(blockState.getBlock(), block))
             return false;
 
-        if (stateConditions.isEmpty())
+        if (blockStateConditions.isEmpty())
             return true;
 
-        for (Map.Entry<String, Object> entry : stateConditions.entrySet()) {
-            String propName = entry.getKey();
-            Object expectedValue = entry.getValue();
+        Object conditions = blockStateConditions.get("conditions");
+        if (!(conditions instanceof List<?> conditionsList))
+            return false;
 
-            Property<?> prop = state.getBlock().getStateDefinition().getProperty(propName);
-            if (prop == null)
+        for (Object condition : conditionsList) {
+            if (!(condition instanceof String conditionString))
+                continue;
+
+            System.out.println("[SPRAWDZAM] conditions: " + conditions);
+            System.out.println("[SPRAWDZAM] conditionsList: " + conditionsList);
+            System.out.println("[SPRAWDZAM] conditionsRaw: " + condition);
+
+            int equalsIndex = conditionString.indexOf('=');
+            if (equalsIndex <= 0 || equalsIndex >= conditionString.length() - 1)
+                continue;
+
+            String conditionKey = conditionString.substring(0, equalsIndex).trim();
+
+            if (IGNORED_KEYS.contains(conditionKey))
+                continue;
+
+            String conditionValue = conditionString.substring(equalsIndex + 1).trim();
+
+            Property<?> property = blockState.getBlock().getStateDefinition().getProperty(conditionKey);
+            if (property == null)
                 return false;
 
-            Comparable<?> stateValue = state.getValue(prop);
+            Comparable<?> blockStateValue = blockState.getValue(property);
 
-            if (!propertyValueEquals(stateValue, expectedValue))
+            if (!propertyValueEquals(blockStateValue, conditionValue))
                 return false;
         }
+
         return true;
     }
 
-    private static boolean propertyValueEquals(Comparable<?> stateValue, Object expectedValue) {
-        if (stateValue == null || expectedValue == null)
+    private static boolean propertyValueEquals(Comparable<?> blockStateValue, Object conditionValue) {
+        if (blockStateValue == null || conditionValue == null)
             return false;
 
-        //(int, long, etc.)
-        if (stateValue instanceof Number && expectedValue instanceof Number) {
-            return ((Number) stateValue).longValue() == ((Number) expectedValue).longValue();
-        }
-        if (stateValue.getClass().isInstance(expectedValue))
-            return stateValue.equals(expectedValue);
+        if (blockStateValue instanceof Number && conditionValue instanceof Number)
+            return ((Number) blockStateValue).longValue() == ((Number) conditionValue).longValue();
 
-        //boolean
-        if (stateValue instanceof Boolean && expectedValue instanceof Boolean)
-            return stateValue.equals(expectedValue);
+        if (blockStateValue.getClass().isInstance(conditionValue))
+            return blockStateValue.equals(conditionValue);
 
-        // Enum
-        if (stateValue instanceof Enum<?>) {
-            return stateValue.toString().equals(expectedValue.toString());
-        }
+        if (blockStateValue instanceof Boolean && conditionValue instanceof Boolean)
+            return blockStateValue.equals(conditionValue);
 
-        if (stateValue instanceof String)
-            return stateValue.equals(expectedValue.toString());
+        if (blockStateValue instanceof Enum<?>)
+            return blockStateValue.toString().equals(conditionValue.toString());
 
-        if (stateValue instanceof Number && expectedValue instanceof String) {
+        if (blockStateValue instanceof String)
+            return blockStateValue.equals(conditionValue.toString());
+
+        if (blockStateValue instanceof Number && conditionValue instanceof String) {
             try {
-                long expectedLong = Long.parseLong((String) expectedValue);
-                return ((Number) stateValue).longValue() == expectedLong;
+                long expectedLong = Long.parseLong((String) conditionValue);
+                return ((Number) blockStateValue).longValue() == expectedLong;
             } catch (NumberFormatException e) {
                 return false;
             }
@@ -75,7 +94,7 @@ public record BlockCondition(Block block, Map<String, Object> stateConditions) {
     public String toString() {
         return "BlockCondition{" +
                 "block=" + block +
-                ", stateConditions=" + stateConditions +
+                ", blockStateConditions=" + blockStateConditions +
                 '}';
     }
 }
