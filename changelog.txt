@@ -3,17 +3,22 @@ Changelog:
 
 0.3-1.20.1:
 
-- Improved the automatic dyeing (via hoppers) behavior at the Dyeing Station. Both items required for dyeing and items
-created by the station will now pass through the hoppers in stacks instead of one item at a time. This only applies
+- Improved the automatic dyeing (via hoppers) behavior at the Dyeing Station. Both - items required for dyeing and items
+created by the station - will now pass through the hoppers in stacks instead of one item at a time. This only applies
 to hoppers that are directly in contact with the Dyeing Station.
 - Change introducing ClientPlayerHelper for greater security against errors.
 - Added sound when some action failed related to tree/leaves
 - Removed unnecessary trigger
 - Fixed a bug that caused the following information to appear in startup logs: "Couldn't parse element loot_tables:grasses:blocks/*Block name"
-- Added new 'Additional Drop System' and consequently the Config File "additional_drops.toml". Which allows you to change or
-add additional drops to destroyed blocks. By default, adds BOP mod saplings if that mod is present (to solve the problem of the above error).
-However, supports any blocks and items, so it is easy to set an additional drop. More information: https://github.com/DanteTooMayCry/Grasses/wiki/Additional-Drop-System
-
+- Added new 'Additional Drop System' (as an extension of the above amendment) and consequently the Config File "additional_drops.toml". Which
+allows you to change or add additional drops to destroyed blocks. By default, adds BOP mod saplings if that mod is present (to solve the
+problem of the above error). However, supports any blocks and items, so it is easy to set an additional drop. More information:
+https://github.com/DanteTooMayCry/Grasses/wiki/Additional-Drop-System
+- Auto pruners without Silk Touch can now also mine (instead of only destroy) blocks like leaves and vines (not work for blocks from others mods, due
+to vanilla hard coded loot condition relating to shears as item instead of shears like items).
+- Auto pruners can be now used in Dispenser
+- Fixed resetting color case when change vines FERTILE state
+- Fixed drop appearing in creative mode when destroy blocks with automatic pruner.
 ====================================================================================================================
 0.2.2-1.20.1:
 
