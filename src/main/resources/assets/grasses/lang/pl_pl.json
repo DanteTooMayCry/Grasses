@@ -439,5 +439,8 @@
   "grasses.advancements.change_fertile.description": "Użyj narzędzia jak Nożyce na Barwionym Bloku Trawy aby zmienić jego stan Żyzności.",
 
   "grasses.advancements.first_alter.title": "Niech stanie się światłość! I stała się światłość.!",
-  "grasses.advancements.first_alter.description": "Uzyj nożyc bez Jedwabnego Dotyku na Barwionych Liściach, aby zmienić je w alternatywną wersję."
+  "grasses.advancements.first_alter.description": "Uzyj nożyc bez Jedwabnego Dotyku na Barwionych Liściach, aby zmienić je w alternatywną wersję.",
+
+  "message.additional_drops.update": "%s WAŻNE: Plik konfiguracyjny 'Additional Drops' został zaktualizowany! Jeśli nie edytowałeś tego pliku samodzielnie, nie musisz nic robić. Jeśli jednak dodałeś własne reguły, stary plik ze zmianami został zapisany w folderze konfiguracyjnym jako %s i musisz skopiować z niego swoje reguły do nowego pliku, aby nadal działały."
+
 }
