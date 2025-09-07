@@ -20,11 +20,13 @@ import static net.night.grasses.config.GrassesConfig.COMMON_CONFIG_SPEC;
 @Mod(Grasses.MOD_ID) // [1.20.1]
 public class Grasses {
     public static final String MOD_ID = "grasses";
+    public static final String MOD_VERSION = Version.MOD_VERSION;
 
     public static final boolean isBOPLoaded = ModList.get().isLoaded("biomesoplenty");
     public static final boolean isERLoaded = ModList.get().isLoaded("endrem");
 
     public Grasses() {
+        
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG_SPEC);
