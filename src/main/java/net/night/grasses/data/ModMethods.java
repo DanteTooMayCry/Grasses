@@ -49,6 +49,8 @@ import net.night.grasses.item.DyeingTool;
 import net.night.grasses.util.ClientPlayerHelper;
 import net.night.grasses.enums.GrassesQuarterProperty;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.*;
 
 import static biomesoplenty.api.block.BOPBlocks.*;
@@ -92,6 +94,15 @@ public final class ModMethods {
         }
         return AIR;
     }
+
+    @SuppressWarnings("unchecked")
+    public static <K, V> K getRandomKeyFromMap(Map<K, V> map) {
+        if (map.isEmpty()) return null;
+
+        Object[] keys = map.keySet().toArray();
+        return (K) keys[new Random().nextInt(keys.length)];
+    }
+
     public static void addToInventoryWithColor(Level level, BlockPos blockPos, Player player, ItemStack itemStackContent, ColorType colorType, int shrink, ItemStack itemStackInMainHand) {
         if (!level.isClientSide()) {
             assert colorType != null;
@@ -562,8 +573,10 @@ public final class ModMethods {
             }
 
         } else if (isShears && isFertileState(blockState) && !hasSilkTouch) {
-            if (player instanceof ServerPlayer)
+            if (player instanceof ServerPlayer) {
+                keepData(blockPos, blockState.getBlock(), getColorType(blockPos));
                 level.setBlockAndUpdate(blockPos, blockState.setValue(FERTILE, Boolean.FALSE));
+            }
             pass = true;
         }
 
@@ -819,5 +832,22 @@ public final class ModMethods {
             case NORTH_WEST -> QuarterProperty.NORTH_WEST;
             case NORTH_EAST -> QuarterProperty.NORTH_EAST;
         };
+    }
+
+    //others
+
+    public static String generateUniqueSuffix(List<String> items, Map<String, Object> conditions) {
+        String string = items.toString() + (conditions == null ? "" : conditions.toString());
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            byte[] hashBytes = digest.digest(string.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes)
+                hexString.append(String.format("%02x", b));
+
+            return hexString.substring(0, 6);
+        } catch (Exception e) {
+            return Integer.toHexString((string).hashCode());
+        }
     }
 }
