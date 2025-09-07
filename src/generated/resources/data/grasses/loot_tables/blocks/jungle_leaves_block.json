@@ -11,12 +11,7 @@
               "condition": "minecraft:any_of",
               "terms": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": [
-                      "minecraft:shears"
-                    ]
-                  }
+                  "condition": "grasses:has_instance_of_shears"
                 },
                 {
                   "condition": "minecraft:match_tool",
@@ -68,12 +63,7 @@
             "condition": "minecraft:any_of",
             "terms": [
               {
-                "condition": "minecraft:match_tool",
-                "predicate": {
-                  "items": [
-                    "minecraft:shears"
-                  ]
-                }
+                "condition": "grasses:has_instance_of_shears"
               },
               {
                 "condition": "minecraft:match_tool",
@@ -129,12 +119,7 @@
                 "condition": "minecraft:any_of",
                 "terms": [
                   {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "items": [
-                        "minecraft:shears"
-                      ]
-                    }
+                    "condition": "grasses:has_instance_of_shears"
                   },
                   {
                     "condition": "minecraft:match_tool",

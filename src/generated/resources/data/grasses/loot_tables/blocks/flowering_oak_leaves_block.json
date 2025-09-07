@@ -11,12 +11,7 @@
               "condition": "minecraft:any_of",
               "terms": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": [
-                      "minecraft:shears"
-                    ]
-                  }
+                  "condition": "grasses:has_instance_of_shears"
                 },
                 {
                   "condition": "minecraft:match_tool",
@@ -56,11 +51,10 @@
           "conditions": [
             {
               "chances": [
-                0.02,
-                0.022222223,
-                0.025,
-                0.033333335,
-                0.1
+                1.0,
+                1.0,
+                1.0,
+                1.0
               ],
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune"
@@ -71,12 +65,7 @@
                 "condition": "minecraft:any_of",
                 "terms": [
                   {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "items": [
-                        "minecraft:shears"
-                      ]
-                    }
+                    "condition": "grasses:has_instance_of_shears"
                   },
                   {
                     "condition": "minecraft:match_tool",
@@ -124,12 +113,7 @@
             "condition": "minecraft:any_of",
             "terms": [
               {
-                "condition": "minecraft:match_tool",
-                "predicate": {
-                  "items": [
-                    "minecraft:shears"
-                  ]
-                }
+                "condition": "grasses:has_instance_of_shears"
               },
               {
                 "condition": "minecraft:match_tool",
