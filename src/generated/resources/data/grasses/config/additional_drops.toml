@@ -1,0 +1,146 @@
+########################################################################
+## Grasses mod additional drops config
+## Drop Type 'ALL' - each item has a declared chance of being dropped (can drop all at once)
+## Drop Type 'ONE OF' - each item has a declared chance of being dropped (can drop randomly only one of them)
+## 'chances' - chance set name
+## 'conditions' - (optional) BlockState properties terms
+## Detailed information about the system on the wiki on gitHub:'
+## https://github.com/DanteTooMayCry/Grasses/wiki/Additional-Drop-System'
+########################################################################
+header_marker = ""
+
+#Drop Type 'ALL' - each item has a declared chance of being dropped (can drop all at once)
+[all]
+
+	[all."grasses:fir_leaves_block_27dd43"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:fir_sapling"]
+
+	[all."grasses:palm_leaves_block_153b8f"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:palm_sapling"]
+
+	[all."grasses:jacaranda_leaves_block_9c766d"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:jacaranda_sapling"]
+
+	[all."grasses:magic_leaves_block_65a0c7"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:magic_sapling"]
+
+	[all."grasses:hellbark_leaves_block_f4ec94"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:hellbark_sapling"]
+
+	[all."grasses:mahogany_leaves_block_d45b07"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:mahogany_sapling"]
+
+	[all."minecraft:grass_738c53"]
+		chances = "full_chances"
+		conditions = ["addAdditionalDropMode=BOTH"]
+		items = ["minecraft:diamond"]
+
+	[all."grasses:empyreal_leaves_block_d023f7"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:empyreal_sapling"]
+
+	[all."grasses:huge_lily_pad_tinted_3909d6"]
+		chances = "full_chances"
+		conditions = ["variant_lily=2", "addAdditionalDropMode=BOTH"]
+		items = ["biomesoplenty:waterlily"]
+
+	[all."grasses:redwood_leaves_block_161171"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:redwood_sapling"]
+
+	[all."minecraft:stone_8fc71c"]
+		chances = "full_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["minecraft:diamond"]
+
+	[all."grasses:willow_leaves_block_b5656d"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:willow_sapling"]
+
+	[all."grasses:cypress_leaves_block_f83677"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:cypress_sapling"]
+
+	[all."grasses:flowering_oak_leaves_block_07ad1a"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:flowering_oak_sapling"]
+
+	[all."grasses:pine_leaves_block_2592bf"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:pine_sapling"]
+
+	[all."grasses:dead_leaves_block_ab0a29"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:dead_sapling"]
+
+	[all."grasses:origin_leaves_block_1423bc"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:origin_sapling"]
+
+	[all."minecraft:fern_7812c3"]
+		chances = "full_chances"
+		conditions = ["addAdditionalDropMode=NONE"]
+		items = ["minecraft:diamond"]
+
+	[all."grasses:umbran_leaves_block_68e3fb"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:umbran_sapling"]
+
+	[all."grasses:cherry_leaves_block_0ee936"]
+		chances = "half_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:snowblossom_sapling"]
+
+[all_mob]
+
+	[all_mob."minecraft:cow_2cbbfa"]
+		chances = "full_chances"
+		conditions = ["customName=Boss", "addAdditionalDropMode=DESTROY"]
+		items = ["minecraft:rotten_flesh", "minecraft:iron_ingot"]
+
+	[all_mob."minecraft:zombie_f6951d"]
+		chances = "full_chances"
+		conditions = ["customName=Boss", "addAdditionalDropMode=DESTROY"]
+		items = ["minecraft:ice", "minecraft:sand"]
+
+	[all_mob."minecraft:zombie_46b2b4"]
+		chances = "full_chances"
+		clearOriginalDropsMode = "DESTROY"
+		conditions = ["isBaby=true", "addAdditionalDropMode=DESTROY"]
+		items = ["minecraft:nether_star", "minecraft:cake"]
+
+#Drop Type 'ONE OF' - each item has a declared chance of being dropped (can drop randomly only one of them)
+[one_of]
+
+	[one_of."grasses:maple_leaves_block_eb75ca"]
+		chances = "a_third_leaves_sapling_chances"
+		items = ["biomesoplenty:red_maple_sapling", "biomesoplenty:orange_maple_sapling", "biomesoplenty:yellow_maple_sapling"]
+
+[one_of_mob]
+
+	[one_of_mob."minecraft:pig_504937"]
+		chances = "full_chances"
+		conditions = ["addAdditionalDropMode=DESTROY", "inWater=true", "customName=Boss"]
+		items = ["minecraft:diamond_pickaxe", "minecraft:gold_nugget"]
+
