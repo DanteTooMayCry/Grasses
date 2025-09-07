@@ -107,7 +107,7 @@ public class AdditionalDropDataProvider implements DataProvider {
             //======================================================================================================================================================
             config.setComment("one_of", "Drop Type 'ONE OF' - each item has a declared chance of being dropped (can drop randomly only one of them)");
 
-            putDropEntries(config, "one_of", MAPLE_LEAVES_BLOCK.get(), List.of(BOPItems.RED_MAPLE_SAPLING, BOPItems.ORANGE_MAPLE_SAPLING, BOPItems.YELLOW_MAPLE_SAPLING), A_THIRD_LEAVES_SAPLING_CHANCES, null, clearWhen(none));
+            putDropEntries(config, "one_of", MAPLE_LEAVES_BLOCK.get(), List.of(BOPItems.RED_MAPLE_SAPLING, BOPItems.ORANGE_MAPLE_SAPLING, BOPItems.YELLOW_MAPLE_SAPLING), NORMAL_LEAVES_SAPLING_CHANCES, null, clearWhen(none));
 
             //if not have BLOCKS reference, can make by string:
             //putDropEntries(config, "one_of", "grasses:maple_leaves_block", List.of("biomesoplenty:red_maple_sapling", "biomesoplenty:orange_maple_sapling", "biomesoplenty:yellow_maple_sapling"), A_THIRD_LEAVES_SAPLING_CHANCES, null, false);
