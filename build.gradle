@@ -154,3 +154,29 @@ tasks.register("copyRunDataConfig", Copy) {
 tasks.named("processResources") {
     dependsOn("copyRunDataConfig")
 }
+
+def generatedJavaDir = "${buildDir}/generated/sources/version"
+
+sourceSets.main.java.srcDir generatedJavaDir
+
+tasks.register("generateVersionClass") {
+    doLast {
+        def version = project.mod_version
+        def packageName = 'net.night.grasses'
+        def outputDir = file("${generatedJavaDir}/" + packageName.replace('.', '/'))
+        outputDir.mkdirs()
+
+        def file = new File(outputDir, "Version.java")
+        file.text = """
+            package ${packageName};
+
+            public final class Version {
+                public static final String MOD_VERSION = "${version}";
+            }
+        """
+    }
+}
+
+tasks.named("compileJava") {
+    dependsOn(tasks.named("generateVersionClass"))
+}
