@@ -13,4 +13,7 @@ public class LootItemConditions {
 
     public static final RegistryObject<LootItemConditionType> IS_MOD_LOADED =
             CONDITIONS.register("is_mod_loaded", () -> new LootItemConditionType(new IsModLoaded.ConditionSerializer()));
+
+    public static final RegistryObject<LootItemConditionType> HAS_INSTANCE_OF_SHEARS =
+            CONDITIONS.register("has_instance_of_shears", () -> new LootItemConditionType(new HasInstanceOfShearsCondition.Serializer()));
 }
