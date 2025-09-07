@@ -13,6 +13,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -24,6 +25,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -38,6 +41,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -50,11 +54,13 @@ import net.night.grasses.config.additionalDropSystem.ModConfigStatus;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.entity.ai.goal.EatGrassesBlockGoal;
+import net.night.grasses.enums.DropType;
 import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.enums.GrassesQuarterProperty;
+import net.night.grasses.util.DropSpawnScheduler;
 import net.night.grasses.util.ModTags;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -85,6 +91,8 @@ import static net.night.grasses.util.ModTags.Blocks.*;
 
 @Mod.EventBusSubscriber(modid = Grasses.MOD_ID)
 public class CommonEventHandler {
+
+    private static final Set<UUID> playersWhoSawMessage = new HashSet<>();
 
     public static Map<Integer, BlockPos> logHashMapGlobal = new HashMap<>();
     public static Map<Integer, BlockPos> vinesHashMapGlobal = new HashMap<>();
@@ -117,6 +125,10 @@ public class CommonEventHandler {
             new Vec3i(-1, 0, 1),
             new Vec3i(1, 0, 1)
     );
+
+    public static List<ItemStack> additionalDrop = new ArrayList<>();
+    public static Map<ItemStack, float[]> additionalDropWithChanceForAllCase = new HashMap<>();
+    public static Map<Item, float[]> additionalDropWithChanceForOneOfCase = new HashMap<>();
 
     @SubscribeEvent
     public static void onGrassesClickedWithTool(BlockEvent.BlockToolModificationEvent event) {
@@ -207,8 +219,21 @@ public class CommonEventHandler {
                 if(player instanceof ServerPlayer)
                     ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStack);
             }
-        } else
-            spawnAdditionalDrops(level, player, blockPos, itemStack, blockState);
+        } else {
+
+            if (!(level instanceof ServerLevel serverLevel) || player.isCreative())
+                return;
+
+
+            List<ItemStack> drops = getOriginalDrops(serverLevel, blockState, blockPos, itemStack, player);
+            DropType effectiveMode = checkIfDropBlockItself(blockState, drops);
+
+            if (checkIfShouldClearOriginalDrops(blockState, null, effectiveMode)) {
+                event.setCanceled(true);
+                level.removeBlock(blockPos, false);
+            }
+            spawnAdditionalDrops(level, blockPos, itemStack, blockState, null, effectiveMode);
+        }
     }
 
     @SubscribeEvent
@@ -663,23 +688,47 @@ public class CommonEventHandler {
     }
 
     @SubscribeEvent
-    public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof Sheep sheep) {
-            sheep.goalSelector.addGoal(5, new EatGrassesBlockGoal(sheep));
+    public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+        Entity entity = event.getEntity();
+
+        if (!(entity instanceof ServerPlayer player)) {
+            if (entity instanceof Sheep sheep) {
+                sheep.goalSelector.addGoal(5, new EatGrassesBlockGoal(sheep));
+            }
+            return;
+        }
+
+        if (ModConfigStatus.isConfigUpdated() && !playersWhoSawMessage.contains(player.getUUID())) {
+            MutableComponent modName = Component.literal("[Grasses - Tinted Realms]").withStyle(ChatFormatting.GREEN);
+            MutableComponent configFile = Component.literal("'additional_drops_old_version.toml'").withStyle(ChatFormatting.BLUE);
+
+            Component message = Component.translatable("message.additional_drops.update", modName, configFile);
+            player.sendSystemMessage(message);
+
+            playersWhoSawMessage.add(player.getUUID());
+
+            ModConfigStatus.setConfigUpdated(false);
         }
     }
 
     @SubscribeEvent
-    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!ModConfigStatus.isConfigUpdated()) return;
+    public static void onLivingDrops(LivingDropsEvent event) {
+        LivingEntity entity = event.getEntity();
+        Level level = entity.level();
+        if (level.isClientSide) return;
 
-        MutableComponent modName = Component.literal("[Grasses - Tinted Realms]").withStyle(ChatFormatting.GREEN);
-        MutableComponent configFile = Component.literal("'additional_drops_new_version.toml'").withStyle(ChatFormatting.BLUE);
+        if (checkIfShouldClearOriginalDrops(null, entity, DropType.DESTROY))
+            event.getDrops().clear();
 
-        Component message = Component.translatable("message.additional_drops.update", modName, configFile);
+        ItemStack itemStackInHand = event.getEntity().getMainHandItem();
+        spawnAdditionalDrops(level,null, itemStackInHand, null , entity, DropType.DESTROY);
+    }
 
-        event.getEntity().sendSystemMessage(message);
-        ModConfigStatus.setConfigUpdated(false);
+    @SubscribeEvent
+    public static void onLevelTick(TickEvent.LevelTickEvent event) {
+        if (event.phase == TickEvent.Phase.END && !event.level.isClientSide) {
+            DropSpawnScheduler.tick();
+        }
     }
 }
 

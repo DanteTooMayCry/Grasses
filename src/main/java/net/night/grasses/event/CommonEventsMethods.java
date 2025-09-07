@@ -16,9 +16,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -31,12 +33,15 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.block.bars.TintedVineInBars;
 import net.night.grasses.block.bars.VineInBars;
 import net.night.grasses.block.leaves.superclasses.ParentTintedLeavesBlock;
@@ -44,10 +49,13 @@ import net.night.grasses.block.plants.TintedVine;
 import net.night.grasses.config.additionalDropSystem.AdditionalDropConfig;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.enums.DropType;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
+import net.night.grasses.util.DropSpawnScheduler;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.List;
@@ -927,6 +935,7 @@ public class CommonEventsMethods {
     public static void changeOrDestroyLeaves(Level level, Player player, BlockState blockState, ItemStack itemStackInMainHand, BlockPos blockPos, PlayerInteractEvent.RightClickBlock event, boolean changeColor) {
 
         boolean hasSilkTouch        = EnchantmentHelper.hasSilkTouch(itemStackInMainHand);
+        int fortuneLevel            = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, itemStackInMainHand);
         boolean hasChanneling       = EnchantmentHelper.hasChanneling(itemStackInMainHand);
         boolean hasInfinity         = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, itemStackInMainHand) > 0;
         boolean isCrouching         = event.getEntity().isCrouching();
@@ -934,6 +943,13 @@ public class CommonEventsMethods {
         int amountChangedOrDestroyed= 0;
         boolean isPerform           = false;
         boolean advItemUsedOnBlock  = false;
+        boolean firstIterationLeaves= true;
+        boolean firstIterationVines = true;
+        boolean shouldClearForLeaves= false;
+        boolean shouldClearForVines = false;
+        RandomSource randomSource   = level.getRandom();
+        Map<ItemStack, float[]> dropWithChanceForAllCase = new HashMap<>();
+        Map<Item, float[]> dropWithChanceForOneOfCase = new HashMap<>();
 
         if (changeColor) {
             CompoundTag compoundtag = itemStackInMainHand.getTag();
@@ -968,14 +984,42 @@ public class CommonEventsMethods {
                 }
                 else if (!hasSilkTouch && !hasChanneling && !changeColor && GrassesConfig.CommonConfig.ALLOW_CUT_LEAVES_AT_ONCE.get()) {
                     if (!level.isClientSide) {
-                        level.destroyBlock(leavesBlockPos.getValue(), true);
-                        spawnAdditionalDrops(level, player, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState);
+
+                        if (player.isCreative())
+                            shouldClearForLeaves = true;
+                        else {
+                            if (firstIterationLeaves) {
+                                shouldClearForLeaves = checkIfShouldClearOriginalDrops(leavesOnTreeBlockState,null, DropType.DESTROY);
+                                firstIterationLeaves = false;
+                                spawnAdditionalDrops(level, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState, null, DropType.DESTROY);
+                                dropWithChanceForAllCase.putAll(additionalDropWithChanceForAllCase);
+                                dropWithChanceForOneOfCase.putAll(additionalDropWithChanceForOneOfCase);
+                            } else
+                                spawnAdditionalDropsAsync(level, leavesBlockPos.getValue(), fortuneLevel, randomSource, dropWithChanceForAllCase, dropWithChanceForOneOfCase);
+                        }
+
+                        level.destroyBlock(leavesBlockPos.getValue(), !shouldClearForLeaves);
+
                         amountChangedOrDestroyed++;
                         if (!vinesHashMapGlobal.isEmpty()) {
+                            BlockState vinesblockState = level.getBlockState(vinesHashMapGlobal.get(0));
                             for (Map.Entry<Integer, BlockPos> vineBlockPos : vinesHashMapGlobal.entrySet()) {
-                                level.destroyBlock(vineBlockPos.getValue(), true);
+
+                                if (player.isCreative())
+                                    shouldClearForVines = true;
+                                else {
+                                    if (firstIterationVines) {
+                                        shouldClearForVines = checkIfShouldClearOriginalDrops(vinesblockState,null, DropType.DESTROY);
+                                        firstIterationVines = false;
+                                        spawnAdditionalDrops(level, vineBlockPos.getValue(), itemStackInMainHand, vinesblockState, null, DropType.DESTROY);
+
+                                    } else
+                                        spawnAdditionalDropsAsync(level, vineBlockPos.getValue(), fortuneLevel, randomSource, additionalDropWithChanceForAllCase, additionalDropWithChanceForOneOfCase);
+                                }
+                                level.destroyBlock(vineBlockPos.getValue(), !shouldClearForVines);
                                 amountChangedOrDestroyed++;
                             }
+                            vinesHashMapGlobal.clear();
                         }
                     }
                     isPerform = true;
@@ -983,8 +1027,20 @@ public class CommonEventsMethods {
                 }
                 else if (!hasSilkTouch && hasChanneling && !changeColor && !isCrouching && GrassesConfig.CommonConfig.ALLOW_CUT_LEAVES_AT_ONCE.get()) {
                     if (!level.isClientSide) {
-                        level.destroyBlock(leavesBlockPos.getValue(), true);
-                        spawnAdditionalDrops(level, player, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState);
+                        if (player.isCreative())
+                            shouldClearForLeaves = true;
+                        else {
+                            if (firstIterationLeaves) {
+                                shouldClearForLeaves = checkIfShouldClearOriginalDrops(leavesOnTreeBlockState,null, DropType.DESTROY);
+                                firstIterationLeaves = false;
+                                spawnAdditionalDrops(level, leavesBlockPos.getValue(), itemStackInMainHand, leavesOnTreeBlockState, null, DropType.DESTROY);
+                                dropWithChanceForAllCase.putAll(additionalDropWithChanceForAllCase);
+                                dropWithChanceForOneOfCase.putAll(additionalDropWithChanceForOneOfCase);
+                            } else
+                                spawnAdditionalDropsAsync(level, leavesBlockPos.getValue(), fortuneLevel, randomSource, dropWithChanceForAllCase, dropWithChanceForOneOfCase);
+                        }
+                        level.destroyBlock(leavesBlockPos.getValue(), !shouldClearForLeaves);
+
                         amountChangedOrDestroyed++;
                     }
                     isPerform = true;
@@ -1048,7 +1104,20 @@ public class CommonEventsMethods {
 
                 if(!hasSilkTouch && hasChanneling && isCrouching && itemStackInMainHand.getItem() instanceof AutomaticPrunerItem) {
                     if (!level.isClientSide) {
-                        level.destroyBlock(vineBlockPos.getValue(), true);
+
+                        if (player.isCreative())
+                            shouldClearForVines = true;
+                        else {
+                            if (firstIterationVines) {
+                                shouldClearForVines = checkIfShouldClearOriginalDrops(vinesOnTreeBlockState,null, DropType.DESTROY);
+                                firstIterationVines = false;
+                                spawnAdditionalDrops(level, vineBlockPos.getValue(), itemStackInMainHand, vinesOnTreeBlockState, null, DropType.DESTROY);
+
+                            } else
+                                spawnAdditionalDropsAsync(level, vineBlockPos.getValue(), fortuneLevel, randomSource, additionalDropWithChanceForAllCase, additionalDropWithChanceForOneOfCase);
+
+                        }
+                        level.destroyBlock(vineBlockPos.getValue(), !shouldClearForVines);
                         amountChangedOrDestroyed++;
                     }
                     isPerform = true;
@@ -1565,37 +1634,115 @@ public class CommonEventsMethods {
 
     //Additional Drop Methods
 
-    public static void spawnAdditionalDrops(Level level, Player player, BlockPos pos, ItemStack tool, BlockState blockState) {
+    public static void spawnAdditionalDrops(Level level, @Nullable BlockPos pos, @Nullable ItemStack tool, @Nullable BlockState blockState, @Nullable LivingEntity entity, DropType effectiveMode) {
         if (level.isClientSide) return;
 
-        Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(blockState);
-        if (dropGroupOpt.isEmpty()) return;
+        additionalDropWithChanceForAllCase.clear();
+        additionalDropWithChanceForOneOfCase.clear();
+        Map<ItemStack, float[]> dropWithChanceForAllCase = new HashMap<>();
+        Map<Item, float[]> dropWithChanceForOneOfCase = new HashMap<>();
 
-        AdditionalDropConfig.DropGroup dropGroup = dropGroupOpt.get();
+        AdditionalDropConfig.ExtDropGroup dropGroup;
 
-        int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
+        if (blockState != null) {
+            Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(blockState);
+            if (dropGroupOpt.isEmpty())
+                return;
+
+            dropGroup = (AdditionalDropConfig.ExtDropGroup) dropGroupOpt.get();
+            if (dropGroup.getAddAdditionalDropMode() != DropType.BOTH && dropGroup.getAddAdditionalDropMode() != effectiveMode)
+                return;
+
+        } else if (entity != null) {
+            Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getMobDropGroup(entity);
+            if (dropGroupOpt.isEmpty())
+                return;
+
+            dropGroup = (AdditionalDropConfig.ExtDropGroup) dropGroupOpt.get();
+        } else
+            return;
+
+        DropType addDropMode = dropGroup.getAddAdditionalDropMode();
+
+        if (addDropMode == DropType.NONE)
+            return;
+
         RandomSource randomSource = level.getRandom();
+        int lootingFortuneLevel = 0;
+
+        if (entity != null) {
+            if (tool != null)
+                lootingFortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MOB_LOOTING, tool);
+        } else if (tool != null)
+            lootingFortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool);
 
         for (AdditionalDropConfig.DropEntry entry : dropGroup.all) {
-            float chance = safeGetChance(entry.fortuneChances(), fortune);
+            float chance = safeGetChance(entry.fortuneChances(), lootingFortuneLevel);
             if (randomSource.nextFloat() < chance) {
                 ItemStack stack = new ItemStack(entry.item());
-                ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-                level.addFreshEntity(entity);
+
+                if (blockState != null && pos != null) {
+                    dropWithChanceForAllCase.put(stack, entry.fortuneChances());
+                    Block.popResourceFromFace(level, pos, Direction.UP, stack);
+                } else if (entity != null)
+                    Block.popResourceFromFace(level, entity.getOnPos(), Direction.UP, stack);
             }
         }
 
         List<AdditionalDropConfig.DropEntry> candidates = new ArrayList<>();
         for (AdditionalDropConfig.DropEntry entry : dropGroup.oneOf) {
-            float chance = safeGetChance(entry.fortuneChances(), fortune);
+            dropWithChanceForOneOfCase.put(entry.item(), entry.fortuneChances());
+            float chance = safeGetChance(entry.fortuneChances(), lootingFortuneLevel);
+
             if (randomSource.nextFloat() < chance)
                 candidates.add(entry);
         }
         if (!candidates.isEmpty()) {
             AdditionalDropConfig.DropEntry picked = candidates.get(randomSource.nextInt(candidates.size()));
             ItemStack stack = new ItemStack(picked.item());
-            ItemEntity entity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-            level.addFreshEntity(entity);
+
+            if (blockState != null && pos != null)
+                Block.popResourceFromFace(level, pos, Direction.UP, stack);
+            else if (entity != null)
+                Block.popResourceFromFace(level, entity.getOnPos(), Direction.UP, stack);
+        }
+
+        if (!dropWithChanceForAllCase.isEmpty())
+            additionalDropWithChanceForAllCase.putAll(dropWithChanceForAllCase);
+        if (!dropWithChanceForOneOfCase.isEmpty())
+            additionalDropWithChanceForOneOfCase.putAll(dropWithChanceForOneOfCase);
+    }
+
+    private static void spawnAdditionalDropsAsync(Level level, BlockPos pos, int fortuneLevel, RandomSource randomSource, Map<ItemStack, float[]> dropWithChanceForAllCase, Map<Item, float[]> dropWithChanceForOneOfCase) {
+
+        //When spawnAdditionalDrops method is call only in first iteration, next drops are too fast and merge always into stack of 2 regardless of how many items are actually dropped, so need add some async by DropSpawnScheduler
+
+        Map<ItemStack, float[]> additionalDropWithChance = new HashMap<>();
+
+        if (!dropWithChanceForAllCase.isEmpty())
+            additionalDropWithChance.putAll(dropWithChanceForAllCase);
+        else if (!dropWithChanceForOneOfCase.isEmpty()) {
+            Item item = getRandomKeyFromMap(dropWithChanceForOneOfCase);
+            ItemStack stack = new ItemStack(item);
+            additionalDropWithChance.put(stack, dropWithChanceForOneOfCase.get(item));
+        }
+
+        for (Map.Entry<ItemStack, float[]> additionalDrop : additionalDropWithChance.entrySet()) {
+            float chance = safeGetChance(additionalDrop.getValue(), fortuneLevel);
+
+            if (randomSource.nextFloat() < chance) {
+                DropSpawnScheduler.scheduleDropTask(() -> {
+                    if (!level.isClientSide) {
+                        ItemEntity entity = new ItemEntity(level,
+                                pos.getX() + 0.5,
+                                pos.getY() + 0.5,
+                                pos.getZ() + 0.5,
+                                additionalDrop.getKey().copy());
+                        entity.setPickUpDelay(randomSource.nextInt(40) + 10);
+                        level.addFreshEntity(entity);
+                    }
+                });
+            }
         }
     }
 
@@ -1606,5 +1753,49 @@ public class CommonEventsMethods {
             fortune = chances.length - 1;
 
         return chances[fortune];
+    }
+
+    public static DropType checkIfDropBlockItself(BlockState blockState, List<ItemStack> drops) {
+        boolean dropsBlockItself = drops.stream().anyMatch(stack -> stack.is(blockState.getBlock().asItem()));
+
+        return dropsBlockItself ? DropType.MINE : DropType.DESTROY;
+    }
+
+    public static List<ItemStack> getOriginalDrops(ServerLevel serverLevel, BlockState blockState, BlockPos blockPos, ItemStack itemStackInHand, Player player) {
+
+        LootParams.Builder paramsBuilder = new LootParams.Builder(serverLevel)
+                .withParameter(LootContextParams.BLOCK_STATE, blockState)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockPos))
+                .withParameter(LootContextParams.TOOL, itemStackInHand)
+                .withOptionalParameter(LootContextParams.THIS_ENTITY, player);
+
+        return blockState.getDrops(paramsBuilder);
+    }
+
+    public static boolean checkIfShouldClearOriginalDrops(BlockState blockState, LivingEntity entity, DropType effectiveMode) {
+        AdditionalDropConfig.ExtDropGroup dropGroup = null;
+
+        if (blockState != null) {
+            Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getDropGroup(blockState);
+            if (dropGroupOpt.isEmpty())
+                return false;
+            dropGroup = (AdditionalDropConfig.ExtDropGroup) dropGroupOpt.get();
+        }
+        else if (entity != null) {
+            Optional<AdditionalDropConfig.DropGroup> dropGroupOpt = AdditionalDropConfig.getMobDropGroup(entity);
+            if (dropGroupOpt.isEmpty())
+                return false;
+            dropGroup = (AdditionalDropConfig.ExtDropGroup) dropGroupOpt.get();
+        }
+        else
+            return false;
+
+        if (dropGroup.getClearOriginalDropsMode() == DropType.NONE)
+            return false;
+
+        if (dropGroup.getClearOriginalDropsMode() != DropType.BOTH && dropGroup.getClearOriginalDropsMode() != effectiveMode)
+            return false;
+
+        return true;
     }
 }
