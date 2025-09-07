@@ -42,6 +42,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     private static final float[] NORMAL_LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
     private static final float[] JUNGLE_LEAVES_SAPLING_CHANCES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     private static final float[] NORMAL_APPLES_CHANCES = new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F};
+    protected static final LootItemCondition.Builder HAS_SHEARS = HasInstanceOfShearsCondition.builder();
     private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
     private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
 
@@ -260,6 +261,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected LootTable.Builder createSelfDrops(Block selfBlock, Block defaultBlock) {
         return createSilkTouchDispatchTable(selfBlock,
                 this.applyExplosionDecay(selfBlock, LootItem.lootTableItem(defaultBlock)));
+    }
+
+    protected static LootTable.@NotNull Builder createShearsOnlyDrop(ItemLike pItem) {
+        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS).add(LootItem.lootTableItem(pItem)));
     }
 
     protected LootTable.Builder createSelfDropsForSlab(Block selfBlock, Block defaultBlock) {
