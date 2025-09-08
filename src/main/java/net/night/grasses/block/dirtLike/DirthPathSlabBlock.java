@@ -75,9 +75,4 @@ public class DirthPathSlabBlock extends ParentSlabBlock {
         }
         return super.updateShape(blockState, direction, directionState, levelAccessor, currentPos, directionPos);
     }
-
-    @Override
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        return false;
-    }
 }
