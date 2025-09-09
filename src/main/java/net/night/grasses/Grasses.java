@@ -17,7 +17,7 @@ import net.night.grasses.particle.ModParticles;
 import static net.night.grasses.config.GrassesConfig.CLIENT_CONFIG_SPEC;
 import static net.night.grasses.config.GrassesConfig.COMMON_CONFIG_SPEC;
 
-@Mod(Grasses.MOD_ID) // [1.20.1]
+@Mod(Grasses.MOD_ID) // [1.20.1] test
 public class Grasses {
     public static final String MOD_ID = "grasses";
     public static final String MOD_VERSION = Version.MOD_VERSION;
