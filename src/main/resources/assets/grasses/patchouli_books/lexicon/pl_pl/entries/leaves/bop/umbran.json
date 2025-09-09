@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Liście Umbran",
+  "icon": "grasses:umbran_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 21,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:umbran_leaves_block",
+      "title": "Liście Umbran"
+    }
+  ]
+}

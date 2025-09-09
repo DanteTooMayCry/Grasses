@@ -1,0 +1,20 @@
+{
+  "name": "Trawa: Czerwony",
+  "icon": "grasses:red_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 25,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:red_grass_block",
+      "title": "Blok: Czerwony"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:red_grass_slab",
+      "title": "Płyta: Czerwony"
+    }
+  ]
+}
+

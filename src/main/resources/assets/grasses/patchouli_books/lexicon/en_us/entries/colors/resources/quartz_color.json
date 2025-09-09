@@ -1,0 +1,19 @@
+{
+  "name": "Color: Quartz",
+  "icon": "minecraft:quartz",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 40,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:quartz_grass_block",
+      "title": "Color: Quartz"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:quartz",
+      "title": "Ingredient:"
+    }
+  ]
+}

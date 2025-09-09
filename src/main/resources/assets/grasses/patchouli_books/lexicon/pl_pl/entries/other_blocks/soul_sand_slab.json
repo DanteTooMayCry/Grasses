@@ -1,0 +1,15 @@
+{
+  "name": "Płyta Piasku Dusz",
+  "icon": "grasses:soul_sand_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 14,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:soul_sand_slab",
+      "title": "Płyta Piasku Dusz",
+      "text": "Płyta identyczna z waniliowym blokiem Piasku Dusz. Domyślnie nie można sadzić brodawek na jej dolnej połowie, ale można zmienić to w pliku config."
+    }
+  ]
+}

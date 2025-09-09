@@ -1,0 +1,18 @@
+{
+  "name": "Netherowy Sekator",
+  "icon": "grasses:netherite_auto_pruner",
+  "category": "grasses:utility_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Jest to ulepszona wersja $(l:utility/diamond_auto_pruner)Diamentowanego Sekatora$(). Powiela wszystkie jego możliwości. W jednym jednak przypadku, posiada indywidualną funkcję - gdy zostanie postawiona wytwarzalna $(l:additional/end_portal_frame)Rama Portalu do Endu$()$(br)"
+    },
+    {
+      "type": "patchouli:smithing",
+      "recipe": "grasses:netherite_auto_pruner_smithing",
+      "border": true,
+      "text": "$(br)(+Netherite Upgrade Template)$(br2)można ja wydobyć właśnie tym sekatorem jesli posiada zaklęcia '$(6)Jedwabny Dotyk$()' i '$(6)Porażenie$()'. Działanie to wyłączy portal.$(br)"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "O barwieniu",
+  "icon": "minecraft:orange_dye",
+  "category": "grasses:basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod wprowadza kolory na dwa różne sposoby.$(br2)Pierwszy dotyczy bloków trawy i ich wersji slab, a drugi dotyczy liści i roślin.$(br2)Na bloki trawy barwę nakłada się w stole do craftowania zwyczajnie wykonując przepis$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "text": "zawierający trawę, blok trawy i składnik barwiący.$(br)",
+      "recipe": "grasses:diamond_grass_block",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)W przypadku liści i roślin niezbędny jest trochę większy wysiłek. Należy stworzyć: $(br2)$(l:utility/dyeing_station)    Stację Barwienia$()$(br2)i dodać do srodka wiadro z wodą, membrane fantoma oraz składnik barwiący. Stworzy to $(br2)$(l:utility/grasses_dye)        Barwnik$()$(br2)Listę składników można$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)znaleźć w dziale:$(br2)$(l:colors_ingredients_list_category)Colors & Ingredients$()$(br2)Następnie należy stworzyć: $(br2)$(l:utility/dyeing_tool)Narzędzie do Barwienia$()$(br2)i umieścić je wraz z wiadrem z wodą i barwnikiem (przyjmuje również 16 waniliowych) w stacji barwiącej.$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "text": "Można również wyczyścić narzędzie z barwy używając",
+      "images": [
+        "grasses:textures/patchouli/set_color_on_tool.png",
+        "grasses:textures/patchouli/set_color_on_tool2.png",
+        "grasses:textures/patchouli/set_color_on_tool3.png",
+        "grasses:textures/patchouli/set_color_on_tool4.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)wiadra z wodą zamiast składnika barwiącego.$(br2)Na koniec musisz wyposażyć się w jedno z narzędzi wymienionych poniżej, zaklętych '$(6)Jedwabnym Dotykiem$()':$(br2)$(l:utility/enchanted_shears)    Zaklęte Nożyce$()$(br)$(l:utility/diamond_auto_pruner)       Diamentowy$(br) Automatyczny Sekator$()$(l:utility/netherite_auto_pruner)       Netherytowy$(br) Automatyczny Sekator$()$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)i przemienić nim waniliowe liście na modowe.$(br2)Aby to zrobić należy użyć na dowolnych liściach jednego ze wspomnianych wcześniej narzędzi z '$(6)Jedwabnym Dotykiem$()' lub aby zmienić wszystkie liście naraz, jednego z sekatorów na pniu drzewa.$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/change_color.png",
+        "grasses:textures/patchouli/change_color1.png",
+        "grasses:textures/patchouli/change_color2.png"
+      ],
+      "text": "Następnie identycznie postąpić z narzędziem do barwienia.",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Rośliny zmienia się tylko pojedynczo. Wyjątkiem są pnącza, które zmienią się wraz z liśćmi jeśli drzewo je posiada.$(br2)Jeśli zaś sekator lub narzędzie do barwienia posiada jeszcze zaklęcie '$(6)Porażenie$()' możliwy jest wybór które bloki mają się zmienić."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/change_color3.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Zwykłe użycie takiego sekatora lub narzędzia do barwienia spowoduje, że zmienią się tylko liście. Użycie i przytrzymanie klawisza odpowiedzialnego za kucanie spowoduje, że zmienią się tylko pnącza.$(br2)Liście posiadają dwie wersje jasności. Aby pomiędzy nimi$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)przełączyć należy użyć sekatora lub nożyc zgodnie z wcześniejszym opisem, lecz bez $(6)Jedwabnego Dotyku$().$(br2)Można również użyć $(l:utility/dyeing_bone_meal)Mączki Koloryzującej$() na waniliowych lub modowych blokach, które pozwalają sadzić trawę, trawę morską i paprocie,"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)dzięki czemu wyrosną wymienione rośliny tak jak normalnie, jednak będą barwy użytej mączki.$(br2)Mod wprowadza także możliwość użycia mączki na Bielicy, Grzybni i Piasku Dusz."
+    }
+  ]
+}

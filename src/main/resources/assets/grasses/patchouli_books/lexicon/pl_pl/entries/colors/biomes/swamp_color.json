@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Bagno",
+  "icon": "minecraft:blue_orchid",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 20,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:swamp_grass_block",
+      "title": "Kolor: Bagno"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:blue_orchid",
+      "title": "Składnik:"
+    }
+  ]
+}

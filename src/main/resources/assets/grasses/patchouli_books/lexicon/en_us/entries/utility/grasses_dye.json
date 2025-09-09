@@ -1,0 +1,16 @@
+{
+  "name": "Dye",
+  "icon": "grasses:grasses_dye",
+  "category": "grasses:utility_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "It is used to give colors to $(l:utility/dyeing_tool)Dyeing Tool$() and $(l:utility/dyeing_bone_meal)Dyeing Bone Meal$(). And in the future also for other items in same way like dyes in vanilla.$(br2)To make it you need to place a Water Bucket, Phantom Membrane and a dyeing ingredient according to $(l:colors_ingredients_list_category)List$().$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)One ingredient produces 64 pieces of dye. To color the tool, you need 32 pieces. It can also be used to refill the Dyeing Tool.$(br)"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Pine Taiga Grass",
+  "icon": "grasses:pine_taiga_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 15,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pine_taiga_grass_block",
+      "title": "Pine Taiga Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pine_taiga_grass_slab",
+      "title": "Pine Taiga Grass Slab"
+    }
+  ]
+}

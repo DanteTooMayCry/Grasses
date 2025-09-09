@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "double_alter=0": {
+      "model": "grasses:block/jungle_leaves_block"
+    },
+    "double_alter=1": {
+      "model": "grasses:block/jungle_leaves_block_light"
+    },
+    "double_alter=2": {
+      "model": "grasses:block/jungle_leaves_blockalt"
+    },
+    "double_alter=3": {
+      "model": "grasses:block/jungle_leaves_block_light_alt"
+    }
+  }
+}

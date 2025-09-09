@@ -1,0 +1,11 @@
+{
+  "values": [
+    "grasses:grass_in_bars",
+    "grasses:fern_in_bars",
+    "grasses:vine_in_bars",
+    "grasses:tinted_grass_in_bars",
+    "grasses:tinted_fern_in_bars",
+    "grasses:tinted_vine_in_bars",
+    "grasses:end_portal_frame_block"
+  ]
+}

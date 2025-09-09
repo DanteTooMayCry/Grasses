@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Seagrass",
+  "icon": "grasses:seagrass_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 5,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:seagrass_tinted",
+      "title": "Tinted Seagrass"
+    }
+  ]
+}

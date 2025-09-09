@@ -1,0 +1,17 @@
+{
+  "name": "Dyeing Station",
+  "icon": "grasses:dyeing_station",
+  "category": "grasses:utility_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Allows to create $(l:utility/grasses_dye)Dye$(), set color on $(l:utility/dyeing_tool)Dyeing Tool$() and $(l:utility/dyeing_bone_meal)Dyeing Bone Meal$().$(br2)In the chapter $(l:colors_ingredients_list_category)Colors and Ingredients$() you can read the list of ingredients used to obtain a specific color.$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:dyeing_station",
+      "border": true
+    }
+  ]
+}

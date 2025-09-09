@@ -1,0 +1,16 @@
+{
+  "name": "Rośliny Doniczkowe",
+  "icon": "minecraft:flower_pot",
+  "category": "grasses:basics_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod usprawnia wymianę roślin w doniczkach.$(br2)Wanilliowe zachowanie domyślnie wkłada wyjętą roślinę z doniczki do pustej ręki i uniemożliwia wyjmowanie z kolejnych.$(br2)Po zmianie roślina trafi do pierwszego pustego slota na hotbarze lub$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)do slotu w ekwipunku, w którym znajduje się już ta roślina.$(br2)Dodatkowo klikając na doniczkę inną rośliną, zostanie ona podmieniona. Dotyczy to również różnych kolorów wersji barwionych.$(br2)Zostało dodane również dźwiękowe powiadomienia wykonania akcji - włożenia, wyjęcia i podmiany.$(br)"
+    }
+  ]
+}

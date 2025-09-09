@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Sugar Cane",
+  "icon": "grasses:sugar_cane_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 9,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:sugar_cane_tinted",
+      "title": "Tinted Sugar Cane"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:better_cherry_grass_block"
+    },
+    "title": {
+      "translate": "grasses.advancements.better_cherry.grass_block.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.better_cherry_grass_block.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a3_first_grass_block",
+  "criteria": {
+    "craft_better_cherry_grass_block": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "grasses:better_cherry_grass_block"
+      }
+    },
+    "craft_better_cherry_grass_slab": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "grasses:better_cherry_grass_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "craft_better_cherry_grass_block",
+      "craft_better_cherry_grass_slab"
+    ]
+  ]
+}

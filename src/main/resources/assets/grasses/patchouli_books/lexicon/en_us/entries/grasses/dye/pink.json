@@ -1,0 +1,19 @@
+{
+  "name": "Pink Grass",
+  "icon": "grasses:pink_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 27,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pink_grass_block",
+      "title": "Pink Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pink_grass_slab",
+      "title": "Pink Grass Slab"
+    }
+  ]
+}

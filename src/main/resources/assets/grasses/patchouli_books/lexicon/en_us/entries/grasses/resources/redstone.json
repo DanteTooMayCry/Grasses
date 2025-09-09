@@ -1,0 +1,19 @@
+{
+  "name": "Redstone Grass",
+  "icon": "grasses:redstone_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 47,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:redstone_grass_block",
+      "title": "Redstone Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:redstone_grass_slab",
+      "title": "Redstone Grass Slab"
+    }
+  ]
+}

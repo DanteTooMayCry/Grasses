@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Jaskinia Naciekowa",
+  "icon": "grasses:dripstone_be_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 6,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dripstone_be_grass_block",
+      "title": "Blok: Jaskinia Naciekowa"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dripstone_be_grass_slab",
+      "title": "Płyta: Jaskinia Naciekowa"
+    }
+  ]
+}

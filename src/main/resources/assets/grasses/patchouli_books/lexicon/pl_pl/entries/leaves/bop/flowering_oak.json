@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Kwitnące Dębowe",
+  "icon": "grasses:flowering_oak_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 23,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:flowering_oak_leaves_block",
+      "title": "Kwitnące Dębowe Liście"
+    }
+  ]
+}

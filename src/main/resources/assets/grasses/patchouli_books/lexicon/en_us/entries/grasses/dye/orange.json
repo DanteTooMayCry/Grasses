@@ -1,0 +1,19 @@
+{
+  "name": "Orange Grass",
+  "icon": "grasses:orange_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 26,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:orange_grass_block",
+      "title": "Orange Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:orange_grass_slab",
+      "title": "Orange Grass Slab"
+    }
+  ]
+}

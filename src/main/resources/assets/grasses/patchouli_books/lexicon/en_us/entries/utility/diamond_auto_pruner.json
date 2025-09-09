@@ -1,0 +1,26 @@
+{
+  "name": "Diamond Auto Pruner",
+  "icon": "grasses:diamond_auto_pruner",
+  "category": "grasses:utility_category",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This tool is an extension of vanilla shears. They can be enchant to the same enchants, plus '$(6)Silk Touch$()' and '$(6)Channeling$()'$(br2)This tool is necessary when want affect more than one block at a time.$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:diamond_auto_pruner",
+      "border": true,
+      "text": "$(br)Different configurations of the mentioned enchants, along with holding the crouching key, give different effects:"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(5)No enchants, Crouch$(): Change Tinted Leaves into a brighter or darker version.$()$(br)$(li)$(5)No enchants, No Crouch$(): Cut off all Leaves and Vines on the Tree,$()$(li)$(5)Channeling, No Crouch$(): Cut off only Leaves,$()$(li)$(5)Channeling, Crouch$(): Cut off only Vines,$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(5)Silk Touch$(): Change all the Leaves and Vines on the Tree at once (normal -> tinted or tinted -> normal),$()$(li)$(5)Silk Touch And Channeling, No Crouch$(): Change only Leaves,$()$(li)$(5)Silk Touch And Channeling, Crouch$(): Change only Vines.$()"
+    }
+  ]
+}

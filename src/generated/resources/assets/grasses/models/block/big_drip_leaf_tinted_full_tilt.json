@@ -1,0 +1,275 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "tintindex": 0,
+          "uv": [
+            16.0,
+            16.0,
+            0.0,
+            0.0
+          ]
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        15,
+        0
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "x",
+        "origin": [
+          8,
+          15,
+          16
+        ]
+      },
+      "shade": false,
+      "to": [
+        16,
+        15,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#tip",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            4.0
+          ]
+        },
+        "south": {
+          "texture": "#tip",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            4.0
+          ]
+        }
+      },
+      "from": [
+        0,
+        11,
+        0
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "x",
+        "origin": [
+          8,
+          15,
+          16
+        ]
+      },
+      "shade": false,
+      "to": [
+        16,
+        15,
+        0
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#side",
+          "tintindex": 0,
+          "uv": [
+            16.0,
+            0.0,
+            0.0,
+            4.0
+          ]
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#side",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            4.0
+          ]
+        }
+      },
+      "from": [
+        0,
+        11,
+        0
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "x",
+        "origin": [
+          8,
+          15,
+          16
+        ]
+      },
+      "shade": false,
+      "to": [
+        0.002,
+        15,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "cullface": "east",
+          "texture": "#side",
+          "tintindex": 0,
+          "uv": [
+            16.0,
+            0.0,
+            0.0,
+            4.0
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            4.0
+          ]
+        }
+      },
+      "from": [
+        15.998,
+        11,
+        0
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "x",
+        "origin": [
+          8,
+          15,
+          16
+        ]
+      },
+      "shade": false,
+      "to": [
+        16,
+        15,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        12
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          12
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        11,
+        15,
+        12
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            3.0,
+            0.0,
+            14.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        12
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          12
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        11,
+        15,
+        12
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "particle": "grasses:block/big_dripleaf_top",
+    "side": "grasses:block/big_dripleaf_side",
+    "stem": "grasses:block/big_dripleaf_stem",
+    "tip": "grasses:block/big_dripleaf_tip",
+    "top": "grasses:block/big_dripleaf_top"
+  }
+}

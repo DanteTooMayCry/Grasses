@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Pomarańczowy",
+  "icon": "grasses:orange_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 26,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:orange_grass_block",
+      "title": "Blok: Pomarańczowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:orange_grass_slab",
+      "title": "Płyta: Pomarańczowy"
+    }
+  ]
+}

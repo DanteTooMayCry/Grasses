@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "grasses:block/tiny_cactus_tinted"
+      },
+      {
+        "model": "grasses:block/tiny_cactus_tinted_alt"
+      }
+    ]
+  }
+}

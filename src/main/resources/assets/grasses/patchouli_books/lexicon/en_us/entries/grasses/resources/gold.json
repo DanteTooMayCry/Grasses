@@ -1,0 +1,19 @@
+{
+  "name": "Gold Grass",
+  "icon": "grasses:gold_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 43,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:gold_grass_block",
+      "title": "Gold Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:gold_grass_slab",
+      "title": "Gold Grass Slab"
+    }
+  ]
+}

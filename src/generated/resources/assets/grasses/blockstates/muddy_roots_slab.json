@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "rotate_muddy=0,type=bottom": {
+      "model": "grasses:block/muddy_roots_slab"
+    },
+    "rotate_muddy=0,type=double": {
+      "model": "grasses:block/muddy_roots_slab_block"
+    },
+    "rotate_muddy=0,type=top": {
+      "model": "grasses:block/muddy_roots_slab_top"
+    },
+    "rotate_muddy=1,type=bottom": {
+      "model": "grasses:block/muddy_roots_slab_x"
+    },
+    "rotate_muddy=1,type=double": {
+      "model": "grasses:block/muddy_roots_slab_block_x"
+    },
+    "rotate_muddy=1,type=top": {
+      "model": "grasses:block/muddy_roots_slab_top_x"
+    },
+    "rotate_muddy=2,type=bottom": {
+      "model": "grasses:block/muddy_roots_slab_z"
+    },
+    "rotate_muddy=2,type=double": {
+      "model": "grasses:block/muddy_roots_slab_block_z"
+    },
+    "rotate_muddy=2,type=top": {
+      "model": "grasses:block/muddy_roots_slab_top_z"
+    }
+  }
+}

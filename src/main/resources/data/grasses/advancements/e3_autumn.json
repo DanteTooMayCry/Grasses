@@ -1,0 +1,175 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:dark_oak_leaves_block",
+      "nbt": "{BlockStateTag:{color_type:orange}}"
+    },
+    "title": {
+      "translate": "grasses.advancements.autumn.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.autumn.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:e2_first_tinted_leaves_block",
+  "criteria": {
+    "autumn_yellow": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:yellow}}"
+            }
+          }
+        ]
+      }
+    },
+    "autumn_orange": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:orange}}"
+            }
+          }
+        ]
+      }
+    },
+    "autumn_red": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:red}}"
+            }
+          }
+        ]
+      }
+    },
+    "autumn_brown": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:brown}}"
+            }
+          }
+        ]
+      }
+    },
+    "autumn_gold": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:gold}}"
+            }
+          }
+        ]
+      }
+    },
+    "autumn_redstone": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_leaves"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ],
+              "nbt": "{BlockStateTag:{color_type:redstone}}"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "autumn_yellow",
+      "autumn_red",
+      "autumn_orange",
+      "autumn_brown",
+      "autumn_gold",
+      "autumn_redstone"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Color: Redstone",
+  "icon": "minecraft:redstone",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 47,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:redstone_grass_block",
+      "title": "Color: Redstone"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:redstone",
+      "title": "Ingredient:"
+    }
+  ]
+}

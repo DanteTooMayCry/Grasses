@@ -1,0 +1,15 @@
+{
+  "name": "Mud Slab",
+  "icon": "grasses:mud_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 18,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mud_slab",
+      "title": "Mud Slab",
+      "text": "A slab identical to a vanilla Mud Block. Currently, it can only be create via a water bottle - thrown bottles do not work."
+    }
+  ]
+}

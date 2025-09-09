@@ -1,0 +1,21 @@
+{
+  "name": "Grass",
+  "icon": "grasses:grow_grass_block",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:grow_grass_block",
+      "title": "Grass",
+      "text": "A block identical to the vanilla Grass Block with an additional state $(l:basics/fertile_state)FERTILE$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:grow_grass_slab",
+      "title": "Grass Slab",
+      "text": "It has the same capabilities as a full block. By default you cannot plant plants on its lower half, but you can change this in the config file."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Przesunięcie Roślin",
+  "icon": "minecraft:grass",
+  "category": "grasses:additional_category",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Rośliny jak trawa posiadają domyślnie funkcję przesunięcia - nie są zlokalizowane dokładnie na środku bloku. Konfiguracja po stronie klienta umożliwia zmianę tego zachowania, tak, że takie rośliny będą pokazywać się na środku. Efekt może być stosowany$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "text": "niezależnie przez każdego gracza na serwerze.",
+      "images": [
+        "grasses:textures/patchouli/offset.png",
+        "grasses:textures/patchouli/offset2.png"
+      ],
+      "border": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Color: Cold Swamp",
+  "icon": "minecraft:lily_pad",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 21,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:cold_swamp_grass_block",
+      "title": "Color: Cold Swamp"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:lily_pad",
+      "title": "Ingredient:"
+    }
+  ]
+}

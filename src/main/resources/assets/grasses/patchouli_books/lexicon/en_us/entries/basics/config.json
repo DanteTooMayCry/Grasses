@@ -1,0 +1,48 @@
+{
+  "name": "Config File",
+  "icon": "minecraft:birch_sign",
+  "category": "grasses:basics_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod has an extensive configuration file. You can disable most of the provided functions in great detail.$(br2)There is only one option to change on the client side and it concerns the ability to disable the vanilla behavior where blocks like grass are not$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)placed perfectly in the middle, but with a random offset.$(br2)If you play on a server, you can change this display independently of it.$(br2)The configuration file common to the client and server provides several categories of changes:$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Cutting Tree$() - you can set permissions to cut down trunks, leaves and warts, allow connect trunks of the same type and set the maximum number of blocks to be destroyed in one go.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Vanilla Bone Meal Behaviours$() - concerns the preservation of vanilla bone meal, which can now be used to grow plants that didn't have this option before (e.g. cactus), and can also be used on blocks like Podzol.$(br)Each plant and block can be disabled individually.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Leaves changing Behaviours$() - gives you the opportunity to decide whether to allow the transformation of vanilla leaves into fashion leaves and vice versa, individually or at once on the entire tree, and in the same way, individually or at once, allow the leaves to be colored.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Plants changing Behaviours$() - similarly to the previous point, it allows you to decide whether it is possible to change plants and their coloring, including vines, at the same time. It also applies to potted plants and replacing seedlings with a dead bush.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Crafting and Loot$() - here you can decide which new items can be found in chests as loot and/or created through crafting, which new recipes should be active, and whether to allow the recoloring of bone meal and coloring tools.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Max Height of some plants$() - allows you to determine the maximum heights of plants such as cactus and sugar cane when using bone meal. If other mods provide similar multi-block plants that cannot be used bonemeal on, then after adding them to the right tag$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)you can also set a maximum height for them and a chance that they will grow when bone meal is used.$(br2)$(4)IMPORTANT - such a block plant will only grow vertically, it will not duplicate other shapes, you also need to check whether it does not cause errors.$()$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Additional$() - a few additional settings that change vanilla behavior, not necessarily strictly related to the theme of this mod."
+    }
+  ]
+}

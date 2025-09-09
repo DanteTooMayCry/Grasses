@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Skraj Dżungli",
+  "icon": "grasses:sparse_jungle_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 18,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:sparse_jungle_grass_block",
+      "title": "Blok: Skraj Dżungli"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:sparse_jungle_grass_slab",
+      "title": "Płyta: Skraj Dżungli"
+    }
+  ]
+}

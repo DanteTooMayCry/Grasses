@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Willow Leaves",
+  "icon": "grasses:willow_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 18,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:willow_leaves_block",
+      "title": "Willow Leaves"
+    }
+  ]
+}

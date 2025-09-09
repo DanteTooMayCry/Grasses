@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Skraj dżungli",
+  "icon": "minecraft:vine",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 18,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:sparse_jungle_grass_block",
+      "title": "Kolor: Skraj dżungli"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:vine",
+      "title": "Składnik:"
+    }
+  ]
+}

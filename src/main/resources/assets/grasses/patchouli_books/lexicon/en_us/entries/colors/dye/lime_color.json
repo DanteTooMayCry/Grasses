@@ -1,0 +1,19 @@
+{
+  "name": "Color: Lime",
+  "icon": "minecraft:lime_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 29,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lime_grass_block",
+      "title": "Color: Lime"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:lime_dye",
+      "title": "Ingredient:"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "type": "grasses:dyeing",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    [
+      {
+        "item": "minecraft:red_sand"
+      },
+      {
+        "item": "minecraft:birch_sapling"
+      },
+      {
+        "item": "minecraft:cherry_sapling"
+      },
+      {
+        "item": "minecraft:dark_oak_sapling"
+      },
+      {
+        "item": "minecraft:cactus"
+      },
+      {
+        "item": "minecraft:pointed_dripstone"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:jungle_sapling"
+      },
+      {
+        "item": "minecraft:glow_berries"
+      },
+      {
+        "item": "minecraft:mangrove_propagule"
+      },
+      {
+        "item": "minecraft:allium"
+      },
+      {
+        "item": "minecraft:mycelium"
+      },
+      {
+        "item": "minecraft:kelp"
+      },
+      {
+        "item": "minecraft:grass"
+      },
+      {
+        "item": "minecraft:fern"
+      },
+      {
+        "item": "minecraft:ice"
+      },
+      {
+        "item": "minecraft:snowball"
+      },
+      {
+        "item": "minecraft:vine"
+      },
+      {
+        "item": "minecraft:emerald_ore"
+      },
+      {
+        "item": "minecraft:blue_orchid"
+      },
+      {
+        "item": "minecraft:lily_pad"
+      },
+      {
+        "item": "minecraft:spruce_sapling"
+      },
+      {
+        "item": "minecraft:grass_block"
+      },
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "item": "minecraft:copper_ingot"
+      },
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "minecraft:gold_ingot"
+      },
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "item": "minecraft:emerald"
+      },
+      {
+        "item": "minecraft:netherite_scrap"
+      },
+      {
+        "item": "minecraft:redstone"
+      },
+      {
+        "item": "minecraft:amethyst_shard"
+      },
+      {
+        "item": "minecraft:lapis_lazuli"
+      },
+      {
+        "item": "minecraft:scute"
+      },
+      {
+        "item": "minecraft:ender_pearl"
+      },
+      {
+        "item": "minecraft:bamboo"
+      },
+      {
+        "item": "minecraft:warped_wart_block"
+      },
+      {
+        "item": "minecraft:ender_eye"
+      },
+      {
+        "item": "minecraft:sculk"
+      },
+      {
+        "item": "minecraft:pink_petals"
+      }
+    ]
+  ],
+  "output": {
+    "count": 64,
+    "item": "grasses:grasses_dye"
+  }
+}

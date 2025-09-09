@@ -1,0 +1,15 @@
+{
+  "name": "Magma Slab",
+  "icon": "grasses:magma_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 16,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:magma_slab",
+      "title": "Magma Slab",
+      "text": "A slab identical to a vanilla Magma Block."
+    }
+  ]
+}

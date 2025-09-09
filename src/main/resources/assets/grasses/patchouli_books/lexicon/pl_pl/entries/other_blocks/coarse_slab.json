@@ -1,0 +1,15 @@
+{
+  "name": "Płyta Twardej Ziemi",
+  "icon": "grasses:coarse_dirt_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 7,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:coarse_dirt_slab",
+      "title": "Płyta Twardej Ziemii",
+      "text": "Płyta identyczna z waniliowym blokiem twardej ziemi. Domyślnie nie można sadzić roślin na jej dolnej połowie, ale można zmienić to w pliku config."
+    }
+  ]
+}

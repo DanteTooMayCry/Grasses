@@ -1,0 +1,43 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "grasses:end_portal_frame_enabled"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "C": {
+            "item": "minecraft:end_crystal"
+          },
+          "D": {
+            "item": "minecraft:dragon_head"
+          },
+          "E": {
+            "item": "minecraft:end_stone"
+          },
+          "N": {
+            "item": "minecraft:nether_star"
+          },
+          "S": {
+            "item": "minecraft:echo_shard"
+          }
+        },
+        "pattern": [
+          "ENE",
+          "SDS",
+          "ECE"
+        ],
+        "result": {
+          "count": 4,
+          "item": "grasses:end_portal_frame_block"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

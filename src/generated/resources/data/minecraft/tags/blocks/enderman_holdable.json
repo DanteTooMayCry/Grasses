@@ -1,0 +1,13 @@
+{
+  "values": [
+    "#grasses:all_mod_grass",
+    "grasses:gravel_slab",
+    "grasses:sand_slab",
+    "grasses:red_sand_slab",
+    "grasses:clay_slab",
+    "grasses:grow_mycelium",
+    "grasses:grow_podzol",
+    "grasses:cactus_tinted",
+    "#grasses:nylium_blocks"
+  ]
+}

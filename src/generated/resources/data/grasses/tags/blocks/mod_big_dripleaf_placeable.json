@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:small_dripleaf_placeable",
+    "#minecraft:dirt",
+    "minecraft:farmland",
+    "#grasses:all_mod_grass",
+    "grasses:farmland_slab"
+  ]
+}
