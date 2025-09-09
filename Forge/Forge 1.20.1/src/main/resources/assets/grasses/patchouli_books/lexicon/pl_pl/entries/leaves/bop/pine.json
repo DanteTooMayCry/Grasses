@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Liście Sosny",
+  "icon": "grasses:pine_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 12,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pine_leaves_block",
+      "title": "Liście Sosny"
+    }
+  ]
+}

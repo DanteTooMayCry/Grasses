@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Namorzynowe Bagno",
+  "icon": "minecraft:mangrove_propagule",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 10,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mangrove_grass_block",
+      "title": "Kolor: Namorzynowe Bagno"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:mangrove_propagule",
+      "title": "Składnik:"
+    }
+  ]
+}

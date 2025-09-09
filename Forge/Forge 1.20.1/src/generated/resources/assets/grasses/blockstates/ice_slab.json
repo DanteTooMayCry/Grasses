@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "grasses:block/ice_slab"
+    },
+    "type=double": {
+      "model": "grasses:block/ice_slab_block"
+    },
+    "type=top": {
+      "model": "grasses:block/ice_slab_top"
+    }
+  }
+}

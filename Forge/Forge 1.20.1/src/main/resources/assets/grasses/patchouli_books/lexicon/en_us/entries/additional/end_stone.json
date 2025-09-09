@@ -1,0 +1,13 @@
+{
+  "name": "End Stone Recipe",
+  "icon": "minecraft:end_stone",
+  "category": "grasses:additional_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:block/end_stone",
+      "border": true
+    }
+  ]
+}

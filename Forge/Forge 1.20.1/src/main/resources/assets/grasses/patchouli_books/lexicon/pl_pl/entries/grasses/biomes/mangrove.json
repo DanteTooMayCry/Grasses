@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Namorzynowe Bagno",
+  "icon": "grasses:mangrove_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 10,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mangrove_grass_block",
+      "title": "Blok: Namorzynowe Bagno"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mangrove_grass_slab",
+      "title": "Płyta: Namorzynowe Bagno"
+    }
+  ]
+}

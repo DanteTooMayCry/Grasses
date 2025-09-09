@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "D": {
+      "item": "grasses:dirt_slab"
+    },
+    "G": {
+      "item": "grasses:gravel_slab"
+    }
+  },
+  "pattern": [
+    "DG ",
+    "GD ",
+    "   "
+  ],
+  "result": {
+    "item": "grasses:coarse_dirt_slab"
+  },
+  "show_notification": true
+}

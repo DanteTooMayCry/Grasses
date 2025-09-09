@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "grasses:has_instance_of_shears"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "grasses:huge_clover_tinted"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "grasses:blocks/huge_clover_tinted"
+}

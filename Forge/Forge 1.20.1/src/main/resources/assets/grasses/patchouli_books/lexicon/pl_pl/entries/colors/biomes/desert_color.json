@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Pustynia",
+  "icon": "minecraft:cactus",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 5,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:desert_grass_block",
+      "title": "Kolor: Pustynia"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:cactus",
+      "title": "Składnik:"
+    }
+  ]
+}

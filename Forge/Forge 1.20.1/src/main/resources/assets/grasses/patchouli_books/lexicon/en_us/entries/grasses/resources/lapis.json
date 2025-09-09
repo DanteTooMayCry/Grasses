@@ -1,0 +1,19 @@
+{
+  "name": "Lapis Grass",
+  "icon": "grasses:lapis_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 49,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lapis_grass_block",
+      "title": "Lapis Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lapis_grass_slab",
+      "title": "Lapis Grass Slab"
+    }
+  ]
+}

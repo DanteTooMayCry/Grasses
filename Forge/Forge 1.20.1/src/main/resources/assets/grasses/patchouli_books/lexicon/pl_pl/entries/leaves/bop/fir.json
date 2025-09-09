@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Liście Jodły",
+  "icon": "grasses:fir_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 11,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:fir_leaves_block",
+      "title": "Liście Jodły"
+    }
+  ]
+}

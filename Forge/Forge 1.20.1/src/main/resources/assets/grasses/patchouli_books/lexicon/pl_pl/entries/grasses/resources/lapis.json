@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Lazurytowy",
+  "icon": "grasses:lapis_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 49,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lapis_grass_block",
+      "title": "Blok: Lazurytowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lapis_grass_slab",
+      "title": "Płyta: Lazurytowy"
+    }
+  ]
+}

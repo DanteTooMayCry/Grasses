@@ -1,0 +1,14 @@
+{
+  "name": "Dark Oak Leaves",
+  "icon": "grasses:dark_oak_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 5,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_oak_leaves_block",
+      "title": "Dark Oak Leaves"
+    }
+  ]
+}

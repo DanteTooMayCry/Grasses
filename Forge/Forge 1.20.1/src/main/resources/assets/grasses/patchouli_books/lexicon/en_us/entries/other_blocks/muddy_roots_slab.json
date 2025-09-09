@@ -1,0 +1,15 @@
+{
+  "name": "Muddy Roots Slab",
+  "icon": "grasses:muddy_roots_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 20,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:muddy_roots_slab",
+      "title": "Muddy Roots Slab",
+      "text": "A slab identical to a vanilla Muddy Mangrove Roots Block"
+    }
+  ]
+}

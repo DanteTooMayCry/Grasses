@@ -1,0 +1,19 @@
+{
+  "name": "Color: Ocean",
+  "icon": "minecraft:kelp",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 13,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:ocean_grass_block",
+      "title": "Color: Ocean"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:kelp",
+      "title": "Ingredient:"
+    }
+  ]
+}

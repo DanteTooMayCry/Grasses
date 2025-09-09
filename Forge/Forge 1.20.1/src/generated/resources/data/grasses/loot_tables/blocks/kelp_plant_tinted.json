@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "grasses:kelp_tinted"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "grasses:blocks/kelp_plant_tinted"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Bamboo Sapling",
+  "icon": "grasses:bamboo_sapling_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 11,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:bamboo_sapling_tinted",
+      "title": "Tinted Bamboo Sapling"
+    }
+  ]
+}

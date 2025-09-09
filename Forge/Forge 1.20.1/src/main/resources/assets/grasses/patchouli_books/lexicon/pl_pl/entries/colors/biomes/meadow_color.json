@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Górska Łąka",
+  "icon": "minecraft:allium",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 11,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:meadow_grass_block",
+      "title": "Kolor: Górska Łąka"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:allium",
+      "title": "Składnik:"
+    }
+  ]
+}

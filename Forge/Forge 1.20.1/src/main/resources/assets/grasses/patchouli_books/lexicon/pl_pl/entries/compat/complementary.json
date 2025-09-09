@@ -1,0 +1,16 @@
+{
+  "name": "Complementary",
+  "icon": "minecraft:orange_banner",
+  "category": "grasses:compat_mods_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty)$(2)Biomes of Plenty$()$() Liście i pnącza można zmieniać pomiędzy wersjami „BoP” i „Grasses” - mod dodaje ich wersję barwioną. Pnie mozna ścinać naraz.$(br)$(li)$(3)Inne mody dodające drzewa - prawdopodobnie$()$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)każdy pień drzew podobnych do waniliowych może być ścięty naraz, jednak bez łączenia pni tego samego rodzaju."
+    }
+  ]
+}

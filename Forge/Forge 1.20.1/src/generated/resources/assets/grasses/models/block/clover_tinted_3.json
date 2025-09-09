@@ -1,0 +1,125 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#flowerbed",
+          "tintindex": 0,
+          "uv": [
+            8.0,
+            16.0,
+            16.0,
+            8.0
+          ]
+        },
+        "up": {
+          "texture": "#flowerbed",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        8,
+        2,
+        8
+      ],
+      "to": [
+        16,
+        2,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        15.9,
+        0,
+        0.1
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          0.5,
+          0,
+          0.5
+        ]
+      },
+      "to": [
+        16.9,
+        2,
+        0.1
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "west": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        16.4,
+        0,
+        -0.4
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          0.5,
+          0,
+          0.5
+        ]
+      },
+      "to": [
+        16.4,
+        2,
+        0.6
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "flowerbed": "grasses:block/bop/clover",
+    "particle": "grasses:block/bop/clover",
+    "stem": "grasses:block/bop/clover_stem"
+  }
+}

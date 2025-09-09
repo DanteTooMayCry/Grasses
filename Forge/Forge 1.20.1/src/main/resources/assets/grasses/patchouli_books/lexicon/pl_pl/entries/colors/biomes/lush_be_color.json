@@ -1,0 +1,20 @@
+{
+  "name": "Kolor: Bujna Jaskinia",
+  "icon": "minecraft:glow_berries",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 9,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lush_be_grass_block",
+      "title": "Kolor: Bujna Jaskinia",
+      "text": "Jest to kolor zaczerpnięty z Bedrock Edition"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:glow_berries",
+      "title": "Składnik:"
+    }
+  ]
+}

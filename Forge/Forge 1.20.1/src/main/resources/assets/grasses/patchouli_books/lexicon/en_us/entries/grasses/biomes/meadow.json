@@ -1,0 +1,19 @@
+{
+  "name": "Meadow Grass",
+  "icon": "grasses:meadow_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 11,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:meadow_grass_block",
+      "title": "Meadow Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:meadow_grass_slab",
+      "title": "Meadow Grass Slab"
+    }
+  ]
+}

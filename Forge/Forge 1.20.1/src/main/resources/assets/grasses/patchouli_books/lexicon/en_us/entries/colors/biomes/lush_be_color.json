@@ -1,0 +1,20 @@
+{
+  "name": "Color: Lush Cave",
+  "icon": "minecraft:glow_berries",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 9,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lush_be_grass_block",
+      "title": "Color: Lush Cave",
+      "text": "This is a color taken from Bedrock Edition"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:glow_berries",
+      "title": "Ingredient:"
+    }
+  ]
+}

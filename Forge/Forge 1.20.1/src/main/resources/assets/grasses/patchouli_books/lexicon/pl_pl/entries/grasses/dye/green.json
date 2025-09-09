@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Zielony",
+  "icon": "grasses:green_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 30,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:green_grass_block",
+      "title": "Blok: Zielony"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:green_grass_slab",
+      "title": "Płyta: Zielony"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#bottom",
+          "tintindex": 0
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#top",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        15
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        1,
+        0,
+        0
+      ],
+      "to": [
+        15,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#bottomOverlay"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#topOverlay"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#sideOverlay"
+        },
+        "south": {
+          "texture": "#sideOverlay"
+        }
+      },
+      "from": [
+        0,
+        0,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        15
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#sideOverlay"
+        },
+        "west": {
+          "texture": "#sideOverlay"
+        }
+      },
+      "from": [
+        1,
+        0,
+        0
+      ],
+      "to": [
+        15,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "bottom": "grasses:block/cactus_bottom",
+    "bottomOverlay": "grasses:block/cactus_bottom_overlay",
+    "particle": "grasses:block/cactus_side",
+    "side": "grasses:block/cactus_side",
+    "sideOverlay": "grasses:block/cactus_side_overlay",
+    "top": "grasses:block/cactus_top",
+    "topOverlay": "grasses:block/cactus_top_overlay"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Piekielne liście",
+  "icon": "grasses:hellbark_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 26,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:hellbark_leaves_block",
+      "title": "Piekielne liście"
+    }
+  ]
+}

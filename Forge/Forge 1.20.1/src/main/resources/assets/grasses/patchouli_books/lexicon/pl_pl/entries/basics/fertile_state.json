@@ -1,0 +1,29 @@
+{
+  "name": "Stan Fertile",
+  "icon": "grasses:fertile_icon",
+  "category": "grasses:basics_category",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Modowe rośliny, bloki i półbloki traw, grzybni, bielicy oraz nylium posiadają nowy stan - FERTILE. Domyślnie blok posiada ten stan ustawiony na TRUE, zmienić go można za pomocą nożyc lub sekatora bez zaklęcia '$(6)Jedwabnego Dotyku$()'.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Zmiana stanu na FALSE na roślinach powoduje, że nie mogą one rosnąć w tym poprzez użycie na nich mączki, a na pozostałych blokach, że nie mogą się one rozprzestrzeniać. Użycie mączki podczas stanu FALSE przełączy go spowrotem w stan TRUE.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Jeśli zainstalowany jest mod '$(l:https://www.curseforge.com/minecraft/mc-mods/jade)$(2)Jade'$()$()' to pokaże on informację o aktualnym stanie.$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/jade_plant_info.png",
+        "grasses:textures/patchouli/jade_plant_info1.png",
+        "grasses:textures/patchouli/jade_plant_info2.png",
+        "grasses:textures/patchouli/jade_plant_info3.png"
+      ]
+    }
+  ]
+}

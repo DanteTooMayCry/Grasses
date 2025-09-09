@@ -1,0 +1,19 @@
+{
+  "name": "White Grass",
+  "icon": "grasses:white_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 24,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:white_grass_block",
+      "title": "White Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:white_grass_slab",
+      "title": "White Grass Slab"
+    }
+  ]
+}

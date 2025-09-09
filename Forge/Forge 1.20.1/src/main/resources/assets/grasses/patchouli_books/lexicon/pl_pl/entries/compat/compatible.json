@@ -1,0 +1,17 @@
+{
+  "name": "Compatible",
+  "icon": "minecraft:orange_banner",
+  "category": "grasses:compat_mods_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/dynamictrees)$(2)Dynamic Trees(DT)$()$() Drzewa z DT będą ścinane wg. jego mechaniki. Funkcje ścinania i kolorowania z 'Grasses' w żaden sposób nie wpłyną na jego drzewa.$(br)$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/endremastered)$(2)End Remastered(ER)$()$() Craftowana Rama Portalu do Endu$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)będzie zasilana w sposób waniliowy tj. zwykłymi Oczami Endera."
+    }
+  ]
+}
+

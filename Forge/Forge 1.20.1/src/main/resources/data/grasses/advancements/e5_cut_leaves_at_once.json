@@ -1,0 +1,88 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:diamond_auto_pruner"
+    },
+    "title": {
+      "translate": "grasses.advancements.cut_leaves_at_once.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.cut_leaves_at_once.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:e1_first_change_leaves",
+  "criteria": {
+    "diamond_auto_pruner":{
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:diamond_auto_pruner"
+            ]
+          }
+        ]
+      }
+    },
+    "cut_all_leaves": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "minecraft:logs_that_burn"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "grasses:pruners",
+              "nbt": "{Enchanted:0b}"
+            }
+          }
+        ]
+      }
+    },
+    "cut_all_warts": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:stems"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "grasses:pruners",
+              "nbt": "{Enchanted:0b}"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "diamond_auto_pruner"
+    ],
+    [
+      "cut_all_leaves"
+    ],
+    [
+      "cut_all_warts"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

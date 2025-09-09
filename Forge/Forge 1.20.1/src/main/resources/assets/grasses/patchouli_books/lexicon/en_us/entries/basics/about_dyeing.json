@@ -1,0 +1,78 @@
+{
+  "name": "About Dyeing",
+  "icon": "minecraft:orange_dye",
+  "category": "grasses:basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod implements colors in two different ways.$(br2)The first concerns grass blocks and their slab versions, the second is about leaves and plants.$(br2)Color is applied into grass blocks on the crafting table by simply following the$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "text": "recipe containing grass, grass block and dyeing ingredient.$(br)",
+      "recipe": "grasses:diamond_grass_block",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)For leaves and plants, a little more effort is required. First craft:$(br2)$(l:utility/dyeing_station)       Dyeing Station$()$(br2)Then put inside a Bucket Of Water, a Phantom Membrane and a dyeing ingredient what will prepare the $(br2)$(l:utility/grasses_dye)          Dye$()$(br2)Ingredient list can be$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)found in the category:$(br2)$(l:colors_ingredients_list_category) Colors & Ingredients$()$(br2)Second need to craft $(br2)$(l:utility/dyeing_tool)      Dyeing Tool$()$(br2)and place it with Bucket Of Water and Dye (also accepts 16 vanilla dyes) in Dyeing Station.$(br2)Last you must equip$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/set_color_on_tool.png",
+        "grasses:textures/patchouli/set_color_on_tool2.png",
+        "grasses:textures/patchouli/set_color_on_tool3.png",
+        "grasses:textures/patchouli/set_color_on_tool4.png"
+      ],
+      "border": true,
+      "text": "one of the tools listed below with '$(6)Silk Touch$()':$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(l:utility/enchanted_shears)   Enchanted Shears$()$(br)$(l:utility/diamond_auto_pruner)  Diamond Auto Pruner$()$(br) $(l:utility/netherite_auto_pruner)Netherite Auto Pruner$()$(br2)You can also clean the tool from color by using a bucket of water instead of the Dye.$(br2)Once you have received the tinted tool, you should transform vanilla$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)leaves into mod leaves.$(br2)To do this, use on any leaves one of the previously mentioned tools with '$(6)Silk Touch$()' or to change all the leaves at once, use one of the pruners on the tree trunk.$(br2)Then proceed in the same way with the Dyeing Tool.$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/change_color.png",
+        "grasses:textures/patchouli/change_color1.png",
+        "grasses:textures/patchouli/change_color2.png"
+      ],
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Plants are only changed one at a time. The exception are vines, which will change with leaves if the tree has them.$(br2)And if the pruner or Dyeing Tool has '$(6)Channeling$()' enchant it is possible to choose which blocks should be changed."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/change_color3b.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Standard using pruner or a Dyeing Tool will only change the leaves. Using tool and holding the crouch key will only change the vines.$(br2)The leaves have two versions of brightness. To switch between them, use pruners or scissors as previously described, but without.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(6)Silk Touch$().$(br2)You can also use $(l:utility/dyeing_bone_meal)Dyeing Bone Meal$() on vanilla or mod blocks that allow you to plant grass, seagrass and ferns, to grow the mentioned plants as normal, but they will be in the color of used Dyeing Bone Meal.$(br2)Mod also introduces$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)the possibility of using bone meal on Podzol, Mycelium and Soul Sand blocks."
+    }
+  ]
+}

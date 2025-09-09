@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flower_pot"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "grasses:sugar_cane_potted_tinted",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "biomes_color_source"
+              ]
+            }
+          ],
+          "name": "grasses:sugar_cane_tinted"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "grasses:blocks/sugar_cane_potted_tinted"
+}

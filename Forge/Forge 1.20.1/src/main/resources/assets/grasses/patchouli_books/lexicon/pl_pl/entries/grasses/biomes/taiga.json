@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Tajga",
+  "icon": "grasses:taiga_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 22,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:taiga_grass_block",
+      "title": "Blok: Tajga"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:taiga_grass_slab",
+      "title": "Płyta: Tajga"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Ośnieżone Równiny",
+  "icon": "minecraft:snowball",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 17,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:snowy_plains_grass_block",
+      "title": "Kolor: Ośnieżone Równiny"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:snowball",
+      "title": "Składnik:"
+    }
+  ]
+}

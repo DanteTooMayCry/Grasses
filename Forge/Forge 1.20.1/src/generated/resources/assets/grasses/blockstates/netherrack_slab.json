@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "type=bottom": [
+      {
+        "model": "grasses:block/netherrack_slab"
+      },
+      {
+        "model": "grasses:block/netherrack_slab",
+        "y": 90
+      },
+      {
+        "model": "grasses:block/netherrack_slab",
+        "y": 180
+      },
+      {
+        "model": "grasses:block/netherrack_slab",
+        "y": 270
+      }
+    ],
+    "type=double": [
+      {
+        "model": "grasses:block/netherrack_slab_block"
+      },
+      {
+        "model": "grasses:block/netherrack_slab_block",
+        "y": 90
+      },
+      {
+        "model": "grasses:block/netherrack_slab_block",
+        "y": 180
+      },
+      {
+        "model": "grasses:block/netherrack_slab_block",
+        "y": 270
+      }
+    ],
+    "type=top": [
+      {
+        "model": "grasses:block/netherrack_slab_top"
+      },
+      {
+        "model": "grasses:block/netherrack_slab_top",
+        "y": 90
+      },
+      {
+        "model": "grasses:block/netherrack_slab_top",
+        "y": 180
+      },
+      {
+        "model": "grasses:block/netherrack_slab_top",
+        "y": 270
+      }
+    ]
+  }
+}

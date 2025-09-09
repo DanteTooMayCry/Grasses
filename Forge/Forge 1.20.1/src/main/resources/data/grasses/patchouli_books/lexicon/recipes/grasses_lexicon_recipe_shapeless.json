@@ -1,0 +1,12 @@
+{
+  "type": "patchouli:shapeless_book_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "grasses:grow_grass_block"
+    }
+  ],
+  "book": "grasses:lexicon"
+}

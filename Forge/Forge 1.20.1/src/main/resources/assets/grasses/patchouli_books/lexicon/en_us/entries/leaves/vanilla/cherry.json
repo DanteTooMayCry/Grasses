@@ -1,0 +1,14 @@
+{
+  "name": "Cherry Leaves",
+  "icon": "grasses:cherry_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 4,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:cherry_leaves_block",
+      "title": "Cherry Leaves"
+    }
+  ]
+}

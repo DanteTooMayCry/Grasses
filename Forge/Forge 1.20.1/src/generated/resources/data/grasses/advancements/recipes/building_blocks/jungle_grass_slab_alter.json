@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_jungle_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:jungle_sapling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "grasses:jungle_grass_slab_alter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_jungle_sapling",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "grasses:jungle_grass_slab_alter"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,211 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#flowerbed",
+          "tintindex": 0,
+          "uv": [
+            8.0,
+            8.0,
+            16.0,
+            0.0
+          ]
+        },
+        "up": {
+          "texture": "#flowerbed",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        8,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        8
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "west": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        13.2,
+        0,
+        -9.9
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          -1,
+          0,
+          -3
+        ]
+      },
+      "to": [
+        13.2,
+        2,
+        -8.9
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        12.7,
+        0,
+        -9.4
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          -1,
+          0,
+          -3
+        ]
+      },
+      "to": [
+        13.7,
+        2,
+        -9.4
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "west": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        13.2,
+        0,
+        -4.2
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          -1,
+          0,
+          -3
+        ]
+      },
+      "to": [
+        13.2,
+        2,
+        -3.2
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "tintindex": 0,
+          "uv": [
+            0.0,
+            5.0,
+            1.0,
+            7.0
+          ]
+        }
+      },
+      "from": [
+        12.7,
+        0,
+        -3.7
+      ],
+      "rotation": {
+        "angle": -45.0,
+        "axis": "y",
+        "origin": [
+          -1,
+          0,
+          -3
+        ]
+      },
+      "to": [
+        13.7,
+        2,
+        -3.7
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "flowerbed": "grasses:block/bop/clover",
+    "particle": "grasses:block/bop/clover",
+    "stem": "grasses:block/bop/clover_stem"
+  }
+}

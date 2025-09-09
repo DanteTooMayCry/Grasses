@@ -1,0 +1,19 @@
+{
+  "name": "Color: Birch Forest",
+  "icon": "minecraft:birch_sapling",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 2,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:badlands_grass_block",
+      "title": "Color: Birch Forest"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:birch_sapling",
+      "title": "Ingredient:"
+    }
+  ]
+}

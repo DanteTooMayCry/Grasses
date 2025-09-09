@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "biomes_color_source=false": {
+      "model": "grasses:block/sugar_cane_tinted"
+    },
+    "biomes_color_source=true": {
+      "model": "grasses:block/sugar_cane_tinted_biomes"
+    }
+  }
+}

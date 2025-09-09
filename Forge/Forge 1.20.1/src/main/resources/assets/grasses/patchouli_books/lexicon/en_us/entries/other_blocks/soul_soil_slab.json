@@ -1,0 +1,15 @@
+{
+  "name": "Soul Soil Slab",
+  "icon": "grasses:soul_sand_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 15,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:soul_sand_slab",
+      "title": "Soul Soil Slab",
+      "text": "A slab identical to a vanilla Soul Soil Block"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Stacja Barwienia",
+  "icon": "grasses:dyeing_station",
+  "category": "grasses:utility_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Umożliwia wytworzenie $(l:utility/grasses_dye)Barwnika$() i nadanie barwy $(l:utility/dyeing_tool)Narzędziu Do Barwienia$() oraz $(l:utility/dyeing_bone_meal)Barwiącej Mączce$().$(br2)W sekcji $(l:colors_ingredients_list_category)Kolory I Składniki$() można zapoznać się z listą wykorzystywanych składników dla uzyskania konkretnej barwy.$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:dyeing_station",
+      "border": true,
+      "text": ""
+    }
+  ]
+}

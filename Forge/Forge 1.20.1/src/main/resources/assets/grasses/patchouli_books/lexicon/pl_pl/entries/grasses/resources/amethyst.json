@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Ametystowy",
+  "icon": "grasses:amethyst_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 48,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:amethyst_grass_block",
+      "title": "Blok: Ametystowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:amethyst_grass_slab",
+      "title": "Płyta: Ametystowy"
+    }
+  ]
+}

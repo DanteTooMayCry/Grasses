@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "4": {
+      "item": "minecraft:grass"
+    },
+    "6": {
+      "item": "minecraft:allium"
+    },
+    "D": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "pattern": [
+    "   ",
+    "4D6",
+    "   "
+  ],
+  "result": {
+    "item": "grasses:meadow_grass_block"
+  },
+  "show_notification": true
+}

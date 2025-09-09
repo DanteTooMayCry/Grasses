@@ -1,0 +1,14 @@
+{
+  "name": "Mangrove Leaves",
+  "icon": "grasses:mangrove_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 8,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mangrove_leaves_block",
+      "title": "Mangrove Leaves"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:big_drip_leaf_tinted",
+      "nbt": "{BlockStateTag:{color_type:lightlime}}"
+    },
+    "title": {
+      "translate": "grasses.advancements.first_tinted_plant_block.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.first_tinted_plant_block.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:d0_first_change_plants",
+  "criteria": {
+    "make_plant_block": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                    "grasses:grass_tinted",
+                    "grasses:fern_tinted",
+                    "grasses:seagrass_tinted",
+                    "grasses:grass_tall_tinted",
+                    "grasses:fern_tall_tinted",
+                    "grasses:seagrass_tall_tinted",
+                    "grasses:lily_pad_tinted",
+                    "grasses:vine_tinted",
+                    "grasses:willow_vine_tinted",
+                    "grasses:sugar_cane_tinted",
+                    "grasses:bamboo_tinted",
+                    "grasses:bamboo_sapling_tinted",
+                    "grasses:big_drip_leaf_tinted",
+                    "grasses:big_drip_leaf_stem_tinted",
+                    "grasses:small_drip_leaf_tinted",
+                    "grasses:kelp_tinted",
+                    "grasses:kelp_plant_tinted",
+                    "grasses:cactus_tinted"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "grasses:dyeing_tool"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "make_plant_block"
+    ]
+  ]
+}

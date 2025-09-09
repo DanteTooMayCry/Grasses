@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:shears"
+    },
+    "title": {
+      "translate": "grasses.advancements.silk_touch_shears.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.silk_touch_shears.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:root",
+  "criteria": {
+    "silk_touch_shears": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:shears"
+            ],
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "silk_touch_shears"
+    ]
+  ]
+}

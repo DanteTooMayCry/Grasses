@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "grasses:block/bop/tiny_cactus",
+    "layer1": "grasses:block/bop/tiny_cactus_overlay"
+  }
+}

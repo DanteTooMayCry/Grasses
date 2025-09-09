@@ -1,0 +1,48 @@
+{
+  "name": "Plik Konfiguracyjny",
+  "icon": "minecraft:birch_sign",
+  "category": "grasses:basics_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod posiada obszerny plik konfiguracyjny. Można w nim wyłączyć bardzo szczegółowo większość dostarczonych funkcji.$(br2)Po stronie klienta jest tylko jedna opcja do zmiany i dotyczy możliwości wyłączenia waniliowego zachowania, gdzie bloki jak trawa$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)nie są postawione idealnie na środku, ale z losowym przesunięciem.$(br2)Jeśli grasz na serwerze możesz zmienić to wyświetlanie niezależnie od niego.$(br2)Wspólny dla klienta i serwera plik konfiguracyjny dostarcza kilka kategorii zmian:$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Cutting Tree$() - można w nim ustawić pozwolenia na ścinanie pni, liści i brodawek, łączenia pni tego samego rodzaju oraz ustawić maksymalne ilości bloków do niszczenia za jednym zamachem.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Vanilla Bone Meal Behaviours$() - dotyczy zachowania waniliowej mączki, która może być teraz użyta do wzrostu roślin, które nie miały do tej pory tej opcji (np. kaktus), a także może być użyta na blokach jak Bielica.$(br)Każdą roślinę i blok można wyłączyć osobno.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Leaves changing Behaviours$() - daje możliwość zdecydowania czy pozwalać na zamiane liści waniliowych w modowe oraz odwrotnie, pojedynczo lub naraz na całym drzewie, a także w ten sam sposób pojedynczo lub naraz pozwolić na kolorowanie liści.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Plants changing Behaviours$() - podobnie jak w poprzednim punkcie pozwala zdecydować czy możliwa jest zmiana roślin i ich kolorowania w tym jeśli chodzi o pnącza - naraz. Dotyczy także roślin doniczkowych oraz zamiany sadzonek na martwy krzak.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Crafting and Loot$() - można tu zdecydowac które nowe przedmioty można znaleźć w skrzyniach jako loot i/lub stworzyć poprzez crafting, które nowe receptury mają być aktywne, a także czy pozwolić na rekoloryzację mączki i narzędzia do kolorowania.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Max Height of some plants$() - umożlwiia ustalenie maksymalnych wysokości roślin takich jak kaktus i trzcina cukrowa, przy użyciu mączki. Jeśli inne mody dostarczają podobne wieloblokowe rośliny, na których nie da się użyć mączki, to po dodaniu$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)ich uprzednio na odpowiedzi tag, można również dla nich ustalić maksymalną wartość i szansę, że urosną przy użyciu mączki.$(br2)$(4)UWAGA - taka blokowa roślina będzie rosła tylko pionowo, nie powieli innych kształtów, trzeba też sprawdzić czy nie powoduje błędów.$()$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)$(5)$(li)Additional$() - kilka dodatkowych ustawień zmieniających waniliowe zachowania, niekoniecznie stricte związane z motywem tego modu."
+    }
+  ]
+}
