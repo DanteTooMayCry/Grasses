@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "grasses:block/bamboo_stage0",
-    "layer1": "grasses:block/bamboo_stage0_overlay"
-  }
-}
