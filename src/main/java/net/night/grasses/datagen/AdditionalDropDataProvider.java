@@ -3,6 +3,7 @@ package net.night.grasses.datagen;
 import biomesoplenty.api.item.BOPItems;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -10,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.enums.DropType;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import static net.night.grasses.data.ModMethods.generateUniqueSuffix;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.CHERRY_LEAVES_BLOCK;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 //Generates additional_drops.toml file in run-data/config/grasses/ when runData
@@ -144,9 +144,7 @@ public class AdditionalDropDataProvider implements DataProvider {
         } else if (blockOrString instanceof String blockString) {
             blockKey = blockString;
         } else if (blockOrString instanceof EntityType<?> entityType) {
-            ResourceLocation resourceLocation = ForgeRegistries.ENTITY_TYPES.getKey(entityType);
-            if (resourceLocation == null)
-                return;
+            ResourceLocation resourceLocation = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
             blockKey = resourceLocation.toString();
         } else {
             return;
@@ -192,10 +190,7 @@ public class AdditionalDropDataProvider implements DataProvider {
         if (block == null)
             return "null_block";
 
-        ResourceLocation resourceLocation = ForgeRegistries.BLOCKS.getKey(block);
-        if (resourceLocation == null)
-            return "unknown_block";
-
+        ResourceLocation resourceLocation = BuiltInRegistries.BLOCK.getKey(block);
         return resourceLocation.toString();
     }
 
@@ -203,10 +198,7 @@ public class AdditionalDropDataProvider implements DataProvider {
         if (item == null)
             return "null_item";
 
-        ResourceLocation resourceLocation = ForgeRegistries.ITEMS.getKey(item);
-        if (resourceLocation == null)
-            return "unknown_item";
-
+        ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(item);
         return resourceLocation.toString();
     }
 

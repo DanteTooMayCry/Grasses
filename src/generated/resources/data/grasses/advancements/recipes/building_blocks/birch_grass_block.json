@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_birch_sapling",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_birch_sapling"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:birch_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

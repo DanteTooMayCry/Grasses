@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_purple_dye",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_purple_dye"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:purple_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

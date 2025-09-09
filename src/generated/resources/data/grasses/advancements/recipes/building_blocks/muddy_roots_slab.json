@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_muddy_mangrove_roots",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_muddy_mangrove_roots"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:muddy_roots_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

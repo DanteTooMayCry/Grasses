@@ -41,7 +41,7 @@ public class TintedTinyCactusBOP extends ParentTintedBushBlock implements Boneme
     public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos blockPos) {
 
         BlockState blockStateBelow = level.getBlockState(blockPos.below());
-        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
 
         return blockStateBelow.is(BlockTags.DIRT) || blockStateBelow.is(BlockTags.SAND);
@@ -55,8 +55,8 @@ public class TintedTinyCactusBOP extends ParentTintedBushBlock implements Boneme
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean b) {
-        if (!GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get())
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if (!GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get())
             return false;
         else
             return true;

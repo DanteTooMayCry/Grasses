@@ -6,7 +6,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.enums.ColorType;
 
 import java.util.ArrayList;
@@ -17,9 +17,7 @@ import java.util.Map;
 import static biomesoplenty.api.block.BOPBlocks.*;
 import static biomesoplenty.init.ModTags.Blocks.*;
 import static net.minecraft.tags.BlockTags.*;
-import static net.minecraft.tags.BlockTags.SPRUCE_LOGS;
 import static net.minecraft.world.level.block.Blocks.*;
-import static net.minecraft.world.level.block.Blocks.TORCHFLOWER;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.enums.ColorType.*;
 import static net.night.grasses.init.BlocksRegister.*;
@@ -83,7 +81,7 @@ public final class ModData {
         ingredientsList.add(Items.ALLIUM);
         ingredientsList.add(Items.MYCELIUM);
         ingredientsList.add(Items.KELP);
-        ingredientsList.add(Items.GRASS);
+        ingredientsList.add(Items.SHORT_GRASS);
         ingredientsList.add(Items.FERN);
         ingredientsList.add(Items.ICE);
         ingredientsList.add(Items.SNOWBALL);
@@ -199,7 +197,7 @@ public final class ModData {
         counterpartIDMap.put("oak", OAK_LEAVES);
         counterpartIDMap.put("spruce", SPRUCE_LEAVES);
 
-        counterpartIDMap.put("grass", GRASS);
+        counterpartIDMap.put("grass", SHORT_GRASS);
         counterpartIDMap.put("tall_grass", TALL_GRASS);
         counterpartIDMap.put("fern", FERN);
         counterpartIDMap.put("large_fern", LARGE_FERN);
@@ -295,7 +293,7 @@ public final class ModData {
         matchingCounterpartsLeaves.put(Blocks.OAK_LEAVES, OAK_LEAVES_BLOCK.get());
         matchingCounterpartsLeaves.put(Blocks.SPRUCE_LEAVES, SPRUCE_LEAVES_BLOCK.get());
 
-        matchingCounterpartsPlants.put(GRASS, GRASS_TINTED.get());
+        matchingCounterpartsPlants.put(SHORT_GRASS, GRASS_SHORT_TINTED.get());
         matchingCounterpartsPlants.put(TALL_GRASS, GRASS_TALL_TINTED.get());
         matchingCounterpartsPlants.put(FERN, FERN_TINTED.get());
         matchingCounterpartsPlants.put(LARGE_FERN, FERN_TALL_TINTED.get());
@@ -317,7 +315,7 @@ public final class ModData {
         matchingCounterpartsPlants.put(FERN_IN_BARS.get(), TINTED_FERN_IN_BARS.get());
         matchingCounterpartsPlants.put(VINE_IN_BARS.get(), TINTED_VINE_IN_BARS.get());
 
-        //matchingCounterpartsPotted.put(GRASS_POTTED.get(), GRASS_TINTED.get());
+        //matchingCounterpartsPotted.put(GRASS_POTTED.get(), GRASS_SHORT_TINTED.get());
 
         if (isBOPLoaded) {
             matchingCounterpartsLeaves.put(FIR_LEAVES, FIR_LEAVES_BLOCK.get());
@@ -485,7 +483,7 @@ public final class ModData {
     } // vanillaLogsTagsBlocksList && BOPLogsTagsBlocksList
 
     static {
-        plantsChangedIntoTintedWithFlag.put(GRASS, 3);
+        plantsChangedIntoTintedWithFlag.put(SHORT_GRASS, 3);
         plantsChangedIntoTintedWithFlag.put(TALL_GRASS, 19);
         plantsChangedIntoTintedWithFlag.put(FERN, 3);
         plantsChangedIntoTintedWithFlag.put(LARGE_FERN, 19);
@@ -547,24 +545,24 @@ public final class ModData {
 
     static {
 
-        for (RegistryObject<Block> block : allLeavesRegistryBlocksList) {
+        for (DeferredBlock<Block> block : allLeavesRegistryBlocksList) {
             modBlockItemsWithNBT.add(block.get().asItem());
 
         }
-        for (RegistryObject<Block> block : plantRegistryBlockList) {
+        for (DeferredBlock<Block> block : plantRegistryBlockList) {
             modBlockItemsWithNBT.add(block.get().asItem());
         }
 
-        for (RegistryObject<Block> block : plantInBarsTintedRegistryBlockList) {
+        for (DeferredBlock<Block> block : plantInBarsTintedRegistryBlockList) {
             modBlockItemsWithNBT.add(block.get().asItem());
         }
 
         if (!isBOPLoaded) {
-            for (RegistryObject<Block> block : tintedBOPleavesRegistryBlocksList) {
+            for (DeferredBlock<Block> block : tintedBOPleavesRegistryBlocksList) {
                 modBlockItemsWithNBT.add(block.get().asItem());
 
             }
-            for (RegistryObject<Block> block : tintedBOPplantRegistryBlockList) {
+            for (DeferredBlock<Block> block : tintedBOPplantRegistryBlockList) {
                 modBlockItemsWithNBT.add(block.get().asItem());
             }
         }
@@ -578,7 +576,7 @@ public final class ModData {
         notForCreativeTab.add(BIG_DRIP_LEAF_STEM_TINTED.get().asItem());
         notForCreativeTab.add(FERTILE_ICON.get());
 
-        for (RegistryObject<Block> block : plantInBarsRegistryBlockList) {
+        for (DeferredBlock<Block> block : plantInBarsRegistryBlockList) {
             notForCreativeTab.add(block.get().asItem());
         }
 
@@ -589,11 +587,11 @@ public final class ModData {
 
         tintedBOPleavesBlocksList.clear();
         tintedBOPPlantBlockList.clear();
-        for (RegistryObject<Block> leaves : tintedBOPleavesRegistryBlocksList) {
+        for (DeferredBlock<Block> leaves : tintedBOPleavesRegistryBlocksList) {
             tintedBOPRestrictedCreativeTab.add(leaves.get().asItem());
             tintedBOPleavesBlocksList.add(leaves.get());
         }
-        for (RegistryObject<Block> plant : tintedBOPplantRegistryBlockList) {
+        for (DeferredBlock<Block> plant : tintedBOPplantRegistryBlockList) {
             tintedBOPRestrictedCreativeTab.add(plant.get().asItem());
             tintedBOPPlantBlockList.add(plant.get());
         }
@@ -601,7 +599,7 @@ public final class ModData {
     } // tintedBOPRestrictedCreativeTab && tintedBOPPlantBlockList
 
     static {
-        matchingTintedPottedWithPlant.put(GRASS_POTTED_TINTED.get(), GRASS_TINTED.get());
+        matchingTintedPottedWithPlant.put(GRASS_SHORT_POTTED_TINTED.get(), GRASS_SHORT_TINTED.get());
         matchingTintedPottedWithPlant.put(FERN_POTTED_TINTED.get(), FERN_TINTED.get());
         matchingTintedPottedWithPlant.put(SEAGRASS_POTTED_TINTED.get(), SEAGRASS_TINTED.get());
         matchingTintedPottedWithPlant.put(BAMBOO_POTTED_TINTED.get(), BAMBOO_TINTED.get());
@@ -627,7 +625,7 @@ public final class ModData {
     } // matchingTintedPottedWithPlant
 
     static {
-        matchingNotTintedPottedWithPlant.put(GRASS_POTTED.get(), GRASS);
+        matchingNotTintedPottedWithPlant.put(GRASS_POTTED.get(), SHORT_GRASS);
         matchingNotTintedPottedWithPlant.put(SEAGRASS_POTTED.get(), SEAGRASS);
         matchingNotTintedPottedWithPlant.put(SUGAR_CANE_POTTED.get(), SUGAR_CANE);
         matchingNotTintedPottedWithPlant.put(VINE_POTTED.get(), VINE);
@@ -686,17 +684,17 @@ public final class ModData {
     } // matchingNotTintedPottedWithPlant
 
     static {
-        for(RegistryObject<Block> leaves : pottedTintedRegistryLeavesList){
+        for(DeferredBlock<Block> leaves : pottedTintedRegistryLeavesList){
             tintedLeavesPottedBlockList.add(leaves.get());
         }
     } // vanillaLeavesPottedBlockList
 
     static {
 
-        matchingBarsWithPlant.put(GRASS_IN_BARS.get(), GRASS);
+        matchingBarsWithPlant.put(GRASS_IN_BARS.get(), SHORT_GRASS);
         matchingBarsWithPlant.put(FERN_IN_BARS.get(), FERN);
         matchingBarsWithPlant.put(VINE_IN_BARS.get(), VINE);
-        matchingBarsWithPlant.put(TINTED_GRASS_IN_BARS.get(), GRASS_TINTED.get());
+        matchingBarsWithPlant.put(TINTED_GRASS_IN_BARS.get(), GRASS_SHORT_TINTED.get());
         matchingBarsWithPlant.put(TINTED_FERN_IN_BARS.get(), FERN_TINTED.get());
         matchingBarsWithPlant.put(TINTED_VINE_IN_BARS.get(), VINE_TINTED.get());
 
@@ -709,7 +707,7 @@ public final class ModData {
     } // matchingCounterpartsVanillaPotted
 
     static {
-        tintedPlantsThatCanBePotted.add(GRASS_TINTED.get().asItem());
+        tintedPlantsThatCanBePotted.add(GRASS_SHORT_TINTED.get().asItem());
         tintedPlantsThatCanBePotted.add(FERN_TINTED.get().asItem());
         tintedPlantsThatCanBePotted.add(SEAGRASS_TINTED.get().asItem());
         tintedPlantsThatCanBePotted.add(BAMBOO_TINTED.get().asItem());
@@ -733,7 +731,7 @@ public final class ModData {
     } // tintedPlantsThatCanBePotted
 
     static {
-        notTintedPlantsThatCanBePotted.add(GRASS.asItem());
+        notTintedPlantsThatCanBePotted.add(SHORT_GRASS.asItem());
         notTintedPlantsThatCanBePotted.add(FERN.asItem());
         notTintedPlantsThatCanBePotted.add(SEAGRASS.asItem());
         notTintedPlantsThatCanBePotted.add(BAMBOO.asItem());
@@ -788,17 +786,17 @@ public final class ModData {
 
     static {
 
-        for (RegistryObject<Block> plant : plantRegistryBlockList)
+        for (DeferredBlock<Block> plant : plantRegistryBlockList)
             standardTintedPlantsList.add(plant.get());
 
-        for (RegistryObject<Block> plant : pottedTintedRegistryPlantList)
+        for (DeferredBlock<Block> plant : pottedTintedRegistryPlantList)
             standardTintedPlantsList.add(plant.get());
 
         for (Map.Entry<Block, Block> plantInBars : matchingBarsWithPlant.entrySet())
             standardTintedPlantsList.add(plantInBars.getKey());
 
         if (isBOPLoaded){
-            for (RegistryObject<Block> plant : tintedBOPplantRegistryBlockList) {
+            for (DeferredBlock<Block> plant : tintedBOPplantRegistryBlockList) {
                 standardTintedPlantsList.add(plant.get());
             }
         }

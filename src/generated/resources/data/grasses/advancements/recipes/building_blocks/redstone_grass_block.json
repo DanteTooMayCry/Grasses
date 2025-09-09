@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_redstone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_redstone"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:redstone_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

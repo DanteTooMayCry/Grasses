@@ -2,14 +2,21 @@ package net.night.grasses.mixins;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.AttachedStemBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.config.GrassesConfig;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,9 +28,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static net.minecraft.world.level.block.Blocks.AIR;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPost;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPre;
 import static net.night.grasses.init.BlocksRegister.FARMLAND_SLAB_BLOCK;
 
 @Mixin(StemBlock.class)
@@ -31,7 +41,10 @@ public abstract class StemBlockMixin {
 
     @Shadow
     @Final
-    private StemGrownBlock fruit;
+    private ResourceKey<Block> fruit;
+    @Shadow
+    @Final
+    private ResourceKey<Block> attachedStem;
     @Shadow @Final public static IntegerProperty AGE;
     @Unique
     private static Map<Direction, BlockState> grasses$matchingDirectionBlockState = new HashMap<>();
@@ -50,18 +63,25 @@ public abstract class StemBlockMixin {
             }
 
             float f = grasses$getGrowthSpeed(pState.getBlock(), pLevel, pPos);
-            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt((int)(25.0F / f) + 1) == 0)) {
+            if (onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt((int)(25.0F / f) + 1) == 0)) {
+                boolean allowPlantsOnBottomSlab = GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get();
 
                 if (pState.getValue(AGE) == 7) {
                     Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(pRandom);
                     BlockPos blockpos = pPos.relative(direction);
                     BlockState blockstate = pLevel.getBlockState(blockpos.below());
-                    if (pLevel.isEmptyBlock(blockpos) && (blockstate.canSustainPlant(pLevel, blockpos.below(), Direction.UP, this.fruit) || blockstate.is(FARMLAND_SLAB_BLOCK.get()) && (blockstate.getValue(SLAB_TYPE) != SlabType.BOTTOM || GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()))) {
-                        pLevel.setBlockAndUpdate(blockpos, this.fruit.defaultBlockState());
-                        pLevel.setBlockAndUpdate(pPos, this.fruit.getAttachedStem().defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, direction));
+                    if (pLevel.isEmptyBlock(blockpos) && (blockstate.is(FARMLAND_SLAB_BLOCK.get()) && (blockstate.getValue(SLAB_TYPE) != SlabType.BOTTOM || allowPlantsOnBottomSlab))) {
+                        Registry<Block> registry = pLevel.registryAccess().registryOrThrow(Registries.BLOCK);
+                        Optional<Block> optional = registry.getOptional(this.fruit);
+                        Optional<Block> optional1 = registry.getOptional(this.attachedStem);
+
+                        if (optional.isPresent() && optional1.isPresent()) {
+                            pLevel.setBlockAndUpdate(blockpos, ((Block)optional.get()).defaultBlockState());
+                            pLevel.setBlockAndUpdate(pPos, (BlockState)((Block)optional1.get()).defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, direction));
+                        }
                     }
                 }
-                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+                onCropsGrowPost(pLevel, pPos, pState);
             }
         }
     }
@@ -98,7 +118,7 @@ public abstract class StemBlockMixin {
             for(int j = -1; j <= 1; ++j) {
                 float f1 = 0.0F;
                 BlockState blockstate = pLevel.getBlockState(blockpos.offset(i, 0, j));
-                if (blockstate.canSustainPlant(pLevel, blockpos.offset(i, 0, j), Direction.UP, (net.minecraftforge.common.IPlantable) pBlock)) {
+                if (blockstate.canSustainPlant(pLevel, blockpos.offset(i, 0, j), Direction.UP, (IPlantable) pBlock)) {
                     f1 = 1.0F;
                     if (blockstate.isFertile(pLevel, pPos.offset(i, 0, j))) {
                         f1 = 3.0F;

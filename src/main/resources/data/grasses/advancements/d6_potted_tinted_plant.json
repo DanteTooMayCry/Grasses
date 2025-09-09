@@ -54,7 +54,7 @@
             "condition": "minecraft:match_tool",
             "predicate": {
               "items": [
-                "grasses:grass_tinted",
+                "grasses:grass_short_tinted",
                 "grasses:fern_tinted",
                 "grasses:seagrass_tinted",
                 "grasses:bamboo_tinted",

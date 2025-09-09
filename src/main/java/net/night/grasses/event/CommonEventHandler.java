@@ -3,7 +3,6 @@ package net.night.grasses.event;
 import biomesoplenty.block.HugeCloverPetalBlock;
 import biomesoplenty.block.HugeLilyPadBlock;
 import biomesoplenty.block.properties.QuarterProperty;
-import com.teamremastered.endrem.blocks.ERFrameProperties;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -12,8 +11,6 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -38,16 +35,15 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
 import net.night.grasses.config.additionalDropSystem.ModConfigStatus;
@@ -55,21 +51,19 @@ import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.entity.ai.goal.EatGrassesBlockGoal;
 import net.night.grasses.enums.DropType;
+import net.night.grasses.enums.GrassesQuarterProperty;
 import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.item.DyeingTool;
-import net.night.grasses.enums.GrassesQuarterProperty;
 import net.night.grasses.util.DropSpawnScheduler;
 import net.night.grasses.util.ModTags;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
-import static biomesoplenty.api.block.BOPBlocks.*;
+import static biomesoplenty.api.block.BOPBlocks.HUGE_LILY_PAD;
 import static biomesoplenty.block.HugeLilyPadBlock.QUARTER;
-import static com.teamremastered.endrem.blocks.AncientPortalFrame.EYE;
-import static com.teamremastered.endrem.registers.ERBlocks.ANCIENT_PORTAL_FRAME;
 import static net.minecraft.advancements.CriteriaTriggers.ITEM_USED_ON_BLOCK;
 import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.level.block.Blocks.*;
@@ -80,10 +74,11 @@ import static net.minecraft.world.level.block.SlabBlock.TYPE;
 import static net.minecraft.world.level.block.piston.PistonBaseBlock.EXTENDED;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
-import static net.night.grasses.Grasses.*;
+import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.event.CommonEventsMethods.*;
+import static net.night.grasses.event.CommonEventsMethods.checkIfShouldClearOriginalDrops;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
@@ -129,6 +124,7 @@ public class CommonEventHandler {
     public static List<ItemStack> additionalDrop = new ArrayList<>();
     public static Map<ItemStack, float[]> additionalDropWithChanceForAllCase = new HashMap<>();
     public static Map<Item, float[]> additionalDropWithChanceForOneOfCase = new HashMap<>();
+
 
     @SubscribeEvent
     public static void onGrassesClickedWithTool(BlockEvent.BlockToolModificationEvent event) {
@@ -184,7 +180,6 @@ public class CommonEventHandler {
         }
     }
 
-
     @SubscribeEvent
     public static void cuttingDownTree (BlockEvent.BreakEvent event) {
 
@@ -199,7 +194,7 @@ public class CommonEventHandler {
         Level level = player.level();
         BlockState blockState = level.getBlockState(blockPos);
 
-        if(itemStack.getItem() instanceof AxeItem && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHOP_TREE_AT_ONCE.get()) {
+        if(itemStack.getItem() instanceof AxeItem && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHOP_TREE_AT_ONCE.get()) {
 
             boolean isTreeOrStemLog = blockState.is(LOGS) && !blockState.is(BLACKLIST_LOGS);
 
@@ -219,21 +214,21 @@ public class CommonEventHandler {
                 if(player instanceof ServerPlayer)
                     ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStack);
             }
-        } else {
+        } else
 
-            if (!(level instanceof ServerLevel serverLevel) || player.isCreative())
-                return;
+        if (!(level instanceof ServerLevel) || player.isCreative())
+            return;
 
+        ServerLevel serverLevel = (ServerLevel) level;
 
-            List<ItemStack> drops = getOriginalDrops(serverLevel, blockState, blockPos, itemStack, player);
-            DropType effectiveMode = checkIfDropBlockItself(blockState, drops);
+        List<ItemStack> drops = getOriginalDrops(serverLevel, blockState, blockPos, itemStack, player);
+        DropType effectiveMode = checkIfDropBlockItself(blockState, drops);
 
-            if (checkIfShouldClearOriginalDrops(blockState, null, effectiveMode)) {
-                event.setCanceled(true);
-                level.removeBlock(blockPos, false);
-            }
-            spawnAdditionalDrops(level, blockPos, itemStack, blockState, null, effectiveMode);
+        if (checkIfShouldClearOriginalDrops(blockState, null, effectiveMode)) {
+            event.setCanceled(true);
+            level.removeBlock(blockPos, false);
         }
+        spawnAdditionalDrops(level, blockPos, itemStack, blockState, null, effectiveMode);
     }
 
     @SubscribeEvent
@@ -248,7 +243,7 @@ public class CommonEventHandler {
             ItemStack itemStack = event.getEntity().getMainHandItem();
             boolean hasSilkTouch = EnchantmentHelper.hasSilkTouch(itemStack);
 
-            if (itemStack.getItem() instanceof AxeItem && hasSilkTouch && event.getState().is(LOGS) && !event.getState().is(BLACKLIST_LOGS) && GrassesConfig.CommonConfig.ALLOW_CHOP_TREE_AT_ONCE.get()) {
+            if (itemStack.getItem() instanceof AxeItem && hasSilkTouch && event.getState().is(LOGS) && !event.getState().is(BLACKLIST_LOGS) && GrassesConfig.COMMON_CONFIG.ALLOW_CHOP_TREE_AT_ONCE.get()) {
 
                 if (!logHashMapGlobal.isEmpty()) {
                     double multi = 1 / Math.pow(logHashMapGlobal.size(), 1 / 1.1F);
@@ -310,12 +305,12 @@ public class CommonEventHandler {
         boolean hitStemsLog                 = blockState.is(CRIMSON_STEMS) || blockState.is(WARPED_STEMS);
         boolean hitVanillaEndFrame          = blockState.is(END_PORTAL_FRAME);
         boolean hitModEndFrame              = blockState.is(END_PORTAL_FRAME_BLOCK.get());
-        boolean hitEREndFrame               = isERLoaded && blockState.is(ANCIENT_PORTAL_FRAME.get());
+        //boolean hitEREndFrame               = isERLoaded && blockState.is(ANCIENT_PORTAL_FRAME.get());
         boolean hasSilkAndChanneling        = EnchantmentHelper.hasSilkTouch(itemStackInMainHand) && EnchantmentHelper.hasChanneling(itemStackInMainHand);
         boolean fertileCondition            = !blockState.hasProperty(FERTILE) || isFertileState(blockState);
         boolean isSprintKeyPush             = Minecraft.getInstance().options.keySprint.isDown();
 
-        if (hitStemsLog && itemStackInMainHand.getItem() instanceof AutomaticPrunerItem && GrassesConfig.CommonConfig.ALLOW_CUT_WART_AT_ONCE.get()){
+        if (hitStemsLog && itemStackInMainHand.getItem() instanceof AutomaticPrunerItem && GrassesConfig.COMMON_CONFIG.ALLOW_CUT_WART_AT_ONCE.get()){
             destroyHugeFungusCrown(level, player,itemStackInMainHand, blockPos, event);
         }
         else if (hitLogs && itemStackInMainHand.getItem() instanceof AutomaticPrunerItem) {
@@ -324,7 +319,7 @@ public class CommonEventHandler {
         else if (hitLogs && itemStackInMainHand.getItem() instanceof DyeingTool) {
             changeOrDestroyLeaves(level, player, blockState, itemStackInMainHand, blockPos, event, true);
         }
-        else if (hitModEndFrame && itemStackInMainHand.getItem().equals(ItemsRegister.NETHERITE_AUTO_PRUNER.get()) && hasSilkAndChanneling && GrassesConfig.CommonConfig.ALLOW_USE_NETHERITE_AUTO_PRUNER_ON_END_FRAME.get()) {
+        else if (hitModEndFrame && itemStackInMainHand.getItem().equals(ItemsRegister.NETHERITE_AUTO_PRUNER.get()) && hasSilkAndChanneling && GrassesConfig.COMMON_CONFIG.ALLOW_USE_NETHERITE_AUTO_PRUNER_ON_END_FRAME.get()) {
 
             level.setBlockAndUpdate(blockPos, AIR.defaultBlockState());
             Block.popResourceFromFace(level, blockPos, Objects.requireNonNull(event.getFace()), new ItemStack(END_PORTAL_FRAME_BLOCK.get()));
@@ -351,10 +346,10 @@ public class CommonEventHandler {
             boolean hitVanillaMycelium          = blockState.is(MYCELIUM);
             boolean hitVanillaPodzol            = blockState.is(PODZOL);
             boolean hitStickyPiston             = blockState.is(STICKY_PISTON);
-            boolean hitNotGrassesLeaves         = matchingCounterpartsLeaves.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_SEVERALLY.get();
-            boolean hitNotGrassesPlants         = matchingCounterpartsPlants.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_NOT_GRASSES_PLANTS_INTO_TINTED.get();
-            boolean hitNotGrassesVines          = matchingCounterpartsVines.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_SEVERALLY.get();
-            boolean hitVanillaPot               = matchingCounterpartsVanillaPotted.containsKey(blockState.getBlock()) && hasSilkTouch && !tintedPlantsThatCanBePotted.contains(itemStackInMainHand.getItem()) && GrassesConfig.CommonConfig.ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED.get();
+            boolean hitNotGrassesLeaves         = matchingCounterpartsLeaves.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_SEVERALLY.get();
+            boolean hitNotGrassesPlants         = matchingCounterpartsPlants.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_NOT_GRASSES_PLANTS_INTO_TINTED.get();
+            boolean hitNotGrassesVines          = matchingCounterpartsVines.containsKey(blockState.getBlock()) && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_SEVERALLY.get();
+            boolean hitVanillaPot               = matchingCounterpartsVanillaPotted.containsKey(blockState.getBlock()) && hasSilkTouch && !tintedPlantsThatCanBePotted.contains(itemStackInMainHand.getItem()) && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED.get();
             boolean hitVanillaNylium            = blockState.is(CRIMSON_NYLIUM) || blockState.is(WARPED_NYLIUM);
             boolean hitTreeSapling              = blockState.is(SAPLINGS) && !blockState.is(MANGROVE_PROPAGULE);
 
@@ -387,7 +382,7 @@ public class CommonEventHandler {
                     if (hitVanillaGrass || hitVanillaMycelium || hitVanillaPodzol) {
                         level.setBlockAndUpdate(blockPos, Blocks.DIRT.defaultBlockState());
                         if (hitVanillaGrass)
-                            Block.popResourceFromFace(level, blockPos, Objects.requireNonNull(event.getFace()), new ItemStack(Items.GRASS));
+                            Block.popResourceFromFace(level, blockPos, Objects.requireNonNull(event.getFace()), new ItemStack(Items.SHORT_GRASS));
                         else if (hitVanillaMycelium) {
                             int i = Mth.nextInt(RandomSource.create(), 0, 1);
                             ItemStack itemStack1 = new ItemStack(Items.BROWN_MUSHROOM);
@@ -407,7 +402,7 @@ public class CommonEventHandler {
                     }
                 }
 
-            } else if (hitStickyPiston && blockState.getValue(EXTENDED).equals(Boolean.FALSE) && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_USE_SHEAR_ON_STICKY_PISTON.get()) {
+            } else if (hitStickyPiston && blockState.getValue(EXTENDED).equals(Boolean.FALSE) && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_USE_SHEAR_ON_STICKY_PISTON.get()) {
                 event.setCanceled(true);
 
                 Block.popResourceFromFace(level, blockPos, Objects.requireNonNull(event.getFace()), new ItemStack(Items.SLIME_BALL));
@@ -417,7 +412,7 @@ public class CommonEventHandler {
                 usedShearsOnCorrectBlock = true;
                 advItemUsedOnBlock = true;
 
-            } else if ((hitVanillaEndFrame || hitModEndFrame) && hasSilkAndChanneling && GrassesConfig.CommonConfig.ALLOW_USE_SHEAR_ON_END_FRAME.get() && blockState.getValue(HAS_EYE).equals(Boolean.TRUE)) {
+            } else if ((hitVanillaEndFrame || hitModEndFrame) && hasSilkAndChanneling && GrassesConfig.COMMON_CONFIG.ALLOW_USE_SHEAR_ON_END_FRAME.get() && blockState.getValue(HAS_EYE).equals(Boolean.TRUE)) {
                 level.addDestroyBlockEffect(blockPos, blockState);
                 level.setBlockAndUpdate(blockPos, blockState.getBlock().withPropertiesOf(blockState).setValue(HAS_EYE, Boolean.valueOf(false)));
                 Block.popResourceFromFace(level, blockPos, Objects.requireNonNull(event.getFace()), new ItemStack(Items.ENDER_EYE));
@@ -425,7 +420,7 @@ public class CommonEventHandler {
                 usedShearsOnCorrectBlock = true;
                 advItemUsedOnBlock = true;
 
-            } else if(hitEREndFrame && !blockState.getValue(EYE).equals(ERFrameProperties.EMPTY) && hasSilkAndChanneling && GrassesConfig.CommonConfig.ALLOW_USE_SHEAR_ON_ER_END_FRAME.get()) {
+            } /* NO EREM MOD ON 1.20.4 else if(hitEREndFrame && !blockState.getValue(EYE).equals(ERFrameProperties.EMPTY) && hasSilkAndChanneling && GrassesConfig.COMMON_CONFIG.ALLOW_USE_SHEAR_ON_ER_END_FRAME.get()) {
 
                 String eye = blockState.getValue(EYE).toString();
                 Item itemEye = ForgeRegistries.ITEMS.getValue(new ResourceLocation("endrem:".concat(eye)));
@@ -437,7 +432,7 @@ public class CommonEventHandler {
                 deactivatePortal(level, blockPos);
                 usedShearsOnCorrectBlock = true;
                 advItemUsedOnBlock = true;
-            } else if (hitNotGrassesLeaves) {
+            }*/ else if (hitNotGrassesLeaves) {
                 event.setCanceled(true);
                 Block leavesBlock = matchingCounterpartsLeaves.get(blockState.getBlock());
                 keepData(blockPos, blockState.getBlock(), ColorType.PLAINS);
@@ -509,7 +504,7 @@ public class CommonEventHandler {
                 level.setBlock(blockPos, matchingCounterpartsVanillaPotted.get(blockState.getBlock()).defaultBlockState(), 3);
                 advItemUsedOnBlock = true;
                 usedShearsOnCorrectBlock = true;
-            } else if (hitTreeSapling && GrassesConfig.CommonConfig.ALLOW_USE_SHEAR_ON_TREE_SAPLING.get()) {
+            } else if (hitTreeSapling && GrassesConfig.COMMON_CONFIG.ALLOW_USE_SHEAR_ON_TREE_SAPLING.get()) {
 
                 level.setBlock(blockPos, DEAD_BUSH.defaultBlockState(), 3);
                 advItemUsedOnBlock = true;
@@ -539,27 +534,27 @@ public class CommonEventHandler {
                 return;
             }
 
-            boolean isCactus            = blockState.is(CACTUS) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_CACTUS.get();
-            boolean isGrassesCactus     = blockState.is(CACTUS_TINTED.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS.get();
-            boolean isSugarCane         = blockState.is(SUGAR_CANE) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_SUGAR_CANE.get();
-            boolean isGrassesSugarCane  = blockState.is(SUGAR_CANE_TINTED.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE.get();
-            boolean isCactusLike        = (blockState.is(CACTUS_LIKE_PLANTS_1) || blockState.is(CACTUS_LIKE_PLANTS_2) || blockState.is(CACTUS_LIKE_PLANTS_3)) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_CACTUS_LIKE_PLANTS.get();
-            boolean isVine              = matchingCounterpartsVines.containsKey(blockState.getBlock()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_VANILLA_VINES.get();
-            boolean isGrassesVine       = matchingCounterpartsVines.containsValue(blockState.getBlock()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_VINES.get();
-            boolean isLily              = blockState.is(LILY_PAD) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_VANILLA_LILY_PAD.get();
-            boolean isGrassesLily       = blockState.is(LILY_TINTED.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD.get();
-            boolean isFlower            = blockState.is(SMALL_FLOWERS) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_SMALL_FLOWERS.get();
+            boolean isCactus            = blockState.is(CACTUS) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_CACTUS.get();
+            boolean isGrassesCactus     = blockState.is(CACTUS_TINTED.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS.get();
+            boolean isSugarCane         = blockState.is(SUGAR_CANE) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_SUGAR_CANE.get();
+            boolean isGrassesSugarCane  = blockState.is(SUGAR_CANE_TINTED.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE.get();
+            boolean isCactusLike        = (blockState.is(CACTUS_LIKE_PLANTS_1) || blockState.is(CACTUS_LIKE_PLANTS_2) || blockState.is(CACTUS_LIKE_PLANTS_3)) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_CACTUS_LIKE_PLANTS.get();
+            boolean isVine              = matchingCounterpartsVines.containsKey(blockState.getBlock()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_VANILLA_VINES.get();
+            boolean isGrassesVine       = matchingCounterpartsVines.containsValue(blockState.getBlock()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_VINES.get();
+            boolean isLily              = blockState.is(LILY_PAD) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_VANILLA_LILY_PAD.get();
+            boolean isGrassesLily       = blockState.is(LILY_TINTED.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD.get();
+            boolean isFlower            = blockState.is(SMALL_FLOWERS) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_SMALL_FLOWERS.get();
 
-            boolean isVanillaMycelium   = blockState.is(MYCELIUM) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_VANILLA_MYCELIUM.get();
-            boolean isGrassesMycelium   = (blockState.is(MYCELIUM_SLAB_BLOCK.get()) || blockState.is(GROW_MYCELIUM_BLOCK.get())) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get();
-            boolean isVanillaPodzol     = blockState.is(PODZOL) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_VANILLA_PODZOL.get();
-            boolean isGrassesPodzol     = (blockState.is(PODZOL_SLAB_BLOCK.get()) || blockState.is(GROW_PODZOL_BLOCK.get())) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get();
-            boolean isVanillaSoulSand   = blockState.is(SOUL_SAND) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_VANILLA_SOUL_SAND.get();
-            boolean isGrassesSoulSand   = blockState.is(SOUL_SAND_SLAB_BLOCK.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get();
+            boolean isVanillaMycelium   = blockState.is(MYCELIUM) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_VANILLA_MYCELIUM.get();
+            boolean isGrassesMycelium   = (blockState.is(MYCELIUM_SLAB_BLOCK.get()) || blockState.is(GROW_MYCELIUM_BLOCK.get())) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get();
+            boolean isVanillaPodzol     = blockState.is(PODZOL) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_VANILLA_PODZOL.get();
+            boolean isGrassesPodzol     = (blockState.is(PODZOL_SLAB_BLOCK.get()) || blockState.is(GROW_PODZOL_BLOCK.get())) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get();
+            boolean isVanillaSoulSand   = blockState.is(SOUL_SAND) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_VANILLA_SOUL_SAND.get();
+            boolean isGrassesSoulSand   = blockState.is(SOUL_SAND_SLAB_BLOCK.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get();
             boolean isWitherRose        = blockState.is(WITHER_ROSE);
 
-            boolean isTintedBOPPlant    = isBOPLoaded && tintedBOPPlantBlockList.contains(blockState.getBlock()) && blockState.getBlock() instanceof ParentTintedBushBlock && !blockState.is(HUGE_LILY_PAD_TINTED.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get();
-            boolean isBOPPlant          = isBOPLoaded && BOPPlantsBlocksList.contains(blockState.getBlock()) && blockState.getBlock() instanceof BushBlock && !blockState.is(HUGE_LILY_PAD) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get();
+            boolean isTintedBOPPlant    = isBOPLoaded && tintedBOPPlantBlockList.contains(blockState.getBlock()) && blockState.getBlock() instanceof ParentTintedBushBlock && !blockState.is(HUGE_LILY_PAD_TINTED.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get();
+            boolean isBOPPlant          = isBOPLoaded && BOPPlantsBlocksList.contains(blockState.getBlock()) && blockState.getBlock() instanceof BushBlock && !blockState.is(HUGE_LILY_PAD) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get();
 
             boolean isNetherrackSlab    = blockState.is(NETHERRACK_SLAB_BLOCK.get());
             boolean advItemUsedOnBlock  = false;
@@ -632,7 +627,7 @@ public class CommonEventHandler {
             if(player instanceof ServerPlayer && advItemUsedOnBlock)
                 ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemStackInMainHand);
         }
-        else if (itemStackInMainHand.is(Items.SLIME_BALL) && GrassesConfig.CommonConfig.ALLOW_USE_SLIME_BALL_ON_PISTON.get()) {
+        else if (itemStackInMainHand.is(Items.SLIME_BALL) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_SLIME_BALL_ON_PISTON.get()) {
             boolean isPiston = blockState.is(PISTON);
 
             if (isPiston && blockState.getValue(EXTENDED).equals(Boolean.FALSE)) {

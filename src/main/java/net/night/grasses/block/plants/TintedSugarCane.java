@@ -23,9 +23,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -34,14 +34,17 @@ import net.night.grasses.data.ModMethods;
 import java.util.List;
 
 import static net.minecraft.world.level.block.Blocks.SUGAR_CANE;
-import static net.night.grasses.data.ModData.*;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPost;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPre;
+import static net.night.grasses.data.ModData.colorTypeList;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock, EntityBlock {
 
     public TintedSugarCane() {
-        super(Properties.copy(Blocks.SUGAR_CANE));
+        super(Properties.ofFullCopy(Blocks.SUGAR_CANE));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE).setValue(BIOMES_COLOR_SOURCE, Boolean.TRUE));
     }
 
@@ -64,9 +67,9 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
 
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -104,7 +107,7 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
 
                 if (i < 3) {
                     int j = blockState.getValue(AGE);
-                    if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(serverLevel, blockPos, blockState, true)) {
+                    if (onCropsGrowPre(serverLevel, blockPos, blockState, true)) {
                         ColorType colorType = getColorType(serverLevel, blockPos);
                         if (j == 15) {
 
@@ -112,7 +115,7 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
                             keepData(blockPos.above(), SUGAR_CANE, colorType);
 
                             serverLevel.setBlockAndUpdate(blockPos.above(), this.defaultBlockState().setValue(BIOMES_COLOR_SOURCE, biomesColorSource));
-                            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(serverLevel, blockPos.above(), this.defaultBlockState());
+                            onCropsGrowPost(serverLevel, blockPos.above(), this.defaultBlockState());
                             serverLevel.setBlock(blockPos, blockState.setValue(AGE, Integer.valueOf(0)), 4);
                         } else
                             serverLevel.setBlock(blockPos, blockState.setValue(AGE, Integer.valueOf(j + 1)), 4);
@@ -123,14 +126,14 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState) {
 
         int i = this.getHeightAboveUpToMax(level, blockPos);
         int j = this.getHeightBelowUpToMax(level, blockPos);
 
-        boolean isValid = i + j + 1 < GrassesConfig.CommonConfig.SUGAR_CANE_MAX_HEIGHT.get();
+        boolean isValid = i + j + 1 < GrassesConfig.COMMON_CONFIG.SUGAR_CANE_MAX_HEIGHT.get();
 
-        return GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE.get() && isValid;
+        return GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE.get() && isValid;
     }
 
     @Override
@@ -149,8 +152,8 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.GRASS_BREAK);
@@ -173,7 +176,7 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
 
     protected int getHeightAboveUpToMax(BlockGetter pLevel, BlockPos pPos) {
         int i;
-        for(i = 0; i < GrassesConfig.CommonConfig.SUGAR_CANE_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.above(i + 1)).is(SUGAR_CANE_TINTED.get()); ++i) {
+        for(i = 0; i < GrassesConfig.COMMON_CONFIG.SUGAR_CANE_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.above(i + 1)).is(SUGAR_CANE_TINTED.get()); ++i) {
         }
 
         return i;
@@ -181,7 +184,7 @@ public class TintedSugarCane extends SugarCaneBlock implements BonemealableBlock
 
     protected int getHeightBelowUpToMax(BlockGetter pLevel, BlockPos pPos) {
         int i;
-        for(i = 0; i < GrassesConfig.CommonConfig.SUGAR_CANE_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.below(i + 1)).is(SUGAR_CANE_TINTED.get()); ++i) {
+        for(i = 0; i < GrassesConfig.COMMON_CONFIG.SUGAR_CANE_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.below(i + 1)).is(SUGAR_CANE_TINTED.get()); ++i) {
         }
 
         return i;

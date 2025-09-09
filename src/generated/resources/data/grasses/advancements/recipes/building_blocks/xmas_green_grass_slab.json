@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_xmas_green_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_xmas_green_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:xmas_green_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

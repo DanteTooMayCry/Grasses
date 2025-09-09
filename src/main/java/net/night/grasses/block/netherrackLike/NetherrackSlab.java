@@ -10,10 +10,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import net.night.grasses.config.GrassesConfig;
 
@@ -21,11 +20,11 @@ import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 
 public class NetherrackSlab extends ParentSlabBlock implements BonemealableBlock {
     public NetherrackSlab() {
-        super(Properties.copy(Blocks.NETHERRACK));
+        super(Properties.ofFullCopy(Blocks.NETHERRACK));
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         if (!levelReader.getBlockState(blockPos.above()).propagatesSkylightDown(levelReader, blockPos)) {
             return false;
         } else {
@@ -53,7 +52,7 @@ public class NetherrackSlab extends ParentSlabBlock implements BonemealableBlock
 
         PlantType plantType = plantable.getPlantType(world, blockPos);
 
-        if (plantType == PlantType.NETHER && (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())) {
+        if (plantType == PlantType.NETHER && (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())) {
             return true;
         }
         else

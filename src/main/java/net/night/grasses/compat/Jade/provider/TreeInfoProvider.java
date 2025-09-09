@@ -38,12 +38,12 @@ public class TreeInfoProvider implements IBlockComponentProvider {
             int maxSize = 0;
 
             if (blockStateTarget.is(STEMS)) {
-                maxCount = GrassesConfig.CommonConfig.STEMS_MAX_AMOUNT_AT_ONCE.get();
-                maxSize = GrassesConfig.CommonConfig.STEMS_MAX_AMOUNT_AT_ONCE.get() <= 30 ? 60 : GrassesConfig.CommonConfig.STEMS_MAX_AMOUNT_AT_ONCE.get()*2;
+                maxCount = GrassesConfig.COMMON_CONFIG.STEMS_MAX_AMOUNT_AT_ONCE.get();
+                maxSize = GrassesConfig.COMMON_CONFIG.STEMS_MAX_AMOUNT_AT_ONCE.get() <= 30 ? 60 : GrassesConfig.COMMON_CONFIG.STEMS_MAX_AMOUNT_AT_ONCE.get()*2;
             }
             else if (blockStateTarget.is(LOGS_THAT_BURN)) {
-                maxCount = GrassesConfig.CommonConfig.LOGS_MAX_AMOUNT_AT_ONCE.get();
-                maxSize = GrassesConfig.CommonConfig.LOGS_MAX_AMOUNT_AT_ONCE.get() <= 150 ? 200 : GrassesConfig.CommonConfig.LOGS_MAX_AMOUNT_AT_ONCE.get();
+                maxCount = GrassesConfig.COMMON_CONFIG.LOGS_MAX_AMOUNT_AT_ONCE.get();
+                maxSize = GrassesConfig.COMMON_CONFIG.LOGS_MAX_AMOUNT_AT_ONCE.get() <= 150 ? 200 : GrassesConfig.COMMON_CONFIG.LOGS_MAX_AMOUNT_AT_ONCE.get();
             }
 
             IElement icon = IElementHelper.get().item(new ItemStack(blockAccessor.getBlock()), 0.5f).size(new Vec2(10, 10)).translate(new Vec2(0, -1));

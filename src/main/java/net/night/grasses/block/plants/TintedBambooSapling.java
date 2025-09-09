@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -34,11 +33,12 @@ import static net.minecraft.world.level.block.Blocks.BAMBOO;
 import static net.minecraft.world.level.block.Blocks.BAMBOO_SAPLING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.BAMBOO_TINTED;
+import static net.night.grasses.init.BlocksRegister.FERTILE;
 
 public class TintedBambooSapling extends BambooSaplingBlock implements BonemealableBlock, EntityBlock {
     public TintedBambooSapling() {
-        super(Properties.copy(BAMBOO_SAPLING));
+        super(Properties.ofFullCopy(BAMBOO_SAPLING));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
     }
 
@@ -54,8 +54,8 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, BAMBOO_TINTED.get().defaultBlockState());
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, BAMBOO_TINTED.get().defaultBlockState());
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
 
         BlockState blockStateBelow = pLevel.getBlockState(pPos.below());
-        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
         else
             return pLevel.getBlockState(pPos.below()).is(BAMBOO_PLANTABLE_ON);
@@ -104,7 +104,7 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
         return pLevel.getBlockState(pPos.above()).isAir();
     }
     @Override
@@ -116,7 +116,7 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
         if(!isFertileState(blockState))
             serverLevel.setBlock(blockPos, blockState.setValue(FERTILE, true), 3);
         else {
-;
+
             ItemStack itemStack = ClientPlayerHelper.getMainHandItem();
 
             if (itemStack.getItem() instanceof DyeingBoneMealItem)
@@ -136,8 +136,8 @@ public class TintedBambooSapling extends BambooSaplingBlock implements Bonemeala
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.BAMBOO_BREAK);

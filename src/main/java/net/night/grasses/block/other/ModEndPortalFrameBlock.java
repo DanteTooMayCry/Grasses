@@ -15,7 +15,7 @@ public class ModEndPortalFrameBlock extends EndPortalFrameBlock {
     private static BlockPattern portalShape;
 
     public ModEndPortalFrameBlock() {
-        super(Properties.copy(Blocks.END_PORTAL_FRAME).noLootTable());
+        super(Properties.ofFullCopy(Blocks.END_PORTAL_FRAME).noLootTable());
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HAS_EYE, Boolean.valueOf(false)));
     }
 

@@ -9,18 +9,17 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.init.BlocksRegister;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.night.grasses.init.BlocksRegister.*;
-import static net.night.grasses.init.BlocksRegister.SUGAR_CANE_POTTED;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GrassBlockColorManager {
@@ -109,10 +108,10 @@ public class GrassBlockColorManager {
             return tintIndex > 0 ? -1 : blockColors.getColor(blockState, null, null, tintIndex);
         };
 
-        for(RegistryObject<Block> grassesBlock : grassRegistryBlocksList){
+        for(DeferredBlock<Block> grassesBlock : grassRegistryBlocksList){
             itemColors.register(itemBlockColourHandler, grassesBlock.get());
         }
-        for(RegistryObject<Block> grassesBlock : grassRegistrySlabBlocksList){
+        for(DeferredBlock<Block> grassesBlock : grassRegistrySlabBlocksList){
             itemColors.register(itemBlockColourHandler, grassesBlock.get());
         }
 

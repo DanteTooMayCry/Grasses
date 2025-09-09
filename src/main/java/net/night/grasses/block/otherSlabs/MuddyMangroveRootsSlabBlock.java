@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 
 import javax.annotation.Nullable;
 
@@ -22,7 +22,7 @@ import static net.night.grasses.init.BlocksRegister.ROTATE_MUDDY;
 
 public class MuddyMangroveRootsSlabBlock extends SlabBlock {
     public MuddyMangroveRootsSlabBlock() {
-        super(Properties.copy(Blocks.MUDDY_MANGROVE_ROOTS));
+        super(Properties.ofFullCopy(Blocks.MUDDY_MANGROVE_ROOTS));
         this.registerDefaultState(this.defaultBlockState().setValue(ROTATE_MUDDY, 0));
     }
 

@@ -40,7 +40,7 @@ import java.util.Optional;
 
 import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF;
 import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF_STEM;
-import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
@@ -48,7 +48,7 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public TintedBigDripleafStem() {
-        super(Properties.copy(Blocks.BIG_DRIPLEAF_STEM));
+        super(Properties.ofFullCopy(Blocks.BIG_DRIPLEAF_STEM));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
     }
 
@@ -64,8 +64,8 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, BIG_DRIP_LEAF_TINTED.get().defaultBlockState());
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, BIG_DRIP_LEAF_TINTED.get().defaultBlockState());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
         Optional<BlockPos> optional = BlockUtil.getTopConnectedBlock(pLevel, pPos, pState.getBlock(), Direction.UP, BIG_DRIP_LEAF_TINTED.get());
         if (!optional.isPresent()) {
             return false;
@@ -140,8 +140,8 @@ public class TintedBigDripleafStem extends BigDripleafStemBlock implements Entit
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.BIG_DRIPLEAF_BREAK);

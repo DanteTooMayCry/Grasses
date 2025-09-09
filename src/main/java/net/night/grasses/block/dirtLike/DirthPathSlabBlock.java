@@ -12,7 +12,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.Fluids;
@@ -28,7 +27,7 @@ import static net.night.grasses.init.BlocksRegister.DIRT_SLAB_BLOCK;
 public class DirthPathSlabBlock extends ParentSlabBlock {
 
     public DirthPathSlabBlock() {
-        super(Properties.copy(Blocks.DIRT_PATH));
+        super(Properties.ofFullCopy(Blocks.DIRT_PATH));
     }
 
     @Override

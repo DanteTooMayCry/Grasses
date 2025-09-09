@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_red_sand",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_red_sand"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:badlands_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -89,7 +89,7 @@ public class TintedDoubleWaterPlantBOP extends ParentTintedDoublePlantBlock impl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState, boolean pIsClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 

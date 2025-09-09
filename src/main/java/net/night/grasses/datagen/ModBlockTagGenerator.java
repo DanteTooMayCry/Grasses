@@ -4,9 +4,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.Grasses;
 import net.night.grasses.util.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -27,12 +27,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
-        for(RegistryObject<Block> grassesBlock : grassRegistryBlocksList){
+        for(DeferredBlock<Block> grassesBlock : grassRegistryBlocksList){
             this.tag(ModTags.Blocks.ALL_MOD_GRASS_BLOCKS)
                     .add(grassesBlock.get());
         }
 
-        for(RegistryObject<Block> grassesBlock : grassRegistrySlabBlocksList){
+        for(DeferredBlock<Block> grassesBlock : grassRegistrySlabBlocksList){
             this.tag(ModTags.Blocks.ALL_MOD_GRASS_SLABS)
                     .add(grassesBlock.get());
         }
@@ -43,14 +43,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(ModTags.Blocks.OTHER_GRASS_BLOCKS);
         
-        for(RegistryObject<Block> grassesBlock : grassesLeavesRegistryBlocksList){
+        for(DeferredBlock<Block> grassesBlock : grassesLeavesRegistryBlocksList){
             this.tag(ModTags.Blocks.ALL_MOD_LEAVES)
                     .add(grassesBlock.get());
             this.tag(LEAVES)
                     .add(grassesBlock.get());
         }
 
-        for(RegistryObject<Block> grassesBlock : plantInBarsRegistryBlockList){
+        for(DeferredBlock<Block> grassesBlock : plantInBarsRegistryBlockList){
             this.tag(DRAGON_IMMUNE)
                     .add(grassesBlock.get());
             this.tag(MINEABLE_WITH_PICKAXE)
@@ -204,7 +204,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BIG_DRIP_LEAF_POTTED.get())
                 .add(SMALL_DRIP_LEAF_POTTED.get())
                 .add(KELP_POTTED.get())
-                .add(GRASS_POTTED_TINTED.get())
+                .add(GRASS_SHORT_POTTED_TINTED.get())
                 .add(FERN_POTTED_TINTED.get())
                 .add(SEAGRASS_POTTED_TINTED.get())
                 .add(BAMBOO_POTTED_TINTED.get())
@@ -265,7 +265,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(FERN_TINTED.get())
                 .add(FERN_TALL_TINTED.get())
-                .add(GRASS_TINTED.get())
+                .add(GRASS_SHORT_TINTED.get())
                 .add(GRASS_TALL_TINTED.get())
                 .add(LILY_TINTED.get())
                 .add(VINE_TINTED.get())
@@ -353,7 +353,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(SAND_SLAB_BLOCK.get());
 
         this.tag(BlockTags.REPLACEABLE)
-                .add(GRASS_TINTED.get())
+                .add(GRASS_SHORT_TINTED.get())
                 .add(GRASS_TALL_TINTED.get())
                 .add(FERN_TINTED.get())
                 .add(FERN_TALL_TINTED.get())
@@ -363,7 +363,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.REPLACEABLE_BY_TREES)
                 .addTag(ModTags.Blocks.ALL_MOD_LEAVES)
-                .add(GRASS_TINTED.get())
+                .add(GRASS_SHORT_TINTED.get())
                 .add(GRASS_TALL_TINTED.get())
                 .add(FERN_TINTED.get())
                 .add(FERN_TALL_TINTED.get())
@@ -419,7 +419,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(SWORD_EFFICIENT)
                 .addTag(ModTags.Blocks.ALL_MOD_LEAVES)
-                .add(GRASS_TINTED.get())
+                .add(GRASS_SHORT_TINTED.get())
                 .add(GRASS_TALL_TINTED.get())
                 .add(FERN_TINTED.get())
                 .add(FERN_TALL_TINTED.get())
@@ -446,7 +446,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(GROW_PODZOL_BLOCK.get());
 
         if (isBOPLoaded) {
-            for(RegistryObject<Block> grassesBlock : tintedBOPleavesRegistryBlocksList){
+            for(DeferredBlock<Block> grassesBlock : tintedBOPleavesRegistryBlocksList){
                 this.tag(ModTags.Blocks.ALL_MOD_LEAVES)
                         .add(grassesBlock.get());
                 this.tag(LEAVES)

@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.interfaces.CanGrowConditioner;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +40,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 public class GrassesMyceliumBlock extends MyceliumBlock implements BonemealableBlock, CanGrowConditioner {
 
     public GrassesMyceliumBlock() {
-        super(Properties.copy(Blocks.MYCELIUM));
+        super(Properties.ofFullCopy(Blocks.MYCELIUM));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, true));
     }
 
@@ -68,9 +68,9 @@ public class GrassesMyceliumBlock extends MyceliumBlock implements BonemealableB
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 
-        if (isFertileState(blockState) && !GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get())
+        if (isFertileState(blockState) && !GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get())
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();

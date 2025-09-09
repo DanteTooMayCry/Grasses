@@ -12,14 +12,14 @@ import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-import static net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent;
+import static net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent;
 import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.util.ModTags.Blocks.*;
 
 public class EatGrassesBlockGoal extends EatBlockGoal {
-    private static final Predicate<BlockState> IS_TALL_GRASS = BlockStatePredicate.forBlock(Blocks.GRASS)
-                                                                .or(BlockStatePredicate.forBlock(GRASS_TINTED.get()));
+    private static final Predicate<BlockState> IS_SHORT_GRASS = BlockStatePredicate.forBlock(Blocks.SHORT_GRASS)
+                                                                .or(BlockStatePredicate.forBlock(GRASS_SHORT_TINTED.get()));
     private static final int EAT_ANIMATION_TICKS = 40;
     private final Mob mob;
     private final Level level;
@@ -39,7 +39,7 @@ public class EatGrassesBlockGoal extends EatBlockGoal {
         } else {
             BlockPos blockpos = this.mob.blockPosition();
             BlockState blockState = this.level.getBlockState(blockpos);
-            if (IS_TALL_GRASS.test(blockState) && isFertileState(blockState)) {
+            if (IS_SHORT_GRASS.test(blockState) && isFertileState(blockState)) {
                 return true;
             } else {
                 return this.level.getBlockState(blockpos.below()).is(ALL_MOD_GRASS);
@@ -72,7 +72,7 @@ public class EatGrassesBlockGoal extends EatBlockGoal {
         if (this.eatAnimationTick == 4) {
             BlockPos blockpos = this.mob.blockPosition();
             BlockState blockState = this.level.getBlockState(blockpos);
-            if (IS_TALL_GRASS.test(blockState) && isFertileState(blockState)) {
+            if (IS_SHORT_GRASS.test(blockState) && isFertileState(blockState)) {
                 if (getMobGriefingEvent(this.level, this.mob)) {
                     this.level.destroyBlock(blockpos, false);
                 }

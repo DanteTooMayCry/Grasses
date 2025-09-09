@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_quartz_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_quartz_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:quartz_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

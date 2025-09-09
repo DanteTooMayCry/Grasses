@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 public class IceSlabBlock extends ParentSlabBlock {
     public IceSlabBlock() {
-        super(Properties.copy(Blocks.ICE).noOcclusion());
+        super(Properties.ofFullCopy(Blocks.ICE).noOcclusion());
     }
 
     @Override

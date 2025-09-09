@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_clay_ball",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_clay_ball"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:clay_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

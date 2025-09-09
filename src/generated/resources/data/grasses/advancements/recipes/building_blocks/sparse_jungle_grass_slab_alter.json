@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_vine",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_vine"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:sparse_jungle_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

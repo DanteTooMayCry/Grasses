@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_spruce_sapling",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_spruce_sapling"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:taiga_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

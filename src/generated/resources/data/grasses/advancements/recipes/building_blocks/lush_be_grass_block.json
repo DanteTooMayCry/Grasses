@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_glow_berries",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_glow_berries"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:lush_be_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

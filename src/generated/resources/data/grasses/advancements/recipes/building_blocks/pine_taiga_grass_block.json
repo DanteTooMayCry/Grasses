@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_fern",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_fern"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:pine_taiga_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

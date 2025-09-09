@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_dirt",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dirt"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:dirt_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

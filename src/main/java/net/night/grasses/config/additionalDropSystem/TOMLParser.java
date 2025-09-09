@@ -1,10 +1,10 @@
 package net.night.grasses.config.additionalDropSystem;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.night.grasses.datagen.AdditionalDropDataProvider;
 import net.night.grasses.datagen.loot.ModBlockLootTables;
 import net.night.grasses.enums.DropType;
@@ -139,16 +139,12 @@ public class TOMLParser {
         AdditionalDropConfig.DropGroup dropGroup;
 
         if (isMob) {
-            EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(resourceLocation);
-            if (entityType == null)
-                return;
+            EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(resourceLocation);
 
             MobCondition mobCondition = new MobCondition(entityType, conditionsMap);
             dropGroup = ((Map<MobCondition, AdditionalDropConfig.DropGroup>) map).computeIfAbsent(mobCondition, mc -> new AdditionalDropConfig.ExtDropGroup());
         } else {
-            Block block = ForgeRegistries.BLOCKS.getValue(resourceLocation);
-            if (block == null)
-                return;
+            Block block = BuiltInRegistries.BLOCK.get(resourceLocation);
 
             BlockCondition blockCondition = new BlockCondition(block, conditionsMap);
             dropGroup = ((Map<BlockCondition, AdditionalDropConfig.DropGroup>) map).computeIfAbsent(blockCondition, bc -> new AdditionalDropConfig.ExtDropGroup());
@@ -180,9 +176,7 @@ public class TOMLParser {
 
         for (String itemId : items) {
             ResourceLocation itemResource = new ResourceLocation(itemId);
-            Item item = ForgeRegistries.ITEMS.getValue(itemResource);
-            if (item == null)
-                continue;
+            Item item = BuiltInRegistries.ITEM.get(itemResource);
 
             AdditionalDropConfig.DropEntry entry = new AdditionalDropConfig.DropEntry(item, chances);
 

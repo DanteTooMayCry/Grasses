@@ -22,7 +22,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -30,7 +33,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.interfaces.CanGrowConditioner;
@@ -39,12 +42,13 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
-import static net.night.grasses.data.ModMethods.*;
+import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
+import static net.night.grasses.data.ModMethods.isFertileState;
 import static net.night.grasses.init.BlocksRegister.*;
 
 public class MyceliumSlabBlock extends ParentSlabBlock implements BonemealableBlock, CanGrowConditioner, GrassesIsSnowyInterface {
     public MyceliumSlabBlock() {
-        super(Properties.copy(Blocks.MYCELIUM));
+        super(Properties.ofFullCopy(Blocks.MYCELIUM));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, true).setValue(SNOWY, false));
     }
 
@@ -85,8 +89,8 @@ public class MyceliumSlabBlock extends ParentSlabBlock implements BonemealableBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean pIsClient) {
-        if (isFertileState(blockState) && ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get()))
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if (isFertileState(blockState) && ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM.get()))
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();

@@ -1,5 +1,6 @@
 package net.night.grasses.block.plants.superclasses;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
@@ -29,7 +31,6 @@ import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.ModMethods;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -39,15 +40,18 @@ import static net.minecraft.world.level.block.Blocks.*;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
-import static net.night.grasses.init.BlocksRegisterBoP.HIGH_GRASS_PLANT_TINTED;
-import static net.night.grasses.init.BlocksRegisterBoP.HIGH_GRASS_TINTED;
-import static net.night.grasses.init.BlocksRegisterBoP.tintedBOPPlantBlockList;
+import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class ParentTintedGrowingPlantBodyBlock extends GrowingPlantBodyBlock implements EntityBlock {
 
     protected ParentTintedGrowingPlantBodyBlock(Properties pProperties, Direction pGrowthDirection, VoxelShape pShape, boolean pScheduleFluidTicks) {
         super(pProperties, pGrowthDirection, pShape, pScheduleFluidTicks);
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+        return null;
     }
 
     @Override
@@ -62,11 +66,11 @@ public class ParentTintedGrowingPlantBodyBlock extends GrowingPlantBodyBlock imp
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
 
         BlockState blockStateHead = getHeadBlock().defaultBlockState();
 
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockStateHead);
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockStateHead);
     }
 
     @Override
@@ -144,8 +148,8 @@ public class ParentTintedGrowingPlantBodyBlock extends GrowingPlantBodyBlock imp
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.WET_GRASS_BREAK);

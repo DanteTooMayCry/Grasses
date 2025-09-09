@@ -15,7 +15,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "grasses:grass_tinted"
+          "name": "grasses:grass_short_tinted"
         }
       ],
       "rolls": 1.0

@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.enums.ColorType;
 
 import static net.night.grasses.data.ModMethods.getColorTypeForColorManager;
@@ -46,17 +46,17 @@ public class BlockColorManager extends BlockColors {
 
         BlockColorManager blockColorManager = new BlockColorManager();
 
-        for (RegistryObject<Block> blockRegistryObject : allLeavesRegistryBlocksList)
+        for (DeferredBlock<Block> blockRegistryObject : allLeavesRegistryBlocksList)
             blockColors.register(blockColor, blockRegistryObject.get());
 
-        for (RegistryObject<Block> blockRegistryObject : plantRegistryBlockList)
+        for (DeferredBlock<Block> blockRegistryObject : plantRegistryBlockList)
             blockColors.register(blockColor, blockRegistryObject.get());
 
-        for (RegistryObject<Block> blockRegistryObject : pottedTintedRegistryPlantList)
+        for (DeferredBlock<Block> blockRegistryObject : pottedTintedRegistryPlantList)
 
             blockColors.register(blockColor, blockRegistryObject.get());
 
-        for (RegistryObject<Block> blockRegistryObject : plantInBarsTintedRegistryBlockList)
+        for (DeferredBlock<Block> blockRegistryObject : plantInBarsTintedRegistryBlockList)
             blockColors.register(blockColor, blockRegistryObject.get());
 
 
@@ -74,16 +74,16 @@ public class BlockColorManager extends BlockColors {
             return tintIndex > 0 ? -1 : ColorsDefinition.takeColor(ColorType.valueOf(name), null, itemStack);
         };
 
-        for(RegistryObject<Block> leavesBlock : allLeavesRegistryBlocksList)
+        for(DeferredBlock<Block> leavesBlock : allLeavesRegistryBlocksList)
             itemColors.register(itemBlockColourHandler, leavesBlock.get());
 
-        for(RegistryObject<Block> plantBlock : plantRegistryBlockList)
+        for(DeferredBlock<Block> plantBlock : plantRegistryBlockList)
             itemColors.register(itemBlockColourHandler, plantBlock.get());
 
-        for(RegistryObject<Block> pottedPlantBlock : pottedTintedRegistryPlantList)
+        for(DeferredBlock<Block> pottedPlantBlock : pottedTintedRegistryPlantList)
             itemColors.register(itemBlockColourHandler, pottedPlantBlock.get());
 
-        for(RegistryObject<Block> plantInBarsBlock : plantInBarsTintedRegistryBlockList)
+        for(DeferredBlock<Block> plantInBarsBlock : plantInBarsTintedRegistryBlockList)
             itemColors.register(itemBlockColourHandler, plantInBarsBlock.get());
 
         itemColors.register(itemBlockColourHandler, VINE_IN_BARS.get());

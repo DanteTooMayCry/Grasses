@@ -65,7 +65,7 @@ public class GrassesNyliumBlock extends NyliumBlock implements BonemealableBlock
     ///////////////////////////////////////////////////////////
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
         return pLevel.getBlockState(pPos.above()).isAir();
     }
     @Override
@@ -110,7 +110,7 @@ public class GrassesNyliumBlock extends NyliumBlock implements BonemealableBlock
 
     private boolean canSpread(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockPos blockPosAbove = blockPos.above();
-        return canBeNylium(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.CommonConfig.ALLOW_SPREAD_MOD_NYLIUM.get();
+        return canBeNylium(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.COMMON_CONFIG.ALLOW_SPREAD_MOD_NYLIUM.get();
     }
 
     ///////////////////////////////////////////////////////////

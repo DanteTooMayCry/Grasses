@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "grasses:grass_tinted",
+      "item": "grasses:grass_short_tinted",
       "nbt": "{BlockStateTag:{color_type:plains}}"
     },
     "title": {
@@ -26,7 +26,7 @@
             "predicate": {
               "block": {
                 "blocks": [
-                  "grasses:grass_tinted",
+                  "grasses:grass_short_tinted",
                   "grasses:fern_tinted",
                   "grasses:seagrass_tinted",
                   "grasses:grass_tall_tinted",

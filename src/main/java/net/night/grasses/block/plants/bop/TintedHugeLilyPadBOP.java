@@ -1,5 +1,4 @@
 package net.night.grasses.block.plants.bop;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -26,13 +25,11 @@ import net.night.grasses.block.plants.superclasses.ParentTintedBushBlock;
 import net.night.grasses.enums.GrassesQuarterProperty;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
 
 import static biomesoplenty.api.block.BOPBlocks.HUGE_LILY_PAD;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.data.ModMethods.prepareDropWithColor;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
@@ -146,7 +143,6 @@ public class TintedHugeLilyPadBOP extends ParentTintedBushBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-
         if (blockState.getValue(GRASSES_QUARTER).equals(GrassesQuarterProperty.SOUTH_EAST))
             return prepareDropWithColor(super.getDrops(blockState, builder), builder, WATERLILY_TINTED.get().asItem());
         else

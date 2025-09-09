@@ -27,8 +27,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -40,17 +40,19 @@ import net.night.grasses.util.ModTags;
 
 import java.util.List;
 
-import static net.minecraft.world.level.block.Blocks.*;
+import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF;
+import static net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF_STEM;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
-import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.BIG_DRIP_LEAF_STEM_TINTED;
+import static net.night.grasses.init.BlocksRegister.SMALL_DRIP_LEAF_TINTED;
 
 public class TintedBigDripLeaf extends BigDripleafBlock implements EntityBlock {
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public TintedBigDripLeaf() {
-        super(Properties.copy(BIG_DRIPLEAF));
+        super(Properties.ofFullCopy(BIG_DRIPLEAF));
         this.registerDefaultState(this.defaultBlockState());
     }
 
@@ -67,9 +69,9 @@ public class TintedBigDripLeaf extends BigDripleafBlock implements EntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
 
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -106,7 +108,7 @@ public class TintedBigDripLeaf extends BigDripleafBlock implements EntityBlock {
     public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos blockPos) {
 
         BlockState blockStateBelow = level.getBlockState(blockPos.below());
-        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
 
         return blockStateBelow.is(this) || blockStateBelow.is(BIG_DRIP_LEAF_STEM_TINTED.get()) || blockStateBelow.is(ModTags.Blocks.MOD_BIG_DRIPLEAF_PLACEABLE);
@@ -186,8 +188,8 @@ public class TintedBigDripLeaf extends BigDripleafBlock implements EntityBlock {
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.BIG_DRIPLEAF_BREAK);

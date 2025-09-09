@@ -13,7 +13,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 
 import static net.minecraft.world.level.block.PointedDripstoneBlock.TIP_DIRECTION;
@@ -27,7 +27,7 @@ public class MudSlabBlock extends ParentSlabBlock {
     protected static final VoxelShape DOUBLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
     public MudSlabBlock() {
-        super(Properties.copy(Blocks.MUD));
+        super(Properties.ofFullCopy(Blocks.MUD));
     }
 
     @Override

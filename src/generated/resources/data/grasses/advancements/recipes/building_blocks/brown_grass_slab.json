@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_brown_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_brown_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:brown_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

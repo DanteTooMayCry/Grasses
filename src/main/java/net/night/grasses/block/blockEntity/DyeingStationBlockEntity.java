@@ -8,22 +8,22 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.night.grasses.block.blockEntity.screen.DyeingStationMenu;
 import net.night.grasses.block.blockEntity.util.TickAbleBlockEntity;
 import net.night.grasses.enums.ColorType;
@@ -33,16 +33,15 @@ import net.night.grasses.item.DyeingBoneMealItem;
 import net.night.grasses.item.DyeingItem;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.recipe.DyeingStationRecipe;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 import static net.minecraft.world.item.Items.AIR;
 import static net.minecraft.world.item.Items.BUCKET;
+import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 import static net.night.grasses.data.ModData.colorTypeList;
 import static net.night.grasses.data.ModData.ingredientsList;
-import static net.night.grasses.block.station.DyeingStationBlock.FACING;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlockEntitiesRegister.DYEING_STATION_BE;
 
@@ -60,7 +59,9 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
     private int countDyeToMaxRefill = 0;
     private boolean changeColorCaseAndRefillAble = false;
 
-    private final ItemStackHandler itemStackHandlerInputSlot1 = new ItemStackHandler(1) {
+
+    public final ItemStackHandler itemStackHandlerInputSlot1 = new ItemStackHandler(1) {
+
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -83,12 +84,7 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         }
     };
 
-    private LazyOptional<ItemStackHandler> lazyItemHandlerSlot1 = LazyOptional.of(() -> itemStackHandlerInputSlot1);
-    public LazyOptional<ItemStackHandler> getLazyItemHandlerSlot1() {
-        return lazyItemHandlerSlot1;
-    }
-
-    private final ItemStackHandler itemStackHandlerInputSlot2 = new ItemStackHandler(1) {
+    public final ItemStackHandler itemStackHandlerInputSlot2 = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -97,7 +93,6 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
-
         @Override
         public boolean isItemValid(int slot, ItemStack itemStack) {
             return itemStack.getItem() instanceof BoneMealItem || itemStack.getItem() instanceof DyeingTool || itemStack.getItem().equals(Items.PHANTOM_MEMBRANE);
@@ -111,12 +106,7 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         }
     };
 
-    private LazyOptional<ItemStackHandler> lazyItemHandlerSlot2 = LazyOptional.of(() -> itemStackHandlerInputSlot2);
-    public LazyOptional<ItemStackHandler> getLazyItemHandlerSlot2() {
-        return lazyItemHandlerSlot2;
-    }
-
-    private final ItemStackHandler itemStackHandlerInputSlot3 = new ItemStackHandler(1) {
+    public final ItemStackHandler itemStackHandlerInputSlot3 = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -138,12 +128,7 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         }
     };
 
-    private LazyOptional<ItemStackHandler> lazyItemHandlerSlot3 = LazyOptional.of(() -> itemStackHandlerInputSlot3);
-    public LazyOptional<ItemStackHandler> getLazyItemHandlerSlot3() {
-        return lazyItemHandlerSlot3;
-    }
-
-    private final ItemStackHandler itemStackHandlerOutputSlot0 = new ItemStackHandler(1) {
+    public final ItemStackHandler itemStackHandlerOutputSlot0 = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -163,12 +148,8 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
                 return itemStack;
             return super.insertItem(slot, itemStack, simulate);
         }
-    };
 
-    private LazyOptional<ItemStackHandler> lazyItemHandlerSlot0 = LazyOptional.of(() -> itemStackHandlerOutputSlot0);
-    public LazyOptional<ItemStackHandler> getLazyItemHandlerSlot0() {
-        return lazyItemHandlerSlot0;
-    }
+    };
 
     private float rotation;
 
@@ -232,50 +213,39 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
     }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    public void invalidateCapabilities() {
+        super.invalidateCapabilities();
+    }
+
+    public IItemHandler getHandlerForSide(Direction side) {
 
         BlockState blockState = this.getBlockState();
-        Direction direction = blockState.getValue(FACING);
-        Direction left = direction.getClockWise();
-        Direction opposite = direction.getOpposite();
+        Direction facing = blockState.getValue(FACING);
+        Direction left = facing.getClockWise();
+        Direction opposite = facing.getOpposite();
         Direction right =  opposite.getClockWise();
 
         ItemStack slot1 = this.itemStackHandlerInputSlot1.getStackInSlot(SLOT);
         ItemStack slot3 = this.itemStackHandlerInputSlot3.getStackInSlot(SLOT);
 
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == opposite)
-                return this.lazyItemHandlerSlot2.cast();
-            else if (side == Direction.DOWN && slot1.getItem().equals(BUCKET))
-                return this.lazyItemHandlerSlot1.cast();
-            else if (side == Direction.DOWN && slot3.getItem().equals(BUCKET))
-                return this.lazyItemHandlerSlot3.cast();
-            else if (side == Direction.DOWN)
-                return this.lazyItemHandlerSlot0.cast();
-            else if (side == left)
-                return this.lazyItemHandlerSlot1.cast();
-            else if (side == right)
-                return this.lazyItemHandlerSlot3.cast();
+
+        if (side == null) {
+            return null;
+        } else if (side == opposite) {
+            return this.itemStackHandlerInputSlot2;
+        } else if (side == Direction.DOWN && slot1.getItem().equals(BUCKET)) {
+            return this.itemStackHandlerInputSlot1;
+        } else if (side == Direction.DOWN && slot3.getItem().equals(BUCKET)) {
+            return this.itemStackHandlerInputSlot3;
+        } else if (side == Direction.DOWN) {
+            return this.itemStackHandlerOutputSlot0;
+        } else if (side == left) {
+            return this.itemStackHandlerInputSlot1;
+        } else if (side == right) {
+            return this.itemStackHandlerInputSlot3;
+        } else {
+            return null;
         }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandlerSlot0 = LazyOptional.of(() -> itemStackHandlerOutputSlot0);
-        lazyItemHandlerSlot1 = LazyOptional.of(() -> itemStackHandlerInputSlot1);
-        lazyItemHandlerSlot2 = LazyOptional.of(() -> itemStackHandlerInputSlot2);
-        lazyItemHandlerSlot3 = LazyOptional.of(() -> itemStackHandlerInputSlot3);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandlerSlot0.invalidate();
-        lazyItemHandlerSlot1.invalidate();
-        lazyItemHandlerSlot2.invalidate();
-        lazyItemHandlerSlot3.invalidate();
     }
 
     @Override
@@ -330,10 +300,9 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
 
         if (this.level == null || this.level.isClientSide() || !(blockEntity instanceof DyeingStationBlockEntity dyeingStationBlockEntity))
             return;
+
         if (hasRecipe()) {
-
             if (allowIncreaseProgress()) {
-
                 increaseCraftingProgress();
                 setChanged(level, blockPos, blockState);
 
@@ -356,7 +325,6 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
 
             if (!itemStackHandlerInputSlot3.getStackInSlot(SLOT).getItem().equals(AIR))
                 insertFullStackAtOnce(blockPos, dyeingStationBlockEntity, blockEntity, this.getBlockState().getValue(FACING).getOpposite().getClockWise(), itemStackHandlerInputSlot3);
-
         }
     }
 
@@ -410,17 +378,17 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
                 return false;
             } else if (itemSlot2 instanceof DyeingTool && !itemSlot3.equals(Items.WATER_BUCKET) && (!colorTypeSlot2.equals(colorTypeSlot3) || !hasBlockStateTag(itemStackInputSlot2))) {
 
-                if (itemSlot3Count <32 || !GrassesConfig.CommonConfig.ALLOW_CHANGE_COLOR_OF_DYEING_TOOL.get())
+                if (itemSlot3Count <32 || !GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_COLOR_OF_DYEING_TOOL.get())
                     return false;
                 else {
                     changeColorCaseAndRefillAble = true;
                     return true;
                 }
-            } else if (itemSlot2 instanceof DyeingBoneMealItem && hasBlockStateTag(itemStackInputSlot2) && !itemSlot3.equals((Items.WATER_BUCKET)) && !GrassesConfig.CommonConfig.ALLOW_CHANGE_COLOR_OF_DYEING_BONEMEAL.get()) {
+            } else if (itemSlot2 instanceof DyeingBoneMealItem && hasBlockStateTag(itemStackInputSlot2) && !itemSlot3.equals((Items.WATER_BUCKET)) && !GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_COLOR_OF_DYEING_BONEMEAL.get()) {
                 return false;
-            } else if (itemSlot2 instanceof BoneMealItem && !(itemSlot2 instanceof DyeingBoneMealItem) && !GrassesConfig.CommonConfig.ALLOW_CRAFT_DYEING_BONEMEAL.get()) {
+            } else if (itemSlot2 instanceof BoneMealItem && !(itemSlot2 instanceof DyeingBoneMealItem) && !GrassesConfig.COMMON_CONFIG.ALLOW_CRAFT_DYEING_BONEMEAL.get()) {
                 return false;
-            } else if (itemSlot2 instanceof DyeingItem && !GrassesConfig.CommonConfig.ALLOW_CRAFT_DYE.get()) {
+            } else if (itemSlot2 instanceof DyeingItem && !GrassesConfig.COMMON_CONFIG.ALLOW_CRAFT_DYE.get()) {
                 return false;
             } else
                 return true;
@@ -459,8 +427,8 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         ItemStack inputSlot3Stack =  inputSlot3.getStackInSlot(SLOT);
         int slot2Count = inputSlot2Stack.getCount();
 
-        Optional<DyeingStationRecipe> recipe = getCurrentRecipe();
-        ItemStack result = recipe.get().getResultItem(null);
+        Optional<RecipeHolder<DyeingStationRecipe>> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().value().getResultItem(null);
 
         int durability = inputSlot2Stack.getDamageValue();
         boolean changeAmount = false;
@@ -523,22 +491,20 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
     }
 
     private boolean hasRecipe() {
-        Optional<DyeingStationRecipe> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<DyeingStationRecipe>> recipe = getCurrentRecipe();
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess()); //!! null
-
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess()); //!! null
         return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }
 
-    private Optional<DyeingStationRecipe> getCurrentRecipe() {
+    private Optional<RecipeHolder<DyeingStationRecipe>> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(4);
             inventory.setItem(0, this.itemStackHandlerOutputSlot0.getStackInSlot(SLOT));
             inventory.setItem(1, this.itemStackHandlerInputSlot1.getStackInSlot(SLOT));
             inventory.setItem(2, this.itemStackHandlerInputSlot2.getStackInSlot(SLOT));
             inventory.setItem(3, this.itemStackHandlerInputSlot3.getStackInSlot(SLOT));
-
 
         return this.level.getRecipeManager().getRecipeFor(DyeingStationRecipe.Type.INSTANCE, inventory, level);
     }
@@ -563,20 +529,21 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
     }
 
     private void extractFullStackAtOnceFromSlot0(BlockPos blockPos, DyeingStationBlockEntity dyeingStationBlockEntity, BlockEntity blockEntity) {
+
         Direction stationExportSide = Direction.DOWN;
         BlockPos extractHopperBlockPos = blockPos.relative(stationExportSide);
 
         BlockEntity extractHopperBE = level.getBlockEntity(extractHopperBlockPos);
-        if (extractHopperBE == null) return;
+        if (extractHopperBE == null)
+            return;
 
-        LazyOptional<IItemHandler> hopperHandlerOptional = extractHopperBE.getCapability(ForgeCapabilities.ITEM_HANDLER, stationExportSide.getOpposite());
-        if (!hopperHandlerOptional.isPresent()) return;
-
-        IItemHandler hopperHandler = hopperHandlerOptional.resolve().orElse(null);
-        if (hopperHandler == null) return;
+        IItemHandler hopperHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, extractHopperBlockPos, stationExportSide.getOpposite());
+        if (hopperHandler == null)
+            return;
 
         ItemStack stackToExtract = dyeingStationBlockEntity.extractFullStack(SLOT, true, itemStackHandlerOutputSlot0);
-        if (stackToExtract.isEmpty()) return;
+        if (stackToExtract.isEmpty())
+            return;
 
         int slot = -1;
         for (int hopperSlot = 0; hopperSlot < hopperHandler.getSlots(); hopperSlot++) {
@@ -586,15 +553,19 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
             ColorType colorInHopper = getColorTypeFromNBT(hopperStack);
             ColorType colorInStation = getColorTypeFromNBT(stationStack);
 
+
             boolean same = colorInHopper.equals(colorInStation) && hopperStack.getItem().equals(stationStack.getItem());
 
-            if (hopperStack.isEmpty() || (same && (hopperStack.getCount() + stationStack.getCount()) <= hopperStack.getMaxStackSize())) {
+
+            if (hopperStack.isEmpty() || (same && hopperStack.getCount() < hopperStack.getMaxStackSize())) {
                 slot = hopperSlot;
                 break;
             }
+
         }
 
         if (slot != -1) {
+
             ItemStack remainder = hopperHandler.insertItem(slot, stackToExtract, true);
             if (remainder.getCount() < stackToExtract.getCount()) {
                 ItemStack extracted = dyeingStationBlockEntity.extractFullStack(SLOT, false, itemStackHandlerOutputSlot0);
@@ -611,25 +582,28 @@ public class DyeingStationBlockEntity extends BlockEntity implements TickAbleBlo
         }
         return itemStackHandler.extractItem(slot, stack.getCount(), simulate);
     }
-
     private void insertFullStackAtOnce(BlockPos blockPos, DyeingStationBlockEntity dyeingStationBlockEntity, BlockEntity blockEntity, Direction stationImportSide, ItemStackHandler itemStackHandler) {
         BlockPos importHopperBlockPos = blockPos.relative(stationImportSide);
-
         BlockEntity importHopperBE = level.getBlockEntity(importHopperBlockPos);
-        if (importHopperBE == null || blockEntity == null) return;
+        if (importHopperBE == null || blockEntity == null)
+            return;
 
-        LazyOptional<IItemHandler> hopperHandlerOptional = importHopperBE.getCapability(ForgeCapabilities.ITEM_HANDLER, stationImportSide.getOpposite());
-        if (!hopperHandlerOptional.isPresent()) return;
+        IItemHandler hopperHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, importHopperBlockPos, stationImportSide.getOpposite());
+        if (hopperHandler == null)
+            return;
 
-        IItemHandler hopperHandler = hopperHandlerOptional.resolve().orElse(null);
-        if (hopperHandler == null) return;
+
 
         for (int hopperSlot = 0; hopperSlot < hopperHandler.getSlots(); hopperSlot++) {
             ItemStack hopperStack = hopperHandler.getStackInSlot(hopperSlot);
-            if (hopperStack.isEmpty()) continue;
+            if (hopperStack.isEmpty()) {
+                continue;
+            }
 
             ItemStack importStack = hopperHandler.extractItem(hopperSlot, hopperStack.getCount(), true);
-            if (importStack.isEmpty()) continue;
+            if (importStack.isEmpty()) {
+                continue;
+            }
 
             ItemStack remainder = dyeingStationBlockEntity.insertStack(0, importStack, true, itemStackHandler);
             int transferred = importStack.getCount() - remainder.getCount();

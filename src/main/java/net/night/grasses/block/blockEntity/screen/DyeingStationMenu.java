@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.night.grasses.block.blockEntity.DyeingStationBlockEntity;
 import net.night.grasses.init.ItemsRegister;
 import net.night.grasses.item.DyeingTool;
@@ -38,40 +38,32 @@ public class DyeingStationMenu extends AbstractContainerMenu {
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-        this.blockEntity.getLazyItemHandlerSlot0().ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 80, 59) {
-                @Override
-                public boolean mayPlace(@NotNull ItemStack itemStack) {
-                    return false;
-                }
-            });
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemStackHandlerOutputSlot0, 0, 80, 59) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack itemStack) {
+                return false;
+            }
         });
 
-        this.blockEntity.getLazyItemHandlerSlot1().ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler,0, 61, 21) {
-                @Override
-                public boolean mayPlace(@NotNull ItemStack itemStack) {
-                    return itemStack.getItem().equals(Items.WATER_BUCKET);
-                }
-            });
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemStackHandlerInputSlot1, 0, 61, 21) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack itemStack) {
+                return itemStack.getItem().equals(Items.WATER_BUCKET);
+            }
         });
 
-        this.blockEntity.getLazyItemHandlerSlot2().ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 80, 11) {
-                @Override
-                public boolean mayPlace(@NotNull ItemStack itemStack) {
-                    return itemStack.getItem() instanceof BoneMealItem || itemStack.getItem() instanceof DyeingTool || itemStack.getItem().equals(Items.PHANTOM_MEMBRANE);
-                }
-            });
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemStackHandlerInputSlot2, 0, 80, 11) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack itemStack) {
+                return itemStack.getItem() instanceof BoneMealItem || itemStack.getItem() instanceof DyeingTool || itemStack.getItem().equals(Items.PHANTOM_MEMBRANE);
+            }
         });
 
-        this.blockEntity.getLazyItemHandlerSlot3().ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 99, 21) {
-                @Override
-                public boolean mayPlace(@NotNull ItemStack itemStack) {
-                    return ingredientsList.contains(itemStack.getItem()) || itemStack.getItem().equals(Items.WATER_BUCKET) || itemStack.getItem().equals(ItemsRegister.GRASSES_DYE.get());
-                }
-            });
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemStackHandlerInputSlot3, 0, 99, 21) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack itemStack) {
+                return ingredientsList.contains(itemStack.getItem()) || itemStack.getItem().equals(Items.WATER_BUCKET) || itemStack.getItem().equals(ItemsRegister.GRASSES_DYE.get());
+            }
         });
         addDataSlots(containerData);
     }

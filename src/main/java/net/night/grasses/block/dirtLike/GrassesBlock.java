@@ -19,14 +19,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.interfaces.CanGrowConditioner;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,7 +38,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 public class GrassesBlock extends GrassBlock implements BonemealableBlock, CanGrowConditioner {
 
     public GrassesBlock() {
-        super(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK));
+        super(Properties.ofFullCopy(Blocks.GRASS_BLOCK));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, true));
     }
 
@@ -65,7 +64,7 @@ public class GrassesBlock extends GrassBlock implements BonemealableBlock, CanGr
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return levelReader.getBlockState(blockPos.above()).isAir();
     }
 
@@ -177,7 +176,7 @@ public class GrassesBlock extends GrassBlock implements BonemealableBlock, CanGr
                     }
                     else {
                         level.setBlock(blockPos, Blocks.DIRT.defaultBlockState(), 3);
-                        Block.popResourceFromFace(level, blockPos, hitResult.getDirection(), new ItemStack(Items.GRASS));
+                        Block.popResourceFromFace(level, blockPos, hitResult.getDirection(), new ItemStack(Items.SHORT_GRASS));
                     }
                 }
             }

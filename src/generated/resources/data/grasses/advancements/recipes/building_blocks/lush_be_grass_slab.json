@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_lush_be_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_lush_be_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:lush_be_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

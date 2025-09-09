@@ -11,8 +11,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
@@ -42,7 +42,7 @@ import static net.night.grasses.data.ModMethods.*;
 public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBlock {
 
     public TintedPottedPlantBlock(@Nullable Supplier<FlowerPotBlock> emptyPot, Supplier<? extends Block> plant) {
-        super(emptyPot, plant, Properties.copy(POTTED_FERN).noOcclusion());
+        super(emptyPot, plant, Properties.ofFullCopy(POTTED_FERN).noOcclusion());
         this.registerDefaultState(this.defaultBlockState());
     }
 
@@ -52,17 +52,17 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
 
-        final BlockState emptyPotState = blockGetter.getBlockState(blockPos);
+        final BlockState emptyPotState = levelReader.getBlockState(blockPos);
         final Block emptyPotBlock = emptyPotState.getBlock();
 
         if (!(emptyPotBlock instanceof FlowerPotBlock) || emptyPotState != emptyPotBlock.defaultBlockState() ||
-                ((FlowerPotBlock) emptyPotBlock).getContent() != Blocks.AIR) {
+                ((FlowerPotBlock) emptyPotBlock).getPotted() != Blocks.AIR) {
 
-            blockState = ((FlowerPotBlock) emptyPotBlock).getContent().defaultBlockState();
+            blockState = ((FlowerPotBlock) emptyPotBlock).getPotted().defaultBlockState();
         }
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.getContent().asItem());
+        return prepareDropWithColor(super.getDrops(blockState, builder), builder, this.getPotted().asItem());
     }
 
     @Nullable
@@ -86,8 +86,8 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_POTTED_PLANT_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_POTTED_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_POTTED_PLANT_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_POTTED_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         ItemStack itemStackInMainHand = player.getMainHandItem();
         int interactionResult = 1;
@@ -107,7 +107,7 @@ public class TintedPottedPlantBlock extends FlowerPotBlock implements EntityBloc
 
     private void plantReplacement(Level level, BlockPos blockPos, BlockState blockStatePot, Player player, ItemStack itemStackInMainHand) {
         ColorType colorType = getColorType(level, blockPos);
-        ItemStack itemStackContent = new ItemStack(this.getContent());
+        ItemStack itemStackContent = new ItemStack(this.getPotted());
 
         Block blockInMainHand = AIR;
 

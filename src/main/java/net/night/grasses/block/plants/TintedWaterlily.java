@@ -21,9 +21,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.PlantType;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.ModMethods;
@@ -32,12 +32,12 @@ import java.util.List;
 
 import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.FERTILE;
 
 public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock, EntityBlock {
 
     public TintedWaterlily() {
-        super(Properties.copy(Blocks.LILY_PAD));
+        super(Properties.ofFullCopy(Blocks.LILY_PAD));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
     }
 
@@ -60,8 +60,8 @@ public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -87,8 +87,8 @@ public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean pIsClient) {
-        if (!GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD.get())
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if (!GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD.get())
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();
@@ -107,8 +107,8 @@ public class TintedWaterlily extends WaterlilyBlock implements BonemealableBlock
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.LILY_PAD_PLACE);

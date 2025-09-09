@@ -8,8 +8,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.config.GrassesConfig;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,7 +59,7 @@ public class DyeingTool extends Item {
                     Objects.equals(Enchantments.UNBREAKING, enchantment) ||
                     Objects.equals(Enchantments.VANISHING_CURSE, enchantment) ||
                     Objects.equals(Enchantments.FIRE_ASPECT, enchantment) ||
-                    (Objects.equals(Enchantments.INFINITY_ARROWS, enchantment) && GrassesConfig.CommonConfig.ALLOW_APPLY_INFINITY_ON_DYEING_TOOL.get())
+                    (Objects.equals(Enchantments.INFINITY_ARROWS, enchantment) && GrassesConfig.COMMON_CONFIG.ALLOW_APPLY_INFINITY_ON_DYEING_TOOL.get())
 
             ) {
                 allowEnchant.set(true);

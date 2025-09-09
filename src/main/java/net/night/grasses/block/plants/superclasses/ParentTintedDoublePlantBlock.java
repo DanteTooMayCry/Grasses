@@ -13,6 +13,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.EntityBlock;
@@ -21,8 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -30,7 +31,7 @@ import net.night.grasses.data.ModMethods;
 
 import java.util.List;
 
-import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
 
@@ -53,8 +54,8 @@ public class ParentTintedDoublePlantBlock extends DoublePlantBlock implements En
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -77,8 +78,9 @@ public class ParentTintedDoublePlantBlock extends DoublePlantBlock implements En
         }
     }
 
+
     @Override
-    public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+    public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
 
         if (!level.isClientSide) {
             if (player.isCreative()) {
@@ -92,20 +94,21 @@ public class ParentTintedDoublePlantBlock extends DoublePlantBlock implements En
                     dropResources(blockState, level, blockPos, null , player, player.getMainHandItem());
             }
         }
+        return super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
     @Override
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
 
-        Block block = blockState.getBlock().equals(FERN_TALL_TINTED.get()) ? FERN_TINTED.get() : GRASS_TINTED.get();
+        Block block = blockState.getBlock().equals(FERN_TALL_TINTED.get()) ? FERN_TINTED.get() : GRASS_SHORT_TINTED.get();
         return prepareDropWithColor(super.getDrops(blockState, builder), builder, block.asItem());
     }
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, true, SoundEvents.GRASS_BREAK);

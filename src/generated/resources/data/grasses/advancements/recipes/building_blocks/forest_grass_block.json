@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_oak_sapling",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_oak_sapling"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:forest_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,31 +1,23 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "neoforge:conditions": [
     {
-      "conditions": [
-        {
-          "type": "grasses:bamboo_paper_enabled"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "misc",
-        "key": {
-          "B": {
-            "item": "minecraft:bamboo"
-          }
-        },
-        "pattern": [
-          "   ",
-          "BBB",
-          "BBB"
-        ],
-        "result": {
-          "count": 3,
-          "item": "minecraft:paper"
-        },
-        "show_notification": true
-      }
+      "type": "grasses:bamboo_paper_enabled"
     }
-  ]
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo"
+    }
+  },
+  "pattern": [
+    "   ",
+    "BBB",
+    "BBB"
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:paper"
+  }
 }

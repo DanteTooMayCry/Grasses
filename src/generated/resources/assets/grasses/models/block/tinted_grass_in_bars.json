@@ -94,6 +94,6 @@
   ],
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "cross": "minecraft:block/grass"
+    "cross": "minecraft:block/short_grass"
   }
 }

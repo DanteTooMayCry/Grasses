@@ -24,7 +24,7 @@ import static net.minecraft.tags.BlockTags.LEAVES;
 import static net.minecraft.world.level.block.Blocks.AIR;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.FERTILE;
 import static net.night.grasses.init.BlocksRegisterBoP.HUGE_CLOVER_TINTED;
 
 public class TintedCloverBOP extends ParentTintedPinkPetals {

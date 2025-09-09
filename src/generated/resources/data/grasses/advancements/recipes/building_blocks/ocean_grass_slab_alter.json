@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_kelp",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_kelp"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:ocean_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

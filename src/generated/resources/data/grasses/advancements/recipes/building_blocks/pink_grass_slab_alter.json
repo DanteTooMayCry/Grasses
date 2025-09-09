@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pink_dye",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pink_dye"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:pink_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

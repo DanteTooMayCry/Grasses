@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +17,8 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.BIG_DRIP_LEAF_POTTED;
+import static net.night.grasses.init.BlocksRegister.SMALL_DRIP_LEAF_POTTED;
 
 
 public class PottedDripLeafBlock extends PottedPlantBlock {
@@ -37,7 +39,7 @@ public class PottedDripLeafBlock extends PottedPlantBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pPos, BlockState pState) {
 
         ItemStack itemStackContent = new ItemStack(FLOWER_POT);
 

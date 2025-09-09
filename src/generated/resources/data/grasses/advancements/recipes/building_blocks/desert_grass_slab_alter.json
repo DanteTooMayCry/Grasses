@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cactus",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cactus"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:desert_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

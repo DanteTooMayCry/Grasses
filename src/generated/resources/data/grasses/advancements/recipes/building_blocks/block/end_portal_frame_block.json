@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "grasses:end_portal_frame_enabled"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dragon_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dragon_head"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "grasses:block/end_portal_frame_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dragon_head"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "grasses:block/end_portal_frame_block"
+    ]
+  }
+}

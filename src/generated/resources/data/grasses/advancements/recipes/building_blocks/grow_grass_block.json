@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:grow_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

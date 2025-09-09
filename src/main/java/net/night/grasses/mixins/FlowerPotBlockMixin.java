@@ -17,7 +17,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.night.grasses.block.potted.*;
+import net.night.grasses.block.potted.PottedPlantBlock;
+import net.night.grasses.block.potted.TintedPottedPlantBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -41,7 +42,7 @@ public abstract class FlowerPotBlockMixin {
     ItemStack grasses$itemStackInHandAtStart;
 
     @Shadow
-    public Block getContent() {
+    public Block getPotted() {
         return null;
     }
 
@@ -84,7 +85,7 @@ public abstract class FlowerPotBlockMixin {
 
         ItemStack itemStackInHandAtEnd = player.getMainHandItem();
         BlockState blockStateAtEnd = level.getBlockState(blockPos);
-        BlockState blockStateContent = getContent().defaultBlockState();
+        BlockState blockStateContent = getPotted().defaultBlockState();
         ItemStack itemStackContent = blockStateContent.getBlock().asItem().getDefaultInstance();
         boolean hasSilkTouch = grasses$itemStackInHandAtStart.getItem() instanceof ShearsItem && EnchantmentHelper.hasSilkTouch(grasses$itemStackInHandAtStart);
         int handAtStart = grasses$itemStackInHandAtStart != null ? grasses$itemStackInHandAtStart.getCount() : 0;

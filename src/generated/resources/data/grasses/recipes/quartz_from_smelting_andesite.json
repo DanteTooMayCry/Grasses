@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "grasses:quartz_smelting_enabled"
+    }
+  ],
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "quartz",
+  "ingredient": {
+    "item": "minecraft:andesite"
+  },
+  "result": "minecraft:quartz"
+}

@@ -9,7 +9,7 @@ import net.night.grasses.enums.ColorType;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static net.night.grasses.data.ModData.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.VINE_POTTED_TINTED;
 
 public class ColorsDefinition {
 

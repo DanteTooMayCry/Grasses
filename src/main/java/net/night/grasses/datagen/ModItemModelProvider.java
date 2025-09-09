@@ -4,10 +4,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.night.grasses.Grasses;
 
 import static net.night.grasses.Grasses.isBOPLoaded;
@@ -29,7 +30,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItemInstanceOfDyeingBoneMeal(DYEING_BONE_MEAL, "minecraft:item/bone_meal");
         simpleItemInstanceOfDyeingBoneMeal(GRASSES_DYE, "grasses:item/grasses_dye");
 
-        simpleItemInstancePlant(GRASS_TINTED, "minecraft:block/grass");
+        simpleItemInstancePlant(GRASS_SHORT_TINTED, "minecraft:block/short_grass");
         simpleItemInstancePlant(GRASS_TALL_TINTED, "minecraft:block/tall_grass_top");
         simpleItemInstancePlant(FERN_TINTED, "minecraft:block/fern");
         simpleItemInstancePlant(FERN_TALL_TINTED, "minecraft:block/large_fern_top");
@@ -46,11 +47,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItemInstancePlant(KELP_TINTED, "grasses:item/kelp");
         simpleItemInstancePlant(KELP_PLANT_TINTED, "grasses:block/kelp_plant_tinted");
 
-        simpleItemWithOverlay(GRASS_IN_BARS, "minecraft:block/grass", "minecraft:block/iron_bars");
+        simpleItemWithOverlay(GRASS_IN_BARS, "minecraft:block/short_grass", "minecraft:block/iron_bars");
         simpleItemWithOverlay(FERN_IN_BARS, "minecraft:block/fern", "minecraft:block/iron_bars");
         simpleItemWithOverlay(VINE_IN_BARS, "minecraft:block/vine", "minecraft:block/iron_bars");
         simpleItemWithOverlay(TINTED_VINE_IN_BARS, "minecraft:block/vine", "minecraft:block/iron_bars");
-        simpleItemWithOverlay(TINTED_GRASS_IN_BARS, "minecraft:block/grass", "minecraft:block/iron_bars");
+        simpleItemWithOverlay(TINTED_GRASS_IN_BARS, "minecraft:block/short_grass", "minecraft:block/iron_bars");
         simpleItemWithOverlay(TINTED_FERN_IN_BARS, "minecraft:block/fern", "minecraft:block/iron_bars");
 
         if (isBOPLoaded) {
@@ -72,33 +73,33 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     }
 
-    protected ItemModelBuilder simpleItem (RegistryObject<Item> item) {
+    protected ItemModelBuilder simpleItem (DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated"))
                     .texture("layer0", new ResourceLocation(Grasses.MOD_ID, "item/" + item.getId().getPath()));
     }
-    protected ItemModelBuilder simpleItemInstanceOfDyeingTool(RegistryObject<Item> item) {
+    protected ItemModelBuilder simpleItemInstanceOfDyeingTool(DeferredItem<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated"))
                     .texture("layer0", new ResourceLocation(Grasses.MOD_ID, "item/" + item.getId().getPath()))
                     .texture("layer1", new ResourceLocation(Grasses.MOD_ID,"item/" + item.getId().getPath()) + "_overlay");
     }
-    protected ItemModelBuilder simpleItemInstanceOfDyeingBoneMeal(RegistryObject<Item> item, String path) {
+    protected ItemModelBuilder simpleItemInstanceOfDyeingBoneMeal(DeferredItem<Item> item, String path) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated"))
                 .texture("layer0", new ResourceLocation(path));
     }
-    protected ItemModelBuilder simpleItemInstancePlant(RegistryObject<Block> item, String path) {
+    protected ItemModelBuilder simpleItemInstancePlant(DeferredBlock<Block> item, String path) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated"))
                     .texture("layer0", new ResourceLocation(path));
     }
-    protected ItemModelBuilder itemDripLeaf (RegistryObject<Block> item, String name) {
+    protected ItemModelBuilder itemDripLeaf (DeferredBlock<Block> item, String name) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation(name));
     }
 
-    protected ItemModelBuilder simpleItemWithOverlay (RegistryObject<Block> item, String path, String pathOverlay) {
+    protected ItemModelBuilder simpleItemWithOverlay (DeferredBlock<Block> item, String path, String pathOverlay) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated"))
                 .texture("layer0", new ResourceLocation(path))

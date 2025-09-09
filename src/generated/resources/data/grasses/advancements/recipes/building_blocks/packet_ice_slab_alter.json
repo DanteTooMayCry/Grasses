@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_ice_slab",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_ice_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:packet_ice_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

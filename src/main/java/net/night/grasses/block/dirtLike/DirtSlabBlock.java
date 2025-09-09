@@ -12,12 +12,13 @@ import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.lighting.LightEngine;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import net.night.grasses.interfaces.CanGrowConditioner;
 import org.jetbrains.annotations.NotNull;
 
-import static net.minecraft.world.level.block.Blocks.*;
+import static net.minecraft.world.level.block.Blocks.GRASS_BLOCK;
+import static net.minecraft.world.level.block.Blocks.MYCELIUM;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
 import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 import static net.night.grasses.init.BlocksRegister.*;
@@ -26,7 +27,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 public class DirtSlabBlock extends ParentSlabBlock implements CanGrowConditioner {
 
     public DirtSlabBlock() {
-        super(Properties.copy(Blocks.DIRT));
+        super(Properties.ofFullCopy(Blocks.DIRT));
     }
 
     @Override

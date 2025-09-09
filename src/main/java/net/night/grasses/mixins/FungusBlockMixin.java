@@ -21,7 +21,7 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public abstract class FungusBlockMixin {
 
     @Inject(at = @At("HEAD"), method = "isValidBonemealTarget", cancellable = true)
-    public void isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient, CallbackInfoReturnable<Boolean> cir) {
+    public void isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, CallbackInfoReturnable<Boolean> cir) {
         BlockState blockstate = pLevel.getBlockState(pPos.below());
         BlockState fungusType = pLevel.getBlockState(pPos);
 
@@ -33,8 +33,9 @@ public abstract class FungusBlockMixin {
 
     @Inject(at = @At("HEAD"), method = "mayPlaceOn", cancellable = true)
     protected void mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos, CallbackInfoReturnable<Boolean> cir) {
+        boolean allowPlantsOnBottomSlab = GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get();
 
-        if ((pState.getBlock() instanceof NyliumSlabBlock && pState.getValue(SLAB_TYPE) == SlabType.BOTTOM) && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if ((pState.getBlock() instanceof NyliumSlabBlock && pState.getValue(SLAB_TYPE) == SlabType.BOTTOM) && !allowPlantsOnBottomSlab)
             cir.setReturnValue(false);
     }
 }

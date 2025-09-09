@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_dripstone_be_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dripstone_be_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:dripstone_be_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

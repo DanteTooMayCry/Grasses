@@ -20,12 +20,14 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.FarmlandWaterManager;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.FarmBlock.MOISTURE;
+import static net.neoforged.neoforge.common.CommonHooks.onFarmlandTrample;
 import static net.night.grasses.init.BlocksRegister.DIRT_SLAB_BLOCK;
 import static net.night.grasses.init.BlocksRegister.FARMLAND_SLAB_BLOCK;
 
@@ -36,7 +38,7 @@ public class FarmlandSlabBlock extends ParentSlabBlock {
     protected static final VoxelShape DOUBLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
     public FarmlandSlabBlock() {
-        super(Properties.copy(Blocks.FARMLAND));
+        super(Properties.ofFullCopy(Blocks.FARMLAND));
         this.registerDefaultState(this.defaultBlockState().setValue(MOISTURE, 0));
     }
 
@@ -138,7 +140,7 @@ public class FarmlandSlabBlock extends ParentSlabBlock {
 
     @Override
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (!pLevel.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(pLevel, pPos, Blocks.DIRT.defaultBlockState(), pFallDistance, pEntity)) { // Forge: Move logic to Entity#canTrample
+        if (!pLevel.isClientSide && onFarmlandTrample(pLevel, pPos, Blocks.DIRT.defaultBlockState(), pFallDistance, pEntity)) { // Forge: Move logic to Entity#canTrample
             turnToDirt(pEntity, pState, pLevel, pPos);
         }
         super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
@@ -157,7 +159,7 @@ public class FarmlandSlabBlock extends ParentSlabBlock {
                 return true;
             }
         }
-        return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(pLevel, pPos);
+        return FarmlandWaterManager.hasBlockWaterTicket(pLevel, pPos);
     }
 
     @Override

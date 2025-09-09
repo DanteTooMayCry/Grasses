@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_netherrack",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_netherrack"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:netherrack_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

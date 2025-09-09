@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_yellow_dye",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_yellow_dye"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:yellow_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

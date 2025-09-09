@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_soul_soil",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_soul_soil"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:soul_soil_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

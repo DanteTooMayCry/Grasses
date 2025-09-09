@@ -1,31 +1,23 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "neoforge:conditions": [
     {
-      "conditions": [
-        {
-          "type": "grasses:string_enabled"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "misc",
-        "key": {
-          "W": {
-            "item": "minecraft:white_wool"
-          }
-        },
-        "pattern": [
-          "   ",
-          " W ",
-          "   "
-        ],
-        "result": {
-          "count": 3,
-          "item": "minecraft:string"
-        },
-        "show_notification": true
-      }
+      "type": "grasses:string_enabled"
     }
-  ]
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "pattern": [
+    "   ",
+    " W ",
+    "   "
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:string"
+  }
 }

@@ -1,13 +1,13 @@
 {
   "name": "Trawa",
-  "icon": "grasses:grass_tinted",
+  "icon": "grasses:grass_short_tinted",
   "category": "grasses:plants_category",
   "sortnum": 1,
   "read_by_default": true,
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "grasses:grass_tinted",
+      "item": "grasses:grass_short_tinted",
       "title": "Trawa"
     }
   ]

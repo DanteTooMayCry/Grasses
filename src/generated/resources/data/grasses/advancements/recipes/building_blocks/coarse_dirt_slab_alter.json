@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gravel_slab",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gravel_slab"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:coarse_dirt_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

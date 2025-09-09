@@ -18,13 +18,19 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.TallSeagrassBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -35,8 +41,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 import net.night.grasses.block.bars.TintedPlantInBars;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.block.plants.TintedVine;
@@ -45,15 +51,15 @@ import net.night.grasses.block.potted.TintedPottedPlantBlock;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
 import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.enums.GrassesQuarterProperty;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.util.ClientPlayerHelper;
-import net.night.grasses.enums.GrassesQuarterProperty;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.*;
 
-import static biomesoplenty.api.block.BOPBlocks.*;
+import static biomesoplenty.api.block.BOPBlocks.WATERLILY;
 import static biomesoplenty.block.HugeLilyPadBlock.QUARTER;
 import static net.minecraft.tags.BlockTags.LEAVES;
 import static net.minecraft.world.level.block.Blocks.*;
@@ -69,15 +75,18 @@ import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.U
 import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.block.plants.TintedSugarCane.biomesColorSourcePropertiesUpdate;
-import static net.night.grasses.enums.ColorType.*;
+import static net.night.grasses.enums.ColorType.PLAINS;
 import static net.night.grasses.data.ModData.*;
+import static net.night.grasses.enums.GrassesQuarterProperty.NORTH_EAST;
+import static net.night.grasses.enums.GrassesQuarterProperty.NORTH_WEST;
+import static net.night.grasses.enums.GrassesQuarterProperty.SOUTH_EAST;
+import static net.night.grasses.enums.GrassesQuarterProperty.SOUTH_WEST;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
-import static net.night.grasses.enums.GrassesQuarterProperty.*;
 
 public final class ModMethods {
 
-    private  ModMethods() {
+    private ModMethods() {
 
     }
 
@@ -162,7 +171,7 @@ public final class ModMethods {
 
     public static boolean canSustainPlantOnDirtLike(BlockState blockState, BlockGetter world, BlockPos blockPos, Direction facing, IPlantable plantable) {
 
-        if (!blockState.hasProperty(TYPE) || !blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) {
+        if (!blockState.hasProperty(TYPE) || !blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) {
 
             PlantType plantType = plantable.getPlantType(world, blockPos);
             BlockState east = world.getBlockState(blockPos.east());
@@ -244,10 +253,14 @@ public final class ModMethods {
 
         CompoundTag compoundNBT = itemStack.getTag();
 
-        if (EnchantmentHelper.hasSilkTouch(itemStack))
+        if (EnchantmentHelper.hasSilkTouch(itemStack)) {
+            assert compoundNBT != null;
             compoundNBT.putBoolean("Enchanted", true);
-        else
+        }
+        else {
+            assert compoundNBT != null;
             compoundNBT.putBoolean("Enchanted", false);
+        }
 
         itemStack.setTag(compoundNBT);
         return itemStack;

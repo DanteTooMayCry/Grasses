@@ -18,9 +18,10 @@ public abstract class GrowingPlantBlockMixin {
 
     @Inject(at = @At("HEAD"), method = "canSurvive", cancellable = true)
     public void canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos, CallbackInfoReturnable<Boolean> cir) {
+        boolean allowPlantsOnBottomSlab = GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get();
 
         BlockState blockStateBelow = pLevel.getBlockState(pPos.below());
-        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !allowPlantsOnBottomSlab)
             cir.setReturnValue(false);
 
     }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_emerald",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_emerald"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:emerald_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

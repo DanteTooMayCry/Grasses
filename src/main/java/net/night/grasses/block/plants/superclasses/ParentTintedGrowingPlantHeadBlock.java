@@ -1,5 +1,6 @@
 package net.night.grasses.block.plants.superclasses;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -25,9 +27,8 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -40,6 +41,8 @@ import java.util.List;
 import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS;
 import static biomesoplenty.api.block.BOPBlocks.HIGH_GRASS_PLANT;
 import static net.minecraft.world.level.block.Blocks.*;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPost;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPre;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.data.ModMethods.*;
 import static net.night.grasses.init.BlocksRegister.*;
@@ -52,6 +55,11 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
         super(pProperties, pGrowthDirection, pShape, pScheduleFluidTicks, pGrowPerTickProbability);
         this.growPerTickProbability = pGrowPerTickProbability;
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+        return null;
     }
 
     @Override
@@ -73,8 +81,8 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -151,8 +159,8 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.GRASS_BREAK);
@@ -233,7 +241,7 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
 
     @Override
     public void randomTick(BlockState blockState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
-        if (blockState.getValue(AGE) < 25 && ForgeHooks.onCropsGrowPre(level, blockPos.relative(this.growthDirection), level.getBlockState(blockPos.relative(this.growthDirection)), randomSource.nextDouble() < this.growPerTickProbability)) {
+        if (blockState.getValue(AGE) < 25 && onCropsGrowPre(level, blockPos.relative(this.growthDirection), level.getBlockState(blockPos.relative(this.growthDirection)), randomSource.nextDouble() < this.growPerTickProbability)) {
             BlockPos blockPosAbove = blockPos.relative(this.growthDirection);
             if (this.canGrowInto(level.getBlockState(blockPosAbove))) {
                 Block blockToKeepAbove = AIR;
@@ -252,7 +260,7 @@ public class ParentTintedGrowingPlantHeadBlock extends GrowingPlantHeadBlock imp
                 keepData(blockPosAbove, blockToKeepAbove, getColorType(level, blockPos));
                 keepData(blockPos, blockToKeep, keepColorType.get(blockPosAbove));
                 level.setBlockAndUpdate(blockPosAbove, this.getGrowIntoState(blockState, level.random));
-                ForgeHooks.onCropsGrowPost(level, blockPosAbove, level.getBlockState(blockPosAbove));
+                onCropsGrowPost(level, blockPosAbove, level.getBlockState(blockPosAbove));
             }
         }
 

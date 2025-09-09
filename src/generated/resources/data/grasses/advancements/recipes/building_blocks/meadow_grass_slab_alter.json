@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_allium",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_allium"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:meadow_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

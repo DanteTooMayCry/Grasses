@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_magenta_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_magenta_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:magenta_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

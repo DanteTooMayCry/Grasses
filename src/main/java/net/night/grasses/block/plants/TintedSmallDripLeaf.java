@@ -16,7 +16,10 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SmallDripleafBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -24,8 +27,8 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -42,7 +45,7 @@ import static net.night.grasses.data.ModMethods.*;
 public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlock {
 
     public TintedSmallDripLeaf() {
-        super(Properties.copy(Blocks.SMALL_DRIPLEAF));
+        super(Properties.ofFullCopy(Blocks.SMALL_DRIPLEAF));
     }
 
     @Override
@@ -58,8 +61,8 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -77,7 +80,7 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+    public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
 
         if (!level.isClientSide) {
             if (player.isCreative()) {
@@ -91,6 +94,7 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
                     dropResources(blockState, level, blockPos, null , player, player.getMainHandItem());
             }
         }
+        return super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
     @Override
@@ -132,7 +136,7 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
     public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos blockPos) {
 
         BlockState blockStateBelow = level.getBlockState(blockPos.below());
-        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateBelow.hasProperty(SLAB_TYPE) && blockStateBelow.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
 
         if (blockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
@@ -145,8 +149,8 @@ public class TintedSmallDripLeaf extends SmallDripleafBlock implements EntityBlo
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, true, SoundEvents.SMALL_DRIPLEAF_BREAK);

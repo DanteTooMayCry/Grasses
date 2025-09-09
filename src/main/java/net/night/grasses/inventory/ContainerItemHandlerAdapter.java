@@ -2,7 +2,7 @@ package net.night.grasses.inventory;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 public class ContainerItemHandlerAdapter implements IItemHandler {
 

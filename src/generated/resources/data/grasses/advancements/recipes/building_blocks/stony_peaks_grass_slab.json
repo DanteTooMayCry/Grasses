@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_stony_peaks_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_stony_peaks_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:stony_peaks_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

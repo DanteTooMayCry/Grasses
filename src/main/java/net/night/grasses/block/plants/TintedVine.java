@@ -15,7 +15,10 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -23,8 +26,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.config.GrassesConfig;
@@ -36,12 +39,13 @@ import static biomesoplenty.api.block.BOPBlocks.WILLOW_VINE;
 import static net.minecraft.world.level.block.Blocks.VINE;
 import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.FERTILE;
+import static net.night.grasses.init.BlocksRegister.VINE_TINTED;
 
 public class TintedVine extends VineBlock implements BonemealableBlock, EntityBlock {
 
     public TintedVine() {
-        super(Properties.copy(VINE));
+        super(Properties.ofFullCopy(VINE));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
     }
 
@@ -64,8 +68,8 @@ public class TintedVine extends VineBlock implements BonemealableBlock, EntityBl
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -239,8 +243,8 @@ public class TintedVine extends VineBlock implements BonemealableBlock, EntityBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
-        if (!GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_VINES.get())
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+        if (!GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_VINES.get())
             return false;
         else
             return true;
@@ -260,8 +264,8 @@ public class TintedVine extends VineBlock implements BonemealableBlock, EntityBl
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_VINES_COLOR_SEVERALLY.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_SEVERALLY.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_VINES_COLOR_SEVERALLY.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_SEVERALLY.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.VINE_BREAK);

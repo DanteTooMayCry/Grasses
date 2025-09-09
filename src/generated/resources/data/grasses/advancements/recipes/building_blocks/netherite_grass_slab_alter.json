@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_netherite_scrap",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_netherite_scrap"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:netherite_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_crimson_nylium",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_crimson_nylium"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:grow_crimson_nylium"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

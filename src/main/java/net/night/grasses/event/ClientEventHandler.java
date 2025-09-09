@@ -1,25 +1,28 @@
 package net.night.grasses.event;
 
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.blockEntity.renderer.DyeingStationBlockEntityRenderer;
 import net.night.grasses.block.blockEntity.screen.DyeingStationScreen;
 import net.night.grasses.block.blockEntity.screen.MenuTypesRegister;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.colorManagers.ColorsDefinition;
+import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.config.GrassesConfigCache;
 import net.night.grasses.init.BlocksRegister;
 import net.night.grasses.particle.ModParticles;
 import net.night.grasses.particle.custom.LargeLeafParticle;
@@ -37,7 +40,7 @@ public class ClientEventHandler {
     private static BlockState blockStateForColor;
     private static BlockPos blockPosForColor;
 
-    public static Map<ResourceLocation, RegistryObject<Block>> pottedMatching = new HashMap<>();
+    public static Map<ResourceLocation, DeferredBlock<Block>> pottedMatching = new HashMap<>();
 
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
@@ -47,7 +50,9 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
 
-        pottedMatching.put(BlocksRegister.GRASS_TINTED.getId(), BlocksRegister.GRASS_POTTED_TINTED);
+        GrassesConfigCache.reload();
+
+        pottedMatching.put(BlocksRegister.GRASS_SHORT_TINTED.getId(), BlocksRegister.GRASS_SHORT_POTTED_TINTED);
         pottedMatching.put(BlocksRegister.FERN_TINTED.getId(), BlocksRegister.FERN_POTTED_TINTED);
         pottedMatching.put(BlocksRegister.SEAGRASS_TINTED.getId(), BlocksRegister.SEAGRASS_POTTED_TINTED);
         pottedMatching.put(BlocksRegister.BAMBOO_TINTED.getId(), BlocksRegister.BAMBOO_POTTED_TINTED);
@@ -58,7 +63,7 @@ public class ClientEventHandler {
         pottedMatching.put(BlocksRegister.KELP_TINTED.getId(), BlocksRegister.KELP_POTTED_TINTED);
         pottedMatching.put(BlocksRegister.CACTUS_TINTED.getId(), BlocksRegister.CACTUS_POTTED_TINTED);
 
-        pottedMatching.put(new ResourceLocation("minecraft:grass"), BlocksRegister.GRASS_POTTED);
+        pottedMatching.put(new ResourceLocation("minecraft:short_grass"), BlocksRegister.GRASS_POTTED);
         pottedMatching.put(new ResourceLocation("minecraft:seagrass"), BlocksRegister.SEAGRASS_POTTED);
         pottedMatching.put(new ResourceLocation("minecraft:sugar_cane"), BlocksRegister.SUGAR_CANE_POTTED);
         pottedMatching.put(new ResourceLocation("minecraft:vine"), BlocksRegister.VINE_POTTED);
@@ -88,13 +93,23 @@ public class ClientEventHandler {
         pottedMatching.put(BlocksRegister.OAK_LEAVES_BLOCK.getId(), BlocksRegister.OAK_LEAVES_POTTED_TINTED);
         pottedMatching.put(BlocksRegister.SPRUCE_LEAVES_BLOCK.getId(), BlocksRegister.SPRUCE_LEAVES_POTTED_TINTED);
 
-        for (Map.Entry<ResourceLocation, RegistryObject<Block>> resource : pottedMatching.entrySet()) {
+        for (Map.Entry<ResourceLocation, DeferredBlock<Block>> resource : pottedMatching.entrySet()) {
             event.enqueueWork(() -> {
                 ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(resource.getKey(), resource.getValue());
             });
         }
+    }
 
-        MenuScreens.register(MenuTypesRegister.DYEING_STATION_MENU.get(), DyeingStationScreen::new);
+    @SubscribeEvent
+    public static void onConfigReload(ModConfigEvent.Reloading event) {
+        if (event.getConfig().getSpec() == GrassesConfig.CLIENT_CONFIG_SPEC) {
+            GrassesConfigCache.reload();
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(MenuTypesRegister.DYEING_STATION_MENU.get(), DyeingStationScreen::new);
     }
 
 

@@ -1,12 +1,12 @@
 package net.night.grasses.datagen;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.data.GlobalLootModifierProvider;
-import net.minecraftforge.common.loot.LootTableIdCondition;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import net.night.grasses.Grasses;
 import net.night.grasses.loot.AddItemModifier;
 
@@ -23,14 +23,14 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     protected void start() {
 
         for (String locationName : chestLootLocations) {
-            itemIntoChest(DYEING_TOOL.get(), "chests/", locationName, 1, 1, 0.10f);
+            itemIntoChest(DYEING_TOOL.get(), "chests/", locationName, 1, 1, 1f);
         }
         for (String locationName : chestLootLocations) {
-            itemIntoChest(DYEING_BONE_MEAL.get(), "chests/", locationName, 5, 32, 0.10f);
+            itemIntoChest(DYEING_BONE_MEAL.get(), "chests/", locationName, 5, 32, 1f);
         }
 
         for (String locationName : chestLootLocations) {
-            itemIntoChest(GRASSES_DYE.get(), "chests/", locationName, 5, 32, 0.10f);
+            itemIntoChest(GRASSES_DYE.get(), "chests/", locationName, 5, 32, 1f);
         }
 
         for (String locationName : chestLootLocations) {
@@ -74,6 +74,6 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     }
 
     public static String getPath(Item item) {
-        return ForgeRegistries.ITEMS.getKey(item).getPath();
+        return BuiltInRegistries.ITEM.getKey(item).getPath();
     }
 }

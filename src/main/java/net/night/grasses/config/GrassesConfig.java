@@ -1,112 +1,112 @@
 package net.night.grasses.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class GrassesConfig {
 
     public static class CommonConfig {
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHOP_TREE_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CUT_LEAVES_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CUT_WART_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CUT_VINES_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CONNECT_SAME_KIND_LOG;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHOP_TREE_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CUT_LEAVES_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CUT_WART_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CUT_VINES_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CONNECT_SAME_KIND_LOG;
 
-        public static ForgeConfigSpec.ConfigValue<Integer> LOGS_MAX_AMOUNT_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Integer> STEMS_MAX_AMOUNT_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Integer> LOGS_MAX_AMOUNT_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Integer> STEMS_MAX_AMOUNT_AT_ONCE;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_CACTUS;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_SUGAR_CANE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE;
-        /**/public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_CACTUS_LIKE_PLANTS;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_LILY_PAD;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_VINES;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_VINES;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_SMALL_FLOWERS;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_MYCELIUM;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_PODZOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_SOUL_SAND;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_CACTUS;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_SUGAR_CANE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_SUGAR_CANE;
+        /**/public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_CACTUS_LIKE_PLANTS;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_LILY_PAD;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_LILY_PAD;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_VINES;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_VINES;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_SMALL_FLOWERS;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_MYCELIUM;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_MYCELIUM;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_PODZOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_VANILLA_SOUL_SAND;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_LEAVES_COLOR_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_LEAVES_INTO_TINTED_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_LEAVES_COLOR_AT_ONCE;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_PLANTS_INTO_TINTED;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_PLANTS_COLOR;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_PLANTS_INTO_TINTED;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_PLANTS_COLOR;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_AT_ONCE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_VINES_COLOR_SEVERALLY;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_VINES_COLOR_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_NOT_GRASSES_VINES_INTO_TINTED_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_TINTED_VINES_INTO_NOT_GRASSES_AT_ONCE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_VINES_COLOR_SEVERALLY;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_VINES_COLOR_AT_ONCE;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_TINTED_PLANTS_INTO_NOT_GRASSES;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_PLANT_COLOR;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_TINTED_PLANTS_INTO_NOT_GRASSES;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_POTTED_PLANT_COLOR;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_TREE_SAPLING;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_TREE_SAPLING;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_AUTO_PRUNER;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_TOOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_BONEMEAL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_STATION;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_BAMBOO_PAPER;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_ICE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_STRING;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_END_STONE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_END_PORTAL_FRAME;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_SMELT_QUARTZ_FROM_DIORITE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_AUTO_PRUNER;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_TOOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_BONEMEAL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_DYEING_STATION;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_BAMBOO_PAPER;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_ICE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_STRING;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_END_STONE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CRAFT_END_PORTAL_FRAME;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_SMELT_QUARTZ_FROM_DIORITE;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_FIND_AUTO_PRUNER;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_TOOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_BONEMEAL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYE;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_STATION;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_FIND_AUTO_PRUNER;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_TOOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_BONEMEAL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYE;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_FIND_DYEING_STATION;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_COLOR_OF_DYEING_TOOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_COLOR_OF_DYEING_BONEMEAL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_COLOR_OF_DYEING_TOOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_CHANGE_COLOR_OF_DYEING_BONEMEAL;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_APPLY_INFINITY_ON_DYEING_TOOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_APPLY_INFINITY_ON_DYEING_TOOL;
 
-        public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_MAX_HEIGHT;
-        public static ForgeConfigSpec.ConfigValue<Integer> SUGAR_CANE_MAX_HEIGHT;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_1;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_2;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_3;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_1_CHANCE;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_2_CHANCE;
-        /**/public static ForgeConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_3_CHANCE;
+        public final ModConfigSpec.ConfigValue<Integer> CACTUS_MAX_HEIGHT;
+        public final ModConfigSpec.ConfigValue<Integer> SUGAR_CANE_MAX_HEIGHT;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_1;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_2;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_3;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_1_CHANCE;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_2_CHANCE;
+        /**/public final ModConfigSpec.ConfigValue<Integer> CACTUS_LIKE_PLANTS_3_CHANCE;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_PUT_ANY_TOP_SLAB_FIRST;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_PUT_GRASSES_TOP_SLAB_FIRST;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_PUT_ANY_TOP_SLAB_FIRST;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_PUT_GRASSES_TOP_SLAB_FIRST;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_STICKY_PISTON;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_SLIME_BALL_ON_PISTON;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_SPREAD_MOD_NYLIUM;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_SPREAD_MOD_PODZOL;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_END_FRAME;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_ER_END_FRAME;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_USE_NETHERITE_AUTO_PRUNER_ON_END_FRAME;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_STICKY_PISTON;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_SLIME_BALL_ON_PISTON;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_SPREAD_MOD_NYLIUM;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_SPREAD_MOD_PODZOL;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_END_FRAME;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_SHEAR_ON_ER_END_FRAME;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_USE_NETHERITE_AUTO_PRUNER_ON_END_FRAME;
 
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_COMPOSTING_BAMBOO;
-        public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_COMPOSTING_ROTTER_FLESH;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_COMPOSTING_BAMBOO;
+        public final ModConfigSpec.ConfigValue<Boolean> ALLOW_COMPOSTING_ROTTER_FLESH;
 
-        CommonConfig(ForgeConfigSpec.Builder builder) {
+        CommonConfig(ModConfigSpec.Builder builder) {
             builder.comment("Cutting Tree").push("cutting_tree");
 
             ALLOW_CHOP_TREE_AT_ONCE = builder.comment("Let the entire tree be cut down at once [true/false]")
@@ -316,41 +316,37 @@ public class GrassesConfig {
                     .define("Compostable Bamboo", true);
             ALLOW_COMPOSTING_ROTTER_FLESH = builder.comment("Let the rotten flesh be compostable [true/false]")
                     .define("Compostable Rotten Flesh", true);
-
-
-            COMMON_CONFIG_SPEC = builder.build();
         }
 
     }
     //Client
 
     public static class ClientConfig {
-        public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_VANILLA_PLANTS_OFFSET;
+        public final ModConfigSpec.ConfigValue<Boolean> DISABLE_VANILLA_PLANTS_OFFSET;
 
 
-        ClientConfig(ForgeConfigSpec.Builder builder) {
+        ClientConfig(ModConfigSpec.Builder builder) {
             builder.comment("General").push("general");
 
             DISABLE_VANILLA_PLANTS_OFFSET = builder.comment("Turn off Vanilla behaviours that make offset of plants like grass (plants will be centered on block")
                     .define("Disable offset", false);
-
-            CLIENT_CONFIG_SPEC = builder.build();
         }
     }
 
-    public static ForgeConfigSpec CLIENT_CONFIG_SPEC;
-    public static ForgeConfigSpec COMMON_CONFIG_SPEC;
+    public static ModConfigSpec COMMON_CONFIG_SPEC;
     public static CommonConfig COMMON_CONFIG;
+
+    public static ModConfigSpec CLIENT_CONFIG_SPEC;
     public static ClientConfig CLIENT_CONFIG;
 
     static {
-        final Pair<CommonConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(CommonConfig::new);
-        final Pair<ClientConfig, ForgeConfigSpec> specPair2 = new ForgeConfigSpec.Builder().configure(ClientConfig::new);
-        COMMON_CONFIG_SPEC = specPair.getRight();
-        COMMON_CONFIG = specPair.getLeft();
+        final Pair<CommonConfig, ModConfigSpec> commmonSpecPair = new ModConfigSpec.Builder().configure(CommonConfig::new);
+        COMMON_CONFIG_SPEC = commmonSpecPair.getRight();
+        COMMON_CONFIG = commmonSpecPair.getLeft();
 
-        CLIENT_CONFIG_SPEC = specPair2.getRight();
-        CLIENT_CONFIG = specPair2.getLeft();
+        final Pair<ClientConfig, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(ClientConfig::new);
+        CLIENT_CONFIG_SPEC = clientSpecPair.getRight();
+        CLIENT_CONFIG = clientSpecPair.getLeft();
     }
 
 }

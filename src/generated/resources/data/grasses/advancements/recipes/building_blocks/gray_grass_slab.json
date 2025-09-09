@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_gray_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gray_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:gray_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

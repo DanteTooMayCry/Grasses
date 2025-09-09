@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BubbleColumnBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
@@ -19,7 +18,7 @@ import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 public class MagmaSlabBlock extends ParentSlabBlock {
     private static final int BUBBLE_COLUMN_CHECK_DELAY = 20;
     public MagmaSlabBlock() {
-        super(Properties.copy(Blocks.MAGMA_BLOCK));
+        super(Properties.ofFullCopy(Blocks.MAGMA_BLOCK));
     }
 
     @Override

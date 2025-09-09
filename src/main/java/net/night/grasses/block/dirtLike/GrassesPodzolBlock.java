@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.interfaces.CanGrowConditioner;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 
 public class GrassesPodzolBlock extends SnowyDirtBlock implements BonemealableBlock, CanGrowConditioner {
     public GrassesPodzolBlock() {
-        super(Properties.copy(Blocks.PODZOL).randomTicks());
+        super(Properties.ofFullCopy(Blocks.PODZOL).randomTicks());
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, true));
     }
 
@@ -66,9 +66,9 @@ public class GrassesPodzolBlock extends SnowyDirtBlock implements BonemealableBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 
-        if (isFertileState(blockState) && !GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get())
+        if (isFertileState(blockState) && !GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get())
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();
@@ -111,7 +111,7 @@ public class GrassesPodzolBlock extends SnowyDirtBlock implements BonemealableBl
     @Override
     public boolean canSpread(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockPos blockPosAbove = blockPos.above();
-        return canBeGrass(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.CommonConfig.ALLOW_SPREAD_MOD_PODZOL.get();
+        return canBeGrass(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.COMMON_CONFIG.ALLOW_SPREAD_MOD_PODZOL.get();
     }
 
     ///////////////////////////////////////////////////////////

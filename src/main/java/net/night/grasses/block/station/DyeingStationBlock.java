@@ -1,10 +1,13 @@
 package net.night.grasses.block.station;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -18,7 +21,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 import net.night.grasses.block.blockEntity.DyeingStationBlockEntity;
 import net.night.grasses.block.blockEntity.util.TickAbleBlockEntity;
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 public class DyeingStationBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public static final VoxelShape SHAPE = Block.box(0,0,0, 16, 15, 16);
     public DyeingStationBlock() {
-        super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion());
+        super(Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion());
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
@@ -72,8 +74,8 @@ public class DyeingStationBlock extends HorizontalDirectionalBlock implements En
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult hitResult) {
         if(!level.isClientSide()) {
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
-            if (blockEntity instanceof DyeingStationBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)player), (DyeingStationBlockEntity)blockEntity, blockPos);
+            if (blockEntity instanceof DyeingStationBlockEntity dyeingStationBlockEntity) {
+                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(dyeingStationBlockEntity, Component.literal("dyeingStationBlockEntity")), blockPos);
             }
             else {
                 throw new IllegalStateException("Our Container provider is missing!");
@@ -91,6 +93,15 @@ public class DyeingStationBlock extends HorizontalDirectionalBlock implements En
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType) {
-        return TickAbleBlockEntity.getTickerHelper(level);
+
+        if (level.isClientSide())
+            return  null;
+
+        return TickAbleBlockEntity.getTickerHelper(level); // IMPORTANT - createTickerHelper on 1.21.x
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return null;
     }
 }

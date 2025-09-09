@@ -8,9 +8,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraftforge.client.model.generators.*;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.Grasses;
 import net.night.grasses.block.plants.bop.TintedHugeLilyPadBOP;
 import net.night.grasses.enums.GrassesQuarterProperty;
@@ -19,27 +21,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import static net.minecraft.core.Direction.*;
-import static net.minecraft.core.Direction.DOWN;
-import static net.minecraft.core.Direction.EAST;
-import static net.minecraft.core.Direction.NORTH;
-import static net.minecraft.core.Direction.SOUTH;
-import static net.minecraft.core.Direction.UP;
-import static net.minecraft.core.Direction.WEST;
 import static net.minecraft.world.level.block.DoublePlantBlock.HALF;
 import static net.minecraft.world.level.block.EndPortalFrameBlock.HAS_EYE;
 import static net.minecraft.world.level.block.FarmBlock.MOISTURE;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 import static net.minecraft.world.level.block.SlabBlock.TYPE;
 import static net.minecraft.world.level.block.SnowyDirtBlock.SNOWY;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.TILT;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER;
 import static net.minecraft.world.level.block.state.properties.SlabType.*;
-import static net.minecraft.world.level.block.state.properties.SlabType.BOTTOM;
 import static net.minecraft.world.level.block.state.properties.Tilt.*;
-import static net.minecraft.world.level.block.state.properties.Tilt.UNSTABLE;
-import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.*;
-import static net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90;
+import static net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.*;
 import static net.night.grasses.Grasses.isBOPLoaded;
 import static net.night.grasses.init.BlocksRegister.*;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
@@ -54,10 +48,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        for (RegistryObject<Block> block : grassRegistryBlocksList) {
+        for (DeferredBlock<Block> block : grassRegistryBlocksList) {
             blockWithItem(block, 1);
         }
-        for(RegistryObject<Block> block : grassRegistrySlabBlocksList){
+        for(DeferredBlock<Block> block : grassRegistrySlabBlocksList){
             blockWithItem(block, 2);
         }
         blockWithItem(DIRT_SLAB_BLOCK, 3);
@@ -96,11 +90,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(DYEING_STATION, 31);
 
-        for(RegistryObject<Block> leaves : grassesLeavesRegistryBlocksList){
+        for(DeferredBlock<Block> leaves : grassesLeavesRegistryBlocksList){
             blockWithItem(leaves, 32);
         }
 
-        blockWithItem(GRASS_TINTED, 33);
+        blockWithItem(GRASS_SHORT_TINTED, 33);
         blockWithItem(FERN_TINTED, 33);
 
         blockWithItem(GRASS_TALL_TINTED, 34);
@@ -130,7 +124,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(SMALL_DRIP_LEAF_POTTED, 52);
         blockWithItem(KELP_POTTED, 48);
 
-        blockWithItem(GRASS_POTTED_TINTED, 49);
+        blockWithItem(GRASS_SHORT_POTTED_TINTED, 49);
         blockWithItem(FERN_POTTED_TINTED, 49);
         blockWithItem(SEAGRASS_POTTED_TINTED, 49);
         blockWithItem(BAMBOO_POTTED_TINTED, 49);
@@ -141,11 +135,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(KELP_POTTED_TINTED, 49);
         blockWithItem(CACTUS_POTTED_TINTED, 49);
 
-        for(RegistryObject<Block> leaves : pottedVanillaRegistryLeavesList){
+        for(DeferredBlock<Block> leaves : pottedVanillaRegistryLeavesList){
             blockWithItem(leaves, 53);
         }
 
-        for(RegistryObject<Block> leaves : pottedTintedRegistryLeavesList){
+        for(DeferredBlock<Block> leaves : pottedTintedRegistryLeavesList){
             blockWithItem(leaves, 54);
         }
 
@@ -173,7 +167,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         if (isBOPLoaded) {
             prepareBlocksListFromRegistryLists();
 
-            for (RegistryObject<Block> leaves : tintedBOPleavesRegistryBlocksList) {
+            for (DeferredBlock<Block> leaves : tintedBOPleavesRegistryBlocksList) {
                 grassesBoPBlockWithItem(leaves, 32);
             }
 
@@ -192,17 +186,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void prepareBlocksListFromRegistryLists() {
-        for (RegistryObject<Block> leaves : tintedBOPleavesRegistryBlocksList) {
+        for (DeferredBlock<Block> leaves : tintedBOPleavesRegistryBlocksList) {
             tintedBOPleavesBlocksList.add(leaves.get());
         }
-        for (RegistryObject<Block> plants : tintedBOPplantRegistryBlockList) {
+        for (DeferredBlock<Block> plants : tintedBOPplantRegistryBlockList) {
             tintedBOPPlantBlockList.add(plants.get());
         }
     }
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject, int typeBlock) {
-        Block block = blockRegistryObject.get();
-        String path = blockRegistryObject.getId().getPath();
+    private void blockWithItem(DeferredBlock<?> deferredBlock, int typeBlock) {
+        Block block = deferredBlock.get();
+        String path = deferredBlock.getId().getPath();
 
         if (typeBlock == 1) {
             ModelFile grassesBlock      = makeTintedGrassBlock(0.0F, 16.0F, 16.0F, path);
@@ -335,8 +329,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
             ModelFile modelPlant = null;
 
-            if (block.defaultBlockState() == GRASS_TINTED.get().defaultBlockState()) {
-                modelPlant = makeTintedPlantBlock(path, "minecraft:block/grass");
+            if (block.defaultBlockState() == GRASS_SHORT_TINTED.get().defaultBlockState()) {
+                modelPlant = makeTintedPlantBlock(path, "minecraft:block/short_grass");
             }
 
             else if (block.defaultBlockState() == FERN_TINTED.get().defaultBlockState()) {
@@ -414,7 +408,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             ModelFile modelPotted = null;
 
             if (block.defaultBlockState() == GRASS_POTTED.get().defaultBlockState())
-                modelPotted = makeTintedPottedBlockSingle(path, Blocks.GRASS, "minecraft:block/dirt");
+                modelPotted = makeTintedPottedBlockSingle(path, Blocks.SHORT_GRASS, "minecraft:block/dirt");
             else if (block.defaultBlockState() == SEAGRASS_POTTED.get().defaultBlockState())
                 modelPotted = makeTintedPottedBlockSingle(path, Blocks.SEAGRASS, "minecraft:block/water_still");
             else if (block.defaultBlockState() == SUGAR_CANE_POTTED.get().defaultBlockState())
@@ -429,8 +423,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
             ModelFile modelPotted = null;
 
-            if (block.defaultBlockState() == GRASS_POTTED_TINTED.get().defaultBlockState())
-                modelPotted = makeTintedPottedBlockSingle(path, Blocks.GRASS, "minecraft:block/dirt");
+            if (block.defaultBlockState() == GRASS_SHORT_POTTED_TINTED.get().defaultBlockState())
+                modelPotted = makeTintedPottedBlockSingle(path, Blocks.SHORT_GRASS, "minecraft:block/dirt");
             else if (block.defaultBlockState() == FERN_POTTED_TINTED.get().defaultBlockState())
                 modelPotted = makeTintedPottedBlockSingle(path, Blocks.FERN, "minecraft:block/dirt");
             else if (block.defaultBlockState() == SEAGRASS_POTTED_TINTED.get().defaultBlockState())
@@ -457,7 +451,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
             ModelFile plantInBars = null;
             if (block.defaultBlockState() == GRASS_IN_BARS.get().defaultBlockState())
-                plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/grass", 0f, 16f);
+                plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/short_grass", 0f, 16f);
             else if (block.defaultBlockState() == FERN_IN_BARS.get().defaultBlockState())
                 plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/fern", -1f, 15f);
 
@@ -468,7 +462,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         } else if (typeBlock == 58) {
             ModelFile plantInBars = null;
             if (block.defaultBlockState() == TINTED_GRASS_IN_BARS.get().defaultBlockState())
-                plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/grass", 0f, 16f);
+                plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/short_grass", 0f, 16f);
             else if (block.defaultBlockState() == TINTED_FERN_IN_BARS.get().defaultBlockState())
                 plantInBars = makeTintedPlantBlockForBars(path, "minecraft:block/fern", -1f, 15f);
 
@@ -485,9 +479,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private void grassesBoPBlockWithItem(RegistryObject<Block> blockRegistryObject, int typeBlock) {
-        Block block = blockRegistryObject.get();
-        String path = blockRegistryObject.getId().getPath();
+    private void grassesBoPBlockWithItem(DeferredBlock<?> deferredBlock, int typeBlock) {
+        Block block = deferredBlock.get();
+        String path = deferredBlock.getId().getPath();
 
         if (typeBlock == 32) {
             getLeavesModel(block, path);
@@ -1658,7 +1652,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .face(NORTH).uvs(listEl.get(3), 0, 16, 16).texture("#side").rotation(COUNTERCLOCKWISE_90).cullface(NORTH).end()
                 .face(SOUTH).uvs(0, 0, listEl.get(2), 16).texture("#side").rotation(CLOCKWISE_90).cullface(SOUTH).end()
                 .face(WEST).uvs(0, 0, 16, listEl.get(2)).texture("#topBottom").rotation(ZERO).cullface(WEST).end()
-                .face(EAST).uvs(0, listEl.get(3), 16, 16).texture("#topBottom").rotation(UPSIDE_DOWN).cullface(EAST).end() //
+                .face(EAST).uvs(0, listEl.get(3), 16, 16).texture("#topBottom").rotation(UPSIDE_DOWN).cullface(EAST).end()
                 .end();
     }
 
@@ -3088,7 +3082,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .face(WEST).uvs(0, 0, 8, 16).texture("#vine").tintindex(0).end()
                 .end();
     }
-    protected ModelFile makeTintedVineBlockForBarsInnerTurnDouble(String name, String plant) { //////////////////////////
+    protected ModelFile makeTintedVineBlockForBarsInnerTurnDouble(String name, String plant) {
         return models().withExistingParent(name, "minecraft:block/vine").renderType("cutout_mipped")
                 .texture("particle", plant)
                 .texture("vine", plant)
@@ -3364,7 +3358,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .element().from(8.6f, -1.5f, 0f).to(8.6f, 14.5f, 16f)
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(-22.5f).end()
-                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
+                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(0).end()
                 .face(WEST).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(0).end()
                 .end()
 
@@ -3372,20 +3366,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(22.5f).end()
                 .face(EAST).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(0).end()
-                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
+                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(0).end()
                 .end()
 
                 .element().from(0f, -1.5f, 8.6f).to(16f, 14.5f, 8.6f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(22.5f).end()
-                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
+                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(0).end()
                 .face(SOUTH).uvs(16f, 0f, 0f, 16f).texture("#inner").tintindex(0).end()
                 .end()
 
                 .element().from(0f, -1.5f, 7.4f).to(16f, 14.5f, 7.4f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(-22.5f).end()
-                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
+                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(0).end()
                 .face(SOUTH).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(0).end()
                 .end()
 
@@ -3406,7 +3400,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .element().from(8.6f, -1.5f, 0f).to(8.6f, 14.5f, 16f)
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(-22.5f).end()
-                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(WEST).uvs(0f, 0f, 16f, 16f).texture("#overlay").end()
                 .end()
 
@@ -3414,20 +3408,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(22.5f).end()
                 .face(EAST).uvs(0f, 0f, 16f, 16f).texture("#overlay").end()
-                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .end()
 
                 .element().from(0f, -1.5f, 8.6f).to(16f, 14.5f, 8.6f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(22.5f).end()
-                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(16f, 0f, 0f, 16f).texture("#overlay").end()
                 .end()
 
                 .element().from(0f, -1.5f, 7.4f).to(16f, 14.5f, 7.4f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(-22.5f).end()
-                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(0f, 0f, 16f, 16f).texture("#overlay").end()
                 .end();
     }
@@ -3451,8 +3445,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
                 .element().from(0f, 0f, -4f).to(16f, 0f, 12f)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.X).angle(-22.5f).rescale(true).end()
-                .face(UP).uvs(0f, 0f, 16f, 16f).texture("#pile").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
-                .face(DOWN).uvs(0f, 0f, 16f, 16f).texture("#pile").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(0).end()
+                .face(UP).uvs(0f, 0f, 16f, 16f).texture("#pile").rotation(UPSIDE_DOWN).tintindex(0).end()
+                .face(DOWN).uvs(0f, 0f, 16f, 16f).texture("#pile").rotation(UPSIDE_DOWN).tintindex(0).end()
                 .end()
 
                 .element().from(4f, 0f, 0f).to(20f, 0f, 16f)
@@ -3507,7 +3501,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .element().from(8.6f, -1.5f+y, 0f).to(8.6f, 14.5f+y, 16f)
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(-22.5f).end()
-                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(WEST).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(-1).end()
                 .end()
 
@@ -3515,20 +3509,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(22.5f).end()
                 .face(EAST).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(-1).end()
-                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .end()
 
                 .element().from(0f, -1.5f+y, 8.6f).to(16f, 14.5f+y, 8.6f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(22.5f).end()
-                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(16f, 0f, 0f, 16f).texture("#inner").tintindex(-1).end()
                 .end()
 
                 .element().from(0f, -1.5f+y, 7.4f).to(16f, 14.5f+y, 7.4f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(-22.5f).end()
-                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#inner").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#inner").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(0f, 0f, 16f, 16f).texture("#inner").tintindex(-1).end()
                 .end()
 
@@ -3549,7 +3543,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .element().from(8.6f, -1.5f+y, 0f).to(8.6f, 14.5f+y, 16f)
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(-22.5f).end()
-                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(EAST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(WEST).uvs(0f, 0f, 16f, 16f).texture("#overlay").end()
                 .end()
 
@@ -3557,20 +3551,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .shade(false)
                 .rotation().origin(8f, 0f, 0f).axis(Axis.Z).angle(22.5f).end()
                 .face(EAST).uvs(0f, 0f, 16f, 16f).texture("#overlay").end()
-                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(WEST).uvs(0f, 16f, 16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .end()
 
                 .element().from(0f, -1.5f+y, 8.6f).to(16f, 14.5f+y, 8.6f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(22.5f).end()
-                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(16f, 16f,0f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(16f, 0f, 0f, 16f).texture("#overlay").end()
                 .end()
 
                 .element().from(0f, -1.5f+y, 7.4f).to(16f, 14.5f+y, 7.4f)
                 .shade(false)
                 .rotation().origin(0f, 0f, 8f).axis(Axis.X).angle(-22.5f).end()
-                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#overlay").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).tintindex(-1).end()
+                .face(NORTH).uvs(0f, 16f,16f, 0f).texture("#overlay").rotation(UPSIDE_DOWN).tintindex(-1).end()
                 .face(SOUTH).uvs(0f, 0, 16f, 16f).texture("#overlay").end()
                 .end();
     }

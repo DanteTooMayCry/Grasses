@@ -3,6 +3,7 @@ package net.night.grasses.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
+
 import org.jetbrains.annotations.Nullable;
 
 public class ClientPlayerHelper {
@@ -24,7 +25,7 @@ public class ClientPlayerHelper {
         if (player != null) {
             player.displayClientMessage(message, actionBar);
         } else {
-            System.out.println("[ClientPlayerHelper] Warning: player is null, message not sent: " + message.getString());
+            //System.out.println("[ClientPlayerHelper] Warning: player is null, message not sent: " + message.getString());
         }
     }
 }

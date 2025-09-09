@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_packed_mud",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_packed_mud"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:packet_mud_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -12,12 +12,6 @@
               "function": "set_nbt",
               "tag": "{\"patchouli:book\": \"grasses:lexicon\"}"
             }
-          ],
-          "conditions": [
-            {
-              "type": "forge:mod_loaded",
-              "modid": "patchouli"
-            }
           ]
         }
       ]

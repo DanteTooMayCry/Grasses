@@ -13,11 +13,14 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
@@ -29,29 +32,31 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
-import net.night.grasses.config.GrassesConfig;
-import net.night.grasses.event.ClientEventHandler;
-import net.night.grasses.data.ModMethods;
 import net.night.grasses.enums.ColorType;
+import net.night.grasses.config.GrassesConfig;
+import net.night.grasses.data.ModMethods;
+import net.night.grasses.event.ClientEventHandler;
 import net.night.grasses.item.DyeingTool;
 import net.night.grasses.particle.ModParticles;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static net.night.grasses.data.ModData.*;
-import static net.night.grasses.enums.ColorType.*;
+import static net.night.grasses.enums.ColorType.PLAINS;
+import static net.night.grasses.data.ModData.counterpartIDMap;
+import static net.night.grasses.data.ModData.matchingCounterpartsLeaves;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.ALTER;
+import static net.night.grasses.init.BlocksRegister.CHERRY_LEAVES_BLOCK;
 import static net.night.grasses.init.BlocksRegisterBoP.*;
 
 public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock {
 
     public ParentTintedLeavesBlock() {
-        super(Properties.copy(Blocks.OAK_LEAVES));
+        super(Properties.ofFullCopy(Blocks.OAK_LEAVES));
     }
 
     @Override
@@ -72,9 +77,9 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull BlockState blockState, @NotNull HitResult hitResult, @NotNull LevelReader level, @NotNull BlockPos blockPos, @NotNull Player player) {
 
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+        return ModMethods.getCloneItemStackBE((Level) level, blockPos, blockState);
     }
 
     @Override
@@ -157,7 +162,7 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
         boolean usedDyeingTool = itemStack.getItem() instanceof DyeingTool && hasBlockStateTag(itemStack);
         boolean hasSilkTouch = EnchantmentHelper.hasSilkTouch(itemStack);
 
-        if (usedDyeingTool && GrassesConfig.CommonConfig.ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY.get()){
+        if (usedDyeingTool && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY.get()){
             CompoundTag compoundtag = itemStack.getTag();
             ColorType colorType = PLAINS;
             ColorType currentColor = getCurrentColor(level, blockPos, 0);
@@ -190,7 +195,7 @@ public class ParentTintedLeavesBlock extends LeavesBlock implements EntityBlock 
             level.addDestroyBlockEffect(blockPos, blockState);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (itemStack.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY.get()) { // If shears are used on a block of mod leaves, the block will be turned back into a vanilla leaves
+        else if (itemStack.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY.get()) { // If shears are used on a block of mod leaves, the block will be turned back into a vanilla leaves
 
             if (player instanceof ServerPlayer) {
 

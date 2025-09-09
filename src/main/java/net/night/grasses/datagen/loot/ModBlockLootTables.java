@@ -1,6 +1,7 @@
 package net.night.grasses.datagen.loot;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
@@ -8,7 +9,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -16,11 +19,13 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.*;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.night.grasses.enums.GrassesQuarterProperty;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,14 +59,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
 
         // Grasses Blocks With and Without SilkTouch drop:
-        for (RegistryObject<Block> grassesBlock : grassRegistryBlocksList) {
+        for (DeferredBlock<Block> grassesBlock : grassRegistryBlocksList) {
             this.add(grassesBlock.get(),
                     block -> createSelfDrops(grassesBlock.get(), Blocks.DIRT));
         }
         // Grasses Slabs With and Without SilkTouch drop:
-        for(RegistryObject<Block> grassesSlabs : grassRegistrySlabBlocksList){
+        for(DeferredBlock<Block> grassesSlabs : grassRegistrySlabBlocksList){
             this.add(grassesSlabs.get(),
-                    block -> createSelfDropsForSlab(grassesSlabs.get(), DIRT_SLAB_BLOCK.get()));
+                    block -> createSelfDropsForSlab(grassesSlabs.get(), Blocks.DIRT)); // IMPORTANT DIRT_SLAB_BLOCK
         }
 
         // Dirt Like:
@@ -103,7 +108,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(DYEING_STATION.get());
 
         // Leaves With and Without SilkTouch drop
-        for(RegistryObject<Block> leavesBlock : grassesLeavesRegistryBlocksList) {
+        for(DeferredBlock<Block> leavesBlock : grassesLeavesRegistryBlocksList) {
                 int index = grassesLeavesRegistryBlocksList.indexOf(leavesBlock);
 
                 if (leavesBlock.get().equals(DARK_OAK_LEAVES_BLOCK.get())) {
@@ -123,13 +128,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                             block -> createTintedLeavesDrops(leavesBlock.get(), saplingList.get(index), new Property<?>[]{ALTER}, NORMAL_LEAVES_SAPLING_CHANCES));
         }
         // Grass With and Without SilkTouch drop
-        this.add(GRASS_TINTED.get(),
-                block -> createGrassDrops(GRASS_TINTED.get()));
+        this.add(GRASS_SHORT_TINTED.get(),
+                block -> createGrassDrops(GRASS_SHORT_TINTED.get()));
         this.add(FERN_TINTED.get(),
                 block -> createGrassDrops(FERN_TINTED.get()));
         // Tall Grass With and Without SilkTouch drop
         this.add(GRASS_TALL_TINTED.get(),
-                block -> createDoublePlantWithSeedDrops(GRASS_TALL_TINTED.get(), GRASS_TINTED.get()));
+                block -> createDoublePlantWithSeedDrops(GRASS_TALL_TINTED.get(), GRASS_SHORT_TINTED.get()));
         this.add(FERN_TALL_TINTED.get(),
                 block -> createDoublePlantWithSeedDrops(FERN_TALL_TINTED.get(), FERN_TINTED.get()));
 
@@ -155,7 +160,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropOther(KELP_PLANT_TINTED.get(), KELP_TINTED.get());
         this.dropSelf(CACTUS_TINTED.get());
 
-        this.add(GRASS_POTTED_TINTED.get(), block -> createPotFlowerItemTable(GRASS_TINTED.get()));
+        this.add(GRASS_SHORT_POTTED_TINTED.get(), block -> createPotFlowerItemTable(GRASS_SHORT_TINTED.get()));
         this.add(FERN_POTTED_TINTED.get(), block -> createPotFlowerItemTable(FERN_TINTED.get()));
         this.add(SEAGRASS_POTTED_TINTED.get(), block -> createPotFlowerItemTable(SEAGRASS_TINTED.get()));
         this.add(BAMBOO_POTTED_TINTED.get(), block -> createPotFlowerItemTable( BAMBOO_TINTED.get()));
@@ -167,7 +172,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(KELP_POTTED_TINTED.get(), block -> createPotFlowerItemTable(KELP_TINTED.get()));
         this.add(CACTUS_POTTED_TINTED.get(), block -> createPotFlowerItemTable(CACTUS_TINTED.get()));
 
-        this.add(GRASS_POTTED.get(), createPotFlowerItemTable(GRASS));
+        this.add(GRASS_POTTED.get(), createPotFlowerItemTable(SHORT_GRASS));
         this.add(SEAGRASS_POTTED.get(), createPotFlowerItemTable(SEAGRASS));
         this.add(SUGAR_CANE_POTTED.get(), createPotFlowerItemTable(SUGAR_CANE));
         this.add(VINE_POTTED.get(), createPotFlowerItemTable(VINE));
@@ -198,7 +203,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(SPRUCE_LEAVES_POTTED_TINTED.get(), block -> createPotFlowerItemTable(SPRUCE_LEAVES_BLOCK.get()));
 
         this.add(GRASS_IN_BARS.get(),
-                block -> createBarsTable(Blocks.GRASS));
+                block -> createBarsTable(Blocks.SHORT_GRASS));
 
         this.add(FERN_IN_BARS.get(),
                 block -> createBarsTable(Blocks.FERN));
@@ -207,7 +212,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createBarsTable(Blocks.VINE));
 
         this.add(TINTED_GRASS_IN_BARS.get(),
-                block -> createBarsTable(GRASS_TINTED.get()));
+                block -> createBarsTable(GRASS_SHORT_TINTED.get()));
 
         this.add(TINTED_FERN_IN_BARS.get(),
                 block -> createBarsTable(FERN_TINTED.get()));
@@ -217,7 +222,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         if (isBOPLoaded) {
 
-            for (RegistryObject<Block> leavesBlock : tintedBOPleavesRegistryBlocksList) {
+            for (DeferredBlock<Block> leavesBlock : tintedBOPleavesRegistryBlocksList) {
 
                 if (leavesBlock.get().equals(MAPLE_LEAVES_BLOCK.get())) {
                     this.add(leavesBlock.get(),
@@ -459,7 +464,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         .add(LootItem.lootTableItem(selfBlock)
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(pProperty, pValue)))
-                                )
+                        )
                         .add(LootItem.lootTableItem(grassesWaterlily)
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(selfBlock)
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(VARIANT_LILY, 1).hasProperty(pProperty, pValueLily))))
@@ -495,7 +500,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 
     static {

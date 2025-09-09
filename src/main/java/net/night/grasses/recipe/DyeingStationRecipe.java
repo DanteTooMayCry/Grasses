@@ -1,28 +1,40 @@
 package net.night.grasses.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.night.grasses.Grasses;
 import org.jetbrains.annotations.Nullable;
 
-public class DyeingStationRecipe implements Recipe<SimpleContainer> {
-    private final NonNullList<Ingredient> inputItems;
-    private final ItemStack output;
-    private final ResourceLocation id;
+import java.util.List;
 
-    public DyeingStationRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+public class DyeingStationRecipe implements Recipe<SimpleContainer> {
+    private final List<Ingredient> inputItems;
+    private final ItemStack output;
+
+    public DyeingStationRecipe(List<Ingredient> inputItems, ItemStack output) {
         this.inputItems = inputItems;
         this.output = output;
-        this.id = id;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+
+        NonNullList<Ingredient> list = NonNullList.createWithCapacity(this.inputItems.size());
+        list.addAll(inputItems);
+        return list;
     }
 
     @Override
@@ -31,11 +43,6 @@ public class DyeingStationRecipe implements Recipe<SimpleContainer> {
             return false;
         }
         return inputItems.get(0).test(container.getItem(1)) && inputItems.get(1).test(container.getItem(2)) && inputItems.get(2).test(container.getItem(3));
-    }
-
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return inputItems;
     }
 
     @Override
@@ -50,12 +57,7 @@ public class DyeingStationRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
-        return output.copy();
-    }
-
-    @Override
-    public ResourceLocation getId() {
-        return id;
+        return output;
     }
 
     @Override
@@ -63,7 +65,6 @@ public class DyeingStationRecipe implements Recipe<SimpleContainer> {
         return Serializer.INSTANCE;
     }
 
-    @Override
     public RecipeType<?> getType() {
 
         return Type.INSTANCE;
@@ -78,40 +79,43 @@ public class DyeingStationRecipe implements Recipe<SimpleContainer> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(Grasses.MOD_ID, "dyeing");
 
-        @Override
-        public DyeingStationRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(3, Ingredient.EMPTY);
+        public static final Codec<DyeingStationRecipe> CODEC = RecordCodecBuilder.create(inst -> inst.group(
+                validateAmount(Ingredient.CODEC_NONEMPTY, 9).fieldOf("ingredients").forGetter(DyeingStationRecipe::getIngredients),
+                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("output").forGetter(r -> r.output)
+        ).apply(inst, DyeingStationRecipe::new));
 
-            for (int i= 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new DyeingStationRecipe(inputs, output, pRecipeId);
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max) {
+            return ExtraCodecs.validate(ExtraCodecs.validate(
+                    delegate.listOf(), list -> list.size() > max ? DataResult.error(() -> "Recipe has too many ingredients!") : DataResult.success(list)
+            ), list -> list.isEmpty() ? DataResult.error(() -> "Recipe has no ingredients!") : DataResult.success(list));
         }
 
         @Override
-        public @Nullable DyeingStationRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
-
-            for (int i= 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(pBuffer));
-            }
-            ItemStack output = pBuffer.readItem();
-
-            return new DyeingStationRecipe(inputs, output, pRecipeId);
+        public Codec<DyeingStationRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf pBuffer, DyeingStationRecipe pRecipe) {
-            pBuffer.writeInt(pRecipe.inputItems.size());
+        public @Nullable DyeingStationRecipe fromNetwork(FriendlyByteBuf friendlyByteBuf) {
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(friendlyByteBuf.readInt(), Ingredient.EMPTY);
 
-            for (Ingredient ingredient : pRecipe.getIngredients()) {
-                ingredient.toNetwork(pBuffer);
+            for(int i = 0; i < ingredients.size(); i++) {
+                ingredients.set(i, Ingredient.fromNetwork(friendlyByteBuf));
             }
 
-            pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
+            ItemStack output = friendlyByteBuf.readItem();
+            return new DyeingStationRecipe(ingredients, output);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf friendlyByteBuf, DyeingStationRecipe colorizingStationRecipe) {
+            friendlyByteBuf.writeInt(colorizingStationRecipe.getIngredients().size());
+
+            for (Ingredient ingredient : colorizingStationRecipe.getIngredients()) {
+                ingredient.toNetwork(friendlyByteBuf);
+            }
+
+            friendlyByteBuf.writeItem(colorizingStationRecipe.getResultItem(null));
         }
     }
 }

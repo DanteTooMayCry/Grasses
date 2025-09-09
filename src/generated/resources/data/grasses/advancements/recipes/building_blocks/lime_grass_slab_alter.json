@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_lime_dye",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_lime_dye"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:lime_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

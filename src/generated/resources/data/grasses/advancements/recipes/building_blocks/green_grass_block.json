@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_green_dye",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_green_dye"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:green_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

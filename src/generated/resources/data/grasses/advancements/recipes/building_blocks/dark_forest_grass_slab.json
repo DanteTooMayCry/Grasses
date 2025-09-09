@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_dark_forest_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dark_forest_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:dark_forest_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -11,10 +11,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.Hopper;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.night.grasses.block.blockEntity.DyeingStationBlockEntity;
 import net.night.grasses.enums.ColorType;
 import net.night.grasses.inventory.ContainerItemHandlerAdapter;
@@ -33,6 +32,7 @@ import static net.night.grasses.data.ModMethods.hasBlockStateTag;
 @Mixin(HopperBlockEntity.class)
 public abstract class HopperBlockEntityMixin {
 
+
     @Shadow
     private static Container getSourceContainer(Level level, Hopper hopper) {
         return null;
@@ -48,9 +48,10 @@ public abstract class HopperBlockEntityMixin {
         return false;
     }
 
+
     @Inject(method = "suckInItems", at = @At("HEAD"), cancellable = true)
     private static void suckInItems(Level level, Hopper hopper, CallbackInfoReturnable<Boolean> cir) {
-        BlockPos hopperPos = ((BlockEntity)(Object) hopper).getBlockPos();
+        BlockPos hopperPos = ((BlockEntity)(Object)hopper).getBlockPos();
         BlockState hopperBlockState = level.getBlockState(hopperPos);
         Direction hopperFacing = hopperBlockState.getValue(FACING);
         BlockEntity blockNextTo = level.getBlockEntity(hopperPos.relative(hopperFacing));
@@ -66,36 +67,29 @@ public abstract class HopperBlockEntityMixin {
         Direction stationFacing = stationBlockState.getValue(HorizontalDirectionalBlock.FACING);
         Direction left = stationFacing.getClockWise();
         Direction opposite = stationFacing.getOpposite();
-        Direction right = opposite.getClockWise();
-        LazyOptional<ItemStackHandler> optionalHandler = null;
+        Direction right =  opposite.getClockWise();
+        ItemStackHandler itemStackHandler = null;
 
         Direction hopperOpposite = hopperFacing.getOpposite();
 
         if (hopperOpposite.equals(left))
             return; // Added in case there is more to this slot than just a bucket of water in the future.
         else if (hopperOpposite.equals(right))
-            optionalHandler = blockEntity.getLazyItemHandlerSlot3();
+            itemStackHandler = blockEntity.itemStackHandlerInputSlot3;
         else if (hopperOpposite.equals(opposite))
-            optionalHandler = blockEntity.getLazyItemHandlerSlot2();
+            itemStackHandler = blockEntity.itemStackHandlerInputSlot2;
 
-        if (optionalHandler == null || !optionalHandler.isPresent())
-            return;
-
-        ItemStackHandler itemStackHandler = optionalHandler.resolve().orElse(null);
         if (itemStackHandler == null)
             return;
 
-        LazyOptional<IItemHandler> hopperHandlerOptional = ((BlockEntity)(Object) hopper).getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.UP);
-        if (!hopperHandlerOptional.isPresent())
-            return;
-
-        IItemHandler hopperHandler = hopperHandlerOptional.resolve().orElse(null);
+        IItemHandler hopperHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, hopperPos, Direction.UP);
 
         if (hopperHandler == null)
             return;
 
         for (int containerSlot = 0; containerSlot < container.getContainerSize(); containerSlot++) {
             ItemStack containerStack = container.getItem(containerSlot);
+
             if (containerStack.isEmpty() || !itemStackHandler.isItemValid(0, containerStack)) continue;
 
             int hopperSlotIndex = -1;
@@ -111,11 +105,13 @@ public abstract class HopperBlockEntityMixin {
                 boolean same;
 
                 if (hasBlockStateTag(hopperStack) && hasBlockStateTag(containerStack)) {
+
                     ColorType colorInHopper = getColorTypeFromNBT(hopperStack);
                     ColorType colorInContainer = getColorTypeFromNBT(containerStack);
 
                     same = colorInHopper.equals(colorInContainer) && hopperStack.getItem().equals(containerStack.getItem());
-                } else
+                }
+                else
                     same = hopperStack.getItem().equals(containerStack.getItem());
 
                 if (same && hopperStack.getCount() < hopperStack.getMaxStackSize()) {
@@ -125,6 +121,7 @@ public abstract class HopperBlockEntityMixin {
             }
 
             if (hopperSlotIndex != -1) {
+
                 ItemStack toInsert = containerStack.copy();
                 ItemStack remainder = hopperHandler.insertItem(hopperSlotIndex, toInsert, true);
                 int insertedCount = containerStack.getCount() - remainder.getCount();
@@ -138,6 +135,7 @@ public abstract class HopperBlockEntityMixin {
                     return;
                 }
             }
+            break;
         }
     }
 
@@ -158,9 +156,9 @@ public abstract class HopperBlockEntityMixin {
             return;
         }
 
-        ContainerItemHandlerAdapter containerHandler = new ContainerItemHandlerAdapter(container);
+        IItemHandler containerHandler = new ContainerItemHandlerAdapter(container);
 
-        outerLoop:
+        outer:
         for (int containerSlot = 0; containerSlot < container.getContainerSize(); containerSlot++) {
             ItemStack containerStack = container.getItem(containerSlot);
             if (!containerStack.isEmpty() && containerStack.getCount() >= containerStack.getMaxStackSize()) continue;
@@ -191,7 +189,7 @@ public abstract class HopperBlockEntityMixin {
 
                         dyeingStationBlockEntity.setChanged();
                         cir.cancel();
-                        break outerLoop;
+                        break outer;
                     }
                 }
             }

@@ -2,7 +2,7 @@ package net.night.grasses.item;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.night.grasses.util.ClientPlayerHelper;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -42,8 +43,7 @@ public class AutomaticPrunerItem extends ShearsItem {
     }
 
     @Override
-    public void onInventoryTick(ItemStack itemStack, Level level, Player player, int slotIndex, int selectedIndex) {
-
+    public void inventoryTick(ItemStack itemStack, @NotNull Level level, @NotNull Entity entity, int slotIndex, boolean isSelected) {
         assert itemStack.getTag() != null;
         boolean flag = itemStack.getTag().getBoolean("Enchanted");
         boolean hasSilkTouch = EnchantmentHelper.hasSilkTouch(itemStack);
@@ -51,7 +51,8 @@ public class AutomaticPrunerItem extends ShearsItem {
         if (flag != hasSilkTouch) {
             setEnchantmentBoolean(itemStack);
         }
-        super.onInventoryTick(itemStack, level, player, slotIndex, selectedIndex);
+
+        super.inventoryTick(itemStack, level, entity, slotIndex, isSelected);
     }
 
     @Override

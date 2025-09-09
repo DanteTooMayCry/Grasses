@@ -1,14 +1,37 @@
 plugins {
-    id 'eclipse'
-    id 'idea'
+    id 'java-library'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'net.neoforged.moddev' version '2.0.107'
+    id 'idea'
+    id 'java'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
 }
 
 version = mod_version
 group = mod_group_id
+
+repositories {
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
 
 base {
     archivesName = mod_id
@@ -16,40 +39,46 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
     runs {
-        configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
         client {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
+
         gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
-            workingDirectory project.file('run-data')
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            data()
+
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
         }
     }
 }
@@ -62,81 +91,56 @@ sourceSets {
     }
 }
 
-repositories {
-    maven {
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
 }
 
 dependencies {
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation "curse.maven:jade-324717:${jade_id}"
+    implementation "curse.maven:biomes-o-plenty-220318:${bop_id}"
+    implementation "curse.maven:terrablender-neoforge-940057:${terra_id}"
+    implementation "curse.maven:glitchcore-955399:${glitch_id}"
+    implementation "curse.maven:patchouli-306770:${patchouli_id}"
+    //implementation "curse.maven:endremastered-404183:${endrem_id}"
+    //implementation "curse.maven:dynamictrees-252818:${dt_id}"
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
-    implementation fg.deobf("curse.maven:jade-324717:${jade_id}")
-    implementation fg.deobf("curse.maven:bop-220318:${bop_id}")
-    implementation fg.deobf("curse.maven:terra-563928:${terra_id}")
-    implementation fg.deobf("curse.maven:glitch-955399:${glitch_id}")
-    implementation fg.deobf("curse.maven:dt-252818:${dt_id}")
-    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_id}")
-    implementation fg.deobf("curse.maven:endrem-404183:${endrem_id}")
-    implementation fg.deobf("curse.maven:nbt-514135:${nbt_id}")
 }
 
-mixin {
-    add sourceSets.main, 'mixins.grasses.refmap.json'
-    config 'mixins.grasses.json'
-}
-tasks.named('processResources', ProcessResources).configure {
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
     ]
     inputs.properties replaceProperties
-
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
 }
 
-tasks.named('jar', Jar).configure {
-    manifest {
-        attributes([
-                'Specification-Title'     : mod_id,
-                'Specification-Vendor'    : mod_authors,
-                'Specification-Version'   : '1', // We are version 1 of ourselves
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-    finalizedBy 'reobfJar'
-}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
 
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifact jar
+            from components.java
         }
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/repo"
         }
     }
 }
@@ -145,8 +149,15 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
 tasks.register("copyRunDataConfig", Copy) {
-    from("run-data/config/grasses")
+    from("run/config/grasses")
     into("src/generated/resources/data/grasses/config")
     include("additional_drops.toml")
 }
@@ -155,15 +166,18 @@ tasks.named("processResources") {
     dependsOn("copyRunDataConfig")
 }
 
-def generatedJavaDir = "${buildDir}/generated/sources/version"
+def modVersion = project.findProperty('mod_version') ?: 'unknown_version'
+def generatedJavaDir = layout.buildDirectory.dir("generated/sources/version").get().asFile
+def outputFilePath = "${generatedJavaDir}/net/night/grasses/Version.java"
 
 sourceSets.main.java.srcDir generatedJavaDir
 
 tasks.register("generateVersionClass") {
+    outputs.file(outputFilePath)
+
     doLast {
-        def version = project.mod_version
         def packageName = 'net.night.grasses'
-        def outputDir = file("${generatedJavaDir}/" + packageName.replace('.', '/'))
+        def outputDir = new File("${generatedJavaDir}", packageName.replace('.', '/'))
         outputDir.mkdirs()
 
         def file = new File(outputDir, "Version.java")
@@ -171,12 +185,17 @@ tasks.register("generateVersionClass") {
             package ${packageName};
 
             public final class Version {
-                public static final String MOD_VERSION = "${version}";
+                public static final String MOD_VERSION = "${modVersion}";
             }
         """
+        println "Generated Version.java with MOD_VERSION = ${modVersion}"
     }
 }
 
+
 tasks.named("compileJava") {
     dependsOn(tasks.named("generateVersionClass"))
+    doFirst {
+        logger.lifecycle("Starting compileJava task, ensuring generateVersionClass ran first")
+    }
 }

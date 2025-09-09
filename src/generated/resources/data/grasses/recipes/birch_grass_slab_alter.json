@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "4": {
-      "item": "minecraft:grass"
+      "item": "minecraft:short_grass"
     },
     "6": {
       "item": "minecraft:birch_sapling"
@@ -19,6 +19,5 @@
   ],
   "result": {
     "item": "grasses:birch_grass_slab"
-  },
-  "show_notification": true
+  }
 }

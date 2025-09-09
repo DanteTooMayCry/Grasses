@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_mangrove_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_mangrove_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:mangrove_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

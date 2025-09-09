@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_jungle_sapling",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jungle_sapling"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:jungle_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

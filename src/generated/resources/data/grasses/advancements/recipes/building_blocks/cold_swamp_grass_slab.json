@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_cold_swamp_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cold_swamp_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:cold_swamp_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pink_petals",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pink_petals"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:better_cherry_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

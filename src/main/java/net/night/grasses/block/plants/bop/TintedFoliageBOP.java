@@ -46,8 +46,8 @@ public class TintedFoliageBOP extends ParentTintedBushBlock implements Bonemeala
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean b) {
-        if (!GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get())
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if (!GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_BOP_PLANTS.get())
             return false;
         else
             return true;

@@ -5,13 +5,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.night.grasses.network.MessageRegistry;
-import net.night.grasses.network.SyncColorPacket;
 import net.night.grasses.enums.ColorType;
+import net.night.grasses.network.ColorNetworking;
 import org.jetbrains.annotations.Nullable;
 
 import static net.night.grasses.init.BlockEntitiesRegister.TINTED_BE;
@@ -69,7 +67,7 @@ public class TintedBlockEntity extends BlockEntity {
 
             if (!level.isClientSide)
             {
-                MessageRegistry.sendToClientsNear(worldPosition, (ServerLevel) level, new SyncColorPacket(worldPosition, this.color));
+                ColorNetworking.sendToClientsNear(worldPosition, (level).dimension());
             }
         }
     }

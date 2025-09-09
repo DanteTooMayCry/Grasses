@@ -1,42 +1,34 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "neoforge:conditions": [
     {
-      "conditions": [
-        {
-          "type": "grasses:dyeing_tool_enabled"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "equipment",
-        "key": {
-          "B": {
-            "item": "minecraft:bamboo"
-          },
-          "C": {
-            "item": "minecraft:crying_obsidian"
-          },
-          "G": {
-            "item": "minecraft:glass_bottle"
-          },
-          "I": {
-            "item": "minecraft:iron_ingot"
-          },
-          "R": {
-            "item": "minecraft:redstone"
-          }
-        },
-        "pattern": [
-          "GIC",
-          "RBI",
-          "BR "
-        ],
-        "result": {
-          "item": "grasses:dyeing_tool"
-        },
-        "show_notification": true
-      }
+      "type": "grasses:dyeing_tool_enabled"
     }
-  ]
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "G": {
+      "item": "minecraft:glass_bottle"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "GIC",
+    "RBI",
+    "BR "
+  ],
+  "result": {
+    "item": "grasses:dyeing_tool"
+  }
 }

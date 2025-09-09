@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_snowy_plains_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_snowy_plains_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:snowy_plains_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

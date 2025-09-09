@@ -19,7 +19,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -27,7 +30,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.interfaces.CanGrowConditioner;
@@ -42,7 +45,7 @@ import static net.night.grasses.init.BlocksRegister.*;
 
 public class PodzolSlabBlock extends ParentSlabBlock implements BonemealableBlock, CanGrowConditioner {
     public PodzolSlabBlock() {
-        super(Properties.copy(Blocks.PODZOL).randomTicks());
+        super(Properties.ofFullCopy(Blocks.PODZOL).randomTicks());
         this.registerDefaultState(this.defaultBlockState().setValue(SNOWY, false).setValue(FERTILE, true));
     }
 
@@ -73,9 +76,9 @@ public class PodzolSlabBlock extends ParentSlabBlock implements BonemealableBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean pIsClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 
-        if (isFertileState(blockState) && ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get()))
+        if (isFertileState(blockState) && ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_PODZOL.get()))
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();
@@ -131,7 +134,7 @@ public class PodzolSlabBlock extends ParentSlabBlock implements BonemealableBloc
     @Override
     public boolean canSpread(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockPos blockPosAbove = blockPos.above();
-        return canBeGrass(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.CommonConfig.ALLOW_SPREAD_MOD_PODZOL.get();
+        return canBeGrass(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.COMMON_CONFIG.ALLOW_SPREAD_MOD_PODZOL.get();
     }
 
     @Override

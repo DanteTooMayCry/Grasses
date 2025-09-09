@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_warped_nylium",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_warped_nylium"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:grow_warped_nylium"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

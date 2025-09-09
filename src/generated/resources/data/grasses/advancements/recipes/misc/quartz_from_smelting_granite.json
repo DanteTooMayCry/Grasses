@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "grasses:quartz_smelting_enabled"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_granite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:granite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "grasses:quartz_from_smelting_granite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_granite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "grasses:quartz_from_smelting_granite"
+    ]
+  }
+}

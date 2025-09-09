@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_grow_mycelium",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_grow_mycelium"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:mycelium_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

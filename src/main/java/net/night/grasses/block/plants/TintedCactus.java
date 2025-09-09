@@ -23,9 +23,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.blockEntity.TintedBlockEntity;
 import net.night.grasses.config.GrassesConfig;
 import net.night.grasses.data.ModMethods;
@@ -33,14 +33,17 @@ import net.night.grasses.data.ModMethods;
 import java.util.List;
 
 import static net.minecraft.world.level.block.Blocks.CACTUS;
-import static net.night.grasses.data.ModData.*;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPost;
+import static net.neoforged.neoforge.common.CommonHooks.onCropsGrowPre;
+import static net.night.grasses.data.ModData.matchingCounterpartsPlants;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.CACTUS_TINTED;
+import static net.night.grasses.init.BlocksRegister.FERTILE;
 
 public class TintedCactus extends CactusBlock implements BonemealableBlock, EntityBlock {
 
     public TintedCactus() {
-        super(Properties.copy(Blocks.CACTUS));
+        super(Properties.ofFullCopy(Blocks.CACTUS));
         this.registerDefaultState(this.defaultBlockState().setValue(FERTILE, Boolean.TRUE));
     }
 
@@ -63,8 +66,8 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
-        return ModMethods.getCloneItemStackBE((Level) blockGetter, blockPos, blockState);
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
+        return ModMethods.getCloneItemStackBE((Level) levelReader, blockPos, blockState);
     }
 
     @Override
@@ -98,7 +101,7 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
 
                 if (i < 3) {
                     int j = blockState.getValue(AGE);
-                    if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(serverLevel, blockPosAbove, blockState, true)) {
+                    if (onCropsGrowPre(serverLevel, blockPosAbove, blockState, true)) {
                         if (j == 15) {
                             keepData(blockPosAbove, CACTUS, getColorType(serverLevel, blockPos));
                             keepData(blockPos, CACTUS, keepColorType.get(blockPos.above()));
@@ -111,7 +114,7 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
                             keepData(blockPos, CACTUS, getColorType(serverLevel, blockPos));
                             serverLevel.setBlock(blockPos, blockState.setValue(AGE, j + 1), 4);
                         }
-                        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(serverLevel, blockPos, blockState);
+                        onCropsGrowPost(serverLevel, blockPos, blockState);
                     }
                 }
             }
@@ -124,14 +127,14 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos blockPos, BlockState blockState) {
 
         int i = this.getHeightAboveUpToMax(level, blockPos);
         int j = this.getHeightBelowUpToMax(level, blockPos);
 
-        boolean isValid = i + j + 1 < GrassesConfig.CommonConfig.CACTUS_MAX_HEIGHT.get();
+        boolean isValid = i + j + 1 < GrassesConfig.COMMON_CONFIG.CACTUS_MAX_HEIGHT.get();
 
-        return GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS.get() && isValid;
+        return GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_CACTUS.get() && isValid;
     }
 
     @Override
@@ -150,8 +153,8 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
 
-        boolean changeColorPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_PLANTS_COLOR.get();
-        boolean changeIntoVanillaPermission = GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
+        boolean changeColorPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_PLANTS_COLOR.get();
+        boolean changeIntoVanillaPermission = GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_PLANTS_INTO_NOT_GRASSES.get();
 
         int interactionResult = ModMethods.useOnPlant(blockState, level, blockPos, player, interactionHand, blockHitResult,
                 changeColorPermission, changeIntoVanillaPermission, false, SoundEvents.WOOD_BREAK);
@@ -164,7 +167,7 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
 
     protected int getHeightAboveUpToMax(BlockGetter pLevel, BlockPos pPos) {
         int i;
-        for(i = 0; i < GrassesConfig.CommonConfig.CACTUS_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.above(i + 1)).is(CACTUS_TINTED.get()); ++i) {
+        for(i = 0; i < GrassesConfig.COMMON_CONFIG.CACTUS_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.above(i + 1)).is(CACTUS_TINTED.get()); ++i) {
         }
 
         return i;
@@ -172,7 +175,7 @@ public class TintedCactus extends CactusBlock implements BonemealableBlock, Enti
 
     protected int getHeightBelowUpToMax(BlockGetter pLevel, BlockPos pPos) {
         int i;
-        for(i = 0; i < GrassesConfig.CommonConfig.CACTUS_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.below(i + 1)).is(CACTUS_TINTED.get()); ++i) {
+        for(i = 0; i < GrassesConfig.COMMON_CONFIG.CACTUS_MAX_HEIGHT.get() && pLevel.getBlockState(pPos.below(i + 1)).is(CACTUS_TINTED.get()); ++i) {
         }
 
         return i;

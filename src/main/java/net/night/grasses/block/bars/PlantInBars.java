@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,19 +22,19 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.Objects;
 
-import static net.minecraft.world.level.block.Blocks.*;
+import static net.minecraft.world.level.block.Blocks.IRON_BARS;
 import static net.night.grasses.data.ModData.matchingBarsWithPlant;
 import static net.night.grasses.data.ModMethods.getColorType;
 import static net.night.grasses.data.ModMethods.setColorOnItemStack;
 
 public class PlantInBars extends IronBarsBlock {
     public PlantInBars() {
-        super(Properties.copy(IRON_BARS).mapColor(MapColor.PLANT));
+        super(Properties.ofFullCopy(IRON_BARS).mapColor(MapColor.PLANT));
         this.registerDefaultState(this.defaultBlockState());
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, BlockGetter blockGetter, BlockPos blockPos, Player player) {
+    public ItemStack getCloneItemStack(BlockState blockState, HitResult hitResult, LevelReader levelReader, BlockPos blockPos, Player player) {
         return new ItemStack(IRON_BARS);
     }
 

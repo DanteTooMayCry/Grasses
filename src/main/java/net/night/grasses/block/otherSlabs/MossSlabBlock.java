@@ -12,14 +12,14 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.IPlantable;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 
 import static net.night.grasses.data.ModMethods.canSustainPlantOnDirtLike;
 
 public class MossSlabBlock extends ParentSlabBlock implements BonemealableBlock {
     public MossSlabBlock() {
-        super(Properties.copy(Blocks.MOSS_BLOCK));
+        super(Properties.ofFullCopy(Blocks.MOSS_BLOCK));
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MossSlabBlock extends ParentSlabBlock implements BonemealableBlock 
         return canSustainPlantOnDirtLike(blockState, world, blockPos, facing, plantable);
     }
 
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return levelReader.getBlockState(blockPos.above()).isAir();
     }
 

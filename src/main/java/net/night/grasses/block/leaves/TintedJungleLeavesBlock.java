@@ -49,7 +49,7 @@ public class TintedJungleLeavesBlock extends ParentTintedLeavesBlock implements 
         boolean usedDyeingTool = itemStack.getItem() instanceof DyeingTool && hasBlockStateTag(itemStack);
         boolean hasSilkTouch = EnchantmentHelper.hasSilkTouch(itemStack);
 
-        if (usedDyeingTool && GrassesConfig.CommonConfig.ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY.get()){
+        if (usedDyeingTool && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_LEAVES_COLOR_SEVERALLY.get()){
             CompoundTag compoundtag = itemStack.getTag();
             ColorType colorType = PLAINS;
             ColorType currentColor = getCurrentColor(level, blockPos, 0);
@@ -82,7 +82,7 @@ public class TintedJungleLeavesBlock extends ParentTintedLeavesBlock implements 
             level.addDestroyBlockEffect(blockPos, blockState);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (itemStack.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY.get()) { // If shears are used on a block of mod leaves, the block will be turned back into a vanilla leaves
+        else if (itemStack.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_TINTED_LEAVES_INTO_NOT_GRASSES_SEVERALLY.get()) { // If shears are used on a block of mod leaves, the block will be turned back into a vanilla leaves
 
             if (player instanceof ServerPlayer) {
 

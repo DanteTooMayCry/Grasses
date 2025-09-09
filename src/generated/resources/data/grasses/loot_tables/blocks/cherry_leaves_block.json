@@ -82,7 +82,7 @@
         },
         {
           "condition": "grasses:is_mod_loaded",
-          "modid": "biomesoplenty"
+          "mod_id": "biomesoplenty"
         }
       ],
       "entries": [
@@ -96,7 +96,7 @@
           "name": "minecraft:cherry_sapling"
         }
       ],
-      "name": "cherry_sapling",
+      "name": "minecraft:cherry_sapling",
       "rolls": 1.0
     },
     {
@@ -140,7 +140,7 @@
           "condition": "minecraft:inverted",
           "term": {
             "condition": "grasses:is_mod_loaded",
-            "modid": "biomesoplenty"
+            "mod_id": "biomesoplenty"
           }
         }
       ],
@@ -155,7 +155,7 @@
           "name": "minecraft:cherry_sapling"
         }
       ],
-      "name": "cherry_sapling_alt",
+      "name": "minecraft:cherry_sapling_alt",
       "rolls": 1.0
     },
     {

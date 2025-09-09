@@ -1,16 +1,22 @@
 package net.night.grasses.datagen.loot;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import net.minecraft.util.GsonHelper;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 public class IsModLoaded implements LootItemCondition {
+
+    //public static final MapCodec<IsModLoaded> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+    //      Codec.STRING.fieldOf("mod_id").forGetter(o -> o.modID)
+    //).apply(instance, IsModLoaded::new));
+
+    public static final Codec<IsModLoaded> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.fieldOf("mod_id").forGetter(m -> m.modID)
+    ).apply(instance, IsModLoaded::new));
+
 
     private final boolean exists;
     private final String modID;
@@ -32,17 +38,5 @@ public class IsModLoaded implements LootItemCondition {
 
     public static Builder builder(String modid) {
         return () -> new IsModLoaded(modid);
-    }
-
-    public static class ConditionSerializer implements Serializer<IsModLoaded> {
-        @Override
-        public void serialize(JsonObject json, IsModLoaded instance, JsonSerializationContext ctx) {
-            json.addProperty("modid", instance.modID);
-        }
-
-        @Override
-        public IsModLoaded deserialize(JsonObject json, JsonDeserializationContext ctx) {
-            return new IsModLoaded(GsonHelper.getAsString(json, "modid"));
-        }
     }
 }

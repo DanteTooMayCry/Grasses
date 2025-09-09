@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pink_grass_block",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pink_grass_block"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:pink_grass_slab"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

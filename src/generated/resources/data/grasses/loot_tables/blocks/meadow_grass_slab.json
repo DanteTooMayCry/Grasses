@@ -63,7 +63,7 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "grasses:dirt_slab"
+              "name": "minecraft:dirt"
             }
           ]
         }

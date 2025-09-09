@@ -1,6 +1,6 @@
 {
   "name": "Kolor: Równiny",
-  "icon": "minecraft:grass",
+  "icon": "minecraft:short_grass",
   "category": "grasses:colors_ingredients_list_category",
   "sortnum": 15,
   "read_by_default": true,
@@ -12,7 +12,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "minecraft:grass",
+      "item": "minecraft:short_grass",
       "title": "Składnik:"
     }
   ]

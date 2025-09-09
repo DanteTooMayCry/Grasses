@@ -2,22 +2,25 @@ package net.night.grasses.block.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.night.grasses.block.plants.superclasses.ParentTintedGrowingPlantBodyBlock;
+import org.jetbrains.annotations.Nullable;
 
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.KELP_TINTED;
 
 public class TintedKelpPlant extends ParentTintedGrowingPlantBodyBlock implements LiquidBlockContainer {
     public TintedKelpPlant() {
-        super(BlockBehaviour.Properties.copy(Blocks.KELP_PLANT), Direction.UP, Shapes.block(), true);
+        super(Properties.ofFullCopy(Blocks.KELP_PLANT), Direction.UP, Shapes.block(), true);
     }
 
     protected GrowingPlantHeadBlock getHeadBlock() {
@@ -35,7 +38,7 @@ public class TintedKelpPlant extends ParentTintedGrowingPlantBodyBlock implement
 
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter pLevel, BlockPos pPos, BlockState pState, Fluid pFluid) {
+    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
         return false;
     }
 

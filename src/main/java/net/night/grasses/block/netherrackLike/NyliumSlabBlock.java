@@ -64,8 +64,8 @@ public class NyliumSlabBlock extends ParentSlabBlock implements BonemealableBloc
     ///////////////////////////////////////////////////////////
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean isClient) {
-        if (blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if (blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();
@@ -121,7 +121,7 @@ public class NyliumSlabBlock extends ParentSlabBlock implements BonemealableBloc
 
     private boolean canSpread(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockPos blockPosAbove = blockPos.above();
-        return canBeNylium(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.CommonConfig.ALLOW_SPREAD_MOD_NYLIUM.get();
+        return canBeNylium(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPosAbove).is(FluidTags.WATER) && GrassesConfig.COMMON_CONFIG.ALLOW_SPREAD_MOD_NYLIUM.get();
     }
 
     ///////////////////////////////////////////////////////////

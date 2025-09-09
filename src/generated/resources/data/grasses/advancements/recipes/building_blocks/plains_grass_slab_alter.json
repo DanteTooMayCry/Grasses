@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_grass": {
+    "has_short_grass": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:grass"
+              "minecraft:short_grass"
             ]
           }
         ]
@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_grass",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_short_grass"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:plains_grass_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

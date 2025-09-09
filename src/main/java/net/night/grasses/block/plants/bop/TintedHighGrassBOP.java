@@ -66,7 +66,7 @@ public class TintedHighGrassBOP extends ParentTintedGrowingPlantHeadBlock {
         BlockState blockStateOpposite = level.getBlockState(blockPosOpposite);
         Block block = blockStateOpposite.getBlock();
 
-        if (blockStateOpposite.hasProperty(SLAB_TYPE) && blockStateOpposite.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
+        if (blockStateOpposite.hasProperty(SLAB_TYPE) && blockStateOpposite.getValue(SLAB_TYPE) == SlabType.BOTTOM && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get())
             return false;
         else if (!this.canAttachTo(blockStateOpposite)) {
             return false;

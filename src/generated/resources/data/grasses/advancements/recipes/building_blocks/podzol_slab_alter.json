@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_grow_podzol",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_grow_podzol"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:podzol_slab_alter"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -11,8 +11,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -26,26 +26,26 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.level.block.Blocks.*;
-import static net.night.grasses.block.potted.TintedPottedPlantBlock.*;
+import static net.night.grasses.block.potted.TintedPottedPlantBlock.inHandIsNotPlantThatCanBePotted;
+import static net.night.grasses.block.potted.TintedPottedPlantBlock.inHandIsNotUsefulItem;
 import static net.night.grasses.data.ModData.*;
 import static net.night.grasses.data.ModMethods.*;
-import static net.night.grasses.data.ModMethods.getKey;
-import static net.night.grasses.init.BlocksRegister.*;
+import static net.night.grasses.init.BlocksRegister.KELP_POTTED;
 
 
 public class PottedPlantBlock extends FlowerPotBlock {
 
     public PottedPlantBlock(@Nullable Supplier<FlowerPotBlock> emptyPot, Supplier<? extends Block> plant) {
-        super(emptyPot, plant, Properties.copy(Blocks.POTTED_FERN).noOcclusion());
+        super(emptyPot, plant, Properties.ofFullCopy(Blocks.POTTED_FERN).noOcclusion());
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
 
-        if (pState.is(KELP_POTTED.get()))
+        if (blockState.is(KELP_POTTED.get()))
             return new ItemStack(KELP.asItem());
         else
-            return super.getCloneItemStack(pLevel, pPos, pState);
+            return super.getCloneItemStack(levelReader, blockPos, blockState);
     }
 
     @Override
@@ -61,9 +61,9 @@ public class PottedPlantBlock extends FlowerPotBlock {
             plantReplacement(level, blockPos, blockState, player, itemStackInMainHand);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        else if (itemStackInMainHand.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.CommonConfig.ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED.get()) {
+        else if (itemStackInMainHand.getItem() instanceof ShearsItem && hasSilkTouch && GrassesConfig.COMMON_CONFIG.ALLOW_CHANGE_POTTED_NOT_GRASSES_PLANTS_INTO_TINTED.get()) {
             if (player instanceof ServerPlayer) {
-                Block blockContent = getContent();
+                Block blockContent = getPotted();
                 Block plantsBlock = getKey(matchingTintedPottedWithPlant, matchingCounterpartsPlants.get(blockContent));
                 if (plantsBlock == null)
                     return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
@@ -81,7 +81,7 @@ public class PottedPlantBlock extends FlowerPotBlock {
     }
 
     private void plantReplacement(Level level, BlockPos blockPos, BlockState blockStatePot, Player player, ItemStack itemStackInMainHand) {
-        ItemStack itemStackContent = new ItemStack(this.getContent());
+        ItemStack itemStackContent = new ItemStack(this.getPotted());
         Block blockInMainHand = AIR;
         if (!player.getMainHandItem().isEmpty() && itemStackInMainHand.getItem() instanceof BlockItem)
             blockInMainHand = ((BlockItem) itemStackInMainHand.getItem()).getBlock();

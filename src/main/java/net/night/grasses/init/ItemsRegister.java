@@ -1,10 +1,9 @@
 package net.night.grasses.init;
 
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.night.grasses.Grasses;
 import net.night.grasses.item.AutomaticPrunerItem;
 import net.night.grasses.item.DyeingBoneMealItem;
@@ -13,25 +12,25 @@ import net.night.grasses.item.DyeingTool;
 
 public class ItemsRegister {
 
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, Grasses.MOD_ID);
+    public static final DeferredRegister.Items ITEMS =
+            DeferredRegister.createItems(Grasses.MOD_ID);
 
 
-    public static final RegistryObject<Item> DIAMOND_AUTO_PRUNER = ITEMS.register("diamond_auto_pruner",
+    public static final DeferredItem<Item> DIAMOND_AUTO_PRUNER = ITEMS.register("diamond_auto_pruner",
             () -> new AutomaticPrunerItem(new Item.Properties().durability(1024)));
-    public static final RegistryObject<Item> NETHERITE_AUTO_PRUNER = ITEMS.register("netherite_auto_pruner",
+    public static final DeferredItem<Item> NETHERITE_AUTO_PRUNER = ITEMS.register("netherite_auto_pruner",
             () -> new AutomaticPrunerItem(new Item.Properties().durability(2048)));
 
-    public static final RegistryObject<Item> DYEING_TOOL = ITEMS.register("dyeing_tool",
+    public static final DeferredItem<Item> DYEING_TOOL = ITEMS.register("dyeing_tool",
             () -> new DyeingTool(new Item.Properties().durability(2048)));
 
-    public static final RegistryObject<Item> DYEING_BONE_MEAL = ITEMS.register("dyeing_bone_meal",
+    public static final DeferredItem<Item> DYEING_BONE_MEAL = ITEMS.register("dyeing_bone_meal",
             () -> new DyeingBoneMealItem(new Item.Properties()));
 
-    public static final RegistryObject<Item> GRASSES_DYE = ITEMS.register("grasses_dye",
+    public static final DeferredItem<Item> GRASSES_DYE = ITEMS.register("grasses_dye",
             () -> new DyeingItem(new Item.Properties()));
 
-    public static final RegistryObject<Item> FERTILE_ICON = ITEMS.register("fertile_icon",
+    public static final DeferredItem<Item> FERTILE_ICON = ITEMS.register("fertile_icon",
             () -> new Item(new Item.Properties()));
 
 

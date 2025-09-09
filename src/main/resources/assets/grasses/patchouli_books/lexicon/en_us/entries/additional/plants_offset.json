@@ -1,6 +1,6 @@
 {
   "name": "Plants Offset",
-  "icon": "minecraft:grass",
+  "icon": "minecraft:short_grass",
   "category": "grasses:additional_category",
   "sortnum": 8,
   "pages": [

@@ -8,7 +8,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.Fluids;
@@ -16,8 +19,8 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
 import net.night.grasses.block.otherSlabs.superclassses.ParentSlabBlock;
 import net.night.grasses.config.GrassesConfig;
 
@@ -30,14 +33,14 @@ public class SoulSandSlabBlock extends ParentSlabBlock implements BonemealableBl
     private static final int BUBBLE_COLUMN_CHECK_DELAY = 20;
 
     public SoulSandSlabBlock() {
-        super(Properties.copy(Blocks.SOUL_SAND));
+        super(Properties.ofFullCopy(Blocks.SOUL_SAND));
     }
 
     ///////////////////////////////////////////////////////////
 
     @Override
     public boolean canSustainPlant(BlockState blockState, BlockGetter world, BlockPos blockPos, Direction facing, IPlantable plantable) {
-        if (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) {
+        if (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) {
 
             PlantType plantType = plantable.getPlantType(world, blockPos);
 
@@ -50,8 +53,8 @@ public class SoulSandSlabBlock extends ParentSlabBlock implements BonemealableBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean pIsClient) {
-        if ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get())
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        if ((blockState.getValue(TYPE).equals(BOTTOM) && !GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) || !GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get())
             return false;
         else
             return levelReader.getBlockState(blockPos.above()).isAir();
@@ -59,7 +62,7 @@ public class SoulSandSlabBlock extends ParentSlabBlock implements BonemealableBl
 
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.CommonConfig.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) && GrassesConfig.CommonConfig.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get();
+        return (!blockState.getValue(TYPE).equals(BOTTOM) || GrassesConfig.COMMON_CONFIG.ALLOW_PUT_PLANTS_ON_BOTTOM_SLAB.get()) && GrassesConfig.COMMON_CONFIG.ALLOW_USE_BONE_MEAL_ON_MOD_SOUL_SAND.get();
 
     }
 

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_sculk",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_sculk"
     ]
   ],
   "rewards": {
     "recipes": [
       "grasses:living_green_grass_block"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
