@@ -1,0 +1,30 @@
+#Drop entityType 'ALL' - each item has a declared chance of being dropped (can drop all at once)
+[all]
+
+	[all."grasses:fir_leaves_block_27dd43"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:fir_sapling"]
+
+[all_mob]
+
+	[all_mob."minecraft:cow_2cbbfa"]
+		chances = "full_chances"
+		conditions = ["customName=Boss", "addAdditionalDropMode=DESTROY"]
+		items = ["minecraft:rotten_flesh", "minecraft:iron_ingot"]
+
+#Drop entityType 'ONE OF' - each item has a declared chance of being dropped (can drop randomly only one of them)
+[one_of]
+
+	[one_of."grasses:maple_leaves_block_eb75ca"]
+		chances = "normal_leaves_sapling_chances"
+		conditions = ["addAdditionalDropMode=DESTROY"]
+		items = ["biomesoplenty:red_maple_sapling", "biomesoplenty:orange_maple_sapling", "biomesoplenty:yellow_maple_sapling"]
+
+[one_of_mob]
+
+	[one_of_mob."minecraft:pig_504937"]
+		chances = "full_chances"
+		conditions = ["addAdditionalDropMode=DESTROY", "inWater=true", "customName=Boss"]
+		items = ["minecraft:diamond_pickaxe", "minecraft:gold_nugget"]
+
