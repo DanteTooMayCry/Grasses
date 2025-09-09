@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "minecraft:block/fern",
-    "layer1": "minecraft:block/iron_bars"
-  }
-}

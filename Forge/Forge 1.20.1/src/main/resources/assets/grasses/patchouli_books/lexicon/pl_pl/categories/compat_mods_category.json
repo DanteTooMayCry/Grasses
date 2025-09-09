@@ -1,6 +1,0 @@
-{
-  "name": "Kompatybilność modów",
-  "description": "$(li)$(3)Integrations$() - mody wspomagające, które nie wpływają bezpośrednio na rozgrywkę$(li)$(3)Complementary$() - interakcje między blokami z obu modów$(li)$(3)Compatible$() - mody, które mogą budzić wątpliwości, czy będą kompatybilne",
-  "icon": "minecraft:end_crystal",
-  "sortnum": 9
-}
