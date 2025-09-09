@@ -1,7 +1,0 @@
-{
-  "name": "Kolory i Składniki",
-  "description": "Lista wszystkich dostępnych kolorów wraz ze składnikami potrzebnymi do ich stworzenia",
-  "icon": "minecraft:yellow_dye",
-  "sortnum": 8,
-  "read_by_default": true
-}

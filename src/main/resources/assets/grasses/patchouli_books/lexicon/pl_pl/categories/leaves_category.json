@@ -1,6 +1,0 @@
-{
-  "name": "Liście",
-  "description": "$(li)Bez Prefiksu - Minecraftowe Waniliowe Liście, $(li)BoP - Liście z $(2)$(l:https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty)'Biomes Of Plenty'$()$() (tylko gdy BoP jest zainstalowany)",
-  "icon": "grasses:flowering_azalea_leaves_block",
-  "sortnum": 3
-}

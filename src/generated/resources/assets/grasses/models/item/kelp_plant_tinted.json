@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "grasses:block/kelp_plant_tinted"
-  }
-}

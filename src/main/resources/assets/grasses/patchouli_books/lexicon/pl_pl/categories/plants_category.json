@@ -1,6 +1,0 @@
-{
-  "name": "Rośliny",
-  "description": "$(li)Bez Prefiksu - Minecraftowe Waniliowe Rośliny, $(li)BoP - Rośliny z $(2)$(l:https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty)'Biomes Of Plenty'$()$() (pojawią się tylko, gdy BoP jest zainstalowany)",
-  "icon": "grasses:seagrass_tinted",
-  "sortnum": 4
-}
