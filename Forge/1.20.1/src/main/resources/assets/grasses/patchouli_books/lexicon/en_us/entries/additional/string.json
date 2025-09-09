@@ -1,0 +1,13 @@
+{
+  "name": "String Recipe",
+  "icon": "minecraft:string",
+  "category": "grasses:additional_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:item/string",
+      "border": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Zakorzeniona Płyta",
+  "icon": "grasses:rooted_dirt_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 8,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:rooted_dirt_slab",
+      "title": "Zakorzeniona Płyta",
+      "text": "Płyta identyczna z waniliowym blokiem zakorzenionej ziemi. Domyślnie nie można sadzić roślin na jego dolnej połowie, ale można zmienić to w pliku config."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Zaklete Nożyce",
+  "icon": "minecraft:shears",
+  "category": "grasses:utility_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod umożliwia nałożenie na zwykłe waniliowe nożyce zaklęć '$(6)Jedwabny Dotyk$()' oraz '$(6)Porażenie$()'. Dzięki pierwszemu zakleciu można zmieniać liście z waniliowych na modowe i odwrotnie. Dodatkowo wraz z drugim zaklęciem można$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)wydobyć z waniliowej i modowej $(l:additional/end_portal_frame)Ramy Portalu Endu$() $(2)Oko Endera$() co spowoduje wyłączenie portalu.$(br)"
+    }
+  ]
+}

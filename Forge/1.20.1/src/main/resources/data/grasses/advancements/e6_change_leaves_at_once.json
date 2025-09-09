@@ -1,0 +1,72 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:diamond_auto_pruner",
+      "nbt": "{Enchantments:[{lvl:1s, id:\"minecraft:silk_touch\"}]}"
+    },
+    "title": {
+      "translate": "grasses.advancements.change_leaves_at_once.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.change_leaves_at_once.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:e5_cut_leaves_at_once",
+  "criteria": {
+    "diamond_auto_pruner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:diamond_auto_pruner"
+            ],
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "change_leaves_blocks": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "minecraft:logs_that_burn"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "grasses:pruners",
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "diamond_auto_pruner"
+    ],
+    [
+      "change_leaves_blocks"
+    ]
+  ]
+}

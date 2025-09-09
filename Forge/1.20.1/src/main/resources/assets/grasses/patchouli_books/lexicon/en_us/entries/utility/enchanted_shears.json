@@ -1,0 +1,16 @@
+{
+  "name": "Enchanted Shears",
+  "icon": "minecraft:shears",
+  "category": "grasses:utility_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mod allows you to apply '$(6)Silk Touch$()' and '$(6)Channeling$()' on vanilla shears.$(br2)Thanks to the first enchant, you can change the vanilla leaves into mod and vice versa.$(br2)Additionally, with the second enchant you$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)can extract $(2)Ender Eye$() from vanilla and mod $(l:additional/end_portal_frame)End Portal Frame$() which will disable the portal.$(br)"
+    }
+  ]
+}

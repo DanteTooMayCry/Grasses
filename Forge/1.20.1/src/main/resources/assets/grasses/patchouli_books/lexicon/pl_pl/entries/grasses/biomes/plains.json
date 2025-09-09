@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Równiny",
+  "icon": "grasses:plains_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 14,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:plains_grass_block",
+      "title": "Blok: Równiny"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:plains_grass_slab",
+      "title": "Płyta: Równiny"
+    }
+  ]
+}

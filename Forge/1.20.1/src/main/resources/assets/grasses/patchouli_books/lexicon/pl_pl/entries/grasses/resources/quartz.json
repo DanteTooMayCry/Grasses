@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Kwarcowa",
+  "icon": "grasses:quartz_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 40,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:quartz_grass_block",
+      "title": "Blok: Kwarcowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:quartz_grass_slab",
+      "title": "Płyta: Kwarcowa"
+    }
+  ]
+}

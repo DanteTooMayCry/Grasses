@@ -1,0 +1,14 @@
+{
+  "name": "Flowering Azalea",
+  "icon": "grasses:flowering_azalea_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 6,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:flowering_azalea_leaves_block",
+      "title": "Flowering Azalea Leaves"
+    }
+  ]
+}

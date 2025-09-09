@@ -1,0 +1,19 @@
+{
+  "name": "Trawa: Czarny",
+  "icon": "grasses:black_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 39,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:black_grass_block",
+      "title": "Blok: Czarny"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:black_grass_slab",
+      "title": "Płyta: Czarny"
+    }
+  ]
+}

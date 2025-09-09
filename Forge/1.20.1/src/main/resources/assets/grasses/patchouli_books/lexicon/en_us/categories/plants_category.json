@@ -1,0 +1,6 @@
+{
+  "name": "Plants",
+  "description": "$(li)Without Prefix - Vanilla Minecraft Plants, $(li)BoP - $(2)$(l:https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty)'Biomes Of Plenty'$()$() Plants (appear only if BoP installed)",
+  "icon": "grasses:seagrass_tinted",
+  "sortnum": 4
+}

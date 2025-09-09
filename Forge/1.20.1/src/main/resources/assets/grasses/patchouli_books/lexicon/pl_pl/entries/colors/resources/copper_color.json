@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Miedziany",
+  "icon": "minecraft:copper_ingot",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 41,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:copper_grass_block",
+      "title": "Kolor: Miedziany"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:copper_ingot",
+      "title": "Składnik:"
+    }
+  ]
+}

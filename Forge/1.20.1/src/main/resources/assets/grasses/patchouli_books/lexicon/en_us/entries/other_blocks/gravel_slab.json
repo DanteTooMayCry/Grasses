@@ -1,0 +1,15 @@
+{
+  "name": "Gravel Slab",
+  "icon": "grasses:gravel_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 12,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:gravel_slab",
+      "title": "Gravel Slab",
+      "text": "A slab identical to a vanilla Gravel Block. As it falls onto another Gravel Slab, it will merge with it. The flint drop chance is halved for each half compared to the full block."
+    }
+  ]
+}

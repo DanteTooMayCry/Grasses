@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Różowy",
+  "icon": "minecraft:pink_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 27,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pink_grass_block",
+      "title": "Kolor: Różowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:pink_dye",
+      "title": "Składnik:"
+    }
+  ]
+}

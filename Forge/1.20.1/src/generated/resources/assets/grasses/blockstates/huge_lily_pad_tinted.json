@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=east,grasses_quarter=north_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_east",
+      "y": 90
+    },
+    "facing=east,grasses_quarter=north_west": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_west",
+      "y": 90
+    },
+    "facing=east,grasses_quarter=south_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_east",
+      "y": 90
+    },
+    "facing=east,grasses_quarter=south_west,variant_lily=0": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west",
+      "y": 90
+    },
+    "facing=east,grasses_quarter=south_west,variant_lily=1": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_white",
+      "y": 90
+    },
+    "facing=east,grasses_quarter=south_west,variant_lily=2": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_origin",
+      "y": 90
+    },
+    "facing=north,grasses_quarter=north_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_east"
+    },
+    "facing=north,grasses_quarter=north_west": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_west"
+    },
+    "facing=north,grasses_quarter=south_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_east"
+    },
+    "facing=north,grasses_quarter=south_west,variant_lily=0": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west"
+    },
+    "facing=north,grasses_quarter=south_west,variant_lily=1": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_white"
+    },
+    "facing=north,grasses_quarter=south_west,variant_lily=2": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_origin"
+    },
+    "facing=south,grasses_quarter=north_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_east",
+      "y": 180
+    },
+    "facing=south,grasses_quarter=north_west": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_west",
+      "y": 180
+    },
+    "facing=south,grasses_quarter=south_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_east",
+      "y": 180
+    },
+    "facing=south,grasses_quarter=south_west,variant_lily=0": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west",
+      "y": 180
+    },
+    "facing=south,grasses_quarter=south_west,variant_lily=1": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_white",
+      "y": 180
+    },
+    "facing=south,grasses_quarter=south_west,variant_lily=2": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_origin",
+      "y": 180
+    },
+    "facing=west,grasses_quarter=north_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_east",
+      "y": 270
+    },
+    "facing=west,grasses_quarter=north_west": {
+      "model": "grasses:block/huge_lily_pad_tinted_north_west",
+      "y": 270
+    },
+    "facing=west,grasses_quarter=south_east": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_east",
+      "y": 270
+    },
+    "facing=west,grasses_quarter=south_west,variant_lily=0": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west",
+      "y": 270
+    },
+    "facing=west,grasses_quarter=south_west,variant_lily=1": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_white",
+      "y": 270
+    },
+    "facing=west,grasses_quarter=south_west,variant_lily=2": {
+      "model": "grasses:block/huge_lily_pad_tinted_south_west_flower_origin",
+      "y": 270
+    }
+  }
+}

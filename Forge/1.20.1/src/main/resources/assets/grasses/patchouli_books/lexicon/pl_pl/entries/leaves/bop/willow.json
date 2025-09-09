@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Liście Wierzby",
+  "icon": "grasses:willow_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 18,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:willow_leaves_block",
+      "title": "Liście Wierzby"
+    }
+  ]
+}

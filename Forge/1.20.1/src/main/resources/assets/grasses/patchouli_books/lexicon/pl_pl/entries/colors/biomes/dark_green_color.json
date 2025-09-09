@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Ciemny Zielony",
+  "icon": "minecraft:ender_pearl",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 51,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_green_grass_block",
+      "title": "Kolor: Ciemny Zielony"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:ender_pearl",
+      "title": "Składnik:"
+    }
+  ]
+}

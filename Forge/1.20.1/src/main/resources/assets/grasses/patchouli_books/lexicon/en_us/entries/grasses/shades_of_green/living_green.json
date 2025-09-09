@@ -1,0 +1,19 @@
+{
+  "name": "Living Green Grass",
+  "icon": "grasses:living_green_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 55,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:living_green_grass_block",
+      "title": "Living Green Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:living_green_grass_slab",
+      "title": "Living Green Grass Slab"
+    }
+  ]
+}

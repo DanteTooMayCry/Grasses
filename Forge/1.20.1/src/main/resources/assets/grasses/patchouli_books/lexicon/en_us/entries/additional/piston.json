@@ -1,0 +1,21 @@
+{
+  "name": "Piston Feature",
+  "icon": "minecraft:sticky_piston",
+  "category": "grasses:additional_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "By using shears with '$(6)Silk Touch$()' on the Sticky Piston, it is possible to remove the sticky layer and obtain a regular piston and a slime ball. It also works the other way around and such a slime ball can be placed on a regular piston to obtain a Sticky Piston."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/piston.png",
+        "grasses:textures/patchouli/piston2.png",
+        "grasses:textures/patchouli/piston3.png"
+      ],
+      "border": true
+    }
+  ]
+}

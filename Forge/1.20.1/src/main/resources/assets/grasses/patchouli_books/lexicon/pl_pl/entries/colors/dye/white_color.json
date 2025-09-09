@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Biały",
+  "icon": "minecraft:white_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 24,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:white_grass_block",
+      "title": "Kolor: Biały"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:white_dye",
+      "title": "Składnik:"
+    }
+  ]
+}

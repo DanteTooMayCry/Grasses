@@ -1,0 +1,14 @@
+{
+  "name": "Mały Spadkoliść",
+  "icon": "grasses:small_drip_leaf_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 13,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:small_drip_leaf_tinted",
+      "title": "Mały Spadkoliść"
+    }
+  ]
+}

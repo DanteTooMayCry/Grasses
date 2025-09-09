@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Mega Tajga",
+  "icon": "minecraft:fern",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 14,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:pine_taiga_grass_block",
+      "title": "Kolor: Mega Tajga"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:fern",
+      "title": "Składnik:"
+    }
+  ]
+}

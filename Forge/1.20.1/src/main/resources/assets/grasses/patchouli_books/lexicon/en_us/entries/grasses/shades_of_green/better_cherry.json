@@ -1,0 +1,19 @@
+{
+  "name": "Better Cherry Grass",
+  "icon": "grasses:better_cherry_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 56,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:better_cherry_grass_block",
+      "title": "Better Cherry Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:better_cherry_grass_slab",
+      "title": "Better Cherry Grass Slab"
+    }
+  ]
+}

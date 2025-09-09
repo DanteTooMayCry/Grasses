@@ -1,0 +1,19 @@
+{
+  "name": "Color: Lapis",
+  "icon": "minecraft:lapis_lazuli",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 49,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:lapis_grass_block",
+      "title": "Color: Lapis"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:lapis_lazuli",
+      "title": "Ingredient:"
+    }
+  ]
+}

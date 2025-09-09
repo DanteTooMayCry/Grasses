@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "grasses:end_stone_enabled"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "E": {
+            "item": "minecraft:ender_pearl"
+          },
+          "S": {
+            "item": "minecraft:sandstone"
+          }
+        },
+        "pattern": [
+          "SSS",
+          "SES",
+          "SSS"
+        ],
+        "result": {
+          "count": 8,
+          "item": "minecraft:end_stone"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

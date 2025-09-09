@@ -1,0 +1,51 @@
+{
+  "name": "Block Mining Features",
+  "icon": "grasses:diamond_auto_pruner",
+  "category": "grasses:basics_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The previous chapter described how the enchanted pruner works. But that's not all.$(br2)In addition to works without enchants like regular shears, it can be used to cut off instantly all leaves on the tree$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)(both vanilla and modded) or warts on Huge Fungus. Just use it on the trunk as you would when changing leaves.$(br2)Standard loot (saplings, sticks, apples) with a vanilla frequency will drop from the destroyed blocks.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)And since you can cut off the leaves, the mod also allows you to cut down all the logs at once.$(br2)To make this possible, you need to get an axe with an enchantment '$(6)Silk Touch$()' and normally start mining logs. The cutting time depends on the number of logs, that the tree has.$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)This function is compatible with '$(l:https://www.curseforge.com/minecraft/mc-mods/dynamictrees)$(2)Dynamic Trees$()$()' mod. I.e. the trees of this mod will be cut down according to its mechanics.$(br2)If it is installed '$(l:https://www.curseforge.com/minecraft/mc-mods/jade)$(2)Jade'$()$()' mod, and in the hand is holding a pruner, a Dyeing Tool, or an axe with '$(6)Silk Touch$()' enchant it will show information$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)about number of logs, leaves and vines, and in the case of Huge Fungus, also the number of shroomslights.$(br2)In the described functions, as well as when coloring, the mod allows you to connect different logs of the same type, e.g. an oak log and a stripped log.$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/jade_tree_info.png"
+      ],
+      "text": "To do this, you need to press and hold"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)button responsible for sprinting. This option can be disabled in $(l:basics/config)Config File$() just like cutting down the crown of a tree and its trunk.$(br2)Using pruners or shears on blocks of grass, mycelium, podzol or Nylium with state $(l:basics/fertile_state)FERTILE$() set to FALSE will result in cut$(br)"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "grasses:textures/patchouli/jade_tree_info_sprint.png",
+        "grasses:textures/patchouli/jade_tree_info_sprint2.png"
+      ],
+      "text": "their surface layer, turning a block"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)into dirt or netherrack and drop correlated item.$(br2)From Grass blocks will drop Grass, Mycelium - a random Brown or Red Mushroom, Podzol - a Fern and Nylium blocks - a random Crimson or Corrupted Root"
+    }
+  ]
+}

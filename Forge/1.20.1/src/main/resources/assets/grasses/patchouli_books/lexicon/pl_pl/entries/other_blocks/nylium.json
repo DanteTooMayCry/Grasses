@@ -1,0 +1,21 @@
+{
+  "name": "Nylium",
+  "icon": "grasses:grow_warped_nylium",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 9,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:grow_crimson_nylium,grasses:grow_warped_nylium",
+      "title": "Pełny Blok Nylium",
+      "text": "Bloki identyczne z waniliowymi blokami Nylium posiadające dodatkowy stan $(l:basics/fertile_state)FERTILE$(). Mogą się rozprzestrzeniać. Funkcja możliwa do zmiany w pliku konfiguracyjnym."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:crimson_nylium_slab,grasses:warped_nylium_slab",
+      "title": "Nylium Slab",
+      "text": "Posiadają te same możliwości co pełny blok. Domyślnie nie można sadzić roślin na ich dolnej połowie, ale można zmienić to w pliku config."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Dirt Slab",
+  "icon": "grasses:dirt_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 4,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dirt_slab",
+      "title": "Dirt Slab",
+      "text": "A slab identical to a vanilla Dirt Block. By default you cannot plant plants on its lower half, but you can change this in the config file."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "grasses:block/small_dripleaf_potted",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "grasses:block/small_dripleaf_potted"
+    },
+    "facing=south": {
+      "model": "grasses:block/small_dripleaf_potted",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "grasses:block/small_dripleaf_potted",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "BoP: Maple Leaves",
+  "icon": "grasses:maple_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 13,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:maple_leaves_block",
+      "title": "Maple Leaves"
+    }
+  ]
+}

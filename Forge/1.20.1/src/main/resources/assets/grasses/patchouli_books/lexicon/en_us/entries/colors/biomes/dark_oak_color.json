@@ -1,0 +1,19 @@
+{
+  "name": "Color: Dark Forest",
+  "icon": "minecraft:dark_oak_sapling",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 4,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_forest_grass_block",
+      "title": "Color: Dark Forest"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:dark_oak_sapling",
+      "title": "Ingredient:"
+    }
+  ]
+}

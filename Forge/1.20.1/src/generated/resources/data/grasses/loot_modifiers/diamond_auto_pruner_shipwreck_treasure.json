@@ -1,0 +1,13 @@
+{
+  "type": "grasses:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_treasure"
+    }
+  ],
+  "item": "grasses:diamond_auto_pruner",
+  "maxItems": 1,
+  "minItems": 1,
+  "probability": 0.05000000074505806
+}

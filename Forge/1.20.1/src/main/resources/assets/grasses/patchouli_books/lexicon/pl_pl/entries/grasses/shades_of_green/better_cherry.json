@@ -1,0 +1,20 @@
+{
+  "name": "Trawa: Lepszy Wiśniowy",
+  "icon": "grasses:better_cherry_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 56,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:better_cherry_grass_block",
+      "title": "Blok: Lepszy Wiśniowy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:better_cherry_grass_slab",
+      "title": "Płyta: Lepszy Wiśniowy"
+
+    }
+  ]
+}

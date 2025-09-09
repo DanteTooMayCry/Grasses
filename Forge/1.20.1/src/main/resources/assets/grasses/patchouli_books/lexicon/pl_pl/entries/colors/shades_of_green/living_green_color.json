@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Żywa Zieleń",
+  "icon": "minecraft:sculk",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 55,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:living_green_grass_block",
+      "title": "Kolor: Żywa Zieleń"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk",
+      "title": "Składnik:"
+    }
+  ]
+}

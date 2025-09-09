@@ -1,0 +1,19 @@
+{
+  "name": "Mushroom Grass",
+  "icon": "grasses:mushroom_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 12,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mushroom_grass_block",
+      "title": "Mushroom Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:mushroom_grass_slab",
+      "title": "Mushroom Grass Slab"
+    }
+  ]
+}

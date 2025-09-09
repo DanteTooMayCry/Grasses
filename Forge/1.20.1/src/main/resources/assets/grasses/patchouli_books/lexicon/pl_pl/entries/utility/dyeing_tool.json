@@ -1,0 +1,22 @@
+{
+  "name": "Narzędzie do barwienia",
+  "icon": "grasses:dyeing_tool",
+  "category": "grasses:utility_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Umożliwia barwienie liści i roślin. Jeśli posiada zaklęcie '$(6)Jedwabny Dotyk$()', może być użyty na pniu drzewa, aby zmienić naraz barwę całej korony. Gdy posiada jeszcze zaklęcie '$(6)Porażenie$()' to zmieni barwę wyłącznie liści, zaś wciskając jeszcze przycisk odpowiedzialny za $(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:dyeing_tool",
+      "border": true,
+      "text": "kucanie zmieni barwę jedynie pnączy.$(br2)Aby nadać barwę narzędziu należy stworzyć $(l:utility/dyeing_station)Stację Barwienia$() i użyć jednego z $(l:grasses_dye)barwników$()$(br)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)(W tym 16 waniliowych) wraz z Wiadrem Wody.$(br2)Narzędzie traci barwnik z każdym użyciem, a uzupełić można go w stacji za pomocą barwnika.$(br2)Możliwe jest też nałożenie zaklęcia Nieskończoność co zatrzyma utratę barwnika.$(br)"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Diamentowy Sekator",
+  "icon": "grasses:diamond_auto_pruner",
+  "category": "grasses:utility_category",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Narzędzie to jest rozwinięciem waniliowych nożyć. Mogą być na nie nałożone takie same zaklęcia, a dodatkowo '$(6)Jedwabny Dotyk$()' oraz '$(6)Porażenie$()'$(br2)Jest ono niezbędne aby wpływać na więcej niż jeden blok naraz.$(br)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "grasses:diamond_auto_pruner",
+      "border": true,
+      "text": "$(br)Różna konfiguracja wymienionych enchatów, wraz z trzymaniem klawisza odpowiedzialnego za kucanie daje różne efekty:"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(5)Bez Zaklęć, Kucanie$(): Zmieni Barwione Liście w jaśniejszą lub ciemniejszą wersję.$()$(br)$(li)$(5)Bez Zaklęć, Bez Kucania$(): Obetnie wszystkie Liście i Pnącza na Drzewie,$()$(li)$(5)Porażenie, Bez Kucania$(): Obetnie tylko Liście,$()$(li)$(5)Porażenie, Kucanie$(): Obecnie tylko Pnącza,$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(5)Jedwabny Dotyk$(): Zmieni naraz wszystkie Liście i Pnącza na drzwie (normalne -> barwione lub barwione -> normalne),$()$(li)$(5)Jedwabny Dotyk I Porażenie, Bez Kucania$(): Zmieni tylko Liście,$()$(li)$(5)Jedwabny Dotyk I Porażenie, Kucanie$(): Zmieni tylko Pnącza.$()"
+    }
+  ]
+}

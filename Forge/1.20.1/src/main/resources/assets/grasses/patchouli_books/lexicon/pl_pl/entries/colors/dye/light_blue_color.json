@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Jasnoniebieski",
+  "icon": "minecraft:light_blue_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 31,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:light_blue_grass_block",
+      "title": "Kolor: Jasnoniebieski"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:light_blue_dye",
+      "title": "Składnik:"
+    }
+  ]
+}

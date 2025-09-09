@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_packet_ice_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:packet_ice_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "grasses:blue_ice_slab_alter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_packet_ice_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "grasses:blue_ice_slab_alter"
+    ]
+  },
+  "sends_telemetry_event": false
+}

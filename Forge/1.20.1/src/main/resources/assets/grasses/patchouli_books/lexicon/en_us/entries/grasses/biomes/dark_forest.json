@@ -1,0 +1,19 @@
+{
+  "name": "Dark Forest Grass",
+  "icon": "grasses:dark_forest_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 4,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_forest_grass_block",
+      "title": "Dark Forest Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:dark_forest_grass_slab",
+      "title": "Dark Forest Grass Slab"
+    }
+  ]
+}

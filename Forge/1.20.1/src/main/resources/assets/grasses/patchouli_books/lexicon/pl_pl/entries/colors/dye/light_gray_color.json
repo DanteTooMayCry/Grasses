@@ -1,0 +1,19 @@
+{
+  "name": "Kolor: Jasnoszary",
+  "icon": "minecraft:light_gray_dye",
+  "category": "grasses:colors_ingredients_list_category",
+  "sortnum": 38,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:light_gray_grass_block",
+      "title": "Kolor: Jasnoszary"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:light_gray_dye",
+      "title": "Składnik:"
+    }
+  ]
+}

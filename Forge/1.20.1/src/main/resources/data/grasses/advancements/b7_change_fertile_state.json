@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:fertile_icon"
+    },
+    "title": {
+      "translate": "grasses.advancements.change_fertile.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.change_fertile.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a3_first_grass_block",
+  "criteria": {
+    "change_fertile_state": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "grasses:all_mod_grass",
+                "state": {
+                  "fertile": "false"
+                }
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "grasses:shears"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "change_fertile_state"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

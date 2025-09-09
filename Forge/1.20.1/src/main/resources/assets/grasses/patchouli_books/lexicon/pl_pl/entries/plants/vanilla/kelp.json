@@ -1,0 +1,14 @@
+{
+  "name": "Wodorost",
+  "icon": "grasses:kelp_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 14,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:kelp_tinted",
+      "title": "Wodorost"
+    }
+  ]
+}

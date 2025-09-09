@@ -1,0 +1,15 @@
+{
+  "name": "Płyta Netherracku",
+  "icon": "grasses:netherrack_slab",
+  "category": "grasses:other_blocks_category",
+  "sortnum": 10,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:netherrack_slab",
+      "title": "Płyta Netherracku",
+      "text": "Płyta identyczna z waniliowym blokiem netherracku."
+    }
+  ]
+}

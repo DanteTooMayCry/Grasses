@@ -1,0 +1,26 @@
+{
+  "name": "Quartz From Smelting",
+  "icon": "minecraft:quartz",
+  "category": "grasses:additional_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:smelting",
+      "recipe": "grasses:item/quartz_from_smelting_diorite",
+      "border": true,
+      "title": "Quartz from Diorite"
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "grasses:item/quartz_from_smelting_andesite",
+      "border": true,
+      "title": "Quartz from Andezite"
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "grasses:item/quartz_from_smelting_granite",
+      "border": true,
+      "title": "Quartz from Granite"
+    }
+  ]
+}

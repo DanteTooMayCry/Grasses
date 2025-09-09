@@ -1,0 +1,14 @@
+{
+  "name": "Liście Tropikalne",
+  "icon": "grasses:jungle_leaves_block",
+  "category": "grasses:leaves_category",
+  "sortnum": 7,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:jungle_leaves_block",
+      "title": "Liście Tropikalne"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Vine",
+  "icon": "grasses:vine_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 7,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:vine_tinted",
+      "title": "Tinted Vine"
+    }
+  ]
+}

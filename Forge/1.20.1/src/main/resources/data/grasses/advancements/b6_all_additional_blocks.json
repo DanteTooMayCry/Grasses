@@ -1,0 +1,495 @@
+{
+  "display": {
+    "icon": {
+      "item": "grasses:warped_nylium_slab"
+    },
+    "title": {
+      "translate": "grasses.advancements.all_additional.title"
+    },
+    "description": {
+      "translate": "grasses.advancements.all_additional.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "grasses:a2_first_grass_slab",
+  "criteria": {
+    "obtain_grow_grass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_grass_block"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_grass_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_grass_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_grow_podzol": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_podzol"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_podzol_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:podzol_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_grow_mycelium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_mycelium"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_mycelium_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:mycelium_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_grow_crimson_nylium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_crimson_nylium"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_crimson_nylium_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:crimson_nylium_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_grow_warped_nylium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:grow_warped_nylium"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_warped_nylium_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:warped_nylium_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_dirt_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:dirt_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "make_dirt_path_slab": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "grasses:dirt_path_slab"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "minecraft:shovels"
+            }
+          }
+        ]
+      }
+    },
+    "make_farmland_slab": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "grasses:farmland_slab"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "minecraft:hoes"
+            }
+          }
+        ]
+      }
+    },
+    "obtain_coarse_dirt_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:coarse_dirt_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_rooted_dirt_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:rooted_dirt_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_netherrack_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:netherrack_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_sand_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:sand_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_red_sand_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:red_sand_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_gravel_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:gravel_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_clay_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:clay_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_soul_sand_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:soul_sand_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_soul_soil_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:soul_soil_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_magma_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:magma_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_moss_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:moss_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_mud_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:mud_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_packed_mud_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:packet_mud_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_muddy_roots_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:muddy_roots_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_ice_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:ice_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_packet_ice_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:packet_ice_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_blue_ice_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "grasses:blue_ice_slab"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_grow_grass"
+    ],
+    [
+      "obtain_grass_slab"
+    ],
+    [
+      "obtain_grow_podzol"
+    ],
+    [
+      "obtain_podzol_slab"
+    ],
+    [
+      "obtain_grow_mycelium"
+    ],
+    [
+      "obtain_mycelium_slab"
+    ],
+    [
+      "obtain_grow_crimson_nylium"
+    ],
+    [
+      "obtain_crimson_nylium_slab"
+    ],
+    [
+      "obtain_grow_warped_nylium"
+    ],
+    [
+      "obtain_warped_nylium_slab"
+    ],
+    [
+      "obtain_dirt_slab"
+    ],
+    [
+      "make_dirt_path_slab"
+    ],
+    [
+      "make_farmland_slab"
+    ],
+    [
+      "obtain_coarse_dirt_slab"
+    ],
+    [
+      "obtain_rooted_dirt_slab"
+    ],
+    [
+      "obtain_netherrack_slab"
+    ],
+    [
+      "obtain_sand_slab"
+    ],
+    [
+      "obtain_red_sand_slab"
+    ],
+    [
+      "obtain_gravel_slab"
+    ],
+    [
+      "obtain_clay_slab"
+    ],
+    [
+      "obtain_soul_sand_slab"
+    ],
+    [
+      "obtain_soul_soil_slab"
+    ],
+    [
+      "obtain_magma_slab"
+    ],
+    [
+      "obtain_moss_slab"
+    ],
+    [
+      "obtain_mud_slab"
+    ],
+    [
+      "obtain_packed_mud_slab"
+    ],
+    [
+      "obtain_muddy_roots_slab"
+    ],
+    [
+      "obtain_ice_slab"
+    ],
+    [
+      "obtain_packet_ice_slab"
+    ],
+    [
+      "obtain_blue_ice_slab"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

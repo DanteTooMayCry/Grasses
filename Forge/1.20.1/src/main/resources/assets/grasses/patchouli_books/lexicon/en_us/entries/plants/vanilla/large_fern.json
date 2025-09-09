@@ -1,0 +1,14 @@
+{
+  "name": "Tinted Large Fern",
+  "icon": "grasses:fern_tall_tinted",
+  "category": "grasses:plants_category",
+  "sortnum": 4,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:fern_tall_tinted",
+      "title": "Tinted Large Fern"
+    }
+  ]
+}

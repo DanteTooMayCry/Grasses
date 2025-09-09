@@ -1,0 +1,19 @@
+{
+  "name": "Netherite Grass",
+  "icon": "grasses:netherite_grass_block",
+  "category": "grasses:grasses_blocks_category",
+  "sortnum": 46,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:netherite_grass_block",
+      "title": "Netherite Grass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "grasses:netherite_grass_slab",
+      "title": "Netherite Grass Slab"
+    }
+  ]
+}
